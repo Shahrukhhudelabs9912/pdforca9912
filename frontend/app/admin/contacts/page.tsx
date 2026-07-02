@@ -53,6 +53,7 @@ const STATUS_CONFIG = {
 };
 
 export default function AdminContactsPage() {
+  const [mounted, setMounted] = useState(false);
   const [token, setToken] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
   const [passwordInput, setPasswordInput] = useState("");
@@ -75,6 +76,7 @@ export default function AdminContactsPage() {
       setToken(saved);
       setAuthenticated(true);
     }
+    setMounted(true);
   }, []);
 
   const authHeader = `Bearer ${token}`;
@@ -85,7 +87,7 @@ export default function AdminContactsPage() {
     try {
       const params = new URLSearchParams({ page: String(page), limit: "15" });
       if (statusFilter) params.set("status", statusFilter);
-      const res = await fetch(`/api/admin/contacts?${params}`, {
+      const res = await fetch(`/api/admin/contact-submissions?${params}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.status === 401) {
@@ -147,7 +149,7 @@ export default function AdminContactsPage() {
 
   const updateStatus = async (id: string, newStatus: string) => {
     try {
-      const res = await fetch(`/api/admin/contacts/${id}`, {
+      const res = await fetch(`/api/admin/contact-submissions/${id}`, {
         method: "PATCH",
         headers: { Authorization: authHeader, "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus }),
@@ -171,7 +173,7 @@ export default function AdminContactsPage() {
     if (!selected || !replyText.trim()) return;
     setReplying(true);
     try {
-      const res = await fetch(`/api/admin/contacts/${selected._id}/reply`, {
+      const res = await fetch(`/api/admin/contact-submissions/${selected._id}/reply`, {
         method: "POST",
         headers: { Authorization: authHeader, "Content-Type": "application/json" },
         body: JSON.stringify({ message: replyText.trim() }),
@@ -211,6 +213,15 @@ export default function AdminContactsPage() {
     }
   };
 
+  // --- Loading state (prevents hydration mismatch from sessionStorage) ---
+  if (!mounted) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+      </div>
+    );
+  }
+
   // --- Token Gate ---
   if (!authenticated) {
     return (
@@ -223,7 +234,7 @@ export default function AdminContactsPage() {
             <h1 className="text-2xl font-bold">Admin Login</h1>
             <p className="text-sm text-muted-foreground mt-1">Enter your admin password to continue</p>
           </div>
-          <div className="space-y-4">
+          <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
             <div>
               <div className="relative">
                 <Input
@@ -231,9 +242,9 @@ export default function AdminContactsPage() {
                   placeholder="Password"
                   value={passwordInput}
                   onChange={(e) => { setPasswordInput(e.target.value); setLoginError(""); }}
-                  onKeyDown={(e) => e.key === "Enter" && handleLogin()}
                   className={loginError ? "border-red-500 pr-10" : "pr-10"}
                   disabled={loggingIn}
+                  autoComplete="current-password"
                 />
                 <button
                   type="button"
@@ -246,10 +257,10 @@ export default function AdminContactsPage() {
               </div>
               {loginError && <p className="mt-1 text-xs text-red-500">{loginError}</p>}
             </div>
-            <Button className="w-full" onClick={handleLogin} disabled={loggingIn}>
+            <Button type="submit" className="w-full" disabled={loggingIn}>
               {loggingIn ? "Signing in..." : "Sign In"}
             </Button>
-          </div>
+          </form>
         </Card>
       </div>
     );
