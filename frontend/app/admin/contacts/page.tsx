@@ -5,6 +5,7 @@ import {
   Mail,
   Inbox,
   Eye,
+  EyeOff,
   Reply,
   RefreshCw,
   LogOut,
@@ -55,6 +56,7 @@ export default function AdminContactsPage() {
   const [token, setToken] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
   const [passwordInput, setPasswordInput] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState("");
   const [loggingIn, setLoggingIn] = useState(false);
 
@@ -223,15 +225,25 @@ export default function AdminContactsPage() {
           </div>
           <div className="space-y-4">
             <div>
-              <Input
-                type="password"
-                placeholder="Password"
-                value={passwordInput}
-                onChange={(e) => { setPasswordInput(e.target.value); setLoginError(""); }}
-                onKeyDown={(e) => e.key === "Enter" && handleLogin()}
-                className={loginError ? "border-red-500" : ""}
-                disabled={loggingIn}
-              />
+              <div className="relative">
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={passwordInput}
+                  onChange={(e) => { setPasswordInput(e.target.value); setLoginError(""); }}
+                  onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+                  className={loginError ? "border-red-500 pr-10" : "pr-10"}
+                  disabled={loggingIn}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  tabIndex={-1}
+                >
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
               {loginError && <p className="mt-1 text-xs text-red-500">{loginError}</p>}
             </div>
             <Button className="w-full" onClick={handleLogin} disabled={loggingIn}>
