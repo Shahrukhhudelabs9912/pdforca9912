@@ -31,6 +31,9 @@ export const metadata: Metadata = {
   keywords: "PDF tools, merge PDF, split PDF, compress PDF, PDF to Word, Word to PDF, PDF converter, AI PDF summarization",
   authors: [{ name: "PDFOrca" }],
   robots: "index, follow",
+  verification: {
+    google: "UaaT6fk7tLaOZEiuTXwrJqYuVDwV-Ce-mG1DDbk4mjE",
+  },
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com"),
   alternates: {
     canonical: "/",
