@@ -80,6 +80,11 @@ async def connect_to_mongo() -> None:
     await _db.contact_submissions.create_index([("submitted_at", -1)], background=True)
     await _db.contact_submissions.create_index("email", background=True)
 
+    # Captcha challenges — auto-expire after 5 minutes via MongoDB TTL index.
+    await _db.captcha_challenges.create_index(
+        "created_at", expireAfterSeconds=300, background=True
+    )
+
     # Ping to verify connectivity
     await _client.admin.command("ping")
     # Log the DB name only — never the full MONGO_URL, which contains the

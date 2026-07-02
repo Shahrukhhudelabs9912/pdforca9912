@@ -61,7 +61,7 @@ ContactRequest.model_rebuild()
 @router.get("/captcha")
 async def get_captcha() -> dict:
     """Generate a new image captcha challenge (3x3 grid)."""
-    return generate_challenge()
+    return await generate_challenge()
 
 
 @router.post("/contact", response_model=ContactResponse)
@@ -82,7 +82,7 @@ async def submit_contact(request: Request, body: ContactRequest) -> ContactRespo
         return ContactResponse()
 
     # Image captcha verification
-    if not verify_challenge(body.captcha_id, body.captcha_selected):
+    if not await verify_challenge(body.captcha_id, body.captcha_selected):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Captcha verification failed. Please select the correct images and try again.",

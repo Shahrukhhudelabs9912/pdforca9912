@@ -2,7 +2,8 @@
 
 Generates a 3x3 grid of shape images (rendered via Pillow) and asks the
 user to select all images of a target shape. Challenges are stored
-in-memory with a short TTL (5 minutes) for verification.
+in MongoDB with a TTL index for automatic expiry, so they work across
+multiple Gunicorn workers.
 
 Shapes: star, circle, triangle, square, diamond, hexagon
 Each image has random background noise, rotation, and color variation
@@ -14,8 +15,8 @@ import io
 import math
 import random
 import secrets
-import time
 import base64
+from datetime import datetime, timezone
 from typing import Any
 
 from PIL import Image, ImageDraw, ImageFilter
@@ -23,18 +24,6 @@ from PIL import Image, ImageDraw, ImageFilter
 SHAPES = ["star", "circle", "triangle", "square", "diamond", "hexagon"]
 CHALLENGE_TTL = 300  # 5 minutes
 IMG_SIZE = 120
-
-# In-memory challenge store. For single-process dev/small-scale this is fine.
-# Multi-worker production should swap for Redis or MongoDB TTL collection.
-_challenges: dict[str, dict[str, Any]] = {}
-
-
-def _cleanup_expired() -> None:
-    """Remove expired challenges to prevent memory leak."""
-    now = time.time()
-    expired = [k for k, v in _challenges.items() if now - v["created"] > CHALLENGE_TTL]
-    for k in expired:
-        del _challenges[k]
 
 
 def _random_color() -> tuple[int, int, int]:
@@ -146,7 +135,7 @@ def _render_shape_image(shape: str) -> str:
     return f"data:image/png;base64,{b64}"
 
 
-def generate_challenge() -> dict[str, Any]:
+async def generate_challenge() -> dict[str, Any]:
     """Generate a new captcha challenge.
 
     Returns dict with:
@@ -154,7 +143,7 @@ def generate_challenge() -> dict[str, Any]:
     - target: human-readable target label (e.g. "stars")
     - images: list of 9 base64 image data URIs
     """
-    _cleanup_expired()
+    from app.utils.db_utils import get_database
 
     # Pick target shape and fill grid
     target_shape = random.choice(SHAPES)
@@ -173,12 +162,14 @@ def generate_challenge() -> dict[str, Any]:
     # Correct answer: indices where target_shape appears
     correct_indices = [i for i, s in enumerate(grid_shapes) if s == target_shape]
 
-    # Store challenge
+    # Store challenge in MongoDB
     challenge_id = secrets.token_urlsafe(16)
-    _challenges[challenge_id] = {
+    db = get_database()
+    await db.captcha_challenges.insert_one({
+        "_id": challenge_id,
         "correct": sorted(correct_indices),
-        "created": time.time(),
-    }
+        "created_at": datetime.now(timezone.utc),
+    })
 
     return {
         "id": challenge_id,
@@ -187,18 +178,16 @@ def generate_challenge() -> dict[str, Any]:
     }
 
 
-def verify_challenge(challenge_id: str, selected_indices: list[int]) -> bool:
+async def verify_challenge(challenge_id: str, selected_indices: list[int]) -> bool:
     """Verify a captcha response. Returns True if correct.
 
     Consumes the challenge (one-time use) regardless of result.
     """
-    _cleanup_expired()
+    from app.utils.db_utils import get_database
 
-    challenge = _challenges.pop(challenge_id, None)
+    db = get_database()
+    challenge = await db.captcha_challenges.find_one_and_delete({"_id": challenge_id})
     if not challenge:
-        return False
-
-    if time.time() - challenge["created"] > CHALLENGE_TTL:
         return False
 
     return sorted(selected_indices) == challenge["correct"]
