@@ -20,6 +20,10 @@ COPY content/blog/ ../content/blog/
 # Same-origin API: the browser calls /api/* which Nginx routes to backend.
 ENV NEXT_PUBLIC_API_URL=/api
 ENV NEXT_TELEMETRY_DISABLED=1
+ARG NEXT_PUBLIC_GA_MEASUREMENT_ID
+ENV NEXT_PUBLIC_GA_MEASUREMENT_ID=$NEXT_PUBLIC_GA_MEASUREMENT_ID
+ARG NEXT_PUBLIC_ADSENSE_ID
+ENV NEXT_PUBLIC_ADSENSE_ID=$NEXT_PUBLIC_ADSENSE_ID
 RUN npm run build
 
 # ── Stage 3: runner ───────────────────────────────────────────────────

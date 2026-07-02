@@ -41,6 +41,9 @@ services:
     build:
       context: .
       dockerfile: frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_GA_MEASUREMENT_ID: G-3MDETEKQSC
+        NEXT_PUBLIC_ADSENSE_ID: ca-pub-3401938409886211
     restart: unless-stopped
     environment:
       PYTHON_API_BASE: http://backend:8000/api
