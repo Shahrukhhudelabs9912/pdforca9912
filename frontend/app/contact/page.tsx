@@ -36,7 +36,7 @@ export default function ContactPage() {
     setCaptchaLoading(true);
     setSelectedIndices(new Set());
     try {
-      const res = await fetch("/api/contact");
+      const res = await fetch("/api/captcha");
       const data = await res.json();
       if (data?.id) {
         setCaptcha(data);
