@@ -81,16 +81,35 @@ export default async function RootLayout({
   // next-themes' blocking script adds it before hydration if needed.
   const ssrThemeClass = themeCookie === 'dark' ? 'dark' : '';
   const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   return (
     <html lang={locale} className={ssrThemeClass} suppressHydrationWarning>
-      {adsenseId && (
+      {(adsenseId || gaId) && (
         <head>
-          <Script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
+          {adsenseId && (
+            <Script
+              async
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
+              crossOrigin="anonymous"
+              strategy="afterInteractive"
+            />
+          )}
+          {gaId && (
+            <>
+              <Script
+                src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+                strategy="afterInteractive"
+              />
+              <Script id="google-analytics" strategy="afterInteractive">
+                {`
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${gaId}');
+                `}
+              </Script>
+            </>
+          )}
         </head>
       )}
       <body className={`min-h-screen flex flex-col ${inter.className}`} suppressHydrationWarning>
