@@ -10,6 +10,9 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
 type Params = { slug: string };
 
+export const dynamicParams = true;
+export const dynamic = "force-dynamic";
+
 export async function generateStaticParams(): Promise<Params[]> {
   return getAllPostSlugs().map((slug) => ({ slug }));
 }

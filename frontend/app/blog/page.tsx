@@ -43,6 +43,8 @@ function formatDate(iso: string) {
   });
 }
 
+export const dynamic = "force-dynamic";
+
 export default function BlogPage() {
   const posts = getAllPosts();
   const pageUrl = `${SITE_URL}/blog`;
