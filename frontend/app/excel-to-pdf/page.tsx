@@ -72,6 +72,7 @@ export default function ExcelToPDFPage() {
         steps={HOW_TO_STEPS}
       />
       <FAQPageJsonLd items={FAQ_ITEMS} />
+      <h1 className="sr-only">Convert Excel to PDF Online Free</h1>
       <ExcelToPDFClient />
     </>
   );

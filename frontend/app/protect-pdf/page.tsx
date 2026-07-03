@@ -72,6 +72,7 @@ export default function ProtectPDFPage() {
         steps={HOW_TO_STEPS}
       />
       <FAQPageJsonLd items={FAQ_ITEMS} />
+      <h1 className="sr-only">Password Protect PDF Online Free</h1>
       <ProtectPDFClient />
     </>
   );

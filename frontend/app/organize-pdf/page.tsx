@@ -73,6 +73,7 @@ export default function OrganizePDFPage() {
         steps={HOW_TO_STEPS}
       />
       <FAQPageJsonLd items={FAQ_ITEMS} />
+      <h1 className="sr-only">Organize PDF Pages Online Free</h1>
       <OrganizePDFClient />
     </>
   );

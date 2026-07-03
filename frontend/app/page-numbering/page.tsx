@@ -73,6 +73,7 @@ export default function PageNumberingPage() {
         steps={HOW_TO_STEPS}
       />
       <FAQPageJsonLd items={FAQ_ITEMS} />
+      <h1 className="sr-only">Add Page Numbers to PDF Online Free</h1>
       <PageNumberingClient />
     </>
   );
