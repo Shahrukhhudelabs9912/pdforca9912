@@ -11,7 +11,6 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 type Params = { slug: string };
 
 export const dynamicParams = true;
-export const dynamic = "force-dynamic";
 
 export async function generateStaticParams(): Promise<Params[]> {
   return getAllPostSlugs().map((slug) => ({ slug }));
@@ -169,7 +168,7 @@ export default async function BlogPostPage({
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={post.cover}
-              alt=""
+              alt={post.title}
               className="mb-10 aspect-[16/9] w-full rounded-2xl object-cover shadow-md"
             />
           )}

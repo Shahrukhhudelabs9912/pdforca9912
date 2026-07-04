@@ -49,19 +49,16 @@ export function ExcelToPDFClient() {
   });
 
   const handleFileUpload = (uploadedFiles: File[]) => {
-    console.log(`[ExcelToPDF] Files uploaded: ${uploadedFiles.length} files`);
     setLastResult(null);
     toast.success(`${uploadedFiles.length} ${tp("file_s")} ${tp("uploaded_toast")}`);
   };
 
   const handleConvert = async () => {
-    console.log(`[ExcelToPDF] Starting conversion with ${files.length} files`);
     setLastResult(null);
     await processFiles();
   };
 
   const handleClearFiles = () => {
-    console.log(`[ExcelToPDF] Manually clearing files`);
     clearAllFiles();
     setLastResult(null);
     toast.info(tp("files_cleared"));
@@ -69,12 +66,10 @@ export function ExcelToPDFClient() {
 
   const handleManualDownload = () => {
     if (!lastResult) return;
-    console.log(`[ExcelToPDF] Manual download: filename="${lastResult.filename}", blob=${lastResult.blob.size} bytes`);
 
     let downloadName = lastResult.filename;
     if (!downloadName.toLowerCase().endsWith('.pdf')) {
       downloadName = downloadName.replace(/\.\w+$/, '') + '.pdf';
-      console.log(`[ExcelToPDF] Fixed extension → "${downloadName}"`);
     }
 
     triggerDownload(lastResult.blob, downloadName);

@@ -24,7 +24,6 @@ export async function POST(request: NextRequest) {
     backendFormData.append('file', blob, file.name);
     backendFormData.append('compression_level', compressionLevel);
 
-    console.log(`[compress-pdf API] Forwarding to backend: ${file.name} (${fileBuffer.byteLength} bytes, ${compressionLevel})`);
 
     const backendResponse = await fetch(`${PYTHON_API_BASE}/compress-pdf`, {
       method: 'POST',
@@ -62,7 +61,6 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    console.log(`[compress-pdf API] Returning: ${filename} (${backendData.byteLength} bytes)`);
 
     return new Response(backendData, {
       status: 200,

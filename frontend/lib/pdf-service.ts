@@ -78,7 +78,6 @@ class PDFService {
     const timer = setTimeout(() => {
       this.deleteFile(fileId);
       this.autoDeleteTimers.delete(fileId);
-      console.log(`Auto-deleted file: ${fileId}`);
     }, this.AUTO_DELETE_DELAY);
 
     this.autoDeleteTimers.set(fileId, timer);
@@ -299,7 +298,6 @@ class PDFService {
 
     return new Promise((resolve) => {
       setTimeout(() => {
-        console.log(`Completed ${operation} operation: ${jobId}`);
         this.processingQueue.delete(jobId);
         resolve();
       }, processingTime);

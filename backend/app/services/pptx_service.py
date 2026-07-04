@@ -10,6 +10,7 @@
 from __future__ import annotations
 
 import io
+import logging
 import subprocess
 import tempfile
 from pathlib import Path
@@ -17,6 +18,8 @@ from pathlib import Path
 from app.utils import PDFProcessingError
 from app.utils.concurrency import resolve_libreoffice_path
 from app.utils.file_utils import sanitize_filename
+
+logger = logging.getLogger(__name__)
 
 
 class PptxService:
@@ -57,8 +60,9 @@ def powerpoint_to_pdf(pptx_bytes: bytes, original_filename: str) -> bytes:
             raise PDFProcessingError("PowerPoint to PDF conversion timed out.")
 
         if result.returncode != 0:
+            logger.error("LibreOffice PPTX-to-PDF failed: %s", result.stderr[:500])
             raise PDFProcessingError(
-                f"LibreOffice failed: {result.stderr[:200] or 'unknown error'}"
+                "PowerPoint to PDF conversion failed. Please try a different file."
             )
 
         pdfs = list(tmp_path.glob("*.pdf"))

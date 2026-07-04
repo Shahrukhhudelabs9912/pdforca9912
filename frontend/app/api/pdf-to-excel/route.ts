@@ -30,7 +30,6 @@ export async function POST(request: NextRequest) {
     const blob = new Blob([fileBuffer], { type: 'application/pdf' });
     backendFormData.append('file', blob, file.name);
 
-    console.log(`[pdf-to-excel API] Forwarding to backend: ${file.name} (${fileBuffer.byteLength} bytes)`);
 
     // Call the backend API
     const backendResponse = await fetch(`${PYTHON_API_BASE}/pdf-to-excel`, {
@@ -72,7 +71,6 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    console.log(`[pdf-to-excel API] Returning: ${filename} (${backendData.byteLength} bytes)`);
 
     // Return the file from backend
     return new Response(backendData, {

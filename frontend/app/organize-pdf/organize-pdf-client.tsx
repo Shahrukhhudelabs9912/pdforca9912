@@ -116,7 +116,6 @@ export function OrganizePDFClient() {
           const { PDFDocument } = await import("pdf-lib");
           const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
           const numPages = pdfDoc.getPageCount();
-          console.log(`[organize-pdf] Detected ${numPages} pages`);
           setPageCount(numPages);
           setIsDetecting(false);
           const newPages: PageItem[] = Array.from({ length: numPages }, (_, i) => ({

@@ -49,19 +49,16 @@ export function PDFToWordClient() {
   });
 
   const handleFileUpload = (uploadedFiles: File[]) => {
-    console.log(`[PDFToWord] Files uploaded: ${uploadedFiles.length} files`);
     setLastResult(null);
     toast.success(`${uploadedFiles.length} ${tp("file_s")} ${tp("uploaded_toast")}`);
   };
 
   const handleConvert = async () => {
-    console.log(`[PDFToWord] Starting conversion with ${files.length} files`);
     setLastResult(null);
     await processFiles();
   };
 
   const handleClearFiles = () => {
-    console.log(`[PDFToWord] Manually clearing files`);
     clearAllFiles();
     setLastResult(null);
     toast.info(tp("files_cleared"));
@@ -69,12 +66,10 @@ export function PDFToWordClient() {
 
   const handleManualDownload = () => {
     if (!lastResult) return;
-    console.log(`[PDFToWord] Manual download: filename="${lastResult.filename}", blob=${lastResult.blob.size} bytes, type=${lastResult.blob.type}`);
 
     let downloadName = lastResult.filename;
     if (!downloadName.toLowerCase().endsWith('.docx')) {
       downloadName = downloadName.replace(/\.\w+$/, '') + '.docx';
-      console.log(`[PDFToWord] Fixed extension → "${downloadName}"`);
     }
 
     triggerDownload(lastResult.blob, downloadName);

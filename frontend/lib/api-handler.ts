@@ -19,15 +19,11 @@ export async function handleFileUpload(request: NextRequest, options: ApiHandler
     for (const key of formData.keys()) {
       formDataKeys.push(key);
     }
-    console.log('FormData keys:', formDataKeys);
     
     // Check for both 'files' (multiple) and 'file' (single) keys
     const filesArray = formData.getAll('files');
     const fileArray = formData.getAll('file');
     
-    console.log('filesArray length:', filesArray.length, 'fileArray length:', fileArray.length);
-    console.log('filesArray types:', filesArray.map(f => typeof f));
-    console.log('fileArray types:', fileArray.map(f => typeof f));
     
     if (filesArray.length > 0) {
       files = filesArray as File[];
@@ -35,20 +31,16 @@ export async function handleFileUpload(request: NextRequest, options: ApiHandler
       files = fileArray as File[];
     }
     
-    console.log('Total files found:', files.length);
     
     if (files.length === 0) {
-      console.log('No files found in FormData. Checking all keys...');
       // Debug: list all entries
       for (const [key, value] of formData.entries()) {
-        console.log(`Key: ${key}, Value type: ${typeof value}, Is File?: ${value instanceof File}`);
       }
       return { error: 'No files uploaded', status: 400 };
     }
     
     // Debug: log file info
     files.forEach((file, i) => {
-      console.log(`File ${i}: name=${file.name}, size=${file.size}, type=${file.type}, constructor: ${file.constructor.name}`);
     });
     
     if (files.length > maxFiles) {

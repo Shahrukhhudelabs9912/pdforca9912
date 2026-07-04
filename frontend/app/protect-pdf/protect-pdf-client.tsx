@@ -83,7 +83,6 @@ export function ProtectPDFClient() {
       return;
     }
 
-    console.log("[ProtectPDF] Protecting PDF with permissions:", permissions);
 
     setProtectedBlob(null);
     setProtectedFilename("");

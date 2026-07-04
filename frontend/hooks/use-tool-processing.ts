@@ -71,13 +71,10 @@ export function useToolProcessing({
 
   // Set selected tool when component mounts and mark for cleanup on unmount
   useEffect(() => {
-    console.log(`[useToolProcessing] Setting selected tool: ${toolName}`);
     setSelectedTool(toolName);
 
     return () => {
-      console.log(`[useToolProcessing] Component unmounting for tool: ${toolName}`);
       if (autoClearFiles) {
-        console.log(`[useToolProcessing] Marking files for cleanup on unmount`);
         markForCleanup();
       }
       setSelectedTool(null);
@@ -131,7 +128,6 @@ export function useToolProcessing({
       return null;
     }
 
-    console.log(`[useToolProcessing] Starting processing for ${files.length} files`);
 
     // Stamp the start time so the elapsed-timer effect ticks from now.
     startedAtRef.current = Date.now();
@@ -177,18 +173,15 @@ export function useToolProcessing({
         endpointPath.includes(singleEndpoint)
       );
       
-      console.log(`[useToolProcessing] Debug: endpoint=${endpoint}, endpointPath=${endpointPath}, files.length=${files.length}, isSingleFileEndpoint=${isSingleFileEndpoint}`);
       
       if (files.length === 1 && isSingleFileEndpoint) {
         // Single file endpoints use 'file' key
         formData.append('file', files[0]);
-        console.log(`[useToolProcessing] Using 'file' key for single-file endpoint: ${endpoint}`);
       } else {
         // Multiple files endpoints use 'files' key
         files.forEach((file, index) => {
           formData.append("files", file);
         });
-        console.log(`[useToolProcessing] Using 'files' key for multiple-file endpoint: ${endpoint}`);
       }
       
       // Debug: Log FormData keys
@@ -196,7 +189,6 @@ export function useToolProcessing({
       for (const key of formData.keys()) {
         formDataKeys.push(key);
       }
-      console.log(`[useToolProcessing] FormData keys: ${formDataKeys.join(', ')}`);
 
       // Add additional data if provided
       if (additionalData) {
@@ -232,7 +224,6 @@ export function useToolProcessing({
           } else if (errorData.error && typeof errorData.error === 'string') {
             errorMessage = errorData.error;
           }
-          console.log(`[useToolProcessing] Parsed backend error:`, errorData);
         } catch {
           // Not JSON or unparseable — fall back to a clean generic message
           if (rawBody && rawBody.length < 200) {
@@ -240,13 +231,11 @@ export function useToolProcessing({
           }
         }
         
-        console.log(`[useToolProcessing] Final error message: ${errorMessage}`);
         throw new Error(errorMessage);
       }
 
       // Get the processed file
       const blob = await response.blob();
-      console.log(`[useToolProcessing] Response blob: ${blob.size} bytes, type=${blob.type}`);
 
       // Capture all custom X-* response headers so tool-specific clients can
       // surface backend signals (e.g. X-DPI-Adjusted from pdf-to-jpg). The
@@ -266,7 +255,6 @@ export function useToolProcessing({
 
       // Resolve filename using the reusable download utility
       const filename = await resolveDownloadFilename(response, toolName, blob);
-      console.log(`[useToolProcessing] Resolved filename: ${filename}`);
 
       // Download the file
       const url = URL.createObjectURL(blob);
@@ -287,7 +275,6 @@ export function useToolProcessing({
 
       // Mark files for cleanup after successful processing
       if (autoClearFiles) {
-        console.log(`[useToolProcessing] Marking files for cleanup after successful processing`);
         markForCleanup();
       }
 
@@ -326,7 +313,6 @@ export function useToolProcessing({
   }, [files, endpoint, toolName, autoClearFiles, updateState, setProcessingState, markForCleanup, onSuccess, onError]);
 
   const reset = useCallback(() => {
-    console.log(`[useToolProcessing] Resetting state`);
     startedAtRef.current = null;
     updateState({
       isLoading: false,
@@ -340,7 +326,6 @@ export function useToolProcessing({
   }, [updateState, setProcessingState]);
 
   const clearAllFiles = useCallback(() => {
-    console.log(`[useToolProcessing] Manually clearing all files`);
     clearFiles();
     reset();
   }, [clearFiles, reset]);

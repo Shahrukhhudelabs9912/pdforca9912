@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { FileText, Shield, Zap, Globe, Check } from "lucide-react";
 import { AdBanner } from "@/components/ad-banner";
+import { Link } from "@/routing";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -164,13 +165,13 @@ export function ToolLayout({
               <h3 className="text-lg font-semibold">{t("popular_tools")}</h3>
               <div className="mt-4 space-y-2">
                 {popularTools.map((tool) => (
-                  <a
+                  <Link
                     key={tool.name}
                     href={tool.href}
                     className="block rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm font-medium hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
                   >
                     {tool.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>

@@ -119,16 +119,6 @@ export function AddWatermarkClient() {
       return;
     }
 
-    console.log("PDF uploaded, starting watermark process");
-    console.log("Watermark settings:", {
-      text: watermarkText,
-      position,
-      opacity,
-      rotation,
-      pages,
-      customPageRange
-    });
-
     setLoading(true);
     setProgress(0);
     try {
@@ -147,17 +137,6 @@ export function AddWatermarkClient() {
       if (pages === "custom" && customPageRange) {
         additionalData.custom_page_range = customPageRange;
       }
-
-      console.log("Watermark settings with advanced options:", {
-        text: watermarkText,
-        position,
-        opacity,
-        rotation,
-        pages,
-        customPageRange,
-        fontSize,
-        color
-      });
 
       // Use standard processFiles for text watermark
       const success = await processFiles(
@@ -195,7 +174,6 @@ export function AddWatermarkClient() {
       }
     } catch (error) {
       toast.error(t("unexpected_error"));
-      console.error(error);
       setLoading(false);
     }
   };

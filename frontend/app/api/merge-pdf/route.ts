@@ -32,7 +32,6 @@ export async function POST(request: NextRequest) {
       backendFormData.append('files', file, file.name);
     }
 
-    console.log(`[merge-pdf API] Forwarding ${rawFiles.length} files to backend`);
 
     const backendResponse = await fetch(`${PYTHON_API_BASE}/merge-pdf`, {
       method: 'POST',
@@ -70,7 +69,6 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    console.log(`[merge-pdf API] Returning: ${filename} (${backendData.byteLength} bytes)`);
 
     return new Response(backendData, {
       status: 200,

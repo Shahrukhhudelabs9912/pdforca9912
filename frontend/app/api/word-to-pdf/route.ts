@@ -39,7 +39,6 @@ export async function POST(request: NextRequest) {
     const blob = new Blob([fileBuffer], { type: file.type || 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
     backendFormData.append('file', blob, file.name);
 
-    console.log(`[word-to-pdf API] Forwarding to backend: ${file.name} (${fileBuffer.byteLength} bytes)`);
 
     // Call the backend API
     const backendResponse = await fetch(`${PYTHON_API_BASE}/word-to-pdf`, {
@@ -80,7 +79,6 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    console.log(`[word-to-pdf API] Returning: ${filename} (${backendData.byteLength} bytes)`);
 
     // Return the file from backend
     return new Response(backendData, {

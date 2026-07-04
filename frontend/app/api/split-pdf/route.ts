@@ -34,7 +34,6 @@ export async function POST(request: NextRequest) {
     if (pagesPerSplit) backendFormData.append('pages_per_split', pagesPerSplit);
     if (specificPages) backendFormData.append('specific_pages', specificPages);
 
-    console.log(`[split-pdf API] Forwarding to backend: ${file.name} (method: ${splitMethod})`);
 
     const backendResponse = await fetch(`${PYTHON_API_BASE}/split-pdf`, {
       method: 'POST',
@@ -77,7 +76,6 @@ export async function POST(request: NextRequest) {
       filename = `split-pages-${Date.now()}.zip`;
     }
 
-    console.log(`[split-pdf API] Returning: ${filename} (${backendData.byteLength} bytes, ${contentType})`);
 
     return new Response(backendData, {
       status: 200,

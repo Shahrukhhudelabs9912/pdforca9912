@@ -32,12 +32,10 @@ export function WordToPDFClient() {
   const [conversionStatus, setConversionStatus] = useState<'idle' | 'converting' | 'success' | 'error'>('idle');
 
   const handleFileUpload = (uploadedFiles: File[]) => {
-    console.log(`[WordToPDF] Files uploaded: ${uploadedFiles.length} files`);
     toast.success(`${uploadedFiles.length} ${tp("file_s")} ${tp("uploaded_toast")}`);
   };
 
   const handleConvert = async () => {
-    console.log(`[WordToPDF] Starting conversion with ${files.length} files`);
     setConversionStatus('converting');
     
     try {
@@ -52,7 +50,6 @@ export function WordToPDFClient() {
   };
 
   const handleClearFiles = () => {
-    console.log(`[WordToPDF] Manually clearing files`);
     clearAllFiles();
     setConversionStatus('idle');
     toast.info(tp("files_cleared"));

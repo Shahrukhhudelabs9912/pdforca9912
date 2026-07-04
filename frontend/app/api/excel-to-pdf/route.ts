@@ -39,7 +39,6 @@ export async function POST(request: NextRequest) {
     const blob = new Blob([fileBuffer], { type: file.type || 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
     backendFormData.append('file', blob, file.name);
 
-    console.log(`[excel-to-pdf API] Forwarding to backend: ${file.name} (${fileBuffer.byteLength} bytes)`);
 
     // Call the backend API
     const backendResponse = await fetch(`${PYTHON_API_BASE}/excel-to-pdf`, {
@@ -81,7 +80,6 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    console.log(`[excel-to-pdf API] Returning: ${filename} (${backendData.byteLength} bytes)`);
 
     // Return the file from backend
     return new Response(backendData, {

@@ -51,7 +51,6 @@ export async function resolveDownloadFilename(
   if (contentDisp) {
     const match = contentDisp.match(/filename="([^"]+)"/);
     if (match?.[1]) {
-      console.log(`[download-utils] Filename from Content-Disposition: ${match[1]}`);
       return match[1];
     }
   }
@@ -63,7 +62,6 @@ export async function resolveDownloadFilename(
     ?? DEFAULT_EXTENSION;
 
   const filename = `${toolName}_${Date.now()}.${ext}`;
-  console.log(`[download-utils] Filename derived from MIME (${resolvedBlob.type}): ${filename}`);
   return filename;
 }
 
@@ -74,7 +72,6 @@ export async function resolveDownloadFilename(
  * @param filename  - Desired filename including extension
  */
 export function triggerDownload(blob: Blob, filename: string): void {
-  console.log(`[download-utils] Triggering download: ${filename} (${blob.size} bytes, ${blob.type})`);
 
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement('a');

@@ -1,15 +1,12 @@
-import Script from "next/script";
-
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
 type JsonLdProps = { id: string; data: Record<string, unknown> };
 
 function JsonLd({ id, data }: JsonLdProps) {
   return (
-    <Script
+    <script
       id={id}
       type="application/ld+json"
-      strategy="afterInteractive"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
@@ -43,11 +40,6 @@ export function WebSiteJsonLd() {
         "@type": "WebSite",
         name: "PDFOrca",
         url: SITE_URL,
-        potentialAction: {
-          "@type": "SearchAction",
-          target: `${SITE_URL}/search?q={search_term_string}`,
-          "query-input": "required name=search_term_string",
-        },
       }}
     />
   );

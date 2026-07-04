@@ -49,19 +49,16 @@ export function PDFToExcelClient() {
   });
 
   const handleFileUpload = (uploadedFiles: File[]) => {
-    console.log(`[PDFToExcel] Files uploaded: ${uploadedFiles.length} files`);
     setLastResult(null);
     toast.success(`${uploadedFiles.length} ${tp("file_s")} ${tp("uploaded_toast")}`);
   };
 
   const handleConvert = async () => {
-    console.log(`[PDFToExcel] Starting conversion with ${files.length} files`);
     setLastResult(null);
     await processFiles();
   };
 
   const handleClearFiles = () => {
-    console.log(`[PDFToExcel] Manually clearing files`);
     clearAllFiles();
     setLastResult(null);
     toast.info(tp("files_cleared"));
@@ -69,12 +66,10 @@ export function PDFToExcelClient() {
 
   const handleManualDownload = () => {
     if (!lastResult) return;
-    console.log(`[PDFToExcel] Manual download: filename="${lastResult.filename}", blob=${lastResult.blob.size} bytes`);
 
     let downloadName = lastResult.filename;
     if (!downloadName.toLowerCase().endsWith('.xlsx')) {
       downloadName = downloadName.replace(/\.\w+$/, '') + '.xlsx';
-      console.log(`[PDFToExcel] Fixed extension → "${downloadName}"`);
     }
 
     triggerDownload(lastResult.blob, downloadName);

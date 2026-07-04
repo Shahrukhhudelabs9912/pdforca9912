@@ -5,7 +5,6 @@ const PYTHON_API_BASE = process.env.PYTHON_API_BASE || 'http://localhost:8000/ap
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
-    console.log('[add-watermark API] Received request');
 
     // Forward to Python backend
     const backendFormData = new FormData();
@@ -13,7 +12,6 @@ export async function POST(request: NextRequest) {
       backendFormData.append(key, value);
     }
 
-    console.log(`[add-watermark API] Forwarding to backend`);
 
     const response = await fetch(`${PYTHON_API_BASE}/add-watermark`, {
       method: 'POST',

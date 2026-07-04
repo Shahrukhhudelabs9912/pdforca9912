@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Lock, Zap, Brain, Shield } from "lucide-react";
+import { Link } from "@/routing";
 
 export function FAQ() {
   const t = useTranslations();
@@ -73,6 +74,7 @@ export function FAQ() {
             <div key={index} className="mb-4">
               <button
                 onClick={() => toggleFAQ(index)}
+                aria-expanded={openIndex === index}
                 className="flex w-full items-center justify-between rounded-xl border border-gray-200 bg-white p-6 text-left shadow-sm hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-800"
               >
                 <div className="flex items-center gap-4">
@@ -109,9 +111,9 @@ export function FAQ() {
         <div className="mt-12 text-center">
           <p className="text-gray-600 dark:text-gray-300">
             {t("faq.contact_text")}{" "}
-            <a href="/contact" className="font-semibold text-primary hover:underline">
+            <Link href="/contact" className="font-semibold text-primary hover:underline">
               {t("faq.contact_link")}
-            </a>{" "}
+            </Link>{" "}
             {t("faq.contact_suffix")}
           </p>
         </div>

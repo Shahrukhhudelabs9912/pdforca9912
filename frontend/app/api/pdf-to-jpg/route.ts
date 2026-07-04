@@ -24,10 +24,6 @@ export async function POST(request: NextRequest) {
     const dpi = (formData.get('dpi') as string) || '150';
     const pageNumber = (formData.get('page_number') as string) || '0';
 
-    console.log(
-      `[pdf-to-jpg API] Settings: quality=${quality}, dpi=${dpi}, page_number=${pageNumber}`,
-    );
-
     const fileBuffer = await file.arrayBuffer();
 
     const backendFormData = new FormData();
@@ -36,10 +32,6 @@ export async function POST(request: NextRequest) {
     backendFormData.append('quality', quality);
     backendFormData.append('dpi', dpi);
     backendFormData.append('page_number', pageNumber);
-
-    console.log(
-      `[pdf-to-jpg API] Forwarding to backend: ${file.name} (${fileBuffer.byteLength} bytes)`,
-    );
 
     // Explicit AbortController with a generous timeout. The default fetch
     // timeout in Node.js can kill long-running requests prematurely; 300dpi
@@ -105,10 +97,6 @@ export async function POST(request: NextRequest) {
     }
 
     const contentType = filename.endsWith('.zip') ? 'application/zip' : 'image/jpeg';
-
-    console.log(
-      `[pdf-to-jpg API] Returning: ${filename} (${backendData.byteLength} bytes, ${contentType})`,
-    );
 
     return new Response(backendData, {
       status: 200,

@@ -71,7 +71,6 @@ export function ToolComponent({
   });
 
   const handleFileUpload = (uploadedFiles: File[]) => {
-    console.log(`[ToolComponent:${toolName}] Files uploaded: ${uploadedFiles.length} files`);
     toast.success(`${uploadedFiles.length} file(s) ${t("uploaded_toast")}`);
     if (onFileUpload) {
       onFileUpload(uploadedFiles);
@@ -79,9 +78,7 @@ export function ToolComponent({
   };
 
   const handleProcess = async () => {
-    console.log(`[ToolComponent:${toolName}] Starting processing with ${files.length} files`);
     if (additionalData) {
-      console.log(`[ToolComponent:${toolName}] Additional data:`, additionalData);
     }
     // Pre-flight hook lets tool-specific clients run a confirmation dialog
     // or other gate before paying for an expensive backend round-trip.
@@ -93,7 +90,6 @@ export function ToolComponent({
   };
 
   const handleClearFiles = () => {
-    console.log(`[ToolComponent:${toolName}] Manually clearing files`);
     clearAllFiles();
     toast.info(t("files_cleared"));
   };
@@ -175,6 +171,7 @@ export function ToolComponent({
                 variant="ghost"
                 size="sm"
                 onClick={() => removeFile(index)}
+                aria-label="Remove file"
                 className="shrink-0 text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:text-red-300"
               >
                 <Trash2 className="h-4 w-4" />

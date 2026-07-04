@@ -11,7 +11,6 @@ export async function POST(request: NextRequest) {
     for (const key of formData.keys()) {
       keys.push(key);
     }
-    console.log('[jpg-to-pdf API] FormData keys:', keys);
 
     // Get files - check both 'files' (multiple) and 'file' (single)
     const filesArray = formData.getAll('files');
@@ -58,7 +57,6 @@ export async function POST(request: NextRequest) {
     if (orientation) backendFormData.append('orientation', orientation as string);
     if (margin) backendFormData.append('margin', margin as string);
 
-    console.log(`[jpg-to-pdf API] Forwarding ${rawFiles.length} image(s) to backend`);
 
     const backendResponse = await fetch(`${PYTHON_API_BASE}/jpg-to-pdf`, {
       method: 'POST',
@@ -98,7 +96,6 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    console.log(`[jpg-to-pdf API] Returning: ${filename} (${backendData.byteLength} bytes)`);
 
     return new Response(backendData, {
       status: 200,

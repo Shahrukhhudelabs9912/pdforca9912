@@ -143,13 +143,13 @@ export function CTASection() {
         <div className="mt-12 text-center">
           <p className="text-gray-600 dark:text-gray-300">
             Need help getting started?{" "}
-            <a href="/contact" className="font-semibold text-primary hover:underline">
+            <Link href="/contact" className="font-semibold text-primary hover:underline">
               Contact our team
-            </a>{" "}
+            </Link>{" "}
             or{" "}
-            <a href="/blog" className="font-semibold text-primary hover:underline">
+            <Link href="/blog" className="font-semibold text-primary hover:underline">
               read our tutorials
-            </a>
+            </Link>
             .
           </p>
         </div>

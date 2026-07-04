@@ -43,7 +43,6 @@ function formatDate(iso: string) {
   });
 }
 
-export const dynamic = "force-dynamic";
 
 export default function BlogPage() {
   const posts = getAllPosts();
@@ -94,7 +93,7 @@ export default function BlogPage() {
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={post.cover}
-                        alt=""
+                        alt={post.title}
                         className="aspect-[16/9] w-full object-cover"
                       />
                     ) : (

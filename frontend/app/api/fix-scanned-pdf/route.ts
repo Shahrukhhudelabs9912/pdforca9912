@@ -5,7 +5,6 @@ const PYTHON_API_BASE = process.env.PYTHON_API_BASE || "http://localhost:8000/ap
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
-    console.log("[fix-scanned-pdf API route] Received request");
 
     // Forward to Python backend
     const backendFormData = new FormData();
