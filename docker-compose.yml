@@ -89,7 +89,7 @@ services:
       - frontend
       - backend
     healthcheck:
-      test: ["CMD-SHELL", "wget -q -O /dev/null --no-check-certificate https://localhost/ || exit 1"]
+      test: ["CMD-SHELL", "test -f /var/run/nginx.pid && kill -0 $(cat /var/run/nginx.pid)"]
       interval: 30s
       timeout: 5s
       retries: 3
