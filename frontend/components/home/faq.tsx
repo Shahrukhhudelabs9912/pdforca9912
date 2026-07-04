@@ -57,7 +57,7 @@ export function FAQ() {
   ];
 
   return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50/80 to-gray-100/50 dark:from-gray-900/50 dark:to-gray-900/50">
+    <section className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-b from-indigo-50/50 to-indigo-100/25 dark:from-gray-900/50 dark:to-gray-900/50">
       <div className="container mx-auto">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
