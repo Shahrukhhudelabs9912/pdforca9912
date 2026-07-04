@@ -88,7 +88,7 @@ export default function BlogPage() {
                       </div>
                     )}
                     <article
-                    className="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900"
+                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900"
                   >
                     {post.cover ? (
                       // eslint-disable-next-line @next/next/no-img-element
