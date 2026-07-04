@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/routing";
-import { FileText, Shield, Zap, Globe } from "lucide-react";
+import { Shield, Zap, Globe } from "lucide-react";
 // [Phase 3] Restore: Heart, Share2 from "lucide-react" when social links are added
 
 export function Footer() {
@@ -67,9 +67,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8">
           <div className="sm:col-span-2 xl:col-span-2">
             <div className="flex items-center gap-2">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600">
-                <FileText className="h-7 w-7 text-white" />
-              </div>
+              <img src="/icon-pdforca.svg" alt="PDFOrca" className="h-12 w-12 rounded-lg" />
               <div>
                 <h2 className="text-2xl font-bold">PDFOrca</h2>
                 <p className="text-sm text-muted-foreground">

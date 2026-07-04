@@ -4,10 +4,9 @@ import { cn } from "@/lib/utils";
 
 // ─────────────────────────────────────────────────────────────────────────
 // BrandLoader — the single source of truth for PDFOrca's branded loading
-// animation. It renders the brand mark (a PDF document on a blue→purple
-// gradient, matching public/icon-source.svg and the header lockup) with the
-// three document "text" lines drawing in/out in a staggered loop to read as
-// "working".
+// animation. It renders the brand mark (the orca O on a blue→indigo→purple
+// gradient, matching public/icon-pdforca.svg) with staggered opacity
+// animation to read as "working".
 //
 // Motion is driven by Tailwind keyframes added in tailwind.config.ts
 // (`brand-float`, `brand-line-1/2/3`). When the user prefers reduced motion,
@@ -67,47 +66,28 @@ export function BrandMark({
         <defs>
           <linearGradient id="wlp-loader-grad" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stopColor="#2563eb" />
-            <stop offset="1" stopColor="#7c3aed" />
+            <stop offset="0.5" stopColor="#6366f1" />
+            <stop offset="1" stopColor="#9333ea" />
           </linearGradient>
         </defs>
-        {/* Gradient rounded-square plate */}
-        <rect width="512" height="512" rx="112" fill="url(#wlp-loader-grad)" />
-        {/* Document body + folded corner */}
-        <path
-          d="M168 128h120l72 72v184a24 24 0 0 1-24 24H168a24 24 0 0 1-24-24V152a24 24 0 0 1 24-24z"
-          fill="#fff"
-          opacity="0.95"
-        />
-        <path d="M288 128l72 72h-72z" fill="#fff" opacity="0.6" />
-        {/* Three "text" lines — each animates its opacity in a staggered loop */}
-        <line
-          x1="196"
-          y1="268"
-          x2="316"
-          y2="268"
-          stroke="url(#wlp-loader-grad)"
-          strokeWidth="16"
-          strokeLinecap="round"
+        <rect width="512" height="512" rx="108" fill="url(#wlp-loader-grad)" />
+        <circle
+          cx="256"
+          cy="256"
+          r="135"
+          stroke="#fff"
+          strokeWidth="50"
+          fill="none"
           className="motion-safe:animate-brand-line-1"
         />
-        <line
-          x1="196"
-          y1="308"
-          x2="316"
-          y2="308"
-          stroke="url(#wlp-loader-grad)"
-          strokeWidth="16"
-          strokeLinecap="round"
+        <path
+          d="M 238 120 Q 250 25, 290 60 Q 302 82, 290 120"
+          fill="#fff"
           className="motion-safe:animate-brand-line-2"
         />
-        <line
-          x1="196"
-          y1="348"
-          x2="276"
-          y2="348"
-          stroke="url(#wlp-loader-grad)"
-          strokeWidth="16"
-          strokeLinecap="round"
+        <path
+          d="M 142 320 Q 102 342, 90 325 Q 96 302, 120 302 Z"
+          fill="#fff"
           className="motion-safe:animate-brand-line-3"
         />
       </svg>

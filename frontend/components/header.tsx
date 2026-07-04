@@ -128,9 +128,7 @@ export function Header() {
           {/* Left: Logo + primary dropdowns */}
           <div className="flex items-center gap-6">
             <LocaleLink href="/" className="flex items-center gap-2 shrink-0">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600">
-                <FileText className="h-5 w-5 text-white" />
-              </div>
+              <img src="/icon-pdforca.svg" alt="PDFOrca" className="h-8 w-8 rounded-lg" />
               <span className="text-xl font-bold tracking-tight">
                 PDF<span className="text-blue-600">Orca</span>
               </span>

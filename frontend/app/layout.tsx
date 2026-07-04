@@ -55,6 +55,14 @@ export const metadata: Metadata = {
     title: "PDFOrca - Fast, Secure & AI-Powered PDF Tools",
     description: "Merge, split, compress, convert PDF files online for free.",
   },
+  icons: {
+    icon: [
+      { url: "/icon-pdforca.svg", type: "image/svg+xml" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    shortcut: "/icon-pdforca.svg",
+    apple: "/icon-192.png",
+  },
 };
 
 export const viewport = {
