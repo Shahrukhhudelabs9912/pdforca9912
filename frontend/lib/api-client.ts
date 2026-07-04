@@ -16,6 +16,10 @@ export interface ApiResponse<T = any> {
 // out of the browser bundle so it's never exposed to end users.
 const NEXT_API_BASE = '/api';
 
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
 // Get the appropriate API base URL
 function getApiBase(endpoint: string): string {
   return `${NEXT_API_BASE}${endpoint}`;
@@ -39,6 +43,13 @@ const API_ENDPOINTS = {
   'prepare-print-pdf': '/prepare-print-pdf',
   'pdf-to-excel': '/pdf-to-excel',
   'excel-to-pdf': '/excel-to-pdf',
+  'rotate-pdf': '/rotate-pdf',
+  'unlock-pdf': '/unlock-pdf',
+  'extract-pages': '/extract-pages',
+  'ocr-pdf': '/ocr-pdf',
+  'sign-pdf': '/sign-pdf',
+  'pdf-to-powerpoint': '/pdf-to-powerpoint',
+  'powerpoint-to-pdf': '/powerpoint-to-pdf',
 } as const;
 
 type ApiEndpoint = keyof typeof API_ENDPOINTS;
@@ -100,20 +111,6 @@ export async function uploadFile(
     }
 
     const apiUrl = getApiBase(API_ENDPOINTS[endpoint]);
-    console.log(`Calling API: ${apiUrl}`, {
-      fileCount: files.length,
-      endpoint,
-      fileNames: files.map(f => f.name),
-      fileTypes: files.map(f => f.type),
-      fileSizes: files.map(f => f.size)
-    });
-    
-    // Debug: Log FormData keys
-    const formDataKeys: string[] = [];
-    for (const key of formData.keys()) {
-      formDataKeys.push(key);
-    }
-    console.log('FormData keys being sent:', formDataKeys);
 
     // Make the request with timeout and abort controller
     const controller = new AbortController();
@@ -217,8 +214,6 @@ export async function uploadFile(
       throw fetchError; // Re-throw to be caught by outer try-catch
     }
   } catch (error) {
-    console.error('Upload error:', error);
-    
     // Enhanced error messages for common network issues
     let errorMessage = 'Network error';
     if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
@@ -349,7 +344,6 @@ export function downloadBlob(blob: Blob, filename: string): boolean {
   try {
     // Validate inputs
     if (!blob || !(blob instanceof Blob)) {
-      console.error('Invalid blob provided for download');
       return false;
     }
 
@@ -378,14 +372,12 @@ export function downloadBlob(blob: Blob, filename: string): boolean {
       a.click();
       clickSuccessful = true;
     } catch (clickError) {
-      console.error('Error triggering download click:', clickError);
-      
       // Fallback: open in new window for very large files or unsupported browsers
       try {
         window.open(url, '_blank');
         clickSuccessful = true;
       } catch (windowError) {
-        console.error('Fallback download also failed:', windowError);
+        // Both click and window.open failed
       }
     }
     
@@ -399,8 +391,6 @@ export function downloadBlob(blob: Blob, filename: string): boolean {
     
     return clickSuccessful;
   } catch (error) {
-    console.error('Download error:', error);
-    
     // Last resort: show user instructions
     if (blob instanceof Blob) {
       const reader = new FileReader();
@@ -412,8 +402,8 @@ export function downloadBlob(blob: Blob, filename: string): boolean {
             newWindow.document.write(`<html><body>
               <h1>Download Failed</h1>
               <p>Your file is ready but automatic download failed.</p>
-              <p>Please <a href="${dataUrl}" download="${filename}">click here</a> to download manually.</p>
-              <p>Or right-click <a href="${dataUrl}" download="${filename}">this link</a> and select "Save link as..."</p>
+              <p>Please <a href="${dataUrl}" download="${escapeHtml(filename)}">click here</a> to download manually.</p>
+              <p>Or right-click <a href="${dataUrl}" download="${escapeHtml(filename)}">this link</a> and select "Save link as..."</p>
             </body></html>`);
           }
         }
@@ -471,7 +461,6 @@ export async function processFiles(
           onSuccess?.(result.filename);
         }
       } catch (downloadError) {
-        console.error('Download error:', downloadError);
         handleApiError('File processed but download failed. Please try downloading manually.');
         onError?.('File processed but download failed. Please try downloading manually.');
         return false;

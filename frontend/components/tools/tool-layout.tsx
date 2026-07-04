@@ -35,19 +35,18 @@ export function ToolLayout({
 }: ToolLayoutProps) {
   const t = useTranslations("tool_pages");
   const pathname = usePathname();
-  // Read tool-specific translations when toolKey is provided
-  const tt = toolKey ? useTranslations(toolKey as any) : null;
-  const displayTitle = tt?.("title" as any) || title;
-  const displayDescription = tt?.("description" as any) || description;
+  const tt = useTranslations((toolKey || "tool_pages") as any);
+  const displayTitle = toolKey ? (tt("title" as any) || title) : title;
+  const displayDescription = toolKey ? (tt("description" as any) || description) : description;
 
   // Prefer translated SEO content when toolKey is available
-  const seoH1 = (toolKey && tt?.("seo_h1" as any)) ? tt!("seo_h1" as any) : seoContent?.h1;
-  const seoH2 = (toolKey && tt?.("seo_h2" as any)) ? tt!("seo_h2" as any) : seoContent?.h2;
+  const seoH1 = toolKey ? (tt("seo_h1" as any) || seoContent?.h1) : seoContent?.h1;
+  const seoH2 = toolKey ? (tt("seo_h2" as any) || seoContent?.h2) : seoContent?.h2;
   const seoFaq: Array<{ question: string; answer: string }> | undefined =
     toolKey
       ? (() => {
           try {
-            return tt?.raw("seo_faq" as any) as any;
+            return tt.raw("seo_faq" as any) as any;
           } catch {
             return seoContent?.faq;
           }

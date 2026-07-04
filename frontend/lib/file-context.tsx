@@ -63,7 +63,14 @@ export function FileProvider({ children }: { children: ReactNode }) {
         pathname.includes('/protect-pdf') ||
         pathname.includes('/page-numbering') ||
         pathname.includes('/organize-pdf') ||
-        pathname.includes('/add-watermark')) {
+        pathname.includes('/add-watermark') ||
+        pathname.includes('/rotate-pdf') ||
+        pathname.includes('/unlock-pdf') ||
+        pathname.includes('/extract-pages') ||
+        pathname.includes('/ocr-pdf') ||
+        pathname.includes('/sign-pdf') ||
+        pathname.includes('/pdf-to-powerpoint') ||
+        pathname.includes('/powerpoint-to-pdf')) {
       setLastToolPath(pathname);
     }
   }, [pathname, lastToolPath]);

@@ -85,7 +85,7 @@ export default async function RootLayout({
 
   // Read theme cookie to SSR the correct class on <html>,
   // eliminating the hydration mismatch caused by next-themes' inline script.
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const themeCookie = cookieStore.get('theme')?.value;
   // Only pre-set the class when the user has explicitly chosen dark.
   // For 'system' or 'light', the server renders without a dark class;
@@ -95,35 +95,31 @@ export default async function RootLayout({
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   return (
     <html lang={locale} className={ssrThemeClass} suppressHydrationWarning>
-      {(adsenseId || gaId) && (
-        <head>
-          {adsenseId && (
+      <body className={`min-h-screen flex flex-col ${inter.className}`} suppressHydrationWarning>
+        {adsenseId && (
+          <Script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
+            crossOrigin="anonymous"
+            strategy="afterInteractive"
+          />
+        )}
+        {gaId && (
+          <>
             <Script
-              async
-              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
-              crossOrigin="anonymous"
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
               strategy="afterInteractive"
             />
-          )}
-          {gaId && (
-            <>
-              <Script
-                src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-                strategy="afterInteractive"
-              />
-              <Script id="google-analytics" strategy="afterInteractive">
-                {`
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${gaId}');
-                `}
-              </Script>
-            </>
-          )}
-        </head>
-      )}
-      <body className={`min-h-screen flex flex-col ${inter.className}`} suppressHydrationWarning>
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaId}');
+              `}
+            </Script>
+          </>
+        )}
         <OrganizationJsonLd />
         <WebSiteJsonLd />
         <NextIntlClientProvider messages={messages}>

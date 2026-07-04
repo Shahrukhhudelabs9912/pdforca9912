@@ -37,5 +37,8 @@ ENV LIBREOFFICE_PATH=/usr/bin/soffice \
 
 EXPOSE 8000
 
+RUN useradd -r -s /bin/false appuser && chown -R appuser:appuser /app
+USER appuser
+
 # Gunicorn manages UvicornWorkers (config in gunicorn_conf.py).
 CMD ["gunicorn", "app.main:app", "-k", "uvicorn.workers.UvicornWorker", "-c", "gunicorn_conf.py"]

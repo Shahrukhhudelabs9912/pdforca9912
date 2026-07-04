@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, useCallback, useRef, ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -109,36 +109,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [tokens, setTokens] = useState<AuthTokens | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [refreshTimer, setRefreshTimer] = useState<ReturnType<typeof setTimeout> | null>(null);
+  const refreshTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const router = useRouter();
 
-  // Clear refresh timer helper
   const clearRefreshTimer = useCallback(() => {
-    if (refreshTimer) {
-      clearTimeout(refreshTimer);
-      setRefreshTimer(null);
+    if (refreshTimerRef.current) {
+      clearTimeout(refreshTimerRef.current);
+      refreshTimerRef.current = null;
     }
-  }, [refreshTimer]);
+  }, []);
 
-  // Schedule token refresh before expiry
-  const scheduleRefresh = useCallback(
-    (expiresIn: number) => {
-      clearRefreshTimer();
-      // Refresh 2 minutes before expiry
-      const refreshMs = Math.max(0, (expiresIn - 120) * 1000);
-      if (refreshMs > 0) {
-        const timer = setTimeout(() => {
-          refreshAuthToken().catch(() => {
-            // Silent fail — user will be prompted to re-login when token expires
-          });
-        }, refreshMs);
-        setRefreshTimer(timer);
-      }
-    },
-    [clearRefreshTimer]
-  );
-
-  // Refresh the access token using the refresh token
   const refreshAuthToken = useCallback(async (): Promise<boolean> => {
     const storedTokens = loadTokens();
     if (!storedTokens?.refresh_token) return false;
@@ -151,7 +131,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
 
       if (!response.ok) {
-        // Refresh failed — clear everything
         setUser(null);
         setTokens(null);
         clearTokens();
@@ -172,7 +151,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } catch {
       return false;
     }
-  }, [clearRefreshTimer, scheduleRefresh]);
+  }, [clearRefreshTimer]);
+
+  const scheduleRefresh = useCallback(
+    (expiresIn: number) => {
+      clearRefreshTimer();
+      const refreshMs = Math.max(0, (expiresIn - 120) * 1000);
+      if (refreshMs > 0) {
+        refreshTimerRef.current = setTimeout(() => {
+          refreshAuthToken().catch(() => {});
+        }, refreshMs);
+      }
+    },
+    [clearRefreshTimer, refreshAuthToken]
+  );
 
   // On mount: restore session from localStorage
   useEffect(() => {
@@ -234,7 +226,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => {
       clearRefreshTimer();
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   // Login
   const login = useCallback(

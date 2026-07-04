@@ -56,7 +56,7 @@ export default function middleware(request: NextRequest) {
     if (locale === defaultLocale) {
       // Default locale prefix: redirect to unprefixed version
       // e.g., /en/merge-pdf → /merge-pdf
-      const newPathname = pathname.replace(/^\/en/, '') || '/';
+      const newPathname = pathname.replace(new RegExp(`^/${defaultLocale}`), '') || '/';
       const newUrl = new URL(newPathname, request.url);
       newUrl.search = request.nextUrl.search;
       const response = NextResponse.redirect(newUrl);
@@ -70,7 +70,7 @@ export default function middleware(request: NextRequest) {
 
     // Non-default locale prefix: strip locale, rewrite internally
     // e.g., /hi/merge-pdf → internally rewrites to /merge-pdf with NEXT_LOCALE=hi cookie
-    const newPathname = pathname.replace(/^\/hi/, '') || '/';
+    const newPathname = pathname.replace(new RegExp(`^/${pathLocale}`), '') || '/';
     const newUrl = new URL(newPathname, request.url);
     newUrl.search = request.nextUrl.search;
     const response = NextResponse.rewrite(newUrl);

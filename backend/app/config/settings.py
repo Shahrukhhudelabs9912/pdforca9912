@@ -83,12 +83,11 @@ class Settings(BaseSettings):
 
     # ── Rate limiting ─────────────────────────────────────────────────
     RATE_LIMIT_ENABLED: bool = True
-    # [Phase 3] Restore FREE_HOURLY to "100/hour", AI to "30/hour", PROCESSING to "60/hour"
-    RATE_LIMIT_FREE_HOURLY: str = "1000/hour"
-    RATE_LIMIT_PRO_HOURLY: str = "1000/hour"
+    RATE_LIMIT_FREE_HOURLY: str = "100/hour"
+    RATE_LIMIT_PRO_HOURLY: str = "500/hour"
     RATE_LIMIT_AUTH: str = "20/minute"
-    RATE_LIMIT_AI: str = "100/hour"
-    RATE_LIMIT_PROCESSING: str = "500/hour"
+    RATE_LIMIT_AI: str = "30/hour"
+    RATE_LIMIT_PROCESSING: str = "60/hour"
 
     # ── Sentry error tracking ─────────────────────────────────────────
     SENTRY_DSN: str = ""
@@ -138,9 +137,6 @@ class Settings(BaseSettings):
     # Leave blank to skip email delivery (submissions still land in MongoDB).
     CONTACT_TO_EMAIL: str = ""
     CONTACT_FROM_EMAIL: str = "noreply@pdforca.com"
-
-    # User data storage (legacy)
-    USERS_FILE: str = "data/users.json"
 
     # Force dnspython to use Google DNS (8.8.8.8) for mongodb+srv:// SRV
     # lookups when the host's default DNS doesn't return SRV records (common
