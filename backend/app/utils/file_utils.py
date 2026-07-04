@@ -2,35 +2,36 @@
 File utility functions for validation and processing.
 """
 import io
+import os
 import re
-# import magic
 try:
     import magic
 except Exception:
     magic = None
 import zipfile
 from typing import List, Tuple, Optional
+from uuid import uuid4
 from fastapi import UploadFile, HTTPException
 from fastapi.responses import StreamingResponse
 
 from app.config import settings
 
 
-def validate_file_type(file: UploadFile, allowed_types: List[str]) -> bool:
+def validate_file_type(file: UploadFile, allowed_types: List[str], file_bytes: bytes = None) -> bool:
     """
     Validate if a file's content type is allowed.
-    
-    Args:
-        file: UploadFile object
-        allowed_types: List of allowed MIME types
-        
-    Returns:
-        bool: True if file type is allowed
+    Also validates magic bytes if file_bytes are provided.
     """
     if not file.content_type:
         return False
-    
-    return file.content_type in allowed_types
+
+    if file.content_type not in allowed_types:
+        return False
+
+    if file_bytes is not None:
+        return validate_file_content(file_bytes, allowed_types)
+
+    return True
 
 
 def validate_file_size(file: UploadFile, max_size: int = None) -> bool:
@@ -165,3 +166,20 @@ def _safe_filename(name: str) -> str:
     """CR/LF aur quotes hatao taaki header inject na ho sake."""
     name = re.sub(r'[\r\n"]', "", name or "")
     return name.strip() or "download"
+
+
+def sanitize_filename(filename: str) -> str:
+    """Strip path components and dangerous characters from an upload filename."""
+    if not filename:
+        return f"upload_{uuid4().hex[:8]}"
+
+    name = os.path.basename(filename)
+    name = name.replace("\x00", "").replace("..", "")
+
+    stem, ext = os.path.splitext(name)
+    stem = re.sub(r'[<>:"/\\|?*\x00-\x1f]', "_", stem).strip(". ")
+
+    if not stem:
+        stem = f"upload_{uuid4().hex[:8]}"
+
+    return stem + ext

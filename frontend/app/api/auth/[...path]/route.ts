@@ -2,9 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 
 const PYTHON_API_BASE = process.env.PYTHON_API_BASE || "http://localhost:8000/api";
 
-// Catch-all proxy for /api/auth/* — forwards login, signup, refresh, me,
-// logout, profile, change-password, forgot-password, reset-password to the
-// Python backend. Mirrors the pattern in app/api/dashboard/[...path]/route.ts.
+const ALLOWED_AUTH_PATHS = new Set([
+  "login",
+  "signup",
+  "logout",
+  "refresh",
+  "me",
+  "forgot-password",
+  "reset-password",
+  "profile",
+  "change-password",
+]);
 
 async function forward(
   request: NextRequest,
@@ -12,6 +20,10 @@ async function forward(
   method: "GET" | "POST" | "PUT" | "DELETE",
 ): Promise<NextResponse> {
   const pathname = pathSegments.join("/");
+
+  if (!ALLOWED_AUTH_PATHS.has(pathname)) {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
   const searchParams = request.nextUrl.searchParams.toString();
   const url = `${PYTHON_API_BASE}/auth/${pathname}${searchParams ? `?${searchParams}` : ""}`;
 

@@ -16,6 +16,7 @@ from pathlib import Path
 
 from app.utils import PDFProcessingError
 from app.utils.concurrency import resolve_libreoffice_path
+from app.utils.file_utils import sanitize_filename
 
 
 class PptxService:
@@ -36,7 +37,7 @@ def powerpoint_to_pdf(pptx_bytes: bytes, original_filename: str) -> bytes:
 
     with tempfile.TemporaryDirectory() as tmp:
         tmp_path = Path(tmp)
-        input_path = tmp_path / original_filename
+        input_path = tmp_path / sanitize_filename(original_filename)
         input_path.write_bytes(pptx_bytes)
 
         # Unique profile dir so parallel LibreOffice runs don't collide.

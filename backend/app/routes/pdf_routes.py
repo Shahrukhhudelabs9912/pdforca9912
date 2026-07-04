@@ -7,7 +7,7 @@ import logging
 import traceback
 from pathlib import Path
 from typing import List, Optional
-from fastapi import APIRouter, UploadFile, File, Form, HTTPException, status
+from fastapi import APIRouter, UploadFile, File, Form, HTTPException, Request, status
 from fastapi.responses import StreamingResponse, Response
 
 from app.services.pdf_service import PDFService, ImageToPDFService, PDFToImageService
@@ -24,8 +24,10 @@ from app.utils import (
     run_blocking,
     heavy_job_slot,
     resolve_libreoffice_path,
+    sanitize_filename,
 )
 from app.config import settings
+from app.utils.rate_limit import limiter
 from app.schemas import (
     PlaceholderResponse,
 )
@@ -36,7 +38,8 @@ router = APIRouter()
 
 
 @router.post("/merge-pdf", summary="Merge multiple PDF files")
-async def merge_pdf(files: List[UploadFile] = File(...)):
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
+async def merge_pdf(request: Request, files: List[UploadFile] = File(...)):
     """
     Merge multiple PDF files into a single PDF.
     Handles AES-encrypted PDFs gracefully; password-protected PDFs
@@ -96,7 +99,9 @@ async def merge_pdf(files: List[UploadFile] = File(...)):
 
 
 @router.post("/split-pdf", summary="Split PDF file")
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
 async def split_pdf(
+    request: Request,
     file: UploadFile = File(...),
     split_method: str = Form("all", description="Split method: all, range, every, or pages"),
     page_range: Optional[str] = Form(None, description="Page ranges e.g. '1-5,8-10' (range method)"),
@@ -182,7 +187,9 @@ async def split_pdf(
 
 
 @router.post("/jpg-to-pdf", summary="Convert images to PDF")
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
 async def jpg_to_pdf(
+    request: Request,
     files: List[UploadFile] = File(...),
     page_size: str = Form("a4"),
     orientation: str = Form("portrait"),
@@ -249,7 +256,9 @@ async def jpg_to_pdf(
 
 
 @router.post("/pdf-to-jpg", summary="Convert PDF to image(s)")
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
 async def pdf_to_jpg(
+    request: Request,
     file: UploadFile = File(...),
     page_number: int = Form(0, ge=0, description="Page number to convert (0 = all pages, 1+ = specific page)"),
     quality: int = Form(85, ge=1, le=100, description="Image quality (1-100%)"),
@@ -395,7 +404,9 @@ async def pdf_to_jpg(
 
 
 @router.post("/add-watermark", summary="Add watermark to PDF")
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
 async def add_watermark(
+    request: Request,
     file: UploadFile = File(...),
     watermark_type: str = Form("text", description="Type of watermark: 'text' or 'image'"),
     watermark_text: str = Form("", description="Watermark text (required for text watermarks)"),
@@ -567,7 +578,8 @@ async def add_watermark(
 
 
 @router.post("/pdf-to-word", summary="Convert PDF to Word document")
-async def pdf_to_word(file: UploadFile = File(...)):
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
+async def pdf_to_word(request: Request, file: UploadFile = File(...)):
     """
     Convert a PDF file to an editable Word document (.docx) with high quality.
     
@@ -1372,7 +1384,8 @@ def create_basic_word_document(pdf_bytes: bytes, original_filename: str) -> byte
 
 
 @router.post("/word-to-pdf", summary="Convert Word document to PDF")
-async def word_to_pdf(file: UploadFile = File(...)):
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
+async def word_to_pdf(request: Request, file: UploadFile = File(...)):
     """
     Convert Word document (.doc, .docx) to PDF format using LibreOffice.
     
@@ -1414,7 +1427,7 @@ async def word_to_pdf(file: UploadFile = File(...)):
             logger.debug(f"Created temp directory: {temp_dir}")
             
             # Save uploaded file
-            input_path = temp_dir_path / file.filename
+            input_path = temp_dir_path / sanitize_filename(file.filename)
             with open(input_path, "wb") as f:
                 f.write(file_bytes)
             logger.debug(f"Saved uploaded file to: {input_path}")
@@ -1512,7 +1525,9 @@ async def word_to_pdf(file: UploadFile = File(...)):
 
 
 @router.post("/compress-pdf", summary="Compress PDF file")
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
 async def compress_pdf(
+    request: Request,
     file: UploadFile = File(...),
     compressionLevel: str = Form("medium")
 ):
@@ -1593,7 +1608,8 @@ async def compress_pdf(
 
 
 @router.post("/fix-scanned-pdf", summary="Fix scanned PDF documents")
-async def fix_scanned_pdf(file: UploadFile = File(...)):
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
+async def fix_scanned_pdf(request: Request, file: UploadFile = File(...)):
     """
     Fix scanned PDF documents by optimizing for OCR and readability.
     
@@ -1640,7 +1656,8 @@ async def fix_scanned_pdf(file: UploadFile = File(...)):
 
 
 @router.post("/optimize-pdf", summary="Optimize PDF for web viewing")
-async def optimize_pdf(file: UploadFile = File(...)):
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
+async def optimize_pdf(request: Request, file: UploadFile = File(...)):
     """
     Optimize PDF for web viewing with linearization and compression.
     
@@ -1687,7 +1704,8 @@ async def optimize_pdf(file: UploadFile = File(...)):
 
 
 @router.post("/prepare-print-pdf", summary="Prepare PDF for printing")
-async def prepare_print_pdf(file: UploadFile = File(...)):
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
+async def prepare_print_pdf(request: Request, file: UploadFile = File(...)):
     """
     Prepare PDF for printing with proper page sizing and margins.
     
@@ -1734,7 +1752,9 @@ async def prepare_print_pdf(file: UploadFile = File(...)):
 
 
 @router.post("/protect-pdf", summary="Protect PDF with password and encryption")
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
 async def protect_pdf(
+    request: Request,
     file: UploadFile = File(...),
     password: str = Form(..., min_length=4, description="Password to protect the PDF"),
     allow_printing: bool = Form(True, description="Allow printing"),
@@ -1747,6 +1767,13 @@ async def protect_pdf(
     Returns the encrypted PDF file for download.
     """
     try:
+        # Validate file size
+        if not validate_file_size(file):
+            raise HTTPException(
+                status_code=400,
+                detail=f"File exceeds maximum size of {settings.MAX_UPLOAD_SIZE} bytes",
+            )
+
         # Read the uploaded PDF
         pdf_bytes = await file.read()
 
@@ -1819,12 +1846,16 @@ async def protect_pdf(
 
 
 @router.post("/unlock-pdf", summary="Remove password from a PDF")
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
 async def unlock_pdf(
+    request: Request,
     file: UploadFile = File(...),
     password: str = Form(..., description="Password used to open the PDF"),
 ):
     """Decrypt an AES/RC4-encrypted PDF and return the unlocked file."""
     try:
+        if not validate_file_size(file):
+            raise HTTPException(status_code=400, detail=f"File exceeds maximum size of {settings.MAX_UPLOAD_SIZE} bytes")
         pdf_bytes = await file.read()
         if not file.filename or not file.filename.lower().endswith(".pdf"):
             raise HTTPException(status_code=400, detail="Invalid file type. Please upload a PDF file.")
@@ -1854,13 +1885,17 @@ async def unlock_pdf(
 
 
 @router.post("/rotate-pdf", summary="Rotate pages in a PDF")
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
 async def rotate_pdf(
+    request: Request,
     file: UploadFile = File(...),
     angle: int = Form(90, description="Rotation angle: 90, 180, or 270"),
     page_range: str = Form("all", description='Pages to rotate: "all" or "1,3,5-7"'),
 ):
     """Rotate selected pages of a PDF by 90/180/270 degrees."""
     try:
+        if not validate_file_size(file):
+            raise HTTPException(status_code=400, detail=f"File exceeds maximum size of {settings.MAX_UPLOAD_SIZE} bytes")
         pdf_bytes = await file.read()
         if not file.filename or not file.filename.lower().endswith(".pdf"):
             raise HTTPException(status_code=400, detail="Invalid file type. Please upload a PDF file.")
@@ -1888,12 +1923,16 @@ async def rotate_pdf(
 
 
 @router.post("/extract-pages", summary="Extract selected pages into a new PDF")
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
 async def extract_pages(
+    request: Request,
     file: UploadFile = File(...),
     pages: str = Form(..., description='Pages to extract, e.g. "1,3,5-7"'),
 ):
     """Pull selected pages from a PDF into a single new PDF."""
     try:
+        if not validate_file_size(file):
+            raise HTTPException(status_code=400, detail=f"File exceeds maximum size of {settings.MAX_UPLOAD_SIZE} bytes")
         pdf_bytes = await file.read()
         if not file.filename or not file.filename.lower().endswith(".pdf"):
             raise HTTPException(status_code=400, detail="Invalid file type. Please upload a PDF file.")
@@ -1921,7 +1960,9 @@ async def extract_pages(
 
 
 @router.post("/page-numbering", summary="Add page numbers to PDF")
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
 async def page_numbering(
+    request: Request,
     file: UploadFile = File(...),
     number_format: str = Form("1,2,3", description="Number format: 1,2,3 | I,II,III | i,ii,iii | A,B,C | Page 1 | 1 of 10 | PAGE-001"),
     starting_number: int = Form(1, ge=1, description="Starting page number"),
@@ -1941,6 +1982,13 @@ async def page_numbering(
     """
     import os
     try:
+        # Validate file size
+        if not validate_file_size(file):
+            raise HTTPException(
+                status_code=400,
+                detail=f"File exceeds maximum size of {settings.MAX_UPLOAD_SIZE} bytes",
+            )
+
         # Read the uploaded PDF
         pdf_bytes = await file.read()
 
@@ -2015,7 +2063,9 @@ async def page_numbering(
 
 
 @router.post("/organize-pdf", summary="Organize/rearrange PDF pages")
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
 async def organize_pdf(
+    request: Request,
     file: UploadFile = File(...),
     page_order: Optional[str] = Form(None, description="JSON array of 1-based page numbers in desired order"),
     deleted_pages: Optional[str] = Form(None, description="JSON array of 1-based page numbers to delete"),
@@ -2035,11 +2085,11 @@ async def organize_pdf(
         if not file.content_type or file.content_type != "application/pdf":
             raise HTTPException(status_code=400, detail="Only PDF files are supported.")
 
+        if not validate_file_size(file):
+            raise HTTPException(status_code=400, detail=f"File exceeds maximum size of {settings.MAX_UPLOAD_SIZE} bytes")
         content = await file.read()
         if len(content) == 0:
             raise HTTPException(status_code=400, detail="Uploaded file is empty.")
-        if len(content) > 100 * 1024 * 1024:
-            raise HTTPException(status_code=400, detail="File too large. Maximum size is 100MB.")
 
         # Parse page_order JSON
         parsed_page_order: Optional[List[int]] = None
@@ -2106,123 +2156,12 @@ async def organize_pdf(
         )
 
 
-# ══════════════════════════════════════════════════════════════════════
-# AI Tools Endpoints
-# ══════════════════════════════════════════════════════════════════════
-
-@router.post("/ai-tools", summary="Analyze PDF with AI")
-async def ai_tools_analyze(file: UploadFile = File(...)):
-    """
-    Analyze a PDF using AI — extract text, generate summary, key points,
-    title, and sentiment analysis.
-
-    Returns JSON with full analysis results.
-    """
-    logger.debug("[ai-tools] Endpoint called")
-    try:
-        # Validate file
-        if not file.filename:
-            raise HTTPException(status_code=400, detail="No file provided")
-        if not file.filename.lower().endswith('.pdf'):
-            raise HTTPException(status_code=400, detail="Only PDF files are supported for AI analysis")
-
-        if not validate_file_size(file, max_size=50 * 1024 * 1024):
-            raise HTTPException(status_code=413, detail="File exceeds maximum size of 50MB")
-
-        # Read file content
-        pdf_bytes = await file.read()
-        if not pdf_bytes:
-            raise HTTPException(status_code=400, detail="Empty file uploaded")
-
-        logger.debug(f"[ai-tools] Processing: {file.filename} ({len(pdf_bytes)} bytes)")
-
-        # Run AI analysis
-        from app.services.ai_tools_service import analyze_pdf
-        async with heavy_job_slot():
-            result = await run_blocking(analyze_pdf, pdf_bytes)
-
-        logger.debug(f"[ai-tools] Analysis complete: summary={len(result['summary'])} chars, "
-              f"keyPoints={len(result['keyPoints'])}, sentiment={result['sentiment']}")
-
-        return result
-
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.debug(f"[ai-tools] Error: {type(e).__name__}: {e}")
-        import traceback
-        traceback.print_exc()
-        raise HTTPException(
-            status_code=500,
-            detail=f"AI analysis failed: {str(e)}",
-        )
-
-
-@router.post("/ai-tools/report", summary="Generate AI analysis report (DOCX)")
-async def ai_tools_report(file: UploadFile = File(...)):
-    """
-    Analyze a PDF with AI AND generate a downloadable DOCX report.
-
-    Returns a .docx file with the complete AI analysis report.
-    """
-    logger.debug("[ai-tools/report] Endpoint called")
-    try:
-        # Validate file
-        if not file.filename:
-            raise HTTPException(status_code=400, detail="No file provided")
-        if not file.filename.lower().endswith('.pdf'):
-            raise HTTPException(status_code=400, detail="Only PDF files are supported for AI analysis")
-
-        if not validate_file_size(file, max_size=50 * 1024 * 1024):
-            raise HTTPException(status_code=413, detail="File exceeds maximum size of 50MB")
-
-        # Read file content
-        pdf_bytes = await file.read()
-        if not pdf_bytes:
-            raise HTTPException(status_code=400, detail="Empty file uploaded")
-
-        logger.debug(f"[ai-tools/report] Processing: {file.filename} ({len(pdf_bytes)} bytes)")
-
-        # Run AI analysis
-        from app.services.ai_tools_service import analyze_pdf, generate_report
-        async with heavy_job_slot():
-            result = await run_blocking(analyze_pdf, pdf_bytes)
-
-            # Generate DOCX report
-            report_bytes = await run_blocking(generate_report, result, original_filename=file.filename)
-
-        # Determine output filename
-        base_name = file.filename.rsplit('.', 1)[0] if '.' in file.filename else file.filename
-        download_filename = f"{base_name}_ai_report.docx"
-
-        logger.debug(f"[ai-tools/report] Report generated: {download_filename} ({len(report_bytes)} bytes)")
-
-        return StreamingResponse(
-            io.BytesIO(report_bytes),
-            media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            headers={
-                "Content-Disposition": f'attachment; filename="{download_filename}"',
-                "Content-Length": str(len(report_bytes)),
-            },
-        )
-
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.debug(f"[ai-tools/report] Error: {type(e).__name__}: {e}")
-        import traceback
-        traceback.print_exc()
-        raise HTTPException(
-            status_code=500,
-            detail=f"AI report generation failed: {str(e)}",
-        )
-
-
 # ============================================================
 # NEW: PDF to Excel endpoint
 # ============================================================
 @router.post('/pdf-to-excel', summary='Convert PDF to Excel spreadsheet')
-async def pdf_to_excel(file: UploadFile = File(...)):
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
+async def pdf_to_excel(request: Request, file: UploadFile = File(...)):
     """Convert PDF to Excel spreadsheet by extracting tables."""
     logger.debug('[pdf-to-excel] Endpoint called')
     if not file:
@@ -2287,7 +2226,8 @@ async def pdf_to_excel(file: UploadFile = File(...)):
 # NEW: Excel to PDF endpoint
 # ============================================================
 @router.post('/excel-to-pdf', summary='Convert Excel spreadsheet to PDF')
-async def excel_to_pdf(file: UploadFile = File(...)):
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
+async def excel_to_pdf(request: Request, file: UploadFile = File(...)):
     """Convert Excel spreadsheet (.xlsx/.xls) to PDF."""
     logger.debug('[excel-to-pdf] Endpoint called')
     if not file:
@@ -2355,7 +2295,8 @@ async def excel_to_pdf(file: UploadFile = File(...)):
 
 
 @router.post("/powerpoint-to-pdf", summary="Convert PowerPoint to PDF")
-async def powerpoint_to_pdf(file: UploadFile = File(...)):
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
+async def powerpoint_to_pdf(request: Request, file: UploadFile = File(...)):
     """Convert .ppt/.pptx to PDF using LibreOffice (same engine as word-to-pdf)."""
     from app.services.pptx_service import PptxService
 
@@ -2387,7 +2328,8 @@ async def powerpoint_to_pdf(file: UploadFile = File(...)):
 
 
 @router.post("/pdf-to-powerpoint", summary="Convert PDF to PowerPoint")
-async def pdf_to_powerpoint(file: UploadFile = File(...)):
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
+async def pdf_to_powerpoint(request: Request, file: UploadFile = File(...)):
     """Convert PDF to .pptx by rendering each page as a slide-sized image."""
     from app.services.pptx_service import PptxService
 
@@ -2395,6 +2337,8 @@ async def pdf_to_powerpoint(file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail="Invalid file type. Please upload a PDF file.")
 
     try:
+        if not validate_file_size(file):
+            raise HTTPException(status_code=400, detail=f"File exceeds maximum size of {settings.MAX_UPLOAD_SIZE} bytes")
         pdf_bytes = await file.read()
         if not pdf_bytes:
             raise HTTPException(status_code=400, detail="Uploaded PDF is empty.")
@@ -2417,7 +2361,9 @@ async def pdf_to_powerpoint(file: UploadFile = File(...)):
 
 
 @router.post("/ocr-pdf", summary="Make a scanned PDF searchable with OCR")
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
 async def ocr_pdf(
+    request: Request,
     file: UploadFile = File(...),
     language: str = Form("eng", description="OCR language code (eng or hin)"),
 ):
@@ -2428,6 +2374,8 @@ async def ocr_pdf(
         raise HTTPException(status_code=400, detail="Invalid file type. Please upload a PDF file.")
 
     try:
+        if not validate_file_size(file):
+            raise HTTPException(status_code=400, detail=f"File exceeds maximum size of {settings.MAX_UPLOAD_SIZE} bytes")
         pdf_bytes = await file.read()
         if not pdf_bytes:
             raise HTTPException(status_code=400, detail="Uploaded PDF is empty.")
@@ -2451,7 +2399,9 @@ async def ocr_pdf(
 
 
 @router.post("/sign-pdf", summary="Stamp a signature image onto one or more PDF positions")
+@limiter.limit(settings.RATE_LIMIT_PROCESSING)
 async def sign_pdf(
+    request: Request,
     file: UploadFile = File(..., description="PDF to sign"),
     signature: UploadFile = File(..., description="Signature image (PNG/JPG)"),
     placements: Optional[str] = Form(
@@ -2477,6 +2427,8 @@ async def sign_pdf(
         raise HTTPException(status_code=400, detail="Invalid file type. Please upload a PDF file.")
 
     try:
+        if not validate_file_size(file):
+            raise HTTPException(status_code=400, detail=f"File exceeds maximum size of {settings.MAX_UPLOAD_SIZE} bytes")
         pdf_bytes = await file.read()
         sig_bytes = await signature.read()
         if not pdf_bytes:

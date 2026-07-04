@@ -8,6 +8,7 @@ from app.utils.file_utils import (
     create_file_response,
     create_zip_response,
     format_bytes,
+    sanitize_filename,
 )
 from app.utils.error_handlers import (
     PDFProcessingError,
@@ -35,4 +36,5 @@ __all__ = [
     "run_blocking",
     "heavy_job_slot",
     "resolve_libreoffice_path",
+    "sanitize_filename",
 ]
