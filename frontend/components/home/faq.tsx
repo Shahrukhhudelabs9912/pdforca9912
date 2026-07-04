@@ -57,7 +57,7 @@ export function FAQ() {
   ];
 
   return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50">
+    <section className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50/80 to-gray-100/50 dark:from-gray-900/50 dark:to-gray-900/50">
       <div className="container mx-auto">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -73,7 +73,7 @@ export function FAQ() {
             <div key={index} className="mb-4">
               <button
                 onClick={() => toggleFAQ(index)}
-                className="flex w-full items-center justify-between rounded-xl border border-gray-200 bg-white p-6 text-left hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-800"
+                className="flex w-full items-center justify-between rounded-xl border border-gray-200 bg-white p-6 text-left shadow-sm hover:bg-gray-50 dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-800"
               >
                 <div className="flex items-center gap-4">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900/30">

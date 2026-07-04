@@ -20,7 +20,7 @@ export function HeroSection() {
 
   return (
     <section className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-100/70 via-white to-purple-100/70 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900" />
       <div className="container mx-auto">
         <div className="flex flex-col justify-center">
           <motion.div
