@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { PageLoader } from "@/components/loading-spinner";
 import { AdBanner } from "@/components/ad-banner";
+import { FAQPageJsonLd } from "@/components/seo/json-ld";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -56,9 +57,21 @@ const CTASection = dynamic(
   { ssr: true },
 );
 
+const HOME_FAQ_ITEMS = [
+  { question: "Is PDFOrca free to use?", answer: "Yes! All basic PDF tools are completely free. We offer premium features for advanced needs." },
+  { question: "Are my files secure?", answer: "Absolutely. We use end-to-end encryption and automatically delete files after 1 hour." },
+  { question: "What file sizes are supported?", answer: "We support files up to 100MB for free users and up to 2GB for premium users." },
+  { question: "Do I need to install any software?", answer: "No installation required. PDFOrca works entirely in your browser." },
+  { question: "Can I use it on mobile?", answer: "Yes! Our website is fully responsive and works perfectly on all mobile devices." },
+  { question: "How fast is the processing?", answer: "Most operations complete in under 2 seconds for average-sized files. We use parallel processing, Web Workers, and optimized algorithms for maximum speed." },
+  { question: "What PDF tools do you offer?", answer: "We offer 14+ tools including merge, split, compress, convert (PDF to Word, Excel, PPT, JPG), rotate, protect, unlock, watermark, page numbering, organize, and AI-powered summarization." },
+  { question: "Do you have an API for developers?", answer: "Yes, we offer a comprehensive REST API for developers. You can integrate our PDF processing capabilities directly into your applications with detailed documentation and SDKs." },
+];
+
 export default function Home() {
   return (
     <Suspense fallback={<PageLoader />}>
+      <FAQPageJsonLd items={HOME_FAQ_ITEMS} />
       <div className="flex min-h-screen flex-col">
         <HeroSection />
         <ToolsGrid />
