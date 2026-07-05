@@ -20,7 +20,9 @@ services:
       resources:
         limits:
           memory: 300m
-          cpus: "0.5"  backend:
+          cpus: "0.5"
+
+  backend:
     build:
       context: ./backend
     restart: unless-stopped
