@@ -351,7 +351,21 @@
     "title": "Ready to Transform Your PDF Workflow?",
     "subtitle": "Every tool is free, requires no sign-up, and processes your files privately in seconds.",
     "button1": "Get Started Free",
-    "button2": "View All Tools"
+    "button2": "View All Tools",
+    "drag_drop": "Drag & drop your first PDF to experience the power of PDFOrca.",
+    "feature_no_card": "No credit card required",
+    "feature_parallel": "Process up to 10 files simultaneously",
+    "feature_privacy": "100% privacy guaranteed",
+    "feature_bilingual": "Hindi & English support",
+    "popular_use_cases": "Popular Use Cases",
+    "use_case_merge": "Merge invoices",
+    "use_case_compress": "Compress reports",
+    "use_case_convert": "Convert resumes",
+    "use_case_protect": "Protect contracts",
+    "help_text": "Need help getting started?",
+    "contact_link": "Contact our team",
+    "or": "or",
+    "tutorials_link": "read our tutorials"
   },
   "footer": {
     "tagline": "Fast, Secure & AI-Powered PDF Tools",
@@ -836,7 +850,9 @@
     "tips_clear": "Use clear, text-based PDFs for best accuracy",
     "tips_scanned": "Scanned PDFs will be processed with OCR",
     "tips_complex": "Complex layouts may need minor adjustments",
-    "downloading_file": "Downloading {filename}..."
+    "downloading_file": "Downloading {filename}...",
+    "result_title": "Word document ready",
+    "download_again": "Download again"
   },
   "word_to_pdf": {
     "title": "Word to PDF",
@@ -891,7 +907,9 @@
     "why_convert_universal": "<strong>Universal:</strong> PDFs render the same on every device and OS.",
     "why_convert_professional": "<strong>Professional:</strong> Print-ready output ideal for business sharing.",
     "why_convert_optimization": "<strong>Optimized:</strong> Smaller, easier-to-share files than DOCX.",
-    "why_convert_security": "<strong>Secure:</strong> Files auto-deleted after processing."
+    "why_convert_security": "<strong>Secure:</strong> Files auto-deleted after processing.",
+    "result_title": "PDF ready",
+    "download_again": "Download again"
   },
   "pdf_to_jpg": {
     "title": "PDF to JPG",
@@ -1493,7 +1511,9 @@
     "tips_tables": "Works best with PDFs containing clear table structures",
     "tips_scanned": "Scanned PDFs with tables will be processed with OCR",
     "tips_review": "Review extracted data for accuracy before use",
-    "downloading_file": "Downloading {filename}..."
+    "downloading_file": "Downloading {filename}...",
+    "result_title": "Excel spreadsheet ready",
+    "download_again": "Download again"
   },
   "excel_to_pdf": {
     "title": "Excel to PDF",
@@ -1539,7 +1559,9 @@
     "tips_format": "Format your spreadsheet before converting for best results",
     "tips_sheets": "All sheets will be included in the output PDF",
     "tips_print": "Use print preview in Excel first to check layout",
-    "downloading_file": "Downloading {filename}..."
+    "downloading_file": "Downloading {filename}...",
+    "result_title": "PDF ready",
+    "download_again": "Download again"
   },
   "ai_tools": {
     "title": "AI-Powered PDF Tools",
@@ -1674,7 +1696,17 @@
     "cta_heading": "Want to contribute to our blog?",
     "cta_description": "We're always looking for PDF experts to share their knowledge with our community.",
     "cta_submit_article": "Submit an article",
-    "cta_contact_editors": "Contact our editors"
+    "cta_contact_editors": "Contact our editors",
+    "try_tool_label": "Try the tool from this post",
+    "try_tool_description": "Free, no signup, files deleted after processing. Open it in a new tab and follow along.",
+    "open_tool": "Open {name}",
+    "back_to_posts": "Back to all posts",
+    "page_title": "PDFOrca Blog",
+    "page_subtitle": "Practical tutorials, tips, and use cases for working with PDFs. Every article links to the free tool that gets the job done.",
+    "min_read": "{minutes} min",
+    "empty_title": "First posts are on the way",
+    "empty_description": "We're publishing the first batch of tutorials. Check back soon — or explore the tools while you wait.",
+    "explore_tools": "Explore PDF tools"
   },
   "about": {
     "title": "About PDFOrca",

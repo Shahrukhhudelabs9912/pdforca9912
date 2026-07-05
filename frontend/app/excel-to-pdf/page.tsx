@@ -7,6 +7,7 @@ import {
   FAQPageJsonLd,
   BreadcrumbJsonLd,
 } from "@/components/seo/json-ld";
+import { ToolLayout } from "@/components/tools/tool-layout";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -72,8 +73,34 @@ export default function ExcelToPDFPage() {
         steps={HOW_TO_STEPS}
       />
       <FAQPageJsonLd items={FAQ_ITEMS} />
-      <h1 className="sr-only">Convert Excel to PDF Online Free</h1>
-      <ExcelToPDFClient />
+      <ToolLayout
+        title="Excel to PDF"
+        description="Transform your Excel spreadsheets into professional PDF documents."
+        toolName="Excel to PDF"
+        toolDescription="Convert Excel .xls and .xlsx spreadsheets into PDF documents."
+        toolKey="excel_to_pdf"
+        seoContent={{
+          h1: "Convert Excel to PDF Online Free",
+          h2: "How to Convert Excel to PDF",
+          content: `
+            <p>Our free Excel to PDF converter allows you to transform any Microsoft Excel spreadsheet (.xlsx, .xls) into a professional PDF file while preserving tables, formatting, and sheet structure.</p>
+            <p><strong>Key features:</strong></p>
+            <ul>
+              <li>Convert Excel to PDF with perfect table rendering</li>
+              <li>Preserve table structure, formatting, and data</li>
+              <li>Support for multi-sheet Excel workbooks</li>
+              <li>Professional PDF layout with headers and styling</li>
+              <li>Automatic page orientation (portrait/landscape)</li>
+              <li>Secure processing with automatic file deletion</li>
+              <li>No registration or watermarks</li>
+            </ul>
+            <p>Perfect for sharing reports, financial statements, invoices, or any spreadsheet data in a universal, print-ready PDF format.</p>
+          `,
+          faq: FAQ_ITEMS,
+        }}
+      >
+        <ExcelToPDFClient />
+      </ToolLayout>
     </>
   );
 }

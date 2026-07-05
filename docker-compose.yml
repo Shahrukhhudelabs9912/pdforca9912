@@ -20,8 +20,7 @@ services:
       resources:
         limits:
           memory: 300m
-
-  backend:
+          cpus: "0.5"  backend:
     build:
       context: ./backend
     restart: unless-stopped
@@ -45,6 +44,7 @@ services:
       resources:
         limits:
           memory: 6g
+          cpus: "4.0"
 
   frontend:
     build:
@@ -72,6 +72,7 @@ services:
       resources:
         limits:
           memory: 512m
+          cpus: "1.0"
 
   nginx:
     image: nginx:1.27-alpine
@@ -97,6 +98,7 @@ services:
       resources:
         limits:
           memory: 128m
+          cpus: "0.5"
 
   certbot:
     image: certbot/certbot

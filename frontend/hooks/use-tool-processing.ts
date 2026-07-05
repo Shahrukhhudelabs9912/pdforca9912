@@ -20,7 +20,7 @@ export function formatElapsed(ms: number): string {
 interface UseToolProcessingOptions {
   toolName: string;
   endpoint: string;
-  onSuccess?: (result: any) => void;
+  onSuccess?: (result: { url: string; filename: string; blob: Blob; headers: Record<string, string> }) => void;
   onError?: (error: Error) => void;
   autoClearFiles?: boolean;
 }
@@ -122,7 +122,7 @@ export function useToolProcessing({
     setState(prev => ({ ...prev, ...updates }));
   }, []);
 
-  const processFiles = useCallback(async (additionalData?: Record<string, any>) => {
+  const processFiles = useCallback(async (additionalData?: Record<string, string | number | boolean>) => {
     if (files.length === 0) {
       toast.error("Please upload files first");
       return null;

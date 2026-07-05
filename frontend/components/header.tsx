@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { Link as LocaleLink } from "@/routing";
 import { motion } from "framer-motion";
 import {
@@ -82,6 +83,10 @@ export function Header() {
   const [popularOpen, setPopularOpen] = useState(false);
   const allToolsTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const popularTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const allToolsBtnRef = useRef<HTMLButtonElement>(null);
+  const popularBtnRef = useRef<HTMLButtonElement>(null);
+  const allToolsMenuRef = useRef<HTMLDivElement>(null);
+  const popularMenuRef = useRef<HTMLDivElement>(null);
   const { theme, setTheme } = useTheme();
   const t = useTranslations();
   // [Phase 3] Restore: const { user, isAuthenticated, logout } = useAuth();
@@ -99,6 +104,37 @@ export function Header() {
       timerRef.current = setTimeout(() => setOpen(false), 120);
     },
   });
+
+  const handleDropdownKeyDown = (
+    e: React.KeyboardEvent,
+    menuRef: React.RefObject<HTMLDivElement | null>,
+    setOpen: (v: boolean | ((prev: boolean) => boolean)) => void,
+    btnRef: React.RefObject<HTMLButtonElement | null>,
+  ) => {
+    if (e.key === 'Escape') {
+      setOpen(false);
+      btnRef.current?.focus();
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const items = menuRef.current?.querySelectorAll<HTMLAnchorElement>('a[role="menuitem"]');
+      if (items?.length) {
+        const current = Array.from(items).indexOf(document.activeElement as HTMLAnchorElement);
+        items[Math.min(current + 1, items.length - 1)]?.focus();
+      }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const items = menuRef.current?.querySelectorAll<HTMLAnchorElement>('a[role="menuitem"]');
+      if (items?.length) {
+        const current = Array.from(items).indexOf(document.activeElement as HTMLAnchorElement);
+        if (current <= 0) {
+          btnRef.current?.focus();
+          setOpen(false);
+        } else {
+          items[current - 1]?.focus();
+        }
+      }
+    }
+  };
 
   // [Phase 3] Restore getUserInitials when freemium is enabled
   // const getUserInitials = (): string => {
@@ -128,7 +164,7 @@ export function Header() {
           {/* Left: Logo + primary dropdowns */}
           <div className="flex items-center gap-6">
             <LocaleLink href="/" className="flex items-center gap-2 shrink-0">
-              <img src="/icon-pdforca.svg" alt="PDFOrca" className="h-8 w-8 rounded-lg" />
+              <Image src="/icon-pdforca.svg" alt="PDFOrca" width={32} height={32} className="rounded-lg" priority />
               <span className="text-xl font-bold tracking-tight">
                 PDF<span className="text-blue-600">Orca</span>
               </span>
@@ -141,15 +177,32 @@ export function Header() {
                 {...hoverHandlers(allToolsTimer, setAllToolsOpen)}
               >
                 <Button
+                  ref={allToolsBtnRef}
                   variant="ghost"
                   className="text-sm font-medium gap-1"
                   onClick={() => setAllToolsOpen((v) => !v)}
+                  aria-expanded={allToolsOpen}
+                  aria-haspopup="true"
+                  onKeyDown={(e) => {
+                    if (e.key === 'ArrowDown' && !allToolsOpen) {
+                      e.preventDefault();
+                      setAllToolsOpen(true);
+                      setTimeout(() => {
+                        allToolsMenuRef.current?.querySelector<HTMLAnchorElement>('a[role="menuitem"]')?.focus();
+                      }, 0);
+                    }
+                  }}
                 >
                   {t("header.nav.all_tools")}
                   <ChevronDown className="h-4 w-4" />
                 </Button>
                 {allToolsOpen && (
-                  <div className="absolute left-0 top-full z-50 w-80 max-h-[80vh] overflow-y-auto rounded-md border bg-popover p-3 text-popover-foreground shadow-md">
+                  <div
+                    ref={allToolsMenuRef}
+                    role="menu"
+                    onKeyDown={(e) => handleDropdownKeyDown(e, allToolsMenuRef, setAllToolsOpen, allToolsBtnRef)}
+                    className="absolute left-0 top-full z-50 w-80 max-h-[80vh] overflow-y-auto rounded-md border bg-popover p-3 text-popover-foreground shadow-md"
+                  >
                     {toolCategories.map((category) => (
                       <div key={category.nameKey} className="mb-1">
                         <div className={`flex items-center gap-2 px-2 py-2 rounded-md ${category.color}`}>
@@ -163,6 +216,7 @@ export function Header() {
                               <LocaleLink
                                 key={tool.nameKey}
                                 href={tool.href}
+                                role="menuitem"
                                 onClick={() => setAllToolsOpen(false)}
                                 className="flex items-center gap-2.5 px-2 py-2 hover:bg-accent rounded-md transition-colors group"
                               >
@@ -186,21 +240,39 @@ export function Header() {
                 {...hoverHandlers(popularTimer, setPopularOpen)}
               >
                 <Button
+                  ref={popularBtnRef}
                   variant="ghost"
                   className="text-sm font-medium gap-1"
                   onClick={() => setPopularOpen((v) => !v)}
+                  aria-expanded={popularOpen}
+                  aria-haspopup="true"
+                  onKeyDown={(e) => {
+                    if (e.key === 'ArrowDown' && !popularOpen) {
+                      e.preventDefault();
+                      setPopularOpen(true);
+                      setTimeout(() => {
+                        popularMenuRef.current?.querySelector<HTMLAnchorElement>('a[role="menuitem"]')?.focus();
+                      }, 0);
+                    }
+                  }}
                 >
                   {t("header.nav.popular_tools")}
                   <ChevronDown className="h-4 w-4" />
                 </Button>
                 {popularOpen && (
-                  <div className="absolute left-0 top-full z-50 w-72 rounded-md border bg-popover p-2 text-popover-foreground shadow-md">
+                  <div
+                    ref={popularMenuRef}
+                    role="menu"
+                    onKeyDown={(e) => handleDropdownKeyDown(e, popularMenuRef, setPopularOpen, popularBtnRef)}
+                    className="absolute left-0 top-full z-50 w-72 rounded-md border bg-popover p-2 text-popover-foreground shadow-md"
+                  >
                     {popularTools.map((tool) => {
                       const ToolIcon = tool.icon;
                       return (
                         <LocaleLink
                           key={tool.nameKey}
                           href={tool.href}
+                          role="menuitem"
                           onClick={() => setPopularOpen(false)}
                           className="flex items-center gap-3 px-3 py-2.5 hover:bg-accent rounded-md transition-colors group"
                         >

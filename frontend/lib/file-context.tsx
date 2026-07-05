@@ -1,7 +1,15 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode, useEffect, useCallback } from "react";
+import { createContext, useContext, useState, ReactNode, useEffect, useCallback, useMemo } from "react";
 import { usePathname } from "next/navigation";
+
+const TOOL_PATHS = [
+  '/pdf-to-word', '/pdf-to-jpg', '/pdf-to-excel', '/excel-to-pdf',
+  '/word-to-pdf', '/merge-pdf', '/split-pdf', '/jpg-to-pdf',
+  '/compress-pdf', '/protect-pdf', '/page-numbering', '/organize-pdf',
+  '/add-watermark', '/rotate-pdf', '/unlock-pdf', '/extract-pages',
+  '/ocr-pdf', '/sign-pdf', '/pdf-to-powerpoint', '/powerpoint-to-pdf',
+];
 
 interface FileContextType {
   files: File[];
@@ -38,42 +46,30 @@ export function FileProvider({ children }: { children: ReactNode }) {
   const [shouldClearFiles, setShouldClearFiles] = useState(false);
   
   const pathname = usePathname();
+  const isToolRoute = useMemo(
+    () => TOOL_PATHS.some(p => pathname.includes(p)),
+    [pathname],
+  );
 
   // Track navigation and clear files when navigating away from tools
   useEffect(() => {
-    // If we're navigating to a different tool or away from tools, clear files
-    if (lastToolPath && pathname !== lastToolPath) {
-      if (typeof window !== 'undefined') {
+    if (!isToolRoute) {
+      if (lastToolPath) {
         clearFiles();
+        setLastToolPath(null);
+        setSelectedTool(null);
       }
+      return;
+    }
+
+    if (lastToolPath && pathname !== lastToolPath) {
+      clearFiles();
       setLastToolPath(null);
       setSelectedTool(null);
     }
-    
-    // If we're on a tool page, update lastToolPath
-    if (pathname.includes('/pdf-to-word') ||
-        pathname.includes('/pdf-to-jpg') ||
-        pathname.includes('/pdf-to-excel') ||
-        pathname.includes('/excel-to-pdf') ||
-        pathname.includes('/word-to-pdf') ||
-        pathname.includes('/merge-pdf') ||
-        pathname.includes('/split-pdf') ||
-        pathname.includes('/jpg-to-pdf') ||
-        pathname.includes('/compress-pdf') ||
-        pathname.includes('/protect-pdf') ||
-        pathname.includes('/page-numbering') ||
-        pathname.includes('/organize-pdf') ||
-        pathname.includes('/add-watermark') ||
-        pathname.includes('/rotate-pdf') ||
-        pathname.includes('/unlock-pdf') ||
-        pathname.includes('/extract-pages') ||
-        pathname.includes('/ocr-pdf') ||
-        pathname.includes('/sign-pdf') ||
-        pathname.includes('/pdf-to-powerpoint') ||
-        pathname.includes('/powerpoint-to-pdf')) {
-      setLastToolPath(pathname);
-    }
-  }, [pathname, lastToolPath]);
+
+    setLastToolPath(pathname);
+  }, [pathname, lastToolPath, isToolRoute]);
 
   // Clear files when component unmounts (tool page navigation)
   useEffect(() => {
@@ -126,22 +122,19 @@ export function FileProvider({ children }: { children: ReactNode }) {
     }
   }, [processingState, files.length, clearFiles]);
 
-  // Clear files when page is about to be unloaded
+  // Clear files when page is about to be unloaded (only on tool pages)
   useEffect(() => {
+    if (!isToolRoute) return;
+
     const handleBeforeUnload = () => {
       clearFiles();
     };
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('beforeunload', handleBeforeUnload);
-    }
-    
+    window.addEventListener('beforeunload', handleBeforeUnload);
     return () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('beforeunload', handleBeforeUnload);
-      }
+      window.removeEventListener('beforeunload', handleBeforeUnload);
     };
-  }, [clearFiles]);
+  }, [clearFiles, isToolRoute]);
 
   return (
     <FileContext.Provider

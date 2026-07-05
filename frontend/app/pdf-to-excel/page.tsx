@@ -7,6 +7,7 @@ import {
   FAQPageJsonLd,
   BreadcrumbJsonLd,
 } from "@/components/seo/json-ld";
+import { ToolLayout } from "@/components/tools/tool-layout";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -72,8 +73,34 @@ export default function PDFToExcelPage() {
         steps={HOW_TO_STEPS}
       />
       <FAQPageJsonLd items={FAQ_ITEMS} />
-      <h1 className="sr-only">Convert PDF to Excel Online Free</h1>
-      <PDFToExcelClient />
+      <ToolLayout
+        title="PDF to Excel"
+        description="Extract tables from your PDF files and convert them into editable Excel spreadsheets."
+        toolName="PDF to Excel"
+        toolDescription="Extract tables and data from PDFs into editable Excel .xlsx spreadsheets."
+        toolKey="pdf_to_excel"
+        seoContent={{
+          h1: "Convert PDF to Excel Online Free",
+          h2: "How to Convert PDF to Excel",
+          content: `
+            <p>Our free PDF to Excel converter allows you to extract tables from any PDF document and convert them into editable Microsoft Excel spreadsheets (.xlsx) while preserving the original table structure, rows, and columns.</p>
+            <p><strong>Key features:</strong></p>
+            <ul>
+              <li>Extract tables from PDF to Excel with high accuracy</li>
+              <li>Preserve table structure, rows, and columns</li>
+              <li>Support for multi-page PDFs with multiple tables</li>
+              <li>Each table extracted to a separate Excel sheet</li>
+              <li>Professional formatting with headers and borders</li>
+              <li>Secure processing with automatic file deletion</li>
+              <li>No registration or watermarks</li>
+            </ul>
+            <p>Perfect for extracting financial data, reports, invoices, or any tabular data from PDF documents into Excel for analysis and editing.</p>
+          `,
+          faq: FAQ_ITEMS,
+        }}
+      >
+        <PDFToExcelClient />
+      </ToolLayout>
     </>
   );
 }

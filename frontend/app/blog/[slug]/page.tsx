@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, ArrowRight, Calendar, Clock, User } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
 import { BlogPostBody } from "@/components/blog/blog-post-body";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
@@ -99,6 +101,7 @@ export default async function BlogPostPage({
 
   const url = `${SITE_URL}/blog/${slug}`;
   const relatedToolName = post.relatedTool ? TOOL_NAMES[post.relatedTool] : undefined;
+  const t = await getTranslations("blog");
 
   return (
     <>
@@ -165,12 +168,16 @@ export default async function BlogPostPage({
         {/* Body */}
         <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
           {post.cover && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={post.cover}
-              alt={post.title}
-              className="mb-10 aspect-[16/9] w-full rounded-2xl object-cover shadow-md"
-            />
+            <div className="relative mb-10 aspect-[16/9] w-full overflow-hidden rounded-2xl shadow-md">
+              <Image
+                src={post.cover}
+                alt={post.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="object-cover"
+                priority
+              />
+            </div>
           )}
 
           <BlogPostBody body={post.body} />
@@ -179,17 +186,17 @@ export default async function BlogPostPage({
           {post.relatedTool && relatedToolName && (
             <aside className="mt-16 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 p-8 text-white shadow-lg">
               <p className="text-sm font-medium uppercase tracking-wide text-blue-100">
-                Try the tool from this post
+                {t("try_tool_label")}
               </p>
               <h3 className="mt-2 text-2xl font-bold">{relatedToolName}</h3>
               <p className="mt-2 text-blue-100">
-                Free, no signup, files deleted after processing. Open it in a new tab and follow along.
+                {t("try_tool_description")}
               </p>
               <Link
                 href={`/${post.relatedTool}`}
                 className="mt-6 inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-blue-700 transition-colors hover:bg-gray-100"
               >
-                Open {relatedToolName}
+                {t("open_tool", { name: relatedToolName })}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </aside>
@@ -202,7 +209,7 @@ export default async function BlogPostPage({
               className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
             >
               <ArrowLeft className="h-4 w-4" />
-              Back to all posts
+              {t("back_to_posts")}
             </Link>
           </div>
         </div>

@@ -351,7 +351,21 @@
     "title": "अपने PDF वर्कफ्लो को बदलने के लिए तैयार हैं?",
     "subtitle": "हर टूल मुफ्त है, साइन-अप की जरूरत नहीं, और आपकी फाइलें सेकंडों में निजी तौर पर प्रोसेस होती हैं।",
     "button1": "मुफ्त शुरू करें",
-    "button2": "सभी टूल्स देखें"
+    "button2": "सभी टूल्स देखें",
+    "drag_drop": "PDFOrca की ताकत अनुभव करने के लिए अपनी पहली PDF यहाँ ड्रैग और ड्रॉप करें।",
+    "feature_no_card": "क्रेडिट कार्ड की जरूरत नहीं",
+    "feature_parallel": "एक साथ 10 फाइलें प्रोसेस करें",
+    "feature_privacy": "100% प्राइवेसी गारंटीड",
+    "feature_bilingual": "हिंदी और अंग्रेजी सपोर्ट",
+    "popular_use_cases": "लोकप्रिय उपयोग",
+    "use_case_merge": "इनवॉइस मर्ज करें",
+    "use_case_compress": "रिपोर्ट कंप्रेस करें",
+    "use_case_convert": "रिज्यूमे कन्वर्ट करें",
+    "use_case_protect": "कॉन्ट्रैक्ट सुरक्षित करें",
+    "help_text": "शुरू करने में मदद चाहिए?",
+    "contact_link": "हमारी टीम से संपर्क करें",
+    "or": "या",
+    "tutorials_link": "हमारे ट्यूटोरियल पढ़ें"
   },
   "footer": {
     "tagline": "तेज़, सुरक्षित और AI-पावर्ड PDF टूल्स",
@@ -849,7 +863,9 @@
     "feature_accurate_desc": "एडवांस्ड कन्वर्शन इंजन सटीक परिणाम देता है।",
     "tips_clear": "बेहतर सटीकता के लिए स्पष्ट, टेक्स्ट-आधारित PDF का उपयोग करें",
     "tips_complex": "जटिल लेआउट में मामूली समायोजन की आवश्यकता हो सकती है",
-    "downloading_file": "{filename} डाउनलोड हो रहा है..."
+    "downloading_file": "{filename} डाउनलोड हो रहा है...",
+    "result_title": "वर्ड डॉक्यूमेंट तैयार",
+    "download_again": "फिर से डाउनलोड करें"
   },
   "word_to_pdf": {
     "title": "वर्ड से PDF",
@@ -906,7 +922,9 @@
     "why_convert_universal": "<strong>यूनिवर्सल:</strong> PDF हर डिवाइस और OS पर एक जैसा दिखता है।",
     "why_convert_professional": "<strong>प्रोफेशनल:</strong> शेयर करने और प्रिंट के लिए तैयार आउटपुट।",
     "why_convert_optimization": "<strong>ऑप्टिमाइज़्ड:</strong> DOCX से छोटी, शेयर करने में आसान फ़ाइलें।",
-    "why_convert_security": "<strong>सुरक्षित:</strong> प्रोसेसिंग के बाद फ़ाइलें ऑटो-डिलीट।"
+    "why_convert_security": "<strong>सुरक्षित:</strong> प्रोसेसिंग के बाद फ़ाइलें ऑटो-डिलीट।",
+    "result_title": "PDF तैयार",
+    "download_again": "फिर से डाउनलोड करें"
   },
   "pdf_to_jpg": {
     "title": "PDF से JPG",
@@ -1513,7 +1531,9 @@
         "answer": "हां, PDF को Excel में बदलना बिल्कुल मुफ्त है।"
       }
     ],
-    "downloading_file": "{filename} डाउनलोड हो रहा है..."
+    "downloading_file": "{filename} डाउनलोड हो रहा है...",
+    "result_title": "Excel स्प्रेडशीट तैयार",
+    "download_again": "फिर से डाउनलोड करें"
   },
   "excel_to_pdf": {
     "title": "Excel से PDF",
@@ -1559,7 +1579,9 @@
         "answer": "हां, Excel को PDF में बदलना बिल्कुल मुफ्त है।"
       }
     ],
-    "downloading_file": "{filename} डाउनलोड हो रहा है..."
+    "downloading_file": "{filename} डाउनलोड हो रहा है...",
+    "result_title": "PDF तैयार",
+    "download_again": "फिर से डाउनलोड करें"
   },
   "ai_tools": {
     "title": "AI-पावर्ड PDF टूल्स",
@@ -1694,7 +1716,17 @@
     "cta_heading": "हमारे ब्लॉग में योगदान करना चाहते हैं?",
     "cta_description": "हम हमेशा PDF विशेषज्ञों की तलाश में रहते हैं जो हमारे समुदाय के साथ अपना ज्ञान साझा कर सकें।",
     "cta_submit_article": "लेख जमा करें",
-    "cta_contact_editors": "हमारे संपादकों से संपर्क करें"
+    "cta_contact_editors": "हमारे संपादकों से संपर्क करें",
+    "try_tool_label": "इस पोस्ट का टूल आज़माएं",
+    "try_tool_description": "मुफ्त, साइन-अप नहीं, प्रोसेसिंग के बाद फाइलें डिलीट हो जाती हैं। नई टैब में खोलें और साथ-साथ करें।",
+    "open_tool": "{name} खोलें",
+    "back_to_posts": "सभी पोस्ट पर वापस जाएं",
+    "page_title": "PDFOrca ब्लॉग",
+    "page_subtitle": "PDF के साथ काम करने के लिए प्रैक्टिकल ट्यूटोरियल, टिप्स और उपयोग। हर लेख मुफ्त टूल से जुड़ा है।",
+    "min_read": "{minutes} मिनट",
+    "empty_title": "पहली पोस्ट जल्द आ रही हैं",
+    "empty_description": "हम पहले ट्यूटोरियल प्रकाशित कर रहे हैं। जल्द वापस आएं — या तब तक टूल्स एक्सप्लोर करें।",
+    "explore_tools": "PDF टूल्स एक्सप्लोर करें"
   },
   "about": {
     "title": "PDFOrca के बारे में",

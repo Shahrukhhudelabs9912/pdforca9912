@@ -4,59 +4,59 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Shield, Zap, Brain, Globe, Lock, Cpu, Layers, UserCheck } from "lucide-react";
 
+const features = [
+  {
+    key: "security",
+    icon: Shield,
+    color: "text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30",
+    borderColor: "border-l-green-500",
+  },
+  {
+    key: "speed",
+    icon: Zap,
+    color: "text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/30",
+    borderColor: "border-l-blue-500",
+  },
+  {
+    key: "ai",
+    icon: Brain,
+    color: "text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-900/30",
+    borderColor: "border-l-purple-500",
+  },
+  {
+    key: "multilingual",
+    icon: Globe,
+    color: "text-amber-600 bg-amber-100 dark:text-amber-400 dark:bg-amber-900/30",
+    borderColor: "border-l-amber-500",
+  },
+  {
+    key: "browser",
+    icon: Lock,
+    color: "text-red-600 bg-red-100 dark:text-red-400 dark:bg-red-900/30",
+    borderColor: "border-l-red-500",
+  },
+  {
+    key: "parallel",
+    icon: Cpu,
+    color: "text-cyan-600 bg-cyan-100 dark:text-cyan-400 dark:bg-cyan-900/30",
+    borderColor: "border-l-cyan-500",
+  },
+  {
+    key: "batch",
+    icon: Layers,
+    color: "text-indigo-600 bg-indigo-100 dark:text-indigo-400 dark:bg-indigo-900/30",
+    borderColor: "border-l-indigo-500",
+  },
+  {
+    key: "no_signup",
+    icon: UserCheck,
+    color: "text-pink-600 bg-pink-100 dark:text-pink-400 dark:bg-pink-900/30",
+    borderColor: "border-l-pink-500",
+  },
+];
+
 export function FeaturesSection() {
   const t = useTranslations();
-
-  const features = [
-    {
-      key: "security",
-      icon: Shield,
-      color: "text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30",
-      borderColor: "border-l-green-500",
-    },
-    {
-      key: "speed",
-      icon: Zap,
-      color: "text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/30",
-      borderColor: "border-l-blue-500",
-    },
-    {
-      key: "ai",
-      icon: Brain,
-      color: "text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-900/30",
-      borderColor: "border-l-purple-500",
-    },
-    {
-      key: "multilingual",
-      icon: Globe,
-      color: "text-amber-600 bg-amber-100 dark:text-amber-400 dark:bg-amber-900/30",
-      borderColor: "border-l-amber-500",
-    },
-    {
-      key: "browser",
-      icon: Lock,
-      color: "text-red-600 bg-red-100 dark:text-red-400 dark:bg-red-900/30",
-      borderColor: "border-l-red-500",
-    },
-    {
-      key: "parallel",
-      icon: Cpu,
-      color: "text-cyan-600 bg-cyan-100 dark:text-cyan-400 dark:bg-cyan-900/30",
-      borderColor: "border-l-cyan-500",
-    },
-    {
-      key: "batch",
-      icon: Layers,
-      color: "text-indigo-600 bg-indigo-100 dark:text-indigo-400 dark:bg-indigo-900/30",
-      borderColor: "border-l-indigo-500",
-    },
-    {
-      key: "no_signup",
-      icon: UserCheck,
-      color: "text-pink-600 bg-pink-100 dark:text-pink-400 dark:bg-pink-900/30",
-      borderColor: "border-l-pink-500",
-    },
-  ];
 
   return (
     <section id="features" className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-b from-purple-50/60 to-purple-100/30 dark:from-gray-900/50 dark:to-gray-900/50">
@@ -74,8 +74,8 @@ export function FeaturesSection() {
           {features.map((feature, index) => (
             <motion.div
               key={feature.key}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
               className={`relative rounded-2xl border border-l-[3px] ${feature.borderColor} border-gray-200 bg-white p-6 shadow-md dark:border-gray-800 dark:bg-gray-900`}
             >

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Lock, Zap, Brain, Shield } from "lucide-react";
@@ -14,7 +14,7 @@ export function FAQ() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const faqs = [
+  const faqs = useMemo(() => [
     {
       question: t("faq.q1.question"),
       answer: t("faq.q1.answer"),
@@ -55,7 +55,7 @@ export function FAQ() {
       answer: t("faq.q8.answer"),
       icon: Zap,
     },
-  ];
+  ], [t]);
 
   return (
     <section className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-b from-indigo-50/50 to-indigo-100/25 dark:from-gray-900/50 dark:to-gray-900/50">

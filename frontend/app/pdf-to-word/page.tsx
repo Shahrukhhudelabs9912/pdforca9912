@@ -7,6 +7,7 @@ import {
   FAQPageJsonLd,
   BreadcrumbJsonLd,
 } from "@/components/seo/json-ld";
+import { ToolLayout } from "@/components/tools/tool-layout";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -72,8 +73,33 @@ export default function PDFToWordPage() {
         steps={HOW_TO_STEPS}
       />
       <FAQPageJsonLd items={FAQ_ITEMS} />
-      <h1 className="sr-only">Convert PDF to Word Online Free</h1>
-      <PDFToWordClient />
+      <ToolLayout
+        title="PDF to Word"
+        description="Convert PDF files to editable Word documents (.docx) with high accuracy."
+        toolName="PDF to Word"
+        toolDescription="Convert PDF documents into editable Word .docx files."
+        toolKey="pdf_to_word"
+        seoContent={{
+          h1: "Convert PDF to Word Online for Free",
+          h2: "How to Convert PDF to Word",
+          content: `
+            <p>Our free PDF to Word converter allows you to transform any PDF document into an editable Microsoft Word file (.docx) while preserving the original formatting, fonts, tables, and images.</p>
+            <p><strong>Key features:</strong></p>
+            <ul>
+              <li>Convert PDF to Word with high accuracy</li>
+              <li>Preserve formatting, fonts, and layout</li>
+              <li>Maintain tables, images, and hyperlinks</li>
+              <li>Secure processing with automatic file deletion</li>
+              <li>No registration or watermarks</li>
+              <li>Support for scanned PDFs with OCR technology</li>
+            </ul>
+            <p>Perfect for editing contracts, resumes, reports, or any document that was originally created as a PDF but needs modifications.</p>
+          `,
+          faq: FAQ_ITEMS,
+        }}
+      >
+        <PDFToWordClient />
+      </ToolLayout>
     </>
   );
 }

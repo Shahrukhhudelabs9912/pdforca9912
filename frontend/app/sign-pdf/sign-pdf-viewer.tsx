@@ -107,9 +107,9 @@ export default function SignPdfViewer({
         if (cancelled) return;
         pdfDocRef.current = pdf;
         onNumPages(pdf.numPages);
-      } catch (e: any) {
+      } catch (e: unknown) {
         console.error("[sign-pdf-viewer] PDF load error:", e);
-        if (!cancelled) setError(e?.message || "Failed to load PDF");
+        if (!cancelled) setError(e instanceof Error ? e.message : "Failed to load PDF");
       }
     })();
 
@@ -143,10 +143,10 @@ export default function SignPdfViewer({
           onPageSize({ width: viewport.width, height: viewport.height });
           setLoading(false);
         }
-      } catch (e: any) {
-        if (e?.name === "RenderingCancelledException") return;
+      } catch (e: unknown) {
+        if (e instanceof Error && e.name === "RenderingCancelledException") return;
         console.error("[sign-pdf-viewer] Page render error:", e);
-        if (!cancelled) setError(e?.message || "Failed to render page");
+        if (!cancelled) setError(e instanceof Error ? e.message : "Failed to render page");
       }
     })();
     return () => {

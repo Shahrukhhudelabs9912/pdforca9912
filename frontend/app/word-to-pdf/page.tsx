@@ -7,6 +7,7 @@ import {
   FAQPageJsonLd,
   BreadcrumbJsonLd,
 } from "@/components/seo/json-ld";
+import { ToolLayout } from "@/components/tools/tool-layout";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -72,8 +73,33 @@ export default function WordToPDFPage() {
         steps={HOW_TO_STEPS}
       />
       <FAQPageJsonLd items={FAQ_ITEMS} />
-      <h1 className="sr-only">Convert Word to PDF Online Free</h1>
-      <WordToPDFClient />
+      <ToolLayout
+        title="Word to PDF"
+        description="Convert Word documents (.doc, .docx) to PDF format."
+        toolName="Word to PDF"
+        toolDescription="Convert Word .doc and .docx files into PDF documents."
+        toolKey="word_to_pdf"
+        seoContent={{
+          h1: "Convert Word to PDF Online for Free",
+          h2: "How to Convert Word to PDF",
+          content: `
+            <p>Our free Word to PDF converter allows you to transform any Microsoft Word document (.doc, .docx) into a professional PDF file while preserving the original formatting, fonts, and layout.</p>
+            <p><strong>Key features:</strong></p>
+            <ul>
+              <li>Convert Word to PDF with perfect formatting</li>
+              <li>Preserve fonts, images, tables, and hyperlinks</li>
+              <li>Maintain page layout and margins</li>
+              <li>Secure processing with automatic file deletion</li>
+              <li>No registration or watermarks</li>
+              <li>Support for multiple Word formats (.doc, .docx, .rtf)</li>
+            </ul>
+            <p>Perfect for creating professional documents, sharing resumes, submitting assignments, or archiving important files in a universal format.</p>
+          `,
+          faq: FAQ_ITEMS,
+        }}
+      >
+        <WordToPDFClient />
+      </ToolLayout>
     </>
   );
 }

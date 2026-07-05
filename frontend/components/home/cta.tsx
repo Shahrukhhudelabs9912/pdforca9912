@@ -17,8 +17,8 @@ export function CTASection() {
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
               <div>
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
                 >
                   <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
@@ -85,15 +85,15 @@ export function CTASection() {
                 >
                   <h3 className="text-2xl font-bold text-white">{t("cta.button1")}</h3>
                   <p className="mt-2 text-blue-100">
-                    Drag & drop your first PDF to experience the power of PDFOrca.
+                    {t("cta.drag_drop")}
                   </p>
 
                   <div className="mt-8 space-y-4">
                     {[
-                      "No credit card required",
-                      "Process up to 10 files simultaneously",
-                      "100% privacy guaranteed",
-                      "Hindi & English support",
+                      t("cta.feature_no_card"),
+                      t("cta.feature_parallel"),
+                      t("cta.feature_privacy"),
+                      t("cta.feature_bilingual"),
                     ].map((feature, index) => (
                       <div key={index} className="flex items-center gap-3">
                         <div className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500">
@@ -117,13 +117,13 @@ export function CTASection() {
                   </div>
 
                   <div className="mt-8 rounded-xl bg-white/5 p-6">
-                    <h4 className="font-semibold text-white">Popular Use Cases</h4>
+                    <h4 className="font-semibold text-white">{t("cta.popular_use_cases")}</h4>
                     <div className="mt-4 grid grid-cols-2 gap-3">
                       {[
-                        "Merge invoices",
-                        "Compress reports",
-                        "Convert resumes",
-                        "Protect contracts",
+                        t("cta.use_case_merge"),
+                        t("cta.use_case_compress"),
+                        t("cta.use_case_convert"),
+                        t("cta.use_case_protect"),
                       ].map((useCase, index) => (
                         <div
                           key={index}
@@ -142,13 +142,13 @@ export function CTASection() {
 
         <div className="mt-12 text-center">
           <p className="text-gray-600 dark:text-gray-300">
-            Need help getting started?{" "}
+            {t("cta.help_text")}{" "}
             <Link href="/contact" className="font-semibold text-primary hover:underline">
-              Contact our team
+              {t("cta.contact_link")}
             </Link>{" "}
-            or{" "}
+            {t("cta.or")}{" "}
             <Link href="/blog" className="font-semibold text-primary hover:underline">
-              read our tutorials
+              {t("cta.tutorials_link")}
             </Link>
             .
           </p>

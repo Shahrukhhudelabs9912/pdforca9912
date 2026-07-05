@@ -1,6 +1,7 @@
 """Main FastAPI application for PDFOrca backend."""
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Header
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
@@ -146,8 +147,40 @@ async def root():
 
 @app.get("/health")
 async def health_check():
-    """Health check endpoint."""
-    return {"status": "healthy"}
+    """Deep health check — verifies MongoDB and Redis connectivity."""
+    import os
+    checks: dict[str, str] = {}
+
+    try:
+        from app.utils.db_utils import get_database
+        db = get_database()
+        await db.client.admin.command("ping")
+        checks["mongodb"] = "healthy"
+    except Exception:
+        checks["mongodb"] = "unhealthy"
+
+    storage_uri = os.getenv("RATELIMIT_STORAGE_URI", "")
+    if storage_uri.startswith("redis://"):
+        try:
+            import redis.asyncio as aioredis
+            r = aioredis.from_url(storage_uri)
+            await r.ping()
+            await r.aclose()
+            checks["redis"] = "healthy"
+        except Exception:
+            checks["redis"] = "unhealthy"
+
+    all_healthy = all(v == "healthy" for v in checks.values())
+    return JSONResponse(
+        content={"status": "healthy" if all_healthy else "degraded", "checks": checks},
+        status_code=200 if all_healthy else 503,
+    )
+
+
+@app.get("/health/live")
+async def liveness_check():
+    """Liveness probe — always returns 200."""
+    return {"status": "alive"}
 
 
 @app.get("/api/limits")

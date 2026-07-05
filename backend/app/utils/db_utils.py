@@ -61,7 +61,14 @@ async def connect_to_mongo() -> None:
     """
     global _client, _db
 
-    _client = AsyncIOMotorClient(settings.MONGO_URL)
+    _client = AsyncIOMotorClient(
+        settings.MONGO_URL,
+        maxPoolSize=50,
+        minPoolSize=5,
+        serverSelectionTimeoutMS=5000,
+        socketTimeoutMS=30000,
+        connectTimeoutMS=5000,
+    )
     _db = _client[settings.MONGO_DB_NAME]
 
     # Ensure email uniqueness index on the users collection

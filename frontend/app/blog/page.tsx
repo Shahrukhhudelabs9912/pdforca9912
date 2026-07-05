@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Fragment } from "react";
 import { ArrowRight, Calendar, Clock, Sparkles, BookOpen } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { getAllPosts } from "@/lib/blog";
 import { BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { AdBanner } from "@/components/ad-banner";
@@ -44,9 +46,10 @@ function formatDate(iso: string) {
 }
 
 
-export default function BlogPage() {
+export default async function BlogPage() {
   const posts = getAllPosts();
   const pageUrl = `${SITE_URL}/blog`;
+  const t = await getTranslations("blog");
 
   return (
     <>
@@ -66,17 +69,16 @@ export default function BlogPage() {
                 <BookOpen className="h-8 w-8 text-blue-600 dark:text-blue-400" />
               </div>
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
-                PDFOrca Blog
+                {t("page_title")}
               </h1>
               <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
-                Practical tutorials, tips, and use cases for working with PDFs.
-                Every article links to the free tool that gets the job done.
+                {t("page_subtitle")}
               </p>
             </div>
 
             {/* Posts grid */}
             {posts.length === 0 ? (
-              <EmptyState />
+              <EmptyState t={t} />
             ) : (
               <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {posts.map((post, index) => (
@@ -90,12 +92,15 @@ export default function BlogPage() {
                     className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900"
                   >
                     {post.cover ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={post.cover}
-                        alt={post.title}
-                        className="aspect-[16/9] w-full object-cover"
-                      />
+                      <div className="relative aspect-[16/9] w-full">
+                        <Image
+                          src={post.cover}
+                          alt={post.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover"
+                        />
+                      </div>
                     ) : (
                       <div className="flex aspect-[16/9] w-full items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 text-white">
                         <BookOpen className="h-10 w-10 opacity-80" />
@@ -126,7 +131,7 @@ export default function BlogPage() {
                         </div>
                         <div className="flex items-center gap-1.5">
                           <Clock className="h-3.5 w-3.5" />
-                          <span>{post.readingMinutes} min</span>
+                          <span>{t("min_read", { minutes: post.readingMinutes })}</span>
                         </div>
                       </div>
                     </div>
@@ -142,22 +147,21 @@ export default function BlogPage() {
   );
 }
 
-function EmptyState() {
+function EmptyState({ t }: { t: (key: string) => string }) {
   return (
     <div className="mt-16 rounded-2xl border border-dashed border-gray-300 bg-white p-12 text-center dark:border-gray-700 dark:bg-gray-900">
       <Sparkles className="mx-auto h-10 w-10 text-blue-600 dark:text-blue-400" />
       <h2 className="mt-4 text-xl font-semibold text-gray-900 dark:text-white">
-        First posts are on the way
+        {t("empty_title")}
       </h2>
       <p className="mx-auto mt-2 max-w-md text-sm text-gray-600 dark:text-gray-400">
-        We're publishing the first batch of tutorials. Check back soon — or
-        explore the tools while you wait.
+        {t("empty_description")}
       </p>
       <Link
         href="/"
         className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
       >
-        Explore PDF tools <ArrowRight className="h-4 w-4" />
+        {t("explore_tools")} <ArrowRight className="h-4 w-4" />
       </Link>
     </div>
   );

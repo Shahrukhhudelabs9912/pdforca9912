@@ -27,164 +27,164 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const tools = [
+  {
+    key: "merge_pdf",
+    icon: Merge,
+    href: "/merge-pdf",
+    color: "from-blue-500 to-cyan-500",
+    borderColor: "border-t-blue-500",
+    popular: true,
+  },
+  {
+    key: "split_pdf",
+    icon: Scissors,
+    href: "/split-pdf",
+    color: "from-green-500 to-emerald-500",
+    borderColor: "border-t-green-500",
+    popular: true,
+  },
+  {
+    key: "compress_pdf",
+    icon: Minimize,
+    href: "/compress-pdf",
+    color: "from-purple-500 to-pink-500",
+    borderColor: "border-t-purple-500",
+    popular: true,
+  },
+  {
+    key: "pdf_to_word",
+    icon: FileWord,
+    href: "/pdf-to-word",
+    color: "from-orange-500 to-red-500",
+    borderColor: "border-t-orange-500",
+  },
+  {
+    key: "word_to_pdf",
+    icon: FileText,
+    href: "/word-to-pdf",
+    color: "from-blue-500 to-indigo-500",
+    borderColor: "border-t-blue-500",
+  },
+  {
+    key: "pdf_to_jpg",
+    icon: ImageIcon,
+    href: "/pdf-to-jpg",
+    color: "from-yellow-500 to-amber-500",
+    borderColor: "border-t-yellow-500",
+  },
+  {
+    key: "jpg_to_pdf",
+    icon: FileText,
+    href: "/jpg-to-pdf",
+    color: "from-teal-500 to-green-500",
+    borderColor: "border-t-teal-500",
+  },
+  {
+    key: "protect_pdf",
+    icon: Lock,
+    href: "/protect-pdf",
+    color: "from-red-500 to-orange-500",
+    borderColor: "border-t-red-500",
+  },
+  {
+    key: "add_watermark",
+    icon: Droplets,
+    href: "/add-watermark",
+    color: "from-cyan-500 to-blue-500",
+    borderColor: "border-t-cyan-500",
+  },
+  {
+    key: "page_numbering",
+    icon: Hash,
+    href: "/page-numbering",
+    color: "from-violet-500 to-purple-500",
+    borderColor: "border-t-violet-500",
+  },
+  {
+    key: "organize_pdf",
+    icon: Grid,
+    href: "/organize-pdf",
+    color: "from-amber-500 to-yellow-500",
+    borderColor: "border-t-amber-500",
+  },
+  {
+    key: "pdf_to_excel",
+    icon: Sheet,
+    href: "/pdf-to-excel",
+    color: "from-green-500 to-teal-500",
+    borderColor: "border-t-green-500",
+    popular: true,
+  },
+  {
+    key: "excel_to_pdf",
+    icon: FileSpreadsheet,
+    href: "/excel-to-pdf",
+    color: "from-teal-500 to-cyan-500",
+    borderColor: "border-t-teal-500",
+    popular: true,
+  },
+  {
+    key: "ai_summarization",
+    icon: Brain,
+    href: "/ai-tools",
+    color: "from-purple-500 to-indigo-500",
+    borderColor: "border-t-purple-500",
+    featured: true,
+  },
+  {
+    key: "unlock_pdf",
+    icon: Unlock,
+    href: "/unlock-pdf",
+    color: "from-rose-500 to-pink-500",
+    borderColor: "border-t-rose-500",
+  },
+  {
+    key: "rotate_pdf",
+    icon: RotateCw,
+    href: "/rotate-pdf",
+    color: "from-indigo-500 to-blue-500",
+    borderColor: "border-t-indigo-500",
+  },
+  {
+    key: "extract_pages",
+    icon: Copy,
+    href: "/extract-pages",
+    color: "from-fuchsia-500 to-purple-500",
+    borderColor: "border-t-fuchsia-500",
+  },
+  {
+    key: "powerpoint_to_pdf",
+    icon: Presentation,
+    href: "/powerpoint-to-pdf",
+    color: "from-orange-500 to-red-500",
+    borderColor: "border-t-orange-500",
+  },
+  {
+    key: "pdf_to_powerpoint",
+    icon: Presentation,
+    href: "/pdf-to-powerpoint",
+    color: "from-red-500 to-pink-500",
+    borderColor: "border-t-red-500",
+  },
+  {
+    key: "ocr_pdf",
+    icon: ScanLine,
+    href: "/ocr-pdf",
+    color: "from-emerald-500 to-teal-500",
+    borderColor: "border-t-emerald-500",
+  },
+  {
+    key: "sign_pdf",
+    icon: PenTool,
+    href: "/sign-pdf",
+    color: "from-sky-500 to-blue-500",
+    borderColor: "border-t-sky-500",
+  },
+];
+
 export function ToolsGrid() {
   const t = useTranslations();
-
-  const tools = [
-    {
-      key: "merge_pdf",
-      icon: Merge,
-      href: "/merge-pdf",
-      color: "from-blue-500 to-cyan-500",
-      borderColor: "border-t-blue-500",
-      popular: true,
-    },
-    {
-      key: "split_pdf",
-      icon: Scissors,
-      href: "/split-pdf",
-      color: "from-green-500 to-emerald-500",
-      borderColor: "border-t-green-500",
-      popular: true,
-    },
-    {
-      key: "compress_pdf",
-      icon: Minimize,
-      href: "/compress-pdf",
-      color: "from-purple-500 to-pink-500",
-      borderColor: "border-t-purple-500",
-      popular: true,
-    },
-    {
-      key: "pdf_to_word",
-      icon: FileWord,
-      href: "/pdf-to-word",
-      color: "from-orange-500 to-red-500",
-      borderColor: "border-t-orange-500",
-    },
-    {
-      key: "word_to_pdf",
-      icon: FileText,
-      href: "/word-to-pdf",
-      color: "from-blue-500 to-indigo-500",
-      borderColor: "border-t-blue-500",
-    },
-    {
-      key: "pdf_to_jpg",
-      icon: ImageIcon,
-      href: "/pdf-to-jpg",
-      color: "from-yellow-500 to-amber-500",
-      borderColor: "border-t-yellow-500",
-    },
-    {
-      key: "jpg_to_pdf",
-      icon: FileText,
-      href: "/jpg-to-pdf",
-      color: "from-teal-500 to-green-500",
-      borderColor: "border-t-teal-500",
-    },
-    {
-      key: "protect_pdf",
-      icon: Lock,
-      href: "/protect-pdf",
-      color: "from-red-500 to-orange-500",
-      borderColor: "border-t-red-500",
-    },
-    {
-      key: "add_watermark",
-      icon: Droplets,
-      href: "/add-watermark",
-      color: "from-cyan-500 to-blue-500",
-      borderColor: "border-t-cyan-500",
-    },
-    {
-      key: "page_numbering",
-      icon: Hash,
-      href: "/page-numbering",
-      color: "from-violet-500 to-purple-500",
-      borderColor: "border-t-violet-500",
-    },
-    {
-      key: "organize_pdf",
-      icon: Grid,
-      href: "/organize-pdf",
-      color: "from-amber-500 to-yellow-500",
-      borderColor: "border-t-amber-500",
-    },
-    {
-      key: "pdf_to_excel",
-      icon: Sheet,
-      href: "/pdf-to-excel",
-      color: "from-green-500 to-teal-500",
-      borderColor: "border-t-green-500",
-      popular: true,
-    },
-    {
-      key: "excel_to_pdf",
-      icon: FileSpreadsheet,
-      href: "/excel-to-pdf",
-      color: "from-teal-500 to-cyan-500",
-      borderColor: "border-t-teal-500",
-      popular: true,
-    },
-    {
-      key: "ai_summarization",
-      icon: Brain,
-      href: "/ai-tools",
-      color: "from-purple-500 to-indigo-500",
-      borderColor: "border-t-purple-500",
-      featured: true,
-    },
-    {
-      key: "unlock_pdf",
-      icon: Unlock,
-      href: "/unlock-pdf",
-      color: "from-rose-500 to-pink-500",
-      borderColor: "border-t-rose-500",
-    },
-    {
-      key: "rotate_pdf",
-      icon: RotateCw,
-      href: "/rotate-pdf",
-      color: "from-indigo-500 to-blue-500",
-      borderColor: "border-t-indigo-500",
-    },
-    {
-      key: "extract_pages",
-      icon: Copy,
-      href: "/extract-pages",
-      color: "from-fuchsia-500 to-purple-500",
-      borderColor: "border-t-fuchsia-500",
-    },
-    {
-      key: "powerpoint_to_pdf",
-      icon: Presentation,
-      href: "/powerpoint-to-pdf",
-      color: "from-orange-500 to-red-500",
-      borderColor: "border-t-orange-500",
-    },
-    {
-      key: "pdf_to_powerpoint",
-      icon: Presentation,
-      href: "/pdf-to-powerpoint",
-      color: "from-red-500 to-pink-500",
-      borderColor: "border-t-red-500",
-    },
-    {
-      key: "ocr_pdf",
-      icon: ScanLine,
-      href: "/ocr-pdf",
-      color: "from-emerald-500 to-teal-500",
-      borderColor: "border-t-emerald-500",
-    },
-    {
-      key: "sign_pdf",
-      icon: PenTool,
-      href: "/sign-pdf",
-      color: "from-sky-500 to-blue-500",
-      borderColor: "border-t-sky-500",
-    },
-  ];
 
   return (
     <section id="tools" className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50/60 to-blue-100/30 dark:from-transparent dark:to-transparent">
@@ -202,8 +202,8 @@ export function ToolsGrid() {
           {tools.map((tool, index) => (
             <motion.div
               key={tool.key}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
             >
               <Link href={tool.href}>

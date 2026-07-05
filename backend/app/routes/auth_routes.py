@@ -170,6 +170,7 @@ async def signup(request: Request, body: SignupRequest):
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail="User creation failed. Please try again.",
             )
+        logger.info("auth.signup", extra={"email": body.email})
         return {
             "message": "Account created successfully. Please log in.",
             "user": _sanitize(full_user),
@@ -177,7 +178,7 @@ async def signup(request: Request, body: SignupRequest):
     except HTTPException:
         raise
     except Exception as e:
-        logger.debug(f"[auth/signup] Error: {type(e).__name__}: {e}")
+        logger.warning("auth.signup.failed: %s", type(e).__name__, extra={"email": body.email})
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="An unexpected error occurred during signup.",
@@ -198,22 +199,25 @@ async def login(request: Request, body: LoginRequest):
             )
 
         if not user.get("is_active"):
+            logger.warning("auth.login.failed", extra={"email": body.email, "reason": "account_inactive"})
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="This account has been deactivated.",
             )
 
         if not verify_password(body.password, user["password_hash"]):
+            logger.warning("auth.login.failed", extra={"email": body.email, "reason": "invalid_credentials"})
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid email or password.",
             )
 
+        logger.info("auth.login", extra={"email": body.email})
         return _build_auth_tokens(user, body.remember_me)
     except HTTPException:
         raise
     except Exception as e:
-        logger.debug(f"[auth/login] Error: {type(e).__name__}: {e}")
+        logger.warning("auth.login.error: %s", type(e).__name__, extra={"email": body.email})
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="An unexpected error occurred during login.",
@@ -245,6 +249,7 @@ async def forgot_password(request: ForgotPasswordRequest):
     """
     try:
         token = await set_reset_token(request.email)
+        logger.info("auth.password_reset.requested", extra={"email": request.email})
 
         # In development, include the token in a response header for easy testing.
         # In production, this header would be removed and the token only sent via email.
@@ -264,7 +269,7 @@ async def forgot_password(request: ForgotPasswordRequest):
 
         return response
     except Exception as e:
-        logger.debug(f"[auth/forgot-password] Error: {type(e).__name__}: {e}")
+        logger.warning("auth.password_reset.error: %s", type(e).__name__)
         # Always return the same message regardless of whether the email exists
         return ForgotPasswordResponse()
 
@@ -286,11 +291,12 @@ async def reset_password(request: ResetPasswordRequest):
             )
 
         await update_user_password(user["id"], request.new_password)
+        logger.info("auth.password_reset.completed", extra={"user_id": user["id"]})
         return ResetPasswordResponse()
     except HTTPException:
         raise
     except Exception as e:
-        logger.debug(f"[auth/reset-password] Error: {type(e).__name__}: {e}")
+        logger.warning("auth.password_reset.error: %s", type(e).__name__, exc_info=True)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="An unexpected error occurred during password reset.",
@@ -324,7 +330,7 @@ async def refresh_token(request: RefreshTokenRequest):
     except HTTPException:
         raise
     except Exception as e:
-        logger.debug(f"[auth/refresh] Error: {type(e).__name__}: {e}")
+        logger.warning("auth.refresh.error: %s", type(e).__name__)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="An unexpected error occurred during token refresh.",
@@ -371,5 +377,6 @@ async def change_password(
             detail="Current password is incorrect.",
         )
     await update_user_password(current_user["id"], request.new_password)
+    logger.info("auth.password_changed", extra={"user_id": current_user["id"]})
     return ResetPasswordResponse(message="Password changed successfully.") 
  

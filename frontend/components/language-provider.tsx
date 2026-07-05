@@ -18,7 +18,7 @@ interface LanguageProviderProps {
 
 export function LanguageProvider({ children }: LanguageProviderProps) {
   const [language, setLanguage] = useState<Language>("en");
-  const [translations, setTranslations] = useState<Record<string, any>>({});
+  const [translations, setTranslations] = useState<Record<string, unknown>>({});
 
   // Load translations
   useEffect(() => {
@@ -40,11 +40,11 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   // Get translation function
   const t = (key: string): string => {
     const keys = key.split(".");
-    let value: any = translations;
+    let value: unknown = translations;
     
     for (const k of keys) {
       if (value && typeof value === "object" && k in value) {
-        value = value[k];
+        value = (value as Record<string, unknown>)[k];
       } else {
         return key; // Return key if translation not found
       }
