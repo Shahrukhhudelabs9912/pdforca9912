@@ -22,10 +22,6 @@ export function OrganizationJsonLd() {
         name: "PDFOrca",
         url: SITE_URL,
         logo: `${SITE_URL}/icon-512.png`,
-        sameAs: [
-          "https://twitter.com/pdforca",
-          "https://www.facebook.com/pdforca",
-        ],
       }}
     />
   );
@@ -40,11 +36,6 @@ export function WebSiteJsonLd() {
         "@type": "WebSite",
         name: "PDFOrca",
         url: SITE_URL,
-        potentialAction: {
-          "@type": "SearchAction",
-          target: `${SITE_URL}/search?q={search_term_string}`,
-          "query-input": "required name=search_term_string",
-        },
       }}
     />
   );

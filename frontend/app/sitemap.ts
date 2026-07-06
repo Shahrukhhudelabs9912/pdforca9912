@@ -44,8 +44,6 @@ const STATIC_ROUTES: Route[] = [
   { path: "/contact", changeFrequency: "monthly", priority: 0.5 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.7 },
   { path: "/careers", changeFrequency: "monthly", priority: 0.4 },
-  { path: "/login", changeFrequency: "yearly", priority: 0.3 },
-  { path: "/signup", changeFrequency: "yearly", priority: 0.4 },
 ];
 
 const LEGAL_ROUTES: Route[] = [
@@ -72,6 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       acc[locale] = localeUrl;
       return acc;
     }, {});
+    languages["x-default"] = url;
 
     return {
       url,
@@ -86,11 +85,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // engines discover new articles without us editing this file.
   const blogEntries: MetadataRoute.Sitemap = getAllPosts().map((post) => {
     const postDate = new Date(post.date);
+    const postUrl = `${SITE_URL}/blog/${post.slug}`;
     return {
-      url: `${SITE_URL}/blog/${post.slug}`,
+      url: postUrl,
       lastModified: Number.isNaN(postDate.getTime()) ? lastModified : postDate,
       changeFrequency: "monthly" as const,
       priority: 0.6,
+      alternates: {
+        languages: {
+          en: postUrl,
+          hi: `${SITE_URL}/hi/blog/${post.slug}`,
+          "x-default": postUrl,
+        },
+      },
     };
   });
 

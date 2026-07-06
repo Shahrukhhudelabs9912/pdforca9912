@@ -50,7 +50,13 @@ export async function generateMetadata(
       description: post.description,
       images: [ogImage],
     },
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: {
+        en: url,
+        hi: `${SITE_URL}/hi/blog/${slug}`,
+      },
+    },
   };
 }
 

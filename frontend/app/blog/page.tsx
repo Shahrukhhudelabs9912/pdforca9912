@@ -31,6 +31,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: `${SITE_URL}/blog`,
+    languages: {
+      en: `${SITE_URL}/blog`,
+      hi: `${SITE_URL}/hi/blog`,
+    },
   },
 };
 
