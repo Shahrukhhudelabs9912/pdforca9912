@@ -77,7 +77,7 @@ export function ToolLayout({
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-5 py-12 sm:px-6 lg:px-8">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
             {seoH1 || `${displayTitle} ${t("tool_suffix")}`}

@@ -64,7 +64,7 @@ export function Footer() {
       <h2 id="footer-heading" className="sr-only">
         {t("footer.tagline")}
       </h2>
-      <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-5 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8">
           <div className="sm:col-span-2 xl:col-span-2">
             <div className="flex items-center gap-2">

@@ -159,7 +159,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-5 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Left: Logo + primary dropdowns */}
           <div className="flex items-center gap-6">
@@ -392,7 +392,7 @@ export function Header() {
           exit={{ opacity: 0, height: 0 }}
           className="lg:hidden border-t"
         >
-          <div className="container mx-auto px-4 py-4 space-y-5">
+          <div className="container mx-auto px-5 py-4 space-y-5">
             {/* Popular Tools section */}
             <div className="space-y-2">
               <h3 className="text-sm font-semibold text-foreground">{t("header.nav.popular_tools")}</h3>
