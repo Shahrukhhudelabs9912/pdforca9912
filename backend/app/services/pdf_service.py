@@ -1335,11 +1335,9 @@ class ImageToPDFService:
         "medium": 28.35,   # ~10 mm
         "large": 56.69,    # ~20 mm
     }
-    EMBED_DPI = 90
-
     @staticmethod
-    def _fit_image(img: "Image.Image", page_size: str, orientation: str, margin: str) -> "Image.Image":
-        """Resize image to fit the target page at EMBED_DPI. Keeps aspect ratio."""
+    def _compute_dpi(img: "Image.Image", page_size: str, orientation: str, margin: str) -> float:
+        """Calculate DPI so the original image fits within the printable area."""
         pw, ph = ImageToPDFService.PAGE_SIZES_PT.get(page_size, (595.28, 841.89))
         if orientation == "landscape":
             pw, ph = ph, pw
@@ -1347,14 +1345,9 @@ class ImageToPDFService:
         usable_w = pw - 2 * m
         usable_h = ph - 2 * m
 
-        max_px_w = int(usable_w / 72 * ImageToPDFService.EMBED_DPI)
-        max_px_h = int(usable_h / 72 * ImageToPDFService.EMBED_DPI)
-
-        if img.width <= max_px_w and img.height <= max_px_h:
-            return img
-
-        img.thumbnail((max_px_w, max_px_h), Image.LANCZOS)
-        return img
+        dpi_w = img.width / usable_w * 72
+        dpi_h = img.height / usable_h * 72
+        return max(dpi_w, dpi_h)
 
     @staticmethod
     def convert_images_to_pdf(
@@ -1363,16 +1356,18 @@ class ImageToPDFService:
         orientation: str = "portrait",
         margin: str = "medium",
     ) -> bytes:
-        """Convert multiple images to a single PDF, resizing to fit the page."""
+        """Convert multiple images to a single PDF, preserving original quality."""
         try:
             pil_images = []
+            dpi_values = []
 
             for img_bytes in image_files:
                 img = Image.open(io.BytesIO(img_bytes))
                 if img.mode in ('RGBA', 'LA', 'P'):
                     img = img.convert('RGB')
-                img = ImageToPDFService._fit_image(img, page_size, orientation, margin)
+                dpi = ImageToPDFService._compute_dpi(img, page_size, orientation, margin)
                 pil_images.append(img)
+                dpi_values.append(dpi)
 
             output_stream = io.BytesIO()
 
@@ -1380,7 +1375,7 @@ class ImageToPDFService:
                 pil_images[0].save(
                     output_stream,
                     "PDF",
-                    resolution=float(ImageToPDFService.EMBED_DPI),
+                    resolution=dpi_values[0],
                     save_all=True,
                     append_images=pil_images[1:],
                 )
