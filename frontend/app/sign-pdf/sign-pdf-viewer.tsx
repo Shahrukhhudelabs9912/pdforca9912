@@ -172,7 +172,7 @@ export default function SignPdfViewer({
       className="relative inline-block border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden cursor-crosshair shadow-md bg-white"
     >
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-50 z-10 min-w-[400px] min-h-[300px]">
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-50 z-10 sm:min-w-[400px] min-h-[300px]">
           <span className="text-sm text-gray-500">Loading PDF...</span>
         </div>
       )}

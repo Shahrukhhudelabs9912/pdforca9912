@@ -23,7 +23,7 @@ import { SIGNATURE_FONTS, type SignatureFont } from "./signature-fonts";
 const SignPdfViewer = dynamic(() => import("./sign-pdf-viewer"), {
   ssr: false,
   loading: () => (
-    <div className="w-[600px] h-[800px] border border-gray-200 rounded-lg bg-gray-50 flex items-center justify-center">
+    <div className="w-full max-w-[600px] h-[800px] border border-gray-200 rounded-lg bg-gray-50 flex items-center justify-center">
       <span className="text-sm text-gray-500">Loading PDF viewer...</span>
     </div>
   ),

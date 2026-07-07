@@ -38,11 +38,11 @@ export function AdBanner({
   if (!adsenseId) return null;
 
   return (
-    <div className={`mx-auto w-full overflow-hidden text-center px-4 sm:px-6 lg:px-8 ${className ?? ""}`}>
+    <div className={`mx-auto max-w-full overflow-hidden text-center px-4 sm:px-6 lg:px-8 ${className ?? ""}`}>
       <ins
         ref={adRef}
         className="adsbygoogle"
-        style={{ display: "block" }}
+        style={{ display: "block", maxWidth: "100%", overflow: "hidden" }}
         data-ad-client={adsenseId}
         data-ad-slot={slot}
         data-ad-format={format}

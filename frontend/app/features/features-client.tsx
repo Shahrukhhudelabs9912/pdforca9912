@@ -194,7 +194,8 @@ export default function FeaturesPage() {
               title={t("compare_section_title")}
               subtitle={t("compare_section_subtitle")}
             />
-            <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div className="overflow-hidden">
+              <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
               <div className="min-w-[600px] overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
                 <table className="w-full">
                   <thead>
@@ -226,6 +227,7 @@ export default function FeaturesPage() {
                   </tbody>
                 </table>
               </div>
+            </div>
             </div>
           </div>
         </section>
