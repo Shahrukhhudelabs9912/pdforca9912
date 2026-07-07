@@ -76,7 +76,7 @@ export function ToolLayout({
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 max-w-[100vw] overflow-x-hidden">
       <div className="container mx-auto px-5 py-12 sm:px-6 lg:px-8">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
@@ -88,7 +88,7 @@ export function ToolLayout({
         </div>
 
         <div className="grid gap-8 lg:grid-cols-3">
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 min-w-0">
             <div className="rounded-2xl border border-gray-200 bg-white p-3 sm:p-6 shadow-lg dark:border-gray-800 dark:bg-gray-900">
               <div className="mb-6">
                 <div className="flex items-center justify-between">
@@ -106,7 +106,7 @@ export function ToolLayout({
               {children}
             </div>
 
-            <AdBanner slot="TOOL_BELOW" format="horizontal" className="mt-6" />
+            <AdBanner slot="TOOL_BELOW" format="horizontal" responsive={false} className="mt-6" />
 
             {seoContent && (
               <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-4 sm:p-8 overflow-hidden dark:border-gray-800 dark:bg-gray-900">
@@ -132,7 +132,7 @@ export function ToolLayout({
             )}
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-6 min-w-0">
             <div className="rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900">
               <h3 className="text-lg font-semibold">{t("how_to_use")}</h3>
               <ol className="mt-4 space-y-3">
@@ -176,7 +176,7 @@ export function ToolLayout({
               </div>
             </div>
 
-            <AdBanner slot="TOOL_SIDEBAR" format="rectangle" className="mt-2" />
+            <AdBanner slot="TOOL_SIDEBAR" format="rectangle" responsive={false} className="mt-2" />
           </div>
         </div>
       </div>

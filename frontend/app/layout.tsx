@@ -136,7 +136,7 @@ export default async function RootLayout({
                 <AnalyticsInitializer />
                 <Header />
                 <FileProvider>
-                  <main className="flex-1">{children}</main>
+                  <main className="flex-1 min-w-0 overflow-x-hidden">{children}</main>
                 </FileProvider>
                 <Footer />
                 <Toaster />
