@@ -194,36 +194,38 @@ export default function FeaturesPage() {
               title={t("compare_section_title")}
               subtitle={t("compare_section_subtitle")}
             />
-            <div className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900">
-                    <th className="px-6 py-4 text-left font-semibold">{t("compare_th_feature")}</th>
-                    <th className="px-6 py-4 text-left font-semibold">{t("compare_th_us")}</th>
-                    <th className="px-6 py-4 text-left font-semibold">{t("compare_th_them")}</th>
-                    <th className="px-6 py-4 text-left font-semibold">{t("compare_th_advantage")}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisons.map((item, index) => (
-                    <tr
-                      key={item.feature}
-                      className={index % 2 === 0 ? "bg-white dark:bg-gray-950" : "bg-gray-50 dark:bg-gray-900"}
-                    >
-                      <td className="px-6 py-4 font-medium">{item.feature}</td>
-                      <td className="px-6 py-4">
-                        <span className="font-semibold text-primary">{item.pdforca}</span>
-                      </td>
-                      <td className="px-6 py-4 text-gray-600 dark:text-gray-400">{item.competitor}</td>
-                      <td className="px-6 py-4">
-                        <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                          {t("compare_advantage_label")}
-                        </Badge>
-                      </td>
+            <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+              <div className="min-w-[600px] overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900">
+                      <th className="px-4 py-3 text-left text-sm font-semibold sm:px-6 sm:py-4">{t("compare_th_feature")}</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold sm:px-6 sm:py-4">{t("compare_th_us")}</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold sm:px-6 sm:py-4">{t("compare_th_them")}</th>
+                      <th className="px-4 py-3 text-left text-sm font-semibold sm:px-6 sm:py-4">{t("compare_th_advantage")}</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {comparisons.map((item, index) => (
+                      <tr
+                        key={item.feature}
+                        className={index % 2 === 0 ? "bg-white dark:bg-gray-950" : "bg-gray-50 dark:bg-gray-900"}
+                      >
+                        <td className="px-4 py-3 text-sm font-medium sm:px-6 sm:py-4">{item.feature}</td>
+                        <td className="px-4 py-3 text-sm sm:px-6 sm:py-4">
+                          <span className="font-semibold text-primary">{item.pdforca}</span>
+                        </td>
+                        <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400 sm:px-6 sm:py-4">{item.competitor}</td>
+                        <td className="px-4 py-3 text-sm sm:px-6 sm:py-4">
+                          <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                            {t("compare_advantage_label")}
+                          </Badge>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </section>

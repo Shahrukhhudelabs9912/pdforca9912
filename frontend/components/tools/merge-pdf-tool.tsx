@@ -179,9 +179,9 @@ export function MergePDFTool() {
             ))}
           </div>
 
-          <div className="flex items-center justify-between rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-800">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-800">
                 <Merge className="h-5 w-5 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
@@ -191,7 +191,7 @@ export function MergePDFTool() {
                 </div>
               </div>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <Button
                variant="outline"
                onClick={() => clearFiles()}

@@ -109,7 +109,7 @@ export function PDFToJPGClient() {
 
         <div>
           <label className="block text-sm font-medium mb-1">{t("dpi_label")}</label>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             {DPI_OPTIONS.map((opt) => {
               const selected = dpi === opt.value;
               const locked = !!opt.premium;
@@ -127,17 +127,17 @@ export function PDFToJPGClient() {
                         : "border-gray-200 hover:border-gray-300 dark:border-gray-700"
                   }`}
                 >
-                  <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center justify-between gap-1">
                     <span className="font-medium text-sm">
                       {t("dpi_value", { dpi: opt.value })}
                     </span>
                     {opt.recommended && (
-                      <span className="text-[10px] font-semibold uppercase tracking-wide text-green-700 bg-green-100 dark:bg-green-900/30 dark:text-green-300 px-1.5 py-0.5 rounded">
+                      <span className="text-[10px] font-semibold uppercase leading-tight text-green-700 bg-green-100 dark:bg-green-900/30 dark:text-green-300 px-1.5 py-0.5 rounded truncate">
                         {t("dpi_recommended")}
                       </span>
                     )}
                     {locked && (
-                      <span className="text-[10px] font-semibold uppercase tracking-wide text-amber-700 bg-amber-100 dark:bg-amber-900/30 dark:text-amber-300 px-1.5 py-0.5 rounded">
+                      <span className="text-[10px] font-semibold uppercase leading-tight text-amber-700 bg-amber-100 dark:bg-amber-900/30 dark:text-amber-300 px-1.5 py-0.5 rounded truncate">
                         PRO
                       </span>
                     )}

@@ -96,7 +96,7 @@ export function JPGToPDFClient() {
   return (
     <div className="space-y-8">
       {/* File Upload Section */}
-      <div className="rounded-xl border-2 border-dashed border-gray-300 p-8 dark:border-gray-700">
+      <div className="rounded-xl border-2 border-dashed border-gray-300 p-4 sm:p-8 dark:border-gray-700">
         <FileUpload
           onUpload={handleFileUpload}
           onAddMore={handleAddMoreFiles}

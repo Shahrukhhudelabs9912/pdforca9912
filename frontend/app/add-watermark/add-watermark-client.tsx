@@ -496,7 +496,7 @@ export function AddWatermarkClient() {
         <Button
           size="lg"
           variant="outline"
-          className="gap-2"
+          className="gap-2 flex-1"
           onClick={handleClearAll}
           disabled={loading}
         >

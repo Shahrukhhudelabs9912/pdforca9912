@@ -331,7 +331,7 @@ export function PageNumberingClient() {
 
               <div>
                 <label className="block text-sm font-medium mb-2">{t("alignment")}</label>
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <Button
                     variant={alignment === "left" ? "default" : "outline"}
                     size="sm"

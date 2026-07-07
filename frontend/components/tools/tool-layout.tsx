@@ -89,7 +89,7 @@ export function ToolLayout({
 
         <div className="grid gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-800 dark:bg-gray-900">
+            <div className="rounded-2xl border border-gray-200 bg-white p-3 sm:p-6 shadow-lg dark:border-gray-800 dark:bg-gray-900">
               <div className="mb-6">
                 <div className="flex items-center justify-between">
                   <div>
@@ -109,7 +109,7 @@ export function ToolLayout({
             <AdBanner slot="TOOL_BELOW" format="horizontal" className="mt-6" />
 
             {seoContent && (
-              <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-8 dark:border-gray-800 dark:bg-gray-900">
+              <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-4 sm:p-8 overflow-hidden dark:border-gray-800 dark:bg-gray-900">
                 <div className="prose prose-lg dark:prose-invert max-w-none">
                   <h2>{seoH2 || seoContent.h2}</h2>
                   {!toolKey && <div dangerouslySetInnerHTML={{ __html: seoContent.content }} />}

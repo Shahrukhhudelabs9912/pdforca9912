@@ -100,7 +100,7 @@ export function FileUpload({
       <div
         {...getRootProps()}
         className={cn(
-          "cursor-pointer rounded-2xl border-2 border-dashed p-8 text-center transition-all",
+          "cursor-pointer rounded-2xl border-2 border-dashed p-4 sm:p-8 text-center transition-all",
           isDragActive || isDragging
             ? "border-primary bg-primary/5"
             : "border-gray-300 hover:border-primary hover:bg-gray-50 dark:border-gray-700 dark:hover:border-primary"
@@ -175,7 +175,7 @@ export function FileUpload({
               </div>
             ))}
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             {shouldShowProcessButton && (
               <Button
                 className="flex-1 gap-2"

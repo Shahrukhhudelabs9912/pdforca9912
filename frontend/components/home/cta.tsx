@@ -13,7 +13,7 @@ export function CTASection() {
     <section className="px-4 py-20 sm:px-6 lg:px-8">
       <div className="container mx-auto">
         <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700">
-          <div className="px-8 py-16 sm:px-12 sm:py-20 lg:px-16">
+          <div className="px-4 py-10 sm:px-8 sm:py-16 md:px-12 md:py-20 lg:px-16">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
               <div>
                 <motion.div
@@ -81,7 +81,7 @@ export function CTASection() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  className="relative rounded-2xl bg-white/10 backdrop-blur-sm p-8 border border-white/20"
+                  className="relative rounded-2xl bg-white/10 backdrop-blur-sm p-4 sm:p-8 border border-white/20"
                 >
                   <h3 className="text-2xl font-bold text-white">{t("cta.button1")}</h3>
                   <p className="mt-2 text-blue-100">
@@ -96,7 +96,7 @@ export function CTASection() {
                       t("cta.feature_bilingual"),
                     ].map((feature, index) => (
                       <div key={index} className="flex items-center gap-3">
-                        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500">
+                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-500">
                           <svg
                             className="h-3 w-3 text-white"
                             fill="none"
@@ -118,7 +118,7 @@ export function CTASection() {
 
                   <div className="mt-8 rounded-xl bg-white/5 p-6">
                     <h4 className="font-semibold text-white">{t("cta.popular_use_cases")}</h4>
-                    <div className="mt-4 grid grid-cols-2 gap-3">
+                    <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {[
                         t("cta.use_case_merge"),
                         t("cta.use_case_compress"),
