@@ -38,7 +38,7 @@ export function AdBanner({
   if (!adsenseId) return null;
 
   return (
-    <div className={`mx-auto w-full max-w-full overflow-hidden text-center px-4 sm:px-6 lg:px-8 ${className ?? ""}`}>
+    <div className={`mx-auto w-full max-w-full overflow-hidden text-center ${className ?? ""}`}>
       <ins
         ref={adRef}
         className="adsbygoogle"
