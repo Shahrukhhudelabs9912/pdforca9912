@@ -95,7 +95,7 @@ export default async function RootLayout({
   const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   return (
-    <html lang={locale} className={`${ssrThemeClass} overflow-x-hidden`} suppressHydrationWarning>
+    <html lang={locale} className={ssrThemeClass || undefined} suppressHydrationWarning>
       <body className={`min-h-screen flex flex-col ${inter.className}`} suppressHydrationWarning>
         {adsenseId && (
           <Script
