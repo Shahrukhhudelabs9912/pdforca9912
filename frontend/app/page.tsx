@@ -44,17 +44,17 @@ const ToolsGrid = dynamic(
 
 const FeaturesSection = dynamic(
   () => import("@/components/home/features").then((mod) => ({ default: mod.FeaturesSection })),
-  { ssr: true },
+  { ssr: false },
 );
 
 const FAQ = dynamic(
   () => import("@/components/home/faq").then((mod) => ({ default: mod.FAQ })),
-  { ssr: true },
+  { ssr: false },
 );
 
 const CTASection = dynamic(
   () => import("@/components/home/cta").then((mod) => ({ default: mod.CTASection })),
-  { ssr: true },
+  { ssr: false },
 );
 
 const HOME_FAQ_ITEMS = [

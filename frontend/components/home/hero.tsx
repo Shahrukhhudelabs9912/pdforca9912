@@ -2,7 +2,6 @@
 
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
 import { Shield, Zap, Brain, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -23,11 +22,7 @@ export function HeroSection() {
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-100/70 via-white to-purple-100/70 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900" />
       <div className="container mx-auto">
         <div className="flex flex-col justify-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
+          <div className="animate-in">
             <div className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 dark:border-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
               <Brain className="mr-2 h-4 w-4" />
               {t("hero.badge")}
@@ -88,7 +83,7 @@ export function HeroSection() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

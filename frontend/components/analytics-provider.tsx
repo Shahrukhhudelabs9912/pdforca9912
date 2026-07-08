@@ -233,16 +233,7 @@ export function AnalyticsInitializer() {
     // Initialize performance monitoring
     monitorWebVitals();
 
-    // Mock Google Analytics initialization
     if (typeof window !== "undefined") {
-      // Create mock ga function
-      (window as any).ga = (window as any).ga || function() {
-        ((window as any).ga.q = (window as any).ga.q || []).push(arguments);
-      };
-      (window as any).ga.l = +new Date();
-      (window as any).ga("create", "UA-XXXXX-Y", "auto");
-      (window as any).ga("send", "pageview");
-
       // Track initial page load performance
       const navigationTiming = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming;
       if (navigationTiming) {

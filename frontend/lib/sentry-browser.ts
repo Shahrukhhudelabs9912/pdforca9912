@@ -15,11 +15,8 @@ export function initSentryBrowser(): void {
     dsn,
     environment: process.env.NODE_ENV,
     tracesSampleRate: process.env.NODE_ENV === "production" ? 0.1 : 1.0,
-    replaysSessionSampleRate: 0,
-    replaysOnErrorSampleRate: 1.0,
     integrations: [
       Sentry.browserTracingIntegration(),
-      Sentry.replayIntegration(),
     ],
   });
 }

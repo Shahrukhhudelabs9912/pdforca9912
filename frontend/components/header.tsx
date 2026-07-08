@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Link as LocaleLink } from "@/routing";
-import { motion } from "framer-motion";
 import {
   FileText, Menu, X, Moon, Sun, ChevronDown,
   // [Phase 3] Restore: LogOut, Settings, LayoutDashboard,
@@ -386,11 +385,8 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="lg:hidden border-t"
+        <div
+          className="lg:hidden border-t animate-in"
         >
           <div className="container mx-auto px-5 py-4 space-y-5">
             {/* Popular Tools section */}
@@ -496,7 +492,7 @@ export function Header() {
               */}
             </div>
           </div>
-        </motion.div>
+        </div>
       )}
     </header>
   );
