@@ -79,6 +79,11 @@ export default function OcrPDFPage() {
       toolName="OCR PDF"
       toolDescription="Upload a scanned PDF and we'll OCR every page, then return the same document with selectable, searchable text."
       toolKey="ocr_pdf"
+      relatedTools={[
+        { name: "PDF to Word", href: "/pdf-to-word" },
+        { name: "Compress PDF", href: "/compress-pdf" },
+        { name: "PDF to Excel", href: "/pdf-to-excel" },
+      ]}
       seoContent={{
         h1: "Make Scanned PDFs Searchable",
         h2: "How OCR PDF Works",

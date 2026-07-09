@@ -79,6 +79,11 @@ export default function PDFToExcelPage() {
         toolName="PDF to Excel"
         toolDescription="Extract tables and data from PDFs into editable Excel .xlsx spreadsheets."
         toolKey="pdf_to_excel"
+        relatedTools={[
+          { name: "Excel to PDF", href: "/excel-to-pdf" },
+          { name: "PDF to Word", href: "/pdf-to-word" },
+          { name: "PDF to PowerPoint", href: "/pdf-to-powerpoint" },
+        ]}
         seoContent={{
           h1: "Convert PDF to Excel Online Free",
           h2: "How to Convert PDF to Excel",

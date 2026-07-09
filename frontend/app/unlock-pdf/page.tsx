@@ -88,6 +88,11 @@ export default function UnlockPDFPage() {
       toolName="Unlock PDF"
       toolDescription="Decrypt password-protected PDFs in seconds. Just upload the file, enter the original password, and download the unlocked PDF — no installation, no registration."
       toolKey="unlock_pdf"
+      relatedTools={[
+        { name: "Protect PDF", href: "/protect-pdf" },
+        { name: "Compress PDF", href: "/compress-pdf" },
+        { name: "Merge PDF", href: "/merge-pdf" },
+      ]}
       seoContent={{
         h1: "Unlock PDF Online for Free",
         h2: "How to Remove a Password from a PDF",

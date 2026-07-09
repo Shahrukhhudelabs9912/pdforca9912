@@ -93,6 +93,11 @@ export default function JPGToPDFPage() {
       toolName="JPG to PDF Converter"
       toolDescription="Convert JPG, PNG, and other image formats to PDF files with our fast and secure online tool."
       toolKey="jpg_to_pdf"
+      relatedTools={[
+        { name: "PDF to JPG", href: "/pdf-to-jpg" },
+        { name: "Merge PDF", href: "/merge-pdf" },
+        { name: "Compress PDF", href: "/compress-pdf" },
+      ]}
       seoContent={{
         h1: "Convert JPG to PDF Online for Free",
         h2: "How to Convert Images to PDF",

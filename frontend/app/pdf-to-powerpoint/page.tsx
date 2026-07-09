@@ -78,6 +78,11 @@ export default function PDFToPowerPointPage() {
       toolName="PDF to PowerPoint"
       toolDescription="Convert your PDF files into PPTX presentations where every page is rendered as one slide."
       toolKey="pdf_to_powerpoint"
+      relatedTools={[
+        { name: "PowerPoint to PDF", href: "/powerpoint-to-pdf" },
+        { name: "PDF to Word", href: "/pdf-to-word" },
+        { name: "PDF to Excel", href: "/pdf-to-excel" },
+      ]}
       seoContent={{
         h1: "Convert PDF to PowerPoint Online",
         h2: "How PDF to PowerPoint Works",

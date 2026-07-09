@@ -89,6 +89,11 @@ export default function SignPDFPage() {
       toolName="Sign PDF"
       toolDescription="Type your name in a signature font or upload an existing signature image, then click the page to place it. Download the signed PDF instantly."
       toolKey="sign_pdf"
+      relatedTools={[
+        { name: "Protect PDF", href: "/protect-pdf" },
+        { name: "Add Watermark", href: "/add-watermark" },
+        { name: "Compress PDF", href: "/compress-pdf" },
+      ]}
       seoContent={{
         h1: "Sign PDF Online for Free",
         h2: "How to Sign a PDF",

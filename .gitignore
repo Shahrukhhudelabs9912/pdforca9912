@@ -12,6 +12,7 @@ frontend/.env.production
 *.pem
 *.key
 secrets/
+docs/*
 
 # ────────────────────────────────────────────────────────────────────
 # Node / Next.js

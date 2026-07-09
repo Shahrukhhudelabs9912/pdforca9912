@@ -78,6 +78,11 @@ export default function PowerPointToPDFPage() {
       toolName="PowerPoint to PDF"
       toolDescription="Turn .ppt and .pptx slide decks into shareable PDF files."
       toolKey="powerpoint_to_pdf"
+      relatedTools={[
+        { name: "PDF to PowerPoint", href: "/pdf-to-powerpoint" },
+        { name: "Word to PDF", href: "/word-to-pdf" },
+        { name: "Excel to PDF", href: "/excel-to-pdf" },
+      ]}
       seoContent={{
         h1: "Convert PowerPoint to PDF Online for Free",
         h2: "How to Convert PPT to PDF",

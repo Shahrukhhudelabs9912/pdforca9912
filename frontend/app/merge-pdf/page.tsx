@@ -118,6 +118,11 @@ export default function MergePDFPage() {
         toolName="Merge PDF"
         toolDescription="Easily merge multiple PDF files into one organized document. Drag and drop to rearrange pages, choose the order, and download the merged PDF instantly."
         toolKey="merge_pdf"
+        relatedTools={[
+          { name: "Split PDF", href: "/split-pdf" },
+          { name: "Organize PDF", href: "/organize-pdf" },
+          { name: "Compress PDF", href: "/compress-pdf" },
+        ]}
         seoContent={{
           h1: "Merge PDF Files Online for Free",
           h2: "How to Merge PDF Files",

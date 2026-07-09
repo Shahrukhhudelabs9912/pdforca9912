@@ -88,6 +88,11 @@ export default function ExtractPagesPage() {
       toolName="Extract Pages"
       toolDescription="Need only a few pages out of a long PDF? Enter the page numbers you want and we'll build a fresh PDF with just those pages — in the exact order you listed them."
       toolKey="extract_pages"
+      relatedTools={[
+        { name: "Split PDF", href: "/split-pdf" },
+        { name: "Merge PDF", href: "/merge-pdf" },
+        { name: "Organize PDF", href: "/organize-pdf" },
+      ]}
       seoContent={{
         h1: "Extract Pages from PDF Online for Free",
         h2: "How to Extract Pages from a PDF",

@@ -79,6 +79,11 @@ export default function ExcelToPDFPage() {
         toolName="Excel to PDF"
         toolDescription="Convert Excel .xls and .xlsx spreadsheets into PDF documents."
         toolKey="excel_to_pdf"
+        relatedTools={[
+          { name: "PDF to Excel", href: "/pdf-to-excel" },
+          { name: "Word to PDF", href: "/word-to-pdf" },
+          { name: "PowerPoint to PDF", href: "/powerpoint-to-pdf" },
+        ]}
         seoContent={{
           h1: "Convert Excel to PDF Online Free",
           h2: "How to Convert Excel to PDF",

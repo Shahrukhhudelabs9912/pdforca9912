@@ -79,6 +79,11 @@ export default function WordToPDFPage() {
         toolName="Word to PDF"
         toolDescription="Convert Word .doc and .docx files into PDF documents."
         toolKey="word_to_pdf"
+        relatedTools={[
+          { name: "PDF to Word", href: "/pdf-to-word" },
+          { name: "Excel to PDF", href: "/excel-to-pdf" },
+          { name: "Merge PDF", href: "/merge-pdf" },
+        ]}
         seoContent={{
           h1: "Convert Word to PDF Online for Free",
           h2: "How to Convert Word to PDF",

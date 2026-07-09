@@ -88,6 +88,11 @@ export default function RotatePDFPage() {
       toolName="Rotate PDF"
       toolDescription="Fix sideways or upside-down PDF pages in one click. Choose the rotation angle, pick which pages to rotate, and download the corrected file."
       toolKey="rotate_pdf"
+      relatedTools={[
+        { name: "Organize PDF", href: "/organize-pdf" },
+        { name: "Split PDF", href: "/split-pdf" },
+        { name: "Merge PDF", href: "/merge-pdf" },
+      ]}
       seoContent={{
         h1: "Rotate PDF Pages Online for Free",
         h2: "How to Rotate a PDF",

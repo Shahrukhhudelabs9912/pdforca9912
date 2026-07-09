@@ -79,6 +79,11 @@ export default function PDFToWordPage() {
         toolName="PDF to Word"
         toolDescription="Convert PDF documents into editable Word .docx files."
         toolKey="pdf_to_word"
+        relatedTools={[
+          { name: "Word to PDF", href: "/word-to-pdf" },
+          { name: "PDF to Excel", href: "/pdf-to-excel" },
+          { name: "Compress PDF", href: "/compress-pdf" },
+        ]}
         seoContent={{
           h1: "Convert PDF to Word Online for Free",
           h2: "How to Convert PDF to Word",

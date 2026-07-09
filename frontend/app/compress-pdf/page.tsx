@@ -93,6 +93,11 @@ export default function CompressPDFPage() {
       toolName="PDF Compressor"
       toolDescription="Compress PDF files to reduce size for email, web, or storage with our intelligent compression algorithm."
       toolKey="compress_pdf"
+      relatedTools={[
+        { name: "Merge PDF", href: "/merge-pdf" },
+        { name: "PDF to Word", href: "/pdf-to-word" },
+        { name: "PDF to JPG", href: "/pdf-to-jpg" },
+      ]}
       seoContent={{
         h1: "Compress PDF Files Online for Free",
         h2: "How to Compress PDF Files",
