@@ -1917,7 +1917,9 @@
     "server_error_desc": "Something went wrong on our end. Please try again later.",
     "network_error": "Network Error",
     "network_error_desc": "Please check your internet connection and try again.",
-    "go_home": "Go Home"
+    "go_home": "Go Home",
+    "popular_tools": "Try Our Popular Tools",
+    "explore_blog": "Or Read Our Blog"
   },
   "blog_page": {
     "title": "Blog",

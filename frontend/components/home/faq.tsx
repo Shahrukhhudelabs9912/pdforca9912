@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronDown, Lock, Zap, Brain, Shield } from "lucide-react";
 import { Link } from "@/routing";
 
@@ -89,21 +89,19 @@ export function FAQ() {
                   }`}
                 />
               </button>
-              <AnimatePresence>
-                {openIndex === index && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="rounded-b-xl border border-t-0 border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900">
-                      <p className="text-gray-600 dark:text-gray-300">{faq.answer}</p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <motion.div
+                initial={false}
+                animate={{
+                  height: openIndex === index ? "auto" : 0,
+                  opacity: openIndex === index ? 1 : 0,
+                }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden"
+              >
+                <div className="rounded-b-xl border border-t-0 border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900">
+                  <p className="text-gray-600 dark:text-gray-300">{faq.answer}</p>
+                </div>
+              </motion.div>
             </div>
           ))}
         </div>
