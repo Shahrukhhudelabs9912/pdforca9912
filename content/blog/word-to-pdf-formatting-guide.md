@@ -5,6 +5,7 @@ date: "2026-06-24"
 category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "word-to-pdf"
+cover: "/blog/covers/word-to-pdf-formatting-guide.webp"
 keywords:
   - word to pdf
   - convert word to pdf

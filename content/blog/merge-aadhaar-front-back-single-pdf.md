@@ -5,6 +5,7 @@ date: "2026-06-20"
 category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "merge-pdf"
+cover: "/blog/covers/merge-aadhaar-front-back-single-pdf.webp"
 keywords:
   - merge aadhaar front and back
   - aadhaar pdf combine

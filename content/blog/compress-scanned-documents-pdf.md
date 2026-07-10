@@ -5,6 +5,7 @@ date: "2026-07-03"
 category: "Tips"
 author: "PDFOrca Team"
 relatedTool: "compress-pdf"
+cover: "/blog/covers/compress-scanned-documents-pdf.webp"
 keywords:
   - compress scanned pdf
   - reduce scanned document size

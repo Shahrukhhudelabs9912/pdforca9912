@@ -5,6 +5,7 @@ date: "2026-06-22"
 category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "pdf-to-excel"
+cover: "/blog/covers/pdf-to-excel-spreadsheet-data.webp"
 keywords:
   - pdf to excel
   - convert pdf table to excel

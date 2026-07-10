@@ -5,6 +5,7 @@ date: "2026-07-06"
 category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "pdf-to-jpg"
+cover: "/blog/covers/convert-pdf-to-jpg-high-quality-images.webp"
 keywords:
   - convert pdf to jpg
   - pdf to image converter

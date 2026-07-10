@@ -5,6 +5,7 @@ date: "2026-07-08"
 category: "Use Case"
 author: "PDFOrca Team"
 relatedTool: "jpg-to-pdf"
+cover: "/blog/covers/passport-photo-pdf-print-guide.webp"
 keywords:
   - passport size photo pdf
   - passport photo print pdf

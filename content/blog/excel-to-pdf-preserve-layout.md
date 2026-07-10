@@ -5,6 +5,7 @@ date: "2026-07-07"
 category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "excel-to-pdf"
+cover: "/blog/covers/excel-to-pdf-preserve-layout.webp"
 keywords:
   - excel to pdf
   - convert excel to pdf

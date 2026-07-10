@@ -5,6 +5,7 @@ date: "2026-06-13"
 category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "split-pdf"
+cover: "/blog/covers/split-pdf-pages-extract-specific-pages.webp"
 keywords:
   - split pdf
   - extract pages from pdf

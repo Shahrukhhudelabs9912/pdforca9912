@@ -5,6 +5,7 @@ date: "2026-07-02"
 category: "Use Case"
 author: "PDFOrca Team"
 relatedTool: "compress-pdf"
+cover: "/blog/covers/aadhaar-card-pdf-download-guide.webp"
 keywords:
   - download aadhaar card pdf
   - aadhaar card download

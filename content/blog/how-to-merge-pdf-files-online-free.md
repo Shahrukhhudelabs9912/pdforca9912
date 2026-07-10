@@ -5,6 +5,7 @@ date: "2026-07-01"
 category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "merge-pdf"
+cover: "/blog/covers/how-to-merge-pdf-files-online-free.webp"
 keywords:
   - merge pdf files
   - combine pdf online free

@@ -5,6 +5,7 @@ date: "2026-06-19"
 category: "Use Case"
 author: "PDFOrca Team"
 relatedTool: "jpg-to-pdf"
+cover: "/blog/covers/pan-card-pdf-convert-print.webp"
 keywords:
   - pan card pdf
   - convert pan card to pdf

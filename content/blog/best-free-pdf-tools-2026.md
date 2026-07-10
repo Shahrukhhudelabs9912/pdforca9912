@@ -4,6 +4,7 @@ description: "A curated list of the best free online PDF tools for merging, spli
 date: "2026-06-14"
 category: "Comparison"
 author: "PDFOrca Team"
+cover: "/blog/covers/best-free-pdf-tools-2026.webp"
 keywords:
   - best free pdf tools
   - free online pdf editor

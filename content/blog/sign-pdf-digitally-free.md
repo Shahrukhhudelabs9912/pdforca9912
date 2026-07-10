@@ -5,6 +5,7 @@ date: "2026-06-25"
 category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "sign-pdf"
+cover: "/blog/covers/sign-pdf-digitally-free.webp"
 keywords:
   - sign pdf online
   - digital signature pdf

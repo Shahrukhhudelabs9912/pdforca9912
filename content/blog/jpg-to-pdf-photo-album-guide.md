@@ -5,6 +5,7 @@ date: "2026-06-16"
 category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "jpg-to-pdf"
+cover: "/blog/covers/jpg-to-pdf-photo-album-guide.webp"
 keywords:
   - jpg to pdf
   - convert images to pdf

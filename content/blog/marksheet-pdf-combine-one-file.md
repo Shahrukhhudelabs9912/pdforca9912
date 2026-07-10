@@ -5,6 +5,7 @@ date: "2026-07-04"
 category: "Use Case"
 author: "PDFOrca Team"
 relatedTool: "merge-pdf"
+cover: "/blog/covers/marksheet-pdf-combine-one-file.webp"
 keywords:
   - combine marksheets into one pdf
   - merge marksheets pdf

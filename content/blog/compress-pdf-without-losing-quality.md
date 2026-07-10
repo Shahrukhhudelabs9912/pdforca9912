@@ -5,6 +5,7 @@ date: "2026-06-21"
 category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "compress-pdf"
+cover: "/blog/covers/compress-pdf-without-losing-quality.webp"
 keywords:
   - compress pdf without losing quality
   - reduce pdf file size

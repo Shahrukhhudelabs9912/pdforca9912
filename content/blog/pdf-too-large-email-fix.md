@@ -5,6 +5,7 @@ date: "2026-06-18"
 category: "Tips"
 author: "PDFOrca Team"
 relatedTool: "compress-pdf"
+cover: "/blog/covers/pdf-too-large-email-fix.webp"
 keywords:
   - pdf too large to email
   - reduce pdf file size

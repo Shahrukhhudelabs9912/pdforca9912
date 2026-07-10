@@ -5,6 +5,7 @@ date: "2026-07-05"
 category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "add-watermark"
+cover: "/blog/covers/add-watermark-pdf-branding.webp"
 keywords:
   - add watermark to pdf
   - pdf watermark online free

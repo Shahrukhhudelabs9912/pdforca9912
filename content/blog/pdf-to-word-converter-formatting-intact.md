@@ -5,6 +5,7 @@ date: "2026-06-12"
 category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "pdf-to-word"
+cover: "/blog/covers/pdf-to-word-converter-formatting-intact.webp"
 keywords:
   - convert pdf to word
   - pdf to word converter free

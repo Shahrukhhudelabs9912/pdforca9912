@@ -5,6 +5,7 @@ date: "2026-06-17"
 category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "protect-pdf"
+cover: "/blog/covers/password-protect-pdf-free.webp"
 keywords:
   - password protect pdf
   - lock pdf with password

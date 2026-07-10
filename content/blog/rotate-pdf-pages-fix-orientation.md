@@ -5,6 +5,7 @@ date: "2026-06-23"
 category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "rotate-pdf"
+cover: "/blog/covers/rotate-pdf-pages-fix-orientation.webp"
 keywords:
   - rotate pdf
   - fix pdf orientation
