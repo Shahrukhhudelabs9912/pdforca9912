@@ -110,6 +110,10 @@ class Settings(BaseSettings):
     #   LIBREOFFICE_PATH=/usr/bin/soffice
     LIBREOFFICE_PATH: Optional[str] = None
 
+    # Ghostscript binary (PDF compression). Auto-detected when unset:
+    # `gs` on Linux/macOS, `gswin64c` on Windows, or the default install dir.
+    GHOSTSCRIPT_PATH: Optional[str] = None
+
     # Max heavy jobs (AI / OCR / LibreOffice) running at once per worker.
     # Bounds RAM/CPU so a burst of expensive requests can't exhaust the box.
     # Stop-gap until a real task queue (Celery/RQ) is added.

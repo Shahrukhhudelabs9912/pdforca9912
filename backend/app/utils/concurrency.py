@@ -2,15 +2,17 @@
 
 The FastAPI app runs on a single asyncio event loop. CPU-bound or
 blocking work (PDF rendering, LibreOffice subprocesses, AI models) must
-NOT run directly inside an `async def` handler — doing so freezes the
+NOT run directly inside an ``async def`` handler — doing so freezes the
 event loop and stalls every other in-flight request on that worker.
 
-- `run_blocking()` offloads such work to the default thread pool.
-- `heavy_job_slot()` bounds how many heavy jobs run at once so a burst of
+- ``run_blocking()`` offloads such work to the default thread pool.
+- ``heavy_job_slot()`` bounds how many heavy jobs run at once so a burst of
   AI/OCR/LibreOffice requests can't exhaust RAM/CPU.
-- `resolve_libreoffice_path()` finds the LibreOffice binary across OSes.
+- ``resolve_libreoffice_path()`` finds the LibreOffice binary across OSes.
+- ``resolve_ghostscript_path()`` finds the Ghostscript binary across OSes.
 """
 import asyncio
+import glob
 import os
 import shutil
 from functools import partial
@@ -74,4 +76,28 @@ def resolve_libreoffice_path() -> Optional[str]:
         return found
     if os.path.exists(_WIN_DEFAULT_LIBREOFFICE):
         return _WIN_DEFAULT_LIBREOFFICE
+    return None
+
+
+_WIN_DEFAULT_GS_DIR = r"C:\Program Files\gs"
+
+
+def resolve_ghostscript_path() -> Optional[str]:
+    """Locate the Ghostscript binary.
+
+    Order: explicit GHOSTSCRIPT_PATH setting → ``gs`` on PATH (Linux/macOS)
+    → ``gswin64c`` on PATH (Windows) → Windows default install dir.
+    Returns None if not found, so callers can fall back gracefully.
+    """
+    if settings.GHOSTSCRIPT_PATH:
+        return settings.GHOSTSCRIPT_PATH
+    found = shutil.which("gs")
+    if found:
+        return found
+    found = shutil.which("gswin64c")
+    if found:
+        return found
+    matches = sorted(glob.glob(os.path.join(_WIN_DEFAULT_GS_DIR, "gs*", "bin", "gswin64c.exe")))
+    if matches:
+        return matches[-1]
     return None

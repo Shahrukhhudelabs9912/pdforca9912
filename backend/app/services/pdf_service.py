@@ -2,6 +2,7 @@
 PDF processing services using PyPDF2 and other libraries.
 """
 import io
+import subprocess
 import zipfile
 import logging
 from typing import List, Tuple
@@ -764,181 +765,278 @@ class PDFService:
 
         return images_processed
 
+    _GS_FLAGS = {
+        "high": [
+            "-dPDFSETTINGS=/ebook",
+            "-dDownsampleColorImages=true",
+            "-dColorImageDownsampleType=/Bicubic",
+            "-dColorImageResolution=100",
+            "-dColorImageDownsampleThreshold=1.0",
+            "-dDownsampleGrayImages=true",
+            "-dGrayImageDownsampleType=/Bicubic",
+            "-dGrayImageResolution=100",
+            "-dGrayImageDownsampleThreshold=1.0",
+            "-dDownsampleMonoImages=true",
+            "-dMonoImageDownsampleType=/Subsample",
+            "-dMonoImageResolution=100",
+        ],
+        "medium": [
+            "-dPDFSETTINGS=/ebook",
+            "-dDownsampleColorImages=true",
+            "-dColorImageDownsampleType=/Bicubic",
+            "-dColorImageResolution=150",
+            "-dColorImageDownsampleThreshold=1.0",
+            "-dDownsampleGrayImages=true",
+            "-dGrayImageDownsampleType=/Bicubic",
+            "-dGrayImageResolution=150",
+            "-dGrayImageDownsampleThreshold=1.0",
+        ],
+        "low": [
+            "-dPDFSETTINGS=/printer",
+        ],
+    }
+
+    @staticmethod
+    def _compress_with_ghostscript(pdf_bytes: bytes, compression_level: str):
+        """Try Ghostscript compression. Returns compressed bytes or None on failure."""
+        from app.utils.concurrency import resolve_ghostscript_path
+
+        gs_path = resolve_ghostscript_path()
+        if gs_path is None:
+            logger.debug("Ghostscript not found, skipping GS compression")
+            return None
+
+        try:
+            with tempfile.TemporaryDirectory(prefix="gs_compress_") as tmp:
+                tmp_path = Path(tmp)
+                in_file = tmp_path / "input.pdf"
+                out_file = tmp_path / "output.pdf"
+                in_file.write_bytes(pdf_bytes)
+
+                cmd = [
+                    gs_path,
+                    "-sDEVICE=pdfwrite",
+                    "-dCompatibilityLevel=1.4",
+                    *PDFService._GS_FLAGS[compression_level],
+                    "-dDetectDuplicateImages=true",
+                    "-dCompressFonts=true",
+                    "-dSubsetFonts=true",
+                    "-dEmbedAllFonts=true",
+                    "-dColorConversionStrategy=/LeaveColorUnchanged",
+                    "-dNOPAUSE",
+                    "-dQUIET",
+                    "-dBATCH",
+                    f"-sOutputFile={out_file}",
+                    str(in_file),
+                ]
+
+                result = subprocess.run(
+                    cmd, capture_output=True, text=True, timeout=120,
+                )
+
+                if result.returncode != 0:
+                    logger.warning(
+                        "Ghostscript exited %d: %s",
+                        result.returncode, result.stderr[:500],
+                    )
+                    return None
+
+                if not out_file.exists() or out_file.stat().st_size == 0:
+                    logger.warning("Ghostscript produced empty output")
+                    return None
+
+                return out_file.read_bytes()
+
+        except subprocess.TimeoutExpired:
+            logger.warning("Ghostscript timed out after 120s")
+            return None
+        except Exception as exc:
+            logger.warning("Ghostscript compression failed: %s", exc)
+            return None
+
     @staticmethod
     def compress_pdf(pdf_bytes: bytes, compression_level: str = "medium") -> bytes:
         """
         Compress a PDF file to reduce file size.
 
+        Uses Ghostscript as the primary engine (like ilovepdf/smallpdf),
+        with pikepdf as a fallback. Guarantees the output is never larger
+        than the input.
+
         Levels:
-          - low:    Content-stream compression only (lossless)
-          - medium: Recompress images to JPEG quality 70 (good balance)
-          - high:   Recompress images to JPEG quality 40 + downsample >2.25 MP
-
-        Uses temporary files to avoid latin-1 encoding issues in pikepdf
-        when PDFs contain non-ASCII metadata.
-
-        Args:
-            pdf_bytes: Raw PDF file bytes
-            compression_level: One of "low", "medium", "high"
-
-        Returns:
-            Compressed PDF bytes
+          - low:    Ghostscript /printer (300 dpi) or pikepdf lossless
+          - medium: Ghostscript /ebook (150 dpi) or pikepdf JPEG q70
+          - high:   Ghostscript /screen (72 dpi) or pikepdf JPEG q40 + downsample
         """
-        try:
-            import pikepdf
-        except ImportError:
-            logger.error("pikepdf is not installed — cannot compress PDF")
-            raise PDFProcessingError(
-                "PDF compression is not available. Please install pikepdf.",
-                {"type": "dependency_missing", "library": "pikepdf"}
-            )
-
-        # Validate compression level
         if compression_level not in ("low", "medium", "high"):
             raise ValueError(
                 f"Invalid compression level: {compression_level!r}. "
                 "Must be 'low', 'medium', or 'high'."
             )
 
-        with tempfile.TemporaryDirectory(prefix="compress_pdf_") as temp_dir:
-            temp_dir_path = Path(temp_dir)
-            input_path = temp_dir_path / "input.pdf"
-            output_path = temp_dir_path / "output_compressed.pdf"
+        original_size = len(pdf_bytes)
+        compressed = None
 
-            input_path.write_bytes(pdf_bytes)
+        # --- Phase 1: Ghostscript (primary engine) ---
+        gs_result = PDFService._compress_with_ghostscript(pdf_bytes, compression_level)
+        if gs_result is not None:
+            compressed = gs_result
+            logger.info(
+                "GS compression (%s): %d → %d bytes (%.1f%% reduction)",
+                compression_level,
+                original_size,
+                len(compressed),
+                (1 - len(compressed) / max(original_size, 1)) * 100,
+            )
 
-            # --- Primary path ---
+        # --- Phase 2: pikepdf fallback (only if GS failed/unavailable) ---
+        if compressed is None:
             try:
-                pdf = pikepdf.open(str(input_path))
-                try:
-                    # Step 1: Recompress images (medium / high only)
-                    images_processed = PDFService._recompress_images_in_pdf(
-                        pdf, compression_level
-                    )
-                    logger.debug(
-                        "Recompressed %d images for %s compression",
-                        images_processed, compression_level,
-                    )
-
-                    # Step 2: Content-stream compression via pikepdf save options
-                    if compression_level == "high":
-                        save_kwargs = dict(
-                            compress_streams=True,
-                            stream_decode_level=pikepdf.StreamDecodeLevel.specialized,
-                            object_stream_mode=pikepdf.ObjectStreamMode.generate,
-                            preserve_pdfa=False,
-                        )
-                    elif compression_level == "medium":
-                        save_kwargs = dict(
-                            compress_streams=True,
-                            stream_decode_level=pikepdf.StreamDecodeLevel.generalized,
-                            object_stream_mode=pikepdf.ObjectStreamMode.preserve,
-                            preserve_pdfa=True,
-                        )
-                    else:  # low
-                        save_kwargs = dict(
-                            compress_streams=True,
-                            stream_decode_level=pikepdf.StreamDecodeLevel.none,
-                            object_stream_mode=pikepdf.ObjectStreamMode.preserve,
-                            preserve_pdfa=True,
-                        )
-
-                    pdf.save(str(output_path), **save_kwargs)
-                finally:
-                    pdf.close()
-
-                compressed = output_path.read_bytes()
-                logger.info(
-                    "Compression (%s): %d → %d bytes (%.1f%% reduction) [%d images]",
-                    compression_level,
-                    len(pdf_bytes),
-                    len(compressed),
-                    (1 - len(compressed) / max(len(pdf_bytes), 1)) * 100,
-                    images_processed,
-                )
-                return compressed
-
-            except (UnicodeEncodeError, ValueError) as encoding_error:
-                logger.warning(
-                    "pikepdf encoding error (%s), falling back: %s",
-                    type(encoding_error).__name__, encoding_error,
-                )
-
-            # --- Fallback: strip metadata, then retry ---
-            try:
-                reader = PdfReader(str(input_path))
-                writer = PdfWriter()
-                for page in reader.pages:
-                    writer.add_page(page)
-
-                if reader.metadata:
-                    try:
-                        clean_title = str(reader.metadata.title or "")
-                        clean_title = clean_title.encode("ascii", errors="replace").decode("ascii")
-                        writer.add_metadata({"/Title": clean_title})
-                    except Exception:
-                        pass
-
-                cleaned_path = temp_dir_path / "cleaned.pdf"
-                with open(str(cleaned_path), "wb") as f:
-                    writer.write(f)
-
-                pdf = pikepdf.open(str(cleaned_path))
-                try:
-                    images_processed = PDFService._recompress_images_in_pdf(
-                        pdf, compression_level
-                    )
-
-                    if compression_level == "high":
-                        save_kwargs = dict(
-                            compress_streams=True,
-                            stream_decode_level=pikepdf.StreamDecodeLevel.specialized,
-                            object_stream_mode=pikepdf.ObjectStreamMode.generate,
-                            preserve_pdfa=False,
-                        )
-                    elif compression_level == "medium":
-                        save_kwargs = dict(
-                            compress_streams=True,
-                            stream_decode_level=pikepdf.StreamDecodeLevel.generalized,
-                            object_stream_mode=pikepdf.ObjectStreamMode.preserve,
-                            preserve_pdfa=True,
-                        )
-                    else:
-                        save_kwargs = dict(
-                            compress_streams=True,
-                            stream_decode_level=pikepdf.StreamDecodeLevel.none,
-                            object_stream_mode=pikepdf.ObjectStreamMode.preserve,
-                            preserve_pdfa=True,
-                        )
-
-                    pdf.save(str(output_path), **save_kwargs)
-                finally:
-                    pdf.close()
-
-                compressed = output_path.read_bytes()
-                logger.info(
-                    "Fallback compression (%s): %d → %d bytes (%.1f%% reduction) [%d images]",
-                    compression_level,
-                    len(pdf_bytes),
-                    len(compressed),
-                    (1 - len(compressed) / max(len(pdf_bytes), 1)) * 100,
-                    images_processed,
-                )
-                return compressed
-
-            except Exception as fallback_error:
-                logger.error(
-                    "Both primary and fallback compression failed: %s",
-                    fallback_error,
-                )
+                import pikepdf
+            except ImportError:
+                logger.error("pikepdf is not installed — cannot compress PDF")
                 raise PDFProcessingError(
-                    f"PDF compression failed: {fallback_error}",
-                    {
-                        "type": "compression_error",
-                        "compression_level": compression_level,
-                        "original_error": str(fallback_error),
-                    },
+                    "PDF compression is not available. Please install pikepdf.",
+                    {"type": "dependency_missing", "library": "pikepdf"}
                 )
+
+            with tempfile.TemporaryDirectory(prefix="compress_pdf_") as temp_dir:
+                temp_dir_path = Path(temp_dir)
+                input_path = temp_dir_path / "input.pdf"
+                output_path = temp_dir_path / "output_compressed.pdf"
+
+                input_path.write_bytes(pdf_bytes)
+
+                try:
+                    pdf = pikepdf.open(str(input_path))
+                    try:
+                        images_processed = PDFService._recompress_images_in_pdf(
+                            pdf, compression_level
+                        )
+                        logger.debug(
+                            "Recompressed %d images for %s compression",
+                            images_processed, compression_level,
+                        )
+
+                        if compression_level == "high":
+                            save_kwargs = dict(
+                                compress_streams=True,
+                                stream_decode_level=pikepdf.StreamDecodeLevel.specialized,
+                                object_stream_mode=pikepdf.ObjectStreamMode.generate,
+                                preserve_pdfa=False,
+                            )
+                        elif compression_level == "medium":
+                            save_kwargs = dict(
+                                compress_streams=True,
+                                stream_decode_level=pikepdf.StreamDecodeLevel.generalized,
+                                object_stream_mode=pikepdf.ObjectStreamMode.preserve,
+                                preserve_pdfa=True,
+                            )
+                        else:
+                            save_kwargs = dict(
+                                compress_streams=True,
+                                stream_decode_level=pikepdf.StreamDecodeLevel.none,
+                                object_stream_mode=pikepdf.ObjectStreamMode.preserve,
+                                preserve_pdfa=True,
+                            )
+
+                        pdf.save(str(output_path), **save_kwargs)
+                    finally:
+                        pdf.close()
+
+                    compressed = output_path.read_bytes()
+
+                except (UnicodeEncodeError, ValueError) as encoding_error:
+                    logger.warning(
+                        "pikepdf encoding error (%s), falling back: %s",
+                        type(encoding_error).__name__, encoding_error,
+                    )
+
+                    try:
+                        reader = PdfReader(str(input_path))
+                        writer = PdfWriter()
+                        for page in reader.pages:
+                            writer.add_page(page)
+
+                        if reader.metadata:
+                            try:
+                                clean_title = str(reader.metadata.title or "")
+                                clean_title = clean_title.encode("ascii", errors="replace").decode("ascii")
+                                writer.add_metadata({"/Title": clean_title})
+                            except Exception:
+                                pass
+
+                        cleaned_path = temp_dir_path / "cleaned.pdf"
+                        with open(str(cleaned_path), "wb") as f:
+                            writer.write(f)
+
+                        pdf = pikepdf.open(str(cleaned_path))
+                        try:
+                            images_processed = PDFService._recompress_images_in_pdf(
+                                pdf, compression_level
+                            )
+
+                            if compression_level == "high":
+                                save_kwargs = dict(
+                                    compress_streams=True,
+                                    stream_decode_level=pikepdf.StreamDecodeLevel.specialized,
+                                    object_stream_mode=pikepdf.ObjectStreamMode.generate,
+                                    preserve_pdfa=False,
+                                )
+                            elif compression_level == "medium":
+                                save_kwargs = dict(
+                                    compress_streams=True,
+                                    stream_decode_level=pikepdf.StreamDecodeLevel.generalized,
+                                    object_stream_mode=pikepdf.ObjectStreamMode.preserve,
+                                    preserve_pdfa=True,
+                                )
+                            else:
+                                save_kwargs = dict(
+                                    compress_streams=True,
+                                    stream_decode_level=pikepdf.StreamDecodeLevel.none,
+                                    object_stream_mode=pikepdf.ObjectStreamMode.preserve,
+                                    preserve_pdfa=True,
+                                )
+
+                            pdf.save(str(output_path), **save_kwargs)
+                        finally:
+                            pdf.close()
+
+                        compressed = output_path.read_bytes()
+
+                    except Exception as fallback_error:
+                        logger.error(
+                            "Both primary and fallback compression failed: %s",
+                            fallback_error,
+                        )
+                        raise PDFProcessingError(
+                            f"PDF compression failed: {fallback_error}",
+                            {
+                                "type": "compression_error",
+                                "compression_level": compression_level,
+                                "original_error": str(fallback_error),
+                            },
+                        )
+
+                if compressed is not None:
+                    logger.info(
+                        "pikepdf compression (%s): %d → %d bytes (%.1f%% reduction)",
+                        compression_level,
+                        original_size,
+                        len(compressed),
+                        (1 - len(compressed) / max(original_size, 1)) * 100,
+                    )
+
+        # --- Phase 3: Size guarantee — never return a larger file ---
+        if compressed is None or len(compressed) >= original_size:
+            logger.info(
+                "Compressed output (%d bytes) >= original (%d bytes), returning original",
+                len(compressed) if compressed else 0,
+                original_size,
+            )
+            return pdf_bytes
+
+        return compressed
 
     @staticmethod
     def protect_pdf(
