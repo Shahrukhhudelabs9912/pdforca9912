@@ -49,6 +49,15 @@ export async function resolveDownloadFilename(
   // 1) Content-Disposition header
   const contentDisp = response.headers.get('Content-Disposition');
   if (contentDisp) {
+    // Prefer filename* (RFC 5987) — carries the original Unicode name
+    const starMatch = contentDisp.match(/filename\*=utf-8''(.+?)(?:\s*;|$)/i);
+    if (starMatch?.[1]) {
+      try {
+        return decodeURIComponent(starMatch[1]);
+      } catch {
+        // malformed encoding — fall through to plain filename
+      }
+    }
     const match = contentDisp.match(/filename="([^"]+)"/);
     if (match?.[1]) {
       return match[1];

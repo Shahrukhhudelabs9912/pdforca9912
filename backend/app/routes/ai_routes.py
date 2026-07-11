@@ -17,6 +17,7 @@ from app.services.auth_service import (
 from app.utils.db_utils import get_database
 from app.utils.rate_limit import limiter
 from app.utils import run_blocking, heavy_job_slot
+from app.utils.file_utils import _content_disposition
 from app.config import settings
 
 logger = logging.getLogger("ai_routes")
@@ -223,7 +224,7 @@ async def generate_report_endpoint(
         return Response(
             content=docx_bytes,
             media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            headers={"Content-Disposition": f'attachment; filename="{download_name}"'},
+            headers={"Content-Disposition": _content_disposition(download_name)},
         )
     except HTTPException:
         raise

@@ -10,6 +10,7 @@ except Exception:
     magic = None
 import zipfile
 from typing import List, Tuple, Optional
+from urllib.parse import quote
 from uuid import uuid4
 from fastapi import UploadFile, HTTPException
 from fastapi.responses import StreamingResponse
@@ -90,7 +91,7 @@ def create_file_response(
         io.BytesIO(file_bytes),
         media_type=media_type,
         headers={
-            "Content-Disposition": f'attachment; filename="{_safe_filename(filename)}"',
+            "Content-Disposition": _content_disposition(filename),
             "Content-Length": str(len(file_bytes)),
         }
     )
@@ -120,7 +121,7 @@ def create_zip_response(files: List[Tuple[str, bytes]], zip_filename: str = "out
         io.BytesIO(zip_bytes),
         media_type="application/zip",
         headers={
-            "Content-Disposition": f'attachment; filename="{_safe_filename(zip_filename)}"',
+            "Content-Disposition": _content_disposition(zip_filename),
             "Content-Length": str(len(zip_bytes)),
         }
     )
@@ -166,6 +167,25 @@ def _safe_filename(name: str) -> str:
     """CR/LF aur quotes hatao taaki header inject na ho sake."""
     name = re.sub(r'[\r\n"]', "", name or "")
     return name.strip() or "download"
+
+
+def _content_disposition(name: str) -> str:
+    """Build a Content-Disposition header value safe for any filename.
+
+    Uses RFC 5987 ``filename*`` for non-ASCII names so browsers display
+    the original Unicode name, with an ASCII fallback for older clients.
+    """
+    safe = _safe_filename(name)
+    try:
+        safe.encode("latin-1")
+        return f'attachment; filename="{safe}"'
+    except UnicodeEncodeError:
+        ascii_fallback = safe.encode("ascii", "replace").decode("ascii")
+        utf8_quoted = quote(safe)
+        return (
+            f"attachment; filename=\"{ascii_fallback}\"; "
+            f"filename*=utf-8''{utf8_quoted}"
+        )
 
 
 def sanitize_filename(filename: str) -> str:

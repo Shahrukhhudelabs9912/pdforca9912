@@ -29,6 +29,7 @@ from app.utils import (
     resolve_libreoffice_path,
     sanitize_filename,
 )
+from app.utils.file_utils import _content_disposition
 from app.config import settings
 from app.utils.rate_limit import limiter
 
@@ -321,7 +322,7 @@ async def pdf_to_jpg(
                         content=zip_bytes,
                         media_type="application/zip",
                         headers={
-                            "Content-Disposition": f'attachment; filename="{zip_filename}"',
+                            "Content-Disposition": _content_disposition(zip_filename),
                             "Content-Length": str(len(zip_bytes)),
                             **adjust_headers,
                         }
@@ -343,7 +344,7 @@ async def pdf_to_jpg(
                             content=zip_bytes,
                             media_type="application/zip",
                             headers={
-                                "Content-Disposition": f'attachment; filename="{zip_filename}"',
+                                "Content-Disposition": _content_disposition(zip_filename),
                                 "Content-Length": str(len(zip_bytes)),
                                 **adjust_headers,
                             }
@@ -357,7 +358,7 @@ async def pdf_to_jpg(
                             content=image_bytes,
                             media_type="image/jpeg",
                             headers={
-                                "Content-Disposition": f'attachment; filename="{base_name}_page_1.jpg"',
+                                "Content-Disposition": _content_disposition(f"{base_name}_page_1.jpg"),
                                 "Content-Length": str(len(image_bytes)),
                                 **adjust_headers,
                             }
@@ -386,7 +387,7 @@ async def pdf_to_jpg(
                     content=image_bytes,
                     media_type="image/jpeg",
                     headers={
-                        "Content-Disposition": f'attachment; filename="{base_name}_page_{page_number}.jpg"',
+                        "Content-Disposition": _content_disposition(f"{base_name}_page_{page_number}.jpg"),
                         "Content-Length": str(len(image_bytes)),
                         **adjust_headers,
                     }
@@ -1722,7 +1723,7 @@ async def protect_pdf(
             io.BytesIO(encrypted_pdf),
             media_type="application/pdf",
             headers={
-                "Content-Disposition": f'attachment; filename="{output_filename}"',
+                "Content-Disposition": _content_disposition(output_filename),
                 "Content-Length": str(len(encrypted_pdf)),
                 "X-Protected-PDF": "true",
             },
@@ -1770,7 +1771,7 @@ async def unlock_pdf(
             io.BytesIO(unlocked),
             media_type="application/pdf",
             headers={
-                "Content-Disposition": f'attachment; filename="{output_filename}"',
+                "Content-Disposition": _content_disposition(output_filename),
                 "Content-Length": str(len(unlocked)),
             },
         )
@@ -1813,7 +1814,7 @@ async def rotate_pdf(
             io.BytesIO(rotated),
             media_type="application/pdf",
             headers={
-                "Content-Disposition": f'attachment; filename="{output_filename}"',
+                "Content-Disposition": _content_disposition(output_filename),
                 "Content-Length": str(len(rotated)),
             },
         )
@@ -1853,7 +1854,7 @@ async def extract_pages(
             io.BytesIO(extracted),
             media_type="application/pdf",
             headers={
-                "Content-Disposition": f'attachment; filename="{output_filename}"',
+                "Content-Disposition": _content_disposition(output_filename),
                 "Content-Length": str(len(extracted)),
             },
         )
@@ -1950,7 +1951,7 @@ async def page_numbering(
             io.BytesIO(numbered_pdf),
             media_type="application/pdf",
             headers={
-                "Content-Disposition": f'attachment; filename="{output_filename}"',
+                "Content-Disposition": _content_disposition(output_filename),
                 "Content-Length": str(len(numbered_pdf)),
             },
         )
@@ -2040,7 +2041,7 @@ async def organize_pdf(
             io.BytesIO(output_bytes),
             media_type="application/pdf",
             headers={
-                "Content-Disposition": f'attachment; filename="{output_filename}"',
+                "Content-Disposition": _content_disposition(output_filename),
                 "Content-Length": str(len(output_bytes)),
             },
         )

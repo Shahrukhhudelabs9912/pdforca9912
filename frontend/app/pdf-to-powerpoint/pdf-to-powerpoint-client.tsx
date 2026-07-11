@@ -24,6 +24,12 @@ export function PDFToPowerPointClient() {
     [],
   );
 
+  const handleNewFile = useCallback(() => {
+    setHasResult(false);
+    setPreviewUrl(null);
+    setPreviewFilename(null);
+  }, []);
+
   return (
     <>
       <ToolComponent
@@ -36,6 +42,7 @@ export function PDFToPowerPointClient() {
         maxSize={100 * 1024 * 1024}
         autoClearFiles={true}
         onSuccess={handleSuccess}
+        onFileUpload={handleNewFile}
       />
 
       {hasResult && previewUrl && (
