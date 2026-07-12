@@ -13,7 +13,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 export const metadata: Metadata = {
   title: "PDFOrca Blog — PDF Tutorials, Tips & Use Cases",
   description:
-    "Practical tutorials and tips for merging, splitting, compressing, converting, and managing PDF files. Real-world workflows for students, professionals, and businesses.",
+    "Practical tutorials and tips for merging, splitting, compressing, and converting PDF files. Real-world workflows for students and professionals.",
   keywords:
     "pdf blog, pdf tutorials, pdf tips, document management, pdf how-to, pdforca blog",
   openGraph: {

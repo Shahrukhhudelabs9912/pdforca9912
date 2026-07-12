@@ -1,10 +1,12 @@
 # 60-Day Hinglish Blog Content Calendar — PDFOrca
 
-**Start Date:** July 14, 2026 (Monday)  
-**End Date:** September 11, 2026 (Friday)  
-**Schedule:** Monday / Wednesday / Friday (3 posts per week)  
+**Start Date:** July 14, 2026 (Tuesday)  
+**End Date:** September 10, 2026 (Thursday)  
+**Schedule:** Tuesday / Thursday / Saturday (3 posts per week)  
 **Total Posts:** 26  
 **Language:** Hinglish (Hindi words, English script)
+
+> English blogs Mon/Wed/Fri pe publish hote hain. Hinglish blogs Tue/Thu/Sat pe — har din fresh content, Sunday rest.
 
 ---
 
@@ -22,7 +24,7 @@
 
 ## Week 1 (July 14 – July 18)
 
-### Post 1 — Monday, July 14, 2026
+### Post 1 — Tuesday, July 14, 2026
 - **File:** `content/blog/pdf-compress-kaise-kare.md`
 - **Title:** "PDF Compress Kaise Kare — Bina Quality Khoye Size Kam Kare (2026)"
 - **Category:** How-To
@@ -49,7 +51,7 @@ keywords:
 ---
 ```
 
-### Post 2 — Wednesday, July 16, 2026
+### Post 2 — Thursday, July 16, 2026
 - **File:** `content/blog/pdf-merge-kaise-kare-online.md`
 - **Title:** "PDF Merge Kaise Kare Online — Multiple PDF Ek Mein Combine Kare Free"
 - **Category:** How-To
@@ -75,7 +77,7 @@ keywords:
 ---
 ```
 
-### Post 3 — Friday, July 18, 2026
+### Post 3 — Saturday, July 18, 2026
 - **File:** `content/blog/photo-to-pdf-kaise-banaye-mobile.md`
 - **Title:** "Photo Ko PDF Mein Kaise Badle — Mobile Aur Laptop Dono Se (Free)"
 - **Category:** How-To
@@ -105,7 +107,7 @@ keywords:
 
 ## Week 2 (July 21 – July 25)
 
-### Post 4 — Monday, July 21, 2026
+### Post 4 — Tuesday, July 21, 2026
 - **File:** `content/blog/pdf-to-word-convert-kaise-kare.md`
 - **Title:** "PDF Ko Word Mein Kaise Convert Kare — Formatting Intact Rahegi (Free)"
 - **Category:** How-To
@@ -131,7 +133,7 @@ keywords:
 ---
 ```
 
-### Post 5 — Wednesday, July 23, 2026
+### Post 5 — Thursday, July 23, 2026
 - **File:** `content/blog/driving-license-pdf-download-save.md`
 - **Title:** "Driving License PDF Kaise Download Aur Save Kare — DigiLocker Se (2026)"
 - **Category:** Use Case
@@ -157,7 +159,7 @@ keywords:
 ---
 ```
 
-### Post 6 — Friday, July 25, 2026
+### Post 6 — Saturday, July 25, 2026
 - **File:** `content/blog/pdf-password-kaise-lagaye-free.md`
 - **Title:** "PDF Mein Password Kaise Lagaye — Free Mein Secure Kare Apne Documents"
 - **Category:** How-To
@@ -187,7 +189,7 @@ keywords:
 
 ## Week 3 (July 28 – August 1)
 
-### Post 7 — Monday, July 28, 2026
+### Post 7 — Tuesday, July 28, 2026
 - **File:** `content/blog/pdf-split-kaise-kare-pages-nikale.md`
 - **Title:** "PDF Split Kaise Kare — Specific Pages Nikale Bina Software Install Kiye"
 - **Category:** How-To
@@ -213,7 +215,7 @@ keywords:
 ---
 ```
 
-### Post 8 — Wednesday, July 30, 2026
+### Post 8 — Thursday, July 30, 2026
 - **File:** `content/blog/resume-pdf-kaise-banaye.md`
 - **Title:** "Resume PDF Kaise Banaye — Word Se Perfect PDF Resume Banao (2026)"
 - **Category:** Use Case
@@ -239,7 +241,7 @@ keywords:
 ---
 ```
 
-### Post 9 — Friday, August 1, 2026
+### Post 9 — Saturday, August 1, 2026
 - **File:** `content/blog/pdf-se-jpg-image-kaise-nikale.md`
 - **Title:** "PDF Se JPG Image Kaise Nikale — High Quality Photos Extract Kare Free"
 - **Category:** How-To
@@ -269,7 +271,7 @@ keywords:
 
 ## Week 4 (August 4 – August 8)
 
-### Post 10 — Monday, August 4, 2026
+### Post 10 — Tuesday, August 4, 2026
 - **File:** `content/blog/income-tax-documents-pdf-merge.md`
 - **Title:** "Income Tax Documents PDF Mein Kaise Merge Kare — ITR Filing Guide (2026)"
 - **Category:** Use Case
@@ -295,7 +297,7 @@ keywords:
 ---
 ```
 
-### Post 11 — Wednesday, August 6, 2026
+### Post 11 — Thursday, August 6, 2026
 - **File:** `content/blog/pdf-rotate-kaise-kare-orientation-fix.md`
 - **Title:** "PDF Rotate Kaise Kare — Ulti Photo Ya Page Ko Seedha Kare (Free)"
 - **Category:** How-To
@@ -321,7 +323,7 @@ keywords:
 ---
 ```
 
-### Post 12 — Friday, August 8, 2026
+### Post 12 — Saturday, August 8, 2026
 - **File:** `content/blog/college-admission-documents-pdf-combine.md`
 - **Title:** "College Admission Ke Documents PDF Mein Kaise Combine Kare (Step by Step)"
 - **Category:** Use Case
@@ -351,7 +353,7 @@ keywords:
 
 ## Week 5 (August 11 – August 15)
 
-### Post 13 — Monday, August 11, 2026
+### Post 13 — Tuesday, August 11, 2026
 - **File:** `content/blog/excel-to-pdf-convert-kaise-kare.md`
 - **Title:** "Excel Ko PDF Mein Kaise Convert Kare — Table Formatting Intact (Free)"
 - **Category:** How-To
@@ -377,7 +379,7 @@ keywords:
 ---
 ```
 
-### Post 14 — Wednesday, August 13, 2026
+### Post 14 — Thursday, August 13, 2026
 - **File:** `content/blog/pdf-unlock-kaise-kare-password-hataye.md`
 - **Title:** "PDF Unlock Kaise Kare — Password Protected PDF Se Password Hataye (Free)"
 - **Category:** How-To
@@ -403,7 +405,7 @@ keywords:
 ---
 ```
 
-### Post 15 — Friday, August 15, 2026
+### Post 15 — Saturday, August 15, 2026
 - **File:** `content/blog/sarkari-form-pdf-size-kam-kare.md`
 - **Title:** "Sarkari Form Ke Liye PDF Size Kaise Kam Kare — 200KB, 500KB, 1MB Limit"
 - **Category:** Use Case
@@ -433,7 +435,7 @@ keywords:
 
 ## Week 6 (August 18 – August 22)
 
-### Post 16 — Monday, August 18, 2026
+### Post 16 — Tuesday, August 18, 2026
 - **File:** `content/blog/word-to-pdf-convert-kaise-kare.md`
 - **Title:** "Word File Ko PDF Mein Kaise Badle — Fonts Aur Layout Perfect Rahega"
 - **Category:** How-To
@@ -459,7 +461,7 @@ keywords:
 ---
 ```
 
-### Post 17 — Wednesday, August 20, 2026
+### Post 17 — Thursday, August 20, 2026
 - **File:** `content/blog/pdf-pe-watermark-kaise-lagaye.md`
 - **Title:** "PDF Pe Watermark Kaise Lagaye — Company Logo Ya Text Add Kare (Free)"
 - **Category:** How-To
@@ -485,7 +487,7 @@ keywords:
 ---
 ```
 
-### Post 18 — Friday, August 22, 2026
+### Post 18 — Saturday, August 22, 2026
 - **File:** `content/blog/passport-application-documents-pdf.md`
 - **Title:** "Passport Application Ke Documents PDF Mein Kaise Taiyaar Kare (2026)"
 - **Category:** Use Case
@@ -515,7 +517,7 @@ keywords:
 
 ## Week 7 (August 25 – August 29)
 
-### Post 19 — Monday, August 25, 2026
+### Post 19 — Tuesday, August 25, 2026
 - **File:** `content/blog/pdf-to-excel-data-kaise-nikale.md`
 - **Title:** "PDF Se Excel Mein Data Kaise Nikale — Tables Extract Kare Free"
 - **Category:** How-To
@@ -541,7 +543,7 @@ keywords:
 ---
 ```
 
-### Post 20 — Wednesday, August 27, 2026
+### Post 20 — Thursday, August 27, 2026
 - **File:** `content/blog/scan-kiya-document-pdf-edit-kare.md`
 - **Title:** "Scan Kiya Hua Document PDF Mein Edit Kaise Kare — OCR Se Text Nikale"
 - **Category:** How-To
@@ -567,7 +569,7 @@ keywords:
 ---
 ```
 
-### Post 21 — Friday, August 29, 2026
+### Post 21 — Saturday, August 29, 2026
 - **File:** `content/blog/bank-statement-pdf-compress-share.md`
 - **Title:** "Bank Statement PDF Compress Kaise Kare — Loan Ke Liye Share Kare (2026)"
 - **Category:** Use Case
@@ -597,7 +599,7 @@ keywords:
 
 ## Week 8 (September 1 – September 5)
 
-### Post 22 — Monday, September 1, 2026
+### Post 22 — Tuesday, September 1, 2026
 - **File:** `content/blog/pdf-page-number-kaise-lagaye.md`
 - **Title:** "PDF Mein Page Number Kaise Lagaye — Auto Numbering Add Kare (Free)"
 - **Category:** How-To
@@ -623,7 +625,7 @@ keywords:
 ---
 ```
 
-### Post 23 — Wednesday, September 3, 2026
+### Post 23 — Thursday, September 3, 2026
 - **File:** `content/blog/pdf-sign-kaise-kare-digital-signature.md`
 - **Title:** "PDF Sign Kaise Kare — Digital Signature Free Mein Add Kare (Bina Print Kiye)"
 - **Category:** How-To
@@ -649,7 +651,7 @@ keywords:
 ---
 ```
 
-### Post 24 — Friday, September 5, 2026
+### Post 24 — Saturday, September 5, 2026
 - **File:** `content/blog/ppt-to-pdf-presentation-convert.md`
 - **Title:** "PPT Ko PDF Mein Kaise Convert Kare — Presentation Share Kare (Free)"
 - **Category:** How-To
@@ -677,9 +679,9 @@ keywords:
 
 ---
 
-## Week 9 (September 8 – September 11)
+## Week 9 (September 8 – September 10)
 
-### Post 25 — Monday, September 8, 2026
+### Post 25 — Tuesday, September 8, 2026
 - **File:** `content/blog/pdf-pages-organize-arrange-kare.md`
 - **Title:** "PDF Pages Ko Arrange Kaise Kare — Delete, Reorder, Move Kare (Free)"
 - **Category:** How-To
@@ -705,7 +707,7 @@ keywords:
 ---
 ```
 
-### Post 26 — Wednesday, September 10, 2026
+### Post 26 — Thursday, September 10, 2026
 - **File:** `content/blog/visa-application-documents-pdf-guide.md`
 - **Title:** "Visa Application Documents PDF Mein Kaise Taiyaar Kare — Complete Guide"
 - **Category:** Use Case
@@ -737,32 +739,46 @@ keywords:
 
 | Week | Date | Day | Post # | Title (Short) | Related Tool |
 |------|------|-----|--------|--------------|-------------|
-| W1 | Jul 14 | Mon | 1 | PDF Compress Kaise Kare | compress-pdf |
-| W1 | Jul 16 | Wed | 2 | PDF Merge Kaise Kare | merge-pdf |
-| W1 | Jul 18 | Fri | 3 | Photo to PDF Mobile Se | jpg-to-pdf |
-| W2 | Jul 21 | Mon | 4 | PDF to Word Convert | pdf-to-word |
-| W2 | Jul 23 | Wed | 5 | Driving License PDF Download | compress-pdf |
-| W2 | Jul 25 | Fri | 6 | PDF Password Kaise Lagaye | protect-pdf |
-| W3 | Jul 28 | Mon | 7 | PDF Split Kaise Kare | split-pdf |
-| W3 | Jul 30 | Wed | 8 | Resume PDF Kaise Banaye | word-to-pdf |
-| W3 | Aug 1 | Fri | 9 | PDF Se JPG Nikale | pdf-to-jpg |
-| W4 | Aug 4 | Mon | 10 | Income Tax Documents Merge | merge-pdf |
-| W4 | Aug 6 | Wed | 11 | PDF Rotate Kaise Kare | rotate-pdf |
-| W4 | Aug 8 | Fri | 12 | College Admission Documents | merge-pdf |
-| W5 | Aug 11 | Mon | 13 | Excel to PDF Convert | excel-to-pdf |
-| W5 | Aug 13 | Wed | 14 | PDF Unlock Password Hataye | unlock-pdf |
-| W5 | Aug 15 | Fri | 15 | Sarkari Form PDF Size | compress-pdf |
-| W6 | Aug 18 | Mon | 16 | Word to PDF Convert | word-to-pdf |
-| W6 | Aug 20 | Wed | 17 | PDF Pe Watermark Lagaye | add-watermark |
-| W6 | Aug 22 | Fri | 18 | Passport Documents PDF | merge-pdf |
-| W7 | Aug 25 | Mon | 19 | PDF Se Excel Data Nikale | pdf-to-excel |
-| W7 | Aug 27 | Wed | 20 | Scanned Document OCR | ocr-pdf |
-| W7 | Aug 29 | Fri | 21 | Bank Statement Compress | compress-pdf |
-| W8 | Sep 1 | Mon | 22 | PDF Page Number Lagaye | page-numbering |
-| W8 | Sep 3 | Wed | 23 | PDF Digital Sign Kare | sign-pdf |
-| W8 | Sep 5 | Fri | 24 | PPT to PDF Convert | powerpoint-to-pdf |
-| W9 | Sep 8 | Mon | 25 | PDF Pages Organize Kare | organize-pdf |
-| W9 | Sep 10 | Wed | 26 | Visa Documents PDF Guide | merge-pdf |
+| W1 | Jul 14 | Tue | 1 | PDF Compress Kaise Kare | compress-pdf |
+| W1 | Jul 16 | Thu | 2 | PDF Merge Kaise Kare | merge-pdf |
+| W1 | Jul 18 | Sat | 3 | Photo to PDF Mobile Se | jpg-to-pdf |
+| W2 | Jul 21 | Tue | 4 | PDF to Word Convert | pdf-to-word |
+| W2 | Jul 23 | Thu | 5 | Driving License PDF Download | compress-pdf |
+| W2 | Jul 25 | Sat | 6 | PDF Password Kaise Lagaye | protect-pdf |
+| W3 | Jul 28 | Tue | 7 | PDF Split Kaise Kare | split-pdf |
+| W3 | Jul 30 | Thu | 8 | Resume PDF Kaise Banaye | word-to-pdf |
+| W3 | Aug 1 | Sat | 9 | PDF Se JPG Nikale | pdf-to-jpg |
+| W4 | Aug 4 | Tue | 10 | Income Tax Documents Merge | merge-pdf |
+| W4 | Aug 6 | Thu | 11 | PDF Rotate Kaise Kare | rotate-pdf |
+| W4 | Aug 8 | Sat | 12 | College Admission Documents | merge-pdf |
+| W5 | Aug 11 | Tue | 13 | Excel to PDF Convert | excel-to-pdf |
+| W5 | Aug 13 | Thu | 14 | PDF Unlock Password Hataye | unlock-pdf |
+| W5 | Aug 15 | Sat | 15 | Sarkari Form PDF Size | compress-pdf |
+| W6 | Aug 18 | Tue | 16 | Word to PDF Convert | word-to-pdf |
+| W6 | Aug 20 | Thu | 17 | PDF Pe Watermark Lagaye | add-watermark |
+| W6 | Aug 22 | Sat | 18 | Passport Documents PDF | merge-pdf |
+| W7 | Aug 25 | Tue | 19 | PDF Se Excel Data Nikale | pdf-to-excel |
+| W7 | Aug 27 | Thu | 20 | Scanned Document OCR | ocr-pdf |
+| W7 | Aug 29 | Sat | 21 | Bank Statement Compress | compress-pdf |
+| W8 | Sep 1 | Tue | 22 | PDF Page Number Lagaye | page-numbering |
+| W8 | Sep 3 | Thu | 23 | PDF Digital Sign Kare | sign-pdf |
+| W8 | Sep 5 | Sat | 24 | PPT to PDF Convert | powerpoint-to-pdf |
+| W9 | Sep 8 | Tue | 25 | PDF Pages Organize Kare | organize-pdf |
+| W9 | Sep 10 | Thu | 26 | Visa Documents PDF Guide | merge-pdf |
+
+---
+
+## Weekly Schedule Overview
+
+| Day | Content Type |
+|-----|-------------|
+| **Monday** | English blog |
+| **Tuesday** | Hinglish blog |
+| **Wednesday** | English blog |
+| **Thursday** | Hinglish blog |
+| **Friday** | English blog |
+| **Saturday** | Hinglish blog |
+| **Sunday** | Rest |
 
 ---
 
