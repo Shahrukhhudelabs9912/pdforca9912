@@ -98,12 +98,22 @@ export default async function RootLayout({
     <html lang={locale} className={ssrThemeClass || undefined} suppressHydrationWarning>
       <body className={`min-h-screen flex flex-col ${inter.className}`} suppressHydrationWarning>
         {adsenseId && (
-          <Script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
+          <>
+            <Script
+              async
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
+              crossOrigin="anonymous"
+              strategy="afterInteractive"
+            />
+            <Script
+              async
+              src={`https://fundingchoicesmessages.google.com/i/${adsenseId}?ers=1`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-fc-present" strategy="afterInteractive">
+              {`(function(){function signalGooglefcPresent(){if(!window.frames['googlefcPresent']){if(document.body){var iframe=document.createElement('iframe');iframe.style='width:0;height:0;border:none;z-index:-1000;left:-1000px;top:-1000px;';iframe.style.display='none';iframe.name='googlefcPresent';document.body.appendChild(iframe);}else{setTimeout(signalGooglefcPresent,0);}}}signalGooglefcPresent();})();`}
+            </Script>
+          </>
         )}
         {gaId && (
           <>
