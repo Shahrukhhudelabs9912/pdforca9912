@@ -56,6 +56,18 @@ export function ToolLayout({
         })()
       : seoContent?.faq;
 
+  // Prefer translated long-form body (seo_content) when toolKey is available,
+  // falling back to the seoContent.content prop passed by the page.
+  const seoBody: string | undefined = toolKey
+    ? (() => {
+        try {
+          return (tt.raw("seo_content" as any) as string) || seoContent?.content;
+        } catch {
+          return seoContent?.content;
+        }
+      })()
+    : seoContent?.content;
+
   const howToSteps: string[] = [
     t("how_to_step1"),
     t("how_to_step2"),
@@ -114,7 +126,7 @@ export function ToolLayout({
               <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-4 sm:p-8 overflow-hidden dark:border-gray-800 dark:bg-gray-900">
                 <div className="prose prose-lg dark:prose-invert max-w-none">
                   <h2>{seoH2 || seoContent.h2}</h2>
-                  {!toolKey && <div dangerouslySetInnerHTML={{ __html: seoContent.content }} />}
+                  {seoBody && <div dangerouslySetInnerHTML={{ __html: seoBody }} />}
 
                   {(seoFaq && seoFaq.length > 0) && (
                     <div className="mt-8">

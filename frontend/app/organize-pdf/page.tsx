@@ -7,6 +7,8 @@ import {
   FAQPageJsonLd,
   BreadcrumbJsonLd,
 } from "@/components/seo/json-ld";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
+import { ToolSeoHeader } from "@/components/tools/tool-seo-header";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -73,8 +75,9 @@ export default function OrganizePDFPage() {
         steps={HOW_TO_STEPS}
       />
       <FAQPageJsonLd items={FAQ_ITEMS} />
-      <h1 className="sr-only">Organize PDF Pages Online Free</h1>
+      <ToolSeoHeader toolKey="organize_pdf" />
       <OrganizePDFClient />
+      <ToolSeoSection toolKey="organize_pdf" />
     </>
   );
 }
