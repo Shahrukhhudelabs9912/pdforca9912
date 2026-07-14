@@ -1,6 +1,6 @@
 "use client";
 
-import { Target, Globe, Shield, Heart, Sparkles, Zap, Users } from "lucide-react";
+import { Target, Globe, Shield, Heart, Sparkles, Zap, Users, Code, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -120,7 +120,54 @@ export default function AboutPage() {
               <p>{t("story_para_1")}</p>
               <p>{t("story_para_2")}</p>
               <p>{t("story_para_3")}</p>
+              <p>{t("story_para_4")}</p>
             </div>
+          </div>
+        </section>
+
+        {/* Creator */}
+        <section className="px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <Card>
+              <CardHeader>
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900/30">
+                  <Users className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                </div>
+                <CardTitle className="text-2xl">{t("creator_title")}</CardTitle>
+                <CardDescription>{t("creator_role")}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-lg font-semibold text-gray-900 dark:text-white">
+                  {t("creator_name")}
+                </p>
+                <p className="text-gray-600 dark:text-gray-300">
+                  {t("creator_bio")}
+                </p>
+                <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                  <MapPin className="h-4 w-4" />
+                  <span>{t("creator_location")}</span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Technology */}
+        <section className="px-4 py-8 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <Card>
+              <CardHeader>
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
+                  <Code className="h-6 w-6 text-green-600 dark:text-green-400" />
+                </div>
+                <CardTitle className="text-2xl">{t("tech_title")}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 dark:text-gray-300">
+                  {t("tech_text")}
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </section>
 

@@ -43,7 +43,6 @@ export function Footer() {
       { name: t("footer.footer_links.fast_processing"), href: "/features#speed" },
       { name: t("footer.footer_links.multi_language"), href: "/features#languages" },
       { name: t("footer.footer_links.browser_processing"), href: "/features#browser" },
-      { name: t("footer.footer_links.privacy_security"), href: "/privacy" },
     ],
     [t("footer.resources")]: [
       { name: t("footer.blog"), href: "/blog" },
