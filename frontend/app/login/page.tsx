@@ -5,7 +5,11 @@ const LoginClient = dynamic(() => import("./login-client"));
 
 export const metadata: Metadata = {
   title: "Login - PDFOrca",
-  description: "Sign in to your PDFOrca account to access Pro features, processing history, and saved preferences.",
+  description: "Sign in to your PDFOrca account.",
+  robots: {
+    index: false,
+    follow: true,
+  },
   openGraph: {
     title: "Login - PDFOrca",
     description: "Sign in to your PDFOrca account.",

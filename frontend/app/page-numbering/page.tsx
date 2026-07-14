@@ -50,8 +50,8 @@ const HOW_TO_STEPS = [
 const FAQ_ITEMS = [
   { question: "Can I skip the title page?", answer: "Yes. Set the starting page so numbering begins from page 2 (or any other page)." },
   { question: "What number formats are supported?", answer: "Plain numbers ('1'), 'Page 1', '1 of 10', and Roman numerals." },
-  { question: "Is my PDF safe?", answer: "Yes. Files are processed over HTTPS and deleted automatically after processing." },
-  { question: "What's the maximum file size?", answer: "100 MB per PDF for free users." },
+  { question: "Can I start numbering from a specific page?", answer: "Yes. You can choose which page to start numbering from and set a custom starting number, so cover pages or table of contents stay unnumbered." },
+  { question: "What's the maximum file size?", answer: "You can upload PDFs up to 100 MB each." },
 ];
 
 export default function PageNumberingPage() {

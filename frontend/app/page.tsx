@@ -44,28 +44,33 @@ const ToolsGrid = dynamic(
 
 const FeaturesSection = dynamic(
   () => import("@/components/home/features").then((mod) => ({ default: mod.FeaturesSection })),
-  { ssr: false },
+  { ssr: true },
 );
 
 const FAQ = dynamic(
   () => import("@/components/home/faq").then((mod) => ({ default: mod.FAQ })),
-  { ssr: false },
+  { ssr: true },
+);
+
+const WhatIsSection = dynamic(
+  () => import("@/components/home/what-is").then((mod) => ({ default: mod.WhatIsPDFOrca })),
+  { ssr: true },
 );
 
 const CTASection = dynamic(
   () => import("@/components/home/cta").then((mod) => ({ default: mod.CTASection })),
-  { ssr: false },
+  { ssr: true },
 );
 
 const HOME_FAQ_ITEMS = [
-  { question: "Is PDFOrca free to use?", answer: "Yes! All basic PDF tools are completely free. We offer premium features for advanced needs." },
-  { question: "Are my files secure?", answer: "Absolutely. We use end-to-end encryption and automatically delete files after 1 hour." },
-  { question: "What file sizes are supported?", answer: "We support files up to 100MB for free users and up to 2GB for premium users." },
-  { question: "Do I need to install any software?", answer: "No installation required. PDFOrca works entirely in your browser." },
-  { question: "Can I use it on mobile?", answer: "Yes! Our website is fully responsive and works perfectly on all mobile devices." },
+  { question: "Is PDFOrca free to use?", answer: "Yes! All PDF tools on PDFOrca are completely free to use — no registration, no hidden charges, and no watermarks on your output files." },
+  { question: "Are my files secure?", answer: "Absolutely. Files are processed over an encrypted connection and automatically deleted from our servers after processing. We do not store, read, or share your documents." },
+  { question: "What file sizes are supported?", answer: "You can upload files up to 100 MB per document. Most conversions and operations complete within seconds even for larger files." },
+  { question: "Do I need to install any software?", answer: "No installation required. PDFOrca works entirely in your browser on any device — desktop, tablet, or mobile." },
+  { question: "Can I use it on mobile?", answer: "Yes! Our website is fully responsive and works perfectly on all mobile devices. You can merge, split, compress, and convert PDFs directly from your phone's browser." },
   { question: "How fast is the processing?", answer: "Most operations complete in under 2 seconds for average-sized files. We use parallel processing, Web Workers, and optimized algorithms for maximum speed." },
-  { question: "What PDF tools do you offer?", answer: "We offer 14+ tools including merge, split, compress, convert (PDF to Word, Excel, PPT, JPG), rotate, protect, unlock, watermark, page numbering, organize, and AI-powered summarization." },
-  { question: "Do you have an API for developers?", answer: "Yes, we offer a comprehensive REST API for developers. You can integrate our PDF processing capabilities directly into your applications with detailed documentation and SDKs." },
+  { question: "What PDF tools do you offer?", answer: "We offer 20+ tools including merge, split, compress, convert (PDF to Word, Excel, PPT, JPG and back), rotate, protect, unlock, watermark, page numbering, organize, extract pages, sign, OCR, and AI-powered summarization." },
+  { question: "How many files can I process per day?", answer: "There is no daily limit. You can use all PDFOrca tools as many times as you need, completely free." },
 ];
 
 export default function Home() {
@@ -76,6 +81,7 @@ export default function Home() {
         <HeroSection />
         <ToolsGrid />
         <AdBanner slot="HOMEPAGE_MID" format="horizontal" className="my-4 px-4" />
+        <WhatIsSection />
         <FeaturesSection />
         <FAQ />
         <AdBanner slot="HOMEPAGE_BOTTOM" format="horizontal" className="my-4 px-4" />

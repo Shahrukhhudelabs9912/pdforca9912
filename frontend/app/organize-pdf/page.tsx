@@ -50,8 +50,8 @@ const HOW_TO_STEPS = [
 const FAQ_ITEMS = [
   { question: "Can I reorder, rotate, and delete in one pass?", answer: "Yes. Apply any combination of changes and they're written into the output PDF in a single step." },
   { question: "Will the PDF lose quality?", answer: "No. Pages are copied as-is — text, images, and links remain unchanged." },
-  { question: "Is my PDF safe?", answer: "Yes. Files are processed over HTTPS and deleted automatically after processing." },
-  { question: "What's the maximum file size?", answer: "100 MB per PDF for free users." },
+  { question: "Can I delete specific pages while organizing?", answer: "Yes. You can remove any pages you don't need while rearranging the rest. The remaining pages are saved as a new PDF." },
+  { question: "What's the maximum file size?", answer: "You can upload PDFs up to 100 MB each." },
 ];
 
 export default function OrganizePDFPage() {

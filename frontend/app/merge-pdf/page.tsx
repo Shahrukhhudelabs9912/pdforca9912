@@ -41,9 +41,9 @@ export const metadata: Metadata = {
 
 const FAQ_ITEMS = [
   {
-    question: "Is PDF merging free?",
+    question: "Can I merge password-protected PDFs?",
     answer:
-      "Yes, our PDF merger is completely free with no hidden charges. You can merge unlimited files without registration.",
+      "You'll need to unlock each PDF first using our Unlock PDF tool, then merge the unprotected files.",
   },
   {
     question: "Can I reorder pages before merging?",
@@ -53,7 +53,7 @@ const FAQ_ITEMS = [
   {
     question: "Is there a file size limit?",
     answer:
-      "You can merge PDFs up to 100MB each for free. For larger files, consider using our premium plan.",
+      "You can merge PDFs up to 100 MB each. There is no daily limit on how many files you can merge.",
   },
   {
     question: "How many PDFs can I merge at once?",
@@ -61,9 +61,9 @@ const FAQ_ITEMS = [
       "You can merge up to 20 PDF files at once. If you need to merge more, simply process them in batches.",
   },
   {
-    question: "Is my data secure?",
+    question: "What happens to bookmarks when I merge PDFs?",
     answer:
-      "Absolutely. All files are processed securely with end-to-end encryption and are automatically deleted from our servers after 1 hour.",
+      "Bookmarks from each source file are preserved in the merged document, appearing in the order the files were combined.",
   },
   {
     question: "Can I merge scanned PDFs?",

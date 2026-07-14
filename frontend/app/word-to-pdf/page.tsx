@@ -48,8 +48,8 @@ const HOW_TO_STEPS = [
 const FAQ_ITEMS = [
   { question: "Will my fonts and formatting be preserved?", answer: "Yes. We use a headless office engine that preserves fonts, layout, and images faithfully." },
   { question: "Does the tool support .doc as well as .docx?", answer: "Yes. Both legacy .doc and modern .docx are supported." },
-  { question: "Is my document safe?", answer: "Yes. Files are processed over HTTPS and deleted automatically after processing." },
-  { question: "What's the maximum file size?", answer: "100 MB per file for free users." },
+  { question: "Are embedded fonts preserved in the PDF?", answer: "Yes. Fonts used in your Word document are embedded in the PDF, so it looks the same on any device regardless of installed fonts." },
+  { question: "What's the maximum file size?", answer: "You can upload files up to 100 MB each." },
 ];
 
 export default function WordToPDFPage() {

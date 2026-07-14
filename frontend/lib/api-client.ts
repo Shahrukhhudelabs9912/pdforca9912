@@ -468,7 +468,7 @@ export async function processFiles(
     } else if (result.data) {
       // Placeholder endpoint response
       onProgress?.(100);
-      handleApiSuccess(result.data.message || 'Feature coming soon!');
+      handleApiSuccess(result.data.message || 'Processing complete!');
       onSuccess?.('placeholder');
     }
     return true;

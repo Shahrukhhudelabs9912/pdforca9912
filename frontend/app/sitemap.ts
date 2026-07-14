@@ -39,11 +39,9 @@ const TOOL_ROUTES: Route[] = [
 const STATIC_ROUTES: Route[] = [
   { path: "/", changeFrequency: "weekly", priority: 1.0 },
   { path: "/features", changeFrequency: "monthly", priority: 0.7 },
-  { path: "/pricing", changeFrequency: "monthly", priority: 0.8 },
   { path: "/about", changeFrequency: "monthly", priority: 0.5 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.5 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.7 },
-  { path: "/careers", changeFrequency: "monthly", priority: 0.4 },
 ];
 
 const LEGAL_ROUTES: Route[] = [

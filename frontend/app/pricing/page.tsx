@@ -4,11 +4,15 @@ import dynamic from "next/dynamic";
 const PricingClient = dynamic(() => import("./pricing-client"));
 
 export const metadata: Metadata = {
-  title: "Pricing - PDFOrca Free & Pro Plans",
-  description: "Compare PDFOrca's free and Pro plans. Get unlimited PDF processing, larger file sizes, priority support, and AI-powered features with Pro.",
+  title: "Pricing - PDFOrca",
+  description: "PDFOrca pricing plans. All PDF tools are currently free to use with no registration required.",
+  robots: {
+    index: false,
+    follow: true,
+  },
   openGraph: {
-    title: "Pricing - PDFOrca Free & Pro Plans",
-    description: "Compare PDFOrca's free and Pro plans for PDF processing.",
+    title: "Pricing - PDFOrca",
+    description: "PDFOrca pricing plans. All PDF tools are currently free.",
     type: "website",
   },
 };

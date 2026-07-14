@@ -36,8 +36,8 @@ const FAQ_ITEMS = [
     answer: "The summarization uses a modern large language model that reads the full document context. Accuracy is high for well-structured documents with clear language. Results may vary for heavily technical jargon, tables-only content, or documents with unusual formatting.",
   },
   {
-    question: "Is my PDF data secure and private?",
-    answer: "Absolutely. Files are uploaded over an encrypted connection, processed in memory, and deleted automatically after analysis. We never store your documents on our servers. No account is required, and analysis results stay in your browser session only.",
+    question: "How long can the PDF be for AI analysis?",
+    answer: "The AI can process documents up to 100 MB. Very long documents (500+ pages) are analyzed in sections to maintain accuracy. Summaries and key points cover the full document.",
   },
   {
     question: "What languages does the AI support?",

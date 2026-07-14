@@ -41,7 +41,7 @@ const HOW_TO_STEPS = [
 
 const FAQ_ITEMS = [
           { question: "Are slide animations preserved?", answer: "PDF is a static format, so animations and transitions are flattened to the final slide content." },
-          { question: "What's the file size limit?", answer: "100 MB for free users." },
+          { question: "What's the file size limit?", answer: "You can upload files up to 100 MB each." },
         ];
 
 import { ToolLayout } from "@/components/tools/tool-layout";

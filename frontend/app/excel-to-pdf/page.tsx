@@ -48,8 +48,8 @@ const HOW_TO_STEPS = [
 const FAQ_ITEMS = [
   { question: "Will my charts and formatting be preserved?", answer: "Yes. Charts, conditional formatting, and cell styles are rendered into the PDF." },
   { question: "Does each sheet become a separate page?", answer: "Sheets are paginated according to their print area, so a multi-sheet workbook produces multiple pages." },
-  { question: "Is my spreadsheet safe?", answer: "Yes. Files are processed over HTTPS and deleted automatically after processing." },
-  { question: "What's the maximum file size?", answer: "100 MB per file for free users." },
+  { question: "Are charts and graphs included in the PDF?", answer: "Yes. Embedded charts, graphs, and images in your spreadsheet are rendered in the PDF as they appear in print preview." },
+  { question: "What's the maximum file size?", answer: "You can upload files up to 100 MB each." },
 ];
 
 export default function ExcelToPDFPage() {

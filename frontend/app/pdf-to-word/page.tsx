@@ -48,8 +48,8 @@ const HOW_TO_STEPS = [
 const FAQ_ITEMS = [
   { question: "Is the converted Word file editable?", answer: "Yes. Text, paragraphs, and most layout elements are reconstructed as native Word content you can edit." },
   { question: "Will my PDF formatting be preserved?", answer: "Layout, fonts, and images are preserved as closely as possible. Highly designed PDFs may need minor cleanup." },
-  { question: "Is my PDF safe?", answer: "Yes. Files are processed over HTTPS and deleted automatically after processing." },
-  { question: "What's the maximum file size?", answer: "100 MB per PDF for free users." },
+  { question: "Will scanned PDFs convert to editable text?", answer: "Scanned PDFs need OCR first. Run the file through our OCR tool, then convert — the result will be editable Word text." },
+  { question: "What's the maximum file size?", answer: "You can upload PDFs up to 100 MB each." },
 ];
 
 export default function PDFToWordPage() {

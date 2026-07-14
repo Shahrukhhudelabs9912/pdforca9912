@@ -6,6 +6,10 @@ const ResetPasswordClient = dynamic(() => import("./reset-password-client"));
 export const metadata: Metadata = {
   title: "Reset Password - PDFOrca",
   description: "Reset your PDFOrca account password. Enter your email to receive a password reset link.",
+  robots: {
+    index: false,
+    follow: true,
+  },
   openGraph: {
     title: "Reset Password - PDFOrca",
     description: "Reset your PDFOrca account password.",

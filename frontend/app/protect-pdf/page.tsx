@@ -50,7 +50,7 @@ const FAQ_ITEMS = [
   { question: "What encryption is used?", answer: "AES-128 or AES-256 depending on the option you select. Both are industry-standard PDF encryption schemes." },
   { question: "Can I recover a forgotten password?", answer: "No — that's the whole point of encryption. Keep your password somewhere safe." },
   { question: "Is my PDF safe during processing?", answer: "Yes. Files are processed over HTTPS and deleted automatically after processing." },
-  { question: "What's the maximum file size?", answer: "100 MB per PDF for free users." },
+  { question: "What's the maximum file size?", answer: "You can upload PDFs up to 100 MB each." },
 ];
 
 export default function ProtectPDFPage() {
