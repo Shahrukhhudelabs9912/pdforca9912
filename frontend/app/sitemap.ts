@@ -52,6 +52,7 @@ const LEGAL_ROUTES: Route[] = [
   { path: "/cookies", changeFrequency: "yearly", priority: 0.2 },
   { path: "/gdpr", changeFrequency: "yearly", priority: 0.2 },
   { path: "/dmca", changeFrequency: "yearly", priority: 0.2 },
+  { path: "/disclaimer", changeFrequency: "yearly", priority: 0.2 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

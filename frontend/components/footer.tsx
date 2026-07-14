@@ -55,6 +55,7 @@ export function Footer() {
       { name: t("footer.cookies"), href: "/cookies" },
       { name: t("footer.footer_links.gdpr"), href: "/gdpr" },
       { name: t("footer.footer_links.dmca"), href: "/dmca" },
+      { name: t("footer.footer_links.disclaimer"), href: "/disclaimer" },
     ],
   };
 
