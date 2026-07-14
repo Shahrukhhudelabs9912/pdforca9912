@@ -1724,7 +1724,36 @@
     "report_downloaded": "Report downloaded successfully!",
     "report_generation_failed": "Failed to generate report.",
     "auto_download_failed": "Auto-download failed. You can use the manual download button below.",
-    "analysis_error": "An unexpected error occurred during analysis."
+    "analysis_error": "An unexpected error occurred during analysis.",
+    "seo_h1": "AI PDF Tools – Summarize & Analyze PDFs Online Free",
+    "seo_h2": "AI-Powered PDF Analysis & Summarization",
+    "seo_content": "<p>Reading a 50-page report just to find two key takeaways wastes time most people don't have. PDFOrca's AI PDF tools let you upload any PDF and get a concise summary, a list of key points, and even a suggested title — all in seconds, right inside your browser.</p>\n<h3>What the AI actually does</h3>\n<p>When you upload a PDF, our system extracts the full text and passes it through a large language model. The model reads the entire document in context, identifies the most important ideas, and returns a structured analysis. You get three outputs:</p>\n<ul>\n  <li><strong>Summary</strong> — a condensed version of the document that captures the main argument, findings, or narrative without filler.</li>\n  <li><strong>Key points</strong> — a bullet list of the most important facts, figures, or conclusions, ranked by relevance.</li>\n  <li><strong>Suggested title</strong> — a descriptive title generated from the content, useful when filenames like <em>final_v3_revised.pdf</em> tell you nothing.</li>\n</ul>\n<h3>Who benefits most</h3>\n<p>Anyone who works with long documents regularly will save hours every week:</p>\n<ul>\n  <li><strong>Students and researchers</strong> processing dozens of papers can quickly decide which ones are worth a full read and which can be skimmed.</li>\n  <li><strong>Legal professionals</strong> reviewing contracts, case files, or regulatory filings can surface the clauses and findings that matter most.</li>\n  <li><strong>Business teams</strong> dealing with quarterly reports, pitch decks, and strategy documents can share AI-generated summaries instead of forwarding 40-page attachments.</li>\n  <li><strong>Technical writers</strong> can feed manuals into the tool to check whether the document's key points match the intended message.</li>\n</ul>\n<h3>Privacy and security</h3>\n<p>Your files are processed over an encrypted connection and deleted automatically after analysis. We don't store your documents, and no account or registration is required. The analysis results exist only in your browser session — close the tab and they're gone.</p>\n<h3>Tips for the best results</h3>\n<p>Text-based PDFs produce the most accurate summaries. If your document is a scanned image, run it through our <a href=\"/ocr-pdf\">OCR tool</a> first to convert images to selectable text. For very large documents (200+ pages), consider <a href=\"/split-pdf\">splitting the PDF</a> into chapters and analysing each one separately — the model gives sharper results when the input is focused.</p>\n<p>After analysis, you can download a polished DOCX report containing the summary, key points, and metadata. It's ready to attach to an email or drop into a shared drive without additional formatting.</p>\n<p>PDFOrca's AI tools pair well with the rest of the suite. <a href=\"/merge-pdf\">Merge</a> several reports before analysis to get a combined summary, or <a href=\"/compress-pdf\">compress</a> the output report before sharing it.</p>",
+    "seo_faq": [
+      {
+        "question": "Is AI PDF analysis free on PDFOrca?",
+        "answer": "Yes, our AI PDF analysis tools are completely free. You can summarize, extract key points, and generate titles from any PDF without registration, payment, or hidden limits."
+      },
+      {
+        "question": "What types of PDFs work with the AI tools?",
+        "answer": "Our AI works best with text-based PDFs such as reports, research papers, contracts, articles, and ebooks. Scanned PDFs (image-only) should be processed through our OCR tool first to convert them to selectable text before analysis."
+      },
+      {
+        "question": "How accurate is the AI summarization?",
+        "answer": "The summarization uses a modern large language model that reads the full document context. Accuracy is high for well-structured documents with clear language. Results may vary for heavily technical jargon, tables-only content, or documents with unusual formatting."
+      },
+      {
+        "question": "Is my PDF data secure and private?",
+        "answer": "Absolutely. Files are uploaded over an encrypted connection, processed in memory, and deleted automatically after analysis. We never store your documents on our servers. No account is required, and analysis results stay in your browser session only."
+      },
+      {
+        "question": "What languages does the AI support?",
+        "answer": "Our AI model supports multiple languages including English, Hindi, Spanish, French, German, and many more. It can summarize and extract key points from documents written in any of these languages."
+      },
+      {
+        "question": "Can I download the AI analysis as a report?",
+        "answer": "Yes. After analysis is complete, you can download a professionally formatted DOCX report containing the summary, key points, suggested title, and document metadata. The report is ready to share or archive."
+      }
+    ]
   },
   "blog": {
     "title": "Blog",
