@@ -28,6 +28,7 @@ export type PostMeta = {
   cover?: string;        // optional hero image path, e.g. "/blog/merge-aadhaar-cover.png"
   relatedTool?: string;  // slug of the related tool — e.g. "merge-pdf"
   keywords?: string[];   // SEO keywords for the post
+  draft?: boolean;       // true = hidden from listing, sitemap, and direct URL
   readingMinutes: number;
 };
 
@@ -63,6 +64,7 @@ export function getAllPosts(): PostMeta[] {
           keywords: Array.isArray(data.keywords)
             ? data.keywords.map(String)
             : undefined,
+          draft: Boolean(data.draft),
           readingMinutes: Math.max(1, Math.round(stats.minutes)),
         };
       } catch (err) {
@@ -73,6 +75,7 @@ export function getAllPosts(): PostMeta[] {
       }
     })
     .filter((p): p is PostMeta => p !== null)
+    .filter((p) => !p.draft)
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 
   return posts;
@@ -93,6 +96,9 @@ export function getPostBySlug(slug: string): Post | null {
 
   const raw = fs.readFileSync(file, "utf8");
   const { data, content } = matter(raw);
+
+  if (data.draft) return null;
+
   const stats = readingTime(content);
 
   return {
