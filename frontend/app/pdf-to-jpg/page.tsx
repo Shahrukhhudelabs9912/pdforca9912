@@ -98,27 +98,7 @@ export default function PDFToJPGPage() {
         { name: "Compress PDF", href: "/compress-pdf" },
         { name: "PDF to Word", href: "/pdf-to-word" },
       ]}
-      seoContent={{
-        h1: "Convert PDF to JPG Online for Free",
-        h2: "How to Convert PDF to JPG",
-        content: `
-          <p>Our free PDF to JPG converter allows you to transform PDF pages into high-quality JPG images instantly. Whether you need to extract images from a PDF, convert pages for presentations, or create image files for web use, our tool delivers excellent results.</p>
-          <p><strong>Key features:</strong></p>
-          <ul>
-            <li>Convert entire PDFs or select specific pages</li>
-            <li>Adjust image quality (from 1% to 100%)</li>
-            <li>Choose resolution: Standard, High, or Custom DPI</li>
-            <li>Extract embedded images from PDFs</li>
-            <li>Convert to JPG, PNG, or WebP formats</li>
-            <li>Batch convert multiple PDFs simultaneously</li>
-            <li>Secure processing with automatic file deletion</li>
-            <li>No registration or watermarks</li>
-          </ul>
-          <p>Perfect for creating social media graphics, website images, presentation slides, or extracting visual content from documents.</p>
-        `,
-        faq: FAQ_ITEMS,
-      }}
-    >
+      >
       <PDFToJPGClient />
     </ToolLayout>
     </>

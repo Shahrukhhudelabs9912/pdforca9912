@@ -93,21 +93,6 @@ export default function UnlockPDFPage() {
         { name: "Compress PDF", href: "/compress-pdf" },
         { name: "Merge PDF", href: "/merge-pdf" },
       ]}
-      seoContent={{
-        h1: "Unlock PDF Online for Free",
-        h2: "How to Remove a Password from a PDF",
-        content: `
-          <p>Our free Unlock PDF tool removes the password protection from any PDF you have the password for. Once unlocked, the file is fully editable and shareable without prompting for a password every time it's opened.</p>
-          <p><strong>Key features:</strong></p>
-          <ul>
-            <li>Works with AES and RC4 encrypted PDFs</li>
-            <li>Files are processed securely and deleted automatically</li>
-            <li>No software install required</li>
-            <li>Maintains original PDF quality and structure</li>
-          </ul>
-        `,
-        faq: FAQ_ITEMS,
-      }}
     >
       <UnlockPDFClient />
     </ToolLayout>

@@ -93,21 +93,6 @@ export default function ExtractPagesPage() {
         { name: "Merge PDF", href: "/merge-pdf" },
         { name: "Organize PDF", href: "/organize-pdf" },
       ]}
-      seoContent={{
-        h1: "Extract Pages from PDF Online for Free",
-        h2: "How to Extract Pages from a PDF",
-        content: `
-          <p>Our free Extract Pages tool lets you pick any combination of pages from a PDF and download them as a new file. Use single page numbers, ranges, or both at the same time.</p>
-          <p><strong>Key features:</strong></p>
-          <ul>
-            <li>Mix single pages and ranges (e.g. <code>1,3,5-7</code>)</li>
-            <li>Output keeps the original page order you typed</li>
-            <li>No quality loss — pages are copied, not re-rendered</li>
-            <li>Files auto-deleted after download</li>
-          </ul>
-        `,
-        faq: FAQ_ITEMS,
-      }}
     >
       <ExtractPagesClient />
     </ToolLayout>

@@ -123,23 +123,6 @@ export default function MergePDFPage() {
           { name: "Organize PDF", href: "/organize-pdf" },
           { name: "Compress PDF", href: "/compress-pdf" },
         ]}
-        seoContent={{
-          h1: "Merge PDF Files Online for Free",
-          h2: "How to Merge PDF Files",
-          content: `
-            <p>Our free PDF merger allows you to combine multiple PDF documents into a single file quickly and easily. Whether you need to merge invoices, reports, chapters, or any other PDF documents, our tool handles it seamlessly.</p>
-            <p><strong>Key features:</strong></p>
-            <ul>
-              <li>Merge unlimited PDF files for free</li>
-              <li>Drag and drop interface for easy reordering</li>
-              <li>Maintains original quality of all documents</li>
-              <li>Secure processing with automatic file deletion</li>
-              <li>No registration or watermarks</li>
-            </ul>
-            <p>Perfect for students combining research papers, professionals merging reports, or anyone needing to organize multiple PDFs into one document.</p>
-          `,
-          faq: FAQ_ITEMS,
-        }}
       >
         <ToolComponent
           toolName="merge-pdf"

@@ -2,6 +2,9 @@
 
 import { useTranslations } from "next-intl";
 import { AIToolsSection } from "@/components/ai/ai-tools-section";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
+import { ArrowRight } from "lucide-react";
+import { Link } from "@/routing";
 
 export default function AIToolsPage() {
   const t = useTranslations("ai_tools");
@@ -78,6 +81,30 @@ export default function AIToolsPage() {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-12 rounded-2xl border border-gray-200 bg-white p-4 sm:p-8 overflow-hidden dark:border-gray-800 dark:bg-gray-900">
+          <ToolSeoSection toolKey="ai_tools" />
+        </div>
+
+        <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-4 sm:p-8 dark:border-gray-800 dark:bg-gray-900">
+          <h3 className="text-lg font-semibold">{t("related_tools_title" as any) || "Related Tools"}</h3>
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { name: "OCR PDF", href: "/ocr-pdf" },
+              { name: "Compress PDF", href: "/compress-pdf" },
+              { name: "PDF to Word", href: "/pdf-to-word" },
+            ].map((tool) => (
+              <Link
+                key={tool.href}
+                href={tool.href}
+                className="group flex items-center justify-between rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium transition-colors hover:border-blue-300 hover:bg-blue-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-blue-600 dark:hover:bg-gray-700"
+              >
+                <span>{tool.name}</span>
+                <ArrowRight className="h-4 w-4 text-gray-400 transition-transform group-hover:translate-x-1 group-hover:text-blue-500" />
+              </Link>
+            ))}
           </div>
         </div>
       </div>

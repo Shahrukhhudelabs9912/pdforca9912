@@ -98,25 +98,7 @@ export default function SplitPDFPage() {
         { name: "Extract Pages", href: "/extract-pages" },
         { name: "Organize PDF", href: "/organize-pdf" },
       ]}
-      seoContent={{
-        h1: "Split PDF Files Online for Free",
-        h2: "How to Split PDF Files",
-        content: `
-          <p>Our free PDF splitter allows you to divide large PDF documents into smaller files or extract specific pages quickly and easily. Whether you need to separate chapters, extract important pages, or split a large document for email attachments, our tool handles it seamlessly.</p>
-          <p><strong>Key features:</strong></p>
-          <ul>
-            <li>Split PDF by page ranges (e.g., 1-10, 11-20)</li>
-            <li>Extract specific pages (e.g., 1, 3, 5, 7-9)</li>
-            <li>Split every N pages automatically</li>
-            <li>Maintains original quality of all documents</li>
-            <li>Secure processing with automatic file deletion</li>
-            <li>No registration or watermarks</li>
-          </ul>
-          <p>Perfect for students extracting chapters from textbooks, professionals separating reports, or anyone needing to organize large PDFs into manageable files.</p>
-        `,
-        faq: FAQ_ITEMS,
-      }}
-    >
+      >
       <SplitPDFClient />
     </ToolLayout>
     </>

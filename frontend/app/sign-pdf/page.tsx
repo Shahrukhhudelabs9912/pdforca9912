@@ -94,21 +94,6 @@ export default function SignPDFPage() {
         { name: "Add Watermark", href: "/add-watermark" },
         { name: "Compress PDF", href: "/compress-pdf" },
       ]}
-      seoContent={{
-        h1: "Sign PDF Online for Free",
-        h2: "How to Sign a PDF",
-        content: `
-          <p>Sign any PDF in seconds. Type your name and we'll render it in a handwritten-style font, or upload a transparent PNG of your handwritten signature. Click anywhere on the page to drop the signature, then download the signed PDF.</p>
-          <p><strong>Key features:</strong></p>
-          <ul>
-            <li>Type a signature in a script font, or upload an image</li>
-            <li>Click to position; resize before stamping</li>
-            <li>Original PDF quality preserved</li>
-            <li>Files auto-deleted after processing</li>
-          </ul>
-        `,
-        faq: FAQ_ITEMS,
-      }}
     >
       <SignPDFClient />
     </ToolLayout>

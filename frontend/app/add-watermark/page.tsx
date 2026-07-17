@@ -98,25 +98,6 @@ export default function AddWatermarkPage() {
         { name: "Sign PDF", href: "/sign-pdf" },
         { name: "Page Numbering", href: "/page-numbering" },
       ]}
-      seoContent={{
-        h1: "Add Watermark to PDF Online for Free",
-        h2: "How to Add Watermark to PDF",
-        content: `
-          <p>Our free PDF watermark tool allows you to add text or image watermarks to your PDF documents quickly and easily. Whether you need to add a "Confidential" stamp, company logo, or copyright notice, our tool handles it seamlessly.</p>
-          <p><strong>Key features:</strong></p>
-          <ul>
-            <li>Add text watermarks with custom font, size, and color</li>
-            <li>Upload image watermarks (PNG, JPG, SVG)</li>
-            <li>Control position (center, corners, repeated)</li>
-            <li>Adjust opacity and rotation angle</li>
-            <li>Apply to all pages or specific pages</li>
-            <li>Secure processing with automatic file deletion</li>
-            <li>No registration or watermarks on our side</li>
-          </ul>
-          <p>Perfect for businesses adding logos to documents, authors protecting their work, or organizations marking confidential materials.</p>
-        `,
-        faq: FAQ_ITEMS,
-      }}
     >
       <AddWatermarkClient />
     </ToolLayout>

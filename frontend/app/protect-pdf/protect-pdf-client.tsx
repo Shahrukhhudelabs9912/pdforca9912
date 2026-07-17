@@ -120,39 +120,11 @@ export function ProtectPDFClient() {
       toolName="Protect PDF"
       toolDescription="Secure your PDF files with password protection and 256-bit AES encryption. Control document permissions for printing, copying, and editing."
       toolKey="protect_pdf"
-      seoContent={{
-        h1: "Protect PDF Files with Password & Encryption",
-        h2: "How to Password Protect a PDF",
-        content: `
-          <p>Our PDF protection tool allows you to add strong password protection and encryption to your PDF files. With 256-bit AES encryption (the same standard used by banks and governments), your documents are secure from unauthorized access.</p>
-          <p><strong>Key features:</strong></p>
-          <ul>
-            <li>256-bit AES encryption for maximum security</li>
-            <li>Control document permissions (printing, copying, editing)</li>
-            <li>No password storage on our servers</li>
-            <li>Automatic file deletion after processing</li>
-          </ul>
-          <p>Perfect for protecting sensitive documents like contracts, financial reports, legal documents, and personal information.</p>
-        `,
-        faq: [
-          {
-            question: "How secure is PDF password protection?",
-            answer: "Our tool uses 256-bit AES encryption, the same standard used by banks and governments. Your password is never stored on our servers.",
-          },
-          {
-            question: "Can I remove password protection later?",
-            answer: "Yes, you can use an unlock PDF tool to remove password protection if you have the original password.",
-          },
-          {
-            question: "What permissions can I control?",
-            answer: "You can control printing, copying text/images, modifying content, and adding annotations/comments.",
-          },
-          {
-            question: "Is there a file size limit?",
-            answer: "Free users can protect PDFs up to 50MB. Pro users can protect files up to 500MB.",
-          },
-        ],
-      }}
+      relatedTools={[
+        { name: "Unlock PDF", href: "/unlock-pdf" },
+        { name: "Sign PDF", href: "/sign-pdf" },
+        { name: "Compress PDF", href: "/compress-pdf" },
+      ]}
     >
       <div className="grid gap-8 lg:grid-cols-2">
         {/* Left Column - Upload & Settings */}

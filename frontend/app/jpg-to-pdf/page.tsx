@@ -98,26 +98,6 @@ export default function JPGToPDFPage() {
         { name: "Merge PDF", href: "/merge-pdf" },
         { name: "Compress PDF", href: "/compress-pdf" },
       ]}
-      seoContent={{
-        h1: "Convert JPG to PDF Online for Free",
-        h2: "How to Convert Images to PDF",
-        content: `
-          <p>Our free JPG to PDF converter allows you to transform image files into professional PDF documents quickly and easily. Whether you need to convert photos, screenshots, or scanned documents to PDF format, our tool delivers excellent results.</p>
-          <p><strong>Key features:</strong></p>
-          <ul>
-            <li>Convert JPG, PNG, GIF, WebP, BMP, and TIFF to PDF</li>
-            <li>Combine multiple images into a single PDF document</li>
-            <li>Adjust page size (A4, Letter, Legal, Custom)</li>
-            <li>Choose portrait or landscape orientation</li>
-            <li>Customize margins and image placement</li>
-            <li>Maintain original image quality</li>
-            <li>Secure processing with automatic file deletion</li>
-            <li>No registration or watermarks</li>
-          </ul>
-          <p>Perfect for creating digital photo albums, converting scanned documents to PDF, preparing images for printing, or archiving photos in a standardized format.</p>
-        `,
-        faq: FAQ_ITEMS,
-      }}
     >
       <JPGToPDFClient />
     </ToolLayout>

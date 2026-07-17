@@ -144,23 +144,11 @@ export function PageNumberingClient() {
       toolName="Page Numbering"
       toolDescription={t("description")}
       toolKey="page_numbering"
-      seoContent={{
-        h1: "Add Page Numbers to PDF Online for Free",
-        h2: "How to Add Page Numbers to PDF",
-        content: `
-          <p>Our free PDF page numbering tool allows you to add professional page numbers to your documents quickly and easily. Whether you need simple numeric pagination, Roman numerals, or custom formats like "Page X of Y", our tool handles it all.</p>
-          <p><strong>Key features:</strong></p>
-          <ul>
-            <li>Multiple number formats: 1, 2, 3... or i, ii, iii... or A, B, C...</li>
-            <li>Custom starting page number</li>
-            <li>Control which pages get numbered (all, odd, even, specific ranges)</li>
-            <li>Choose position: top/bottom, left/center/right</li>
-            <li>Customize font, size, color, and style</li>
-            <li>Secure processing with automatic file deletion</li>
-          </ul>
-        `,
-        faq: [],
-      }}
+      relatedTools={[
+        { name: "Organize PDF", href: "/organize-pdf" },
+        { name: "Add Watermark", href: "/add-watermark" },
+        { name: "Merge PDF", href: "/merge-pdf" },
+      ]}
     >
       <div className="space-y-6">
         {/* File Upload */}

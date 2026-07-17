@@ -83,19 +83,6 @@ export default function PowerPointToPDFPage() {
         { name: "Word to PDF", href: "/word-to-pdf" },
         { name: "Excel to PDF", href: "/excel-to-pdf" },
       ]}
-      seoContent={{
-        h1: "Convert PowerPoint to PDF Online for Free",
-        h2: "How to Convert PPT to PDF",
-        content: `
-          <p>Upload a .ppt or .pptx slide deck and get a PDF that preserves your layout, fonts, and images. Conversion runs on the same headless LibreOffice engine used for Word to PDF.</p>
-          <ul>
-            <li>Supports .ppt and .pptx</li>
-            <li>Preserves text, fonts, and images</li>
-            <li>Files automatically deleted after processing</li>
-          </ul>
-        `,
-        faq: FAQ_ITEMS,
-      }}
     >
       <PowerPointToPDFClient />
     </ToolLayout>

@@ -84,24 +84,6 @@ export default function WordToPDFPage() {
           { name: "Excel to PDF", href: "/excel-to-pdf" },
           { name: "Merge PDF", href: "/merge-pdf" },
         ]}
-        seoContent={{
-          h1: "Convert Word to PDF Online for Free",
-          h2: "How to Convert Word to PDF",
-          content: `
-            <p>Our free Word to PDF converter allows you to transform any Microsoft Word document (.doc, .docx) into a professional PDF file while preserving the original formatting, fonts, and layout.</p>
-            <p><strong>Key features:</strong></p>
-            <ul>
-              <li>Convert Word to PDF with perfect formatting</li>
-              <li>Preserve fonts, images, tables, and hyperlinks</li>
-              <li>Maintain page layout and margins</li>
-              <li>Secure processing with automatic file deletion</li>
-              <li>No registration or watermarks</li>
-              <li>Support for multiple Word formats (.doc, .docx, .rtf)</li>
-            </ul>
-            <p>Perfect for creating professional documents, sharing resumes, submitting assignments, or archiving important files in a universal format.</p>
-          `,
-          faq: FAQ_ITEMS,
-        }}
       >
         <WordToPDFClient />
       </ToolLayout>

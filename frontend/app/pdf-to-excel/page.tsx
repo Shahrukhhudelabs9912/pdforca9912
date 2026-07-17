@@ -84,25 +84,6 @@ export default function PDFToExcelPage() {
           { name: "PDF to Word", href: "/pdf-to-word" },
           { name: "PDF to PowerPoint", href: "/pdf-to-powerpoint" },
         ]}
-        seoContent={{
-          h1: "Convert PDF to Excel Online Free",
-          h2: "How to Convert PDF to Excel",
-          content: `
-            <p>Our free PDF to Excel converter allows you to extract tables from any PDF document and convert them into editable Microsoft Excel spreadsheets (.xlsx) while preserving the original table structure, rows, and columns.</p>
-            <p><strong>Key features:</strong></p>
-            <ul>
-              <li>Extract tables from PDF to Excel with high accuracy</li>
-              <li>Preserve table structure, rows, and columns</li>
-              <li>Support for multi-page PDFs with multiple tables</li>
-              <li>Each table extracted to a separate Excel sheet</li>
-              <li>Professional formatting with headers and borders</li>
-              <li>Secure processing with automatic file deletion</li>
-              <li>No registration or watermarks</li>
-            </ul>
-            <p>Perfect for extracting financial data, reports, invoices, or any tabular data from PDF documents into Excel for analysis and editing.</p>
-          `,
-          faq: FAQ_ITEMS,
-        }}
       >
         <PDFToExcelClient />
       </ToolLayout>

@@ -93,21 +93,6 @@ export default function RotatePDFPage() {
         { name: "Split PDF", href: "/split-pdf" },
         { name: "Merge PDF", href: "/merge-pdf" },
       ]}
-      seoContent={{
-        h1: "Rotate PDF Pages Online for Free",
-        h2: "How to Rotate a PDF",
-        content: `
-          <p>Our free Rotate PDF tool turns pages clockwise or counter-clockwise so every page faces the right way up. Rotate the whole document or just the pages that need fixing.</p>
-          <p><strong>Key features:</strong></p>
-          <ul>
-            <li>Rotate by 90°, 180°, or 270°</li>
-            <li>Apply to all pages or a custom range like <code>1,3,5-7</code></li>
-            <li>Original quality preserved — no re-rendering</li>
-            <li>Files deleted automatically after processing</li>
-          </ul>
-        `,
-        faq: FAQ_ITEMS,
-      }}
     >
       <RotatePDFClient />
     </ToolLayout>

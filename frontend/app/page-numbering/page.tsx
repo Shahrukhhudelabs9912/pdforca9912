@@ -7,7 +7,6 @@ import {
   FAQPageJsonLd,
   BreadcrumbJsonLd,
 } from "@/components/seo/json-ld";
-import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolSeoHeader } from "@/components/tools/tool-seo-header";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
@@ -77,7 +76,6 @@ export default function PageNumberingPage() {
       <FAQPageJsonLd items={FAQ_ITEMS} />
       <ToolSeoHeader toolKey="page_numbering" />
       <PageNumberingClient />
-      <ToolSeoSection toolKey="page_numbering" />
     </>
   );
 }

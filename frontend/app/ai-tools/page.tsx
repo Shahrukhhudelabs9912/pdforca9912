@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import {
   SoftwareApplicationJsonLd,
   HowToJsonLd,
@@ -90,7 +89,6 @@ export default function AiToolsPage() {
       />
       <FAQPageJsonLd items={FAQ_ITEMS} />
       <AiToolsClient />
-      <ToolSeoSection toolKey="ai_tools" />
     </>
   );
 }

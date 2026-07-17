@@ -84,24 +84,6 @@ export default function PDFToWordPage() {
           { name: "PDF to Excel", href: "/pdf-to-excel" },
           { name: "Compress PDF", href: "/compress-pdf" },
         ]}
-        seoContent={{
-          h1: "Convert PDF to Word Online for Free",
-          h2: "How to Convert PDF to Word",
-          content: `
-            <p>Our free PDF to Word converter allows you to transform any PDF document into an editable Microsoft Word file (.docx) while preserving the original formatting, fonts, tables, and images.</p>
-            <p><strong>Key features:</strong></p>
-            <ul>
-              <li>Convert PDF to Word with high accuracy</li>
-              <li>Preserve formatting, fonts, and layout</li>
-              <li>Maintain tables, images, and hyperlinks</li>
-              <li>Secure processing with automatic file deletion</li>
-              <li>No registration or watermarks</li>
-              <li>Support for scanned PDFs with OCR technology</li>
-            </ul>
-            <p>Perfect for editing contracts, resumes, reports, or any document that was originally created as a PDF but needs modifications.</p>
-          `,
-          faq: FAQ_ITEMS,
-        }}
       >
         <PDFToWordClient />
       </ToolLayout>

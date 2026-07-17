@@ -1,11 +1,12 @@
 "use client";
 
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { FileText, Shield, Zap, Globe, Check, ArrowRight } from "lucide-react";
 import { AdBanner } from "@/components/ad-banner";
 import { Link } from "@/routing";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -17,12 +18,6 @@ interface ToolLayoutProps {
   children: ReactNode;
   /** Translation namespace key, e.g. "merge_pdf", "compress_pdf". When provided, title/description fall back to translated values from that namespace. */
   toolKey?: string;
-  seoContent?: {
-    h1: string;
-    h2: string;
-    content: string;
-    faq?: Array<{ question: string; answer: string }>;
-  };
   relatedTools?: Array<{ name: string; href: string }>;
 }
 
@@ -33,7 +28,6 @@ export function ToolLayout({
   toolDescription,
   children,
   toolKey,
-  seoContent,
   relatedTools,
 }: ToolLayoutProps) {
   const t = useTranslations("tool_pages");
@@ -42,31 +36,13 @@ export function ToolLayout({
   const displayTitle = toolKey ? (tt("title" as any) || title) : title;
   const displayDescription = toolKey ? (tt("description" as any) || description) : description;
 
-  // Prefer translated SEO content when toolKey is available
-  const seoH1 = toolKey ? (tt("seo_h1" as any) || seoContent?.h1) : seoContent?.h1;
-  const seoH2 = toolKey ? (tt("seo_h2" as any) || seoContent?.h2) : seoContent?.h2;
-  const seoFaq: Array<{ question: string; answer: string }> | undefined =
-    toolKey
-      ? (() => {
-          try {
-            return tt.raw("seo_faq" as any) as any;
-          } catch {
-            return seoContent?.faq;
-          }
-        })()
-      : seoContent?.faq;
-
-  // Prefer translated long-form body (seo_content) when toolKey is available,
-  // falling back to the seoContent.content prop passed by the page.
-  const seoBody: string | undefined = toolKey
-    ? (() => {
-        try {
-          return (tt.raw("seo_content" as any) as string) || seoContent?.content;
-        } catch {
-          return seoContent?.content;
-        }
-      })()
-    : seoContent?.content;
+  const seoH1 = (() => {
+    try {
+      return toolKey ? (tt("seo_h1" as any) as string) || undefined : undefined;
+    } catch {
+      return undefined;
+    }
+  })();
 
   const howToSteps: string[] = [
     t("how_to_step1"),
@@ -122,26 +98,9 @@ export function ToolLayout({
 
             <AdBanner slot="TOOL_BELOW" format="horizontal" responsive={false} className="mt-6" />
 
-            {seoContent && (
+            {toolKey && (
               <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-4 sm:p-8 overflow-hidden dark:border-gray-800 dark:bg-gray-900">
-                <div className="prose prose-lg dark:prose-invert max-w-none">
-                  <h2>{seoH2 || seoContent.h2}</h2>
-                  {seoBody && <div dangerouslySetInnerHTML={{ __html: seoBody }} />}
-
-                  {(seoFaq && seoFaq.length > 0) && (
-                    <div className="mt-8">
-                      <h3>{t("faq_title")}</h3>
-                      <div className="space-y-4">
-                        {seoFaq.map((item, index) => (
-                          <div key={index} className="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
-                            <h4 className="font-semibold">{item.question}</h4>
-                            <p className="mt-2 text-gray-600 dark:text-gray-300">{item.answer}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
+                <ToolSeoSection toolKey={toolKey} />
               </div>
             )}
 

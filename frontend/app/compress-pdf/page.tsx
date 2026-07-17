@@ -98,24 +98,7 @@ export default function CompressPDFPage() {
         { name: "PDF to Word", href: "/pdf-to-word" },
         { name: "PDF to JPG", href: "/pdf-to-jpg" },
       ]}
-      seoContent={{
-        h1: "Compress PDF Files Online for Free",
-        h2: "How to Compress PDF Files",
-        content: `
-          <p>Our free PDF compressor reduces the file size of your PDF documents while maintaining visual quality. Perfect for email attachments, web uploads, or saving storage space.</p>
-          <p><strong>Key features:</strong></p>
-          <ul>
-            <li>Reduce PDF file size by up to 90%</li>
-            <li>Three compression levels: Low, Medium, High</li>
-            <li>Preserves text quality and readability</li>
-            <li>Secure processing with automatic file deletion</li>
-            <li>No registration or watermarks</li>
-          </ul>
-          <p>Ideal for students submitting assignments, professionals sharing reports, or anyone needing to optimize PDFs for faster sharing.</p>
-        `,
-        faq: FAQ_ITEMS,
-      }}
-    >
+      >
       <CompressPDFTool />
     </ToolLayout>
     </>

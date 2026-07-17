@@ -84,21 +84,6 @@ export default function OcrPDFPage() {
         { name: "Compress PDF", href: "/compress-pdf" },
         { name: "PDF to Excel", href: "/pdf-to-excel" },
       ]}
-      seoContent={{
-        h1: "Make Scanned PDFs Searchable",
-        h2: "How OCR PDF Works",
-        content: `
-          <p>Upload a scanned PDF. We run OCR on every page and return the same document with an invisible text layer mapped to the visible glyphs — so you can search, select, and copy text in any PDF reader.</p>
-          <p><strong>Key features:</strong></p>
-          <ul>
-            <li>Adds a true text layer — pages look identical to the original</li>
-            <li>Already-searchable pages are left untouched (no double-OCR)</li>
-            <li>Supports English and Hindi</li>
-            <li>Files auto-deleted after processing</li>
-          </ul>
-        `,
-        faq: FAQ_ITEMS,
-      }}
     >
       <OcrPDFClient />
     </ToolLayout>

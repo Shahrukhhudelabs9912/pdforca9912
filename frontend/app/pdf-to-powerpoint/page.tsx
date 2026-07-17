@@ -83,22 +83,7 @@ export default function PDFToPowerPointPage() {
         { name: "PDF to Word", href: "/pdf-to-word" },
         { name: "PDF to Excel", href: "/pdf-to-excel" },
       ]}
-      seoContent={{
-        h1: "Convert PDF to PowerPoint Online",
-        h2: "How PDF to PowerPoint Works",
-        content: `
-          <p>Upload any PDF and get back a .pptx file where every page is dropped onto its own slide as a high-resolution image — preserving the exact look of the original.</p>
-          <p><strong>Key features:</strong></p>
-          <ul>
-            <li>Each PDF page becomes one slide</li>
-            <li>Layout, colors, and fonts preserved exactly</li>
-            <li>16:9 widescreen slide format</li>
-            <li>No registration or watermarks</li>
-          </ul>
-        `,
-        faq: FAQ_ITEMS,
-      }}
-    >
+      >
       <PDFToPowerPointClient />
     </ToolLayout>
     </>

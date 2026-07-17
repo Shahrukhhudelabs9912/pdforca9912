@@ -261,41 +261,11 @@ export function OrganizePDFClient() {
       toolName="Organize PDF"
       toolDescription={t("description")}
       toolKey="organize_pdf"
-      seoContent={{
-        h1: "Organize PDF Pages Online for Free",
-        h2: "How to Organize PDF Pages",
-        content: `
-          <p>Our free PDF organizer tool gives you complete control over your document's structure. Whether you need to rearrange pages for a presentation, remove unnecessary sections, or sort pages in a specific order, our tool makes it simple and intuitive.</p>
-          <p><strong>Key features:</strong></p>
-          <ul>
-            <li>Drag and drop interface for easy page reordering</li>
-            <li>Sort pages numerically, ascending or descending</li>
-            <li>Delete unwanted pages with one click</li>
-            <li>Grid and list view modes</li>
-            <li>Reset to original page order anytime</li>
-            <li>Secure processing with automatic file deletion</li>
-          </ul>
-          <p>Perfect for organizing reports, creating presentations, compiling portfolios, or preparing documents for printing.</p>
-        `,
-        faq: [
-          {
-            question: "Can I organize multiple PDFs at once?",
-            answer: "Yes! You can upload multiple PDF files and organize their pages together as if they were a single document. Our tool merges them temporarily for organization.",
-          },
-          {
-            question: "How do I reorder pages?",
-            answer: "Simply drag and drop page thumbnails to rearrange them. You can also use our sorting options to automatically organize pages by number, ascending or descending order.",
-          },
-          {
-            question: "Can I delete pages from my PDF?",
-            answer: "Absolutely. Hover over any page and click the trash icon to delete it. Use 'Reset to Original' to restore all deleted pages.",
-          },
-          {
-            question: "Is there a limit to the number of pages I can organize?",
-            answer: "Our free tier supports PDFs with up to 500 pages. For larger documents, consider splitting them first or upgrading to our premium plan.",
-          },
-        ],
-      }}
+      relatedTools={[
+        { name: "Merge PDF", href: "/merge-pdf" },
+        { name: "Split PDF", href: "/split-pdf" },
+        { name: "Rotate PDF", href: "/rotate-pdf" },
+      ]}
     >
       <div className="space-y-6 lg:col-span-2">
         {/* Upload Section */}
