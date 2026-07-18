@@ -6,7 +6,7 @@ from typing import Optional
 from fastapi import APIRouter, File, Form, Header, HTTPException, Request, UploadFile, status
 from fastapi.responses import Response
 
-from app.services.ai_tools_service import analyze_pdf, generate_report
+from app.services.ai_tools_service import analyze_pdf, generate_report_pdf
 from app.services.auth_service import (
     get_user_by_id,
     _sanitize_user,
@@ -166,6 +166,7 @@ async def generate_report_endpoint(
     request: Request,
     file: UploadFile = File(...),
     summary: str = Form(""),
+    structuredSummary: str = Form(""),
     title: str = Form(""),
     key_points_raw: str = Form(""),  # JSON array string
     wordCount: int = Form(0),
@@ -175,7 +176,7 @@ async def generate_report_endpoint(
     confidence: float = Form(0.0),
     authorization: Optional[str] = Header(None, alias="Authorization"),
 ):
-    """Generate a formatted DOCX report from pre-computed AI analysis data.
+    """Generate a formatted PDF report from pre-computed AI analysis data.
 
     Authenticated users have their daily report export limit enforced.
     """
@@ -188,6 +189,7 @@ async def generate_report_endpoint(
     analysis_result = {
         "title": title or file.filename or "Document Analysis",
         "summary": summary,
+        "structuredSummary": structuredSummary,
         "keyPoints": key_points,
         "wordCount": wordCount,
         "pageCount": pageCount,
@@ -210,7 +212,18 @@ async def generate_report_endpoint(
                     detail="Daily report export limit reached. Please try again tomorrow.",
                 )
 
-        docx_bytes = await run_blocking(generate_report, analysis_result, file.filename or "document.pdf")
+        # Read the source PDF so the structured summary can be built lazily at
+        # download time (only when the client didn't already supply one).
+        source_bytes = None if structuredSummary else await file.read()
+
+        # Bound how many heavy LibreOffice jobs run at once (shared limiter).
+        async with heavy_job_slot():
+            pdf_bytes = await run_blocking(
+                generate_report_pdf,
+                analysis_result,
+                file.filename or "document.pdf",
+                source_bytes,
+            )
 
         # Increment usage counter for authenticated users
         if current_user:
@@ -219,11 +232,11 @@ async def generate_report_endpoint(
         user_id = current_user["id"] if current_user else None
         await _track_usage(user_id, "report_export", {"filename": file.filename})
 
-        download_name = file.filename.replace(".pdf", "_ai_report.docx") if file.filename else "ai_report.docx"
+        download_name = file.filename.replace(".pdf", "_ai_report.pdf") if file.filename else "ai_report.pdf"
 
         return Response(
-            content=docx_bytes,
-            media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            content=pdf_bytes,
+            media_type="application/pdf",
             headers={"Content-Disposition": _content_disposition(download_name)},
         )
     except HTTPException:

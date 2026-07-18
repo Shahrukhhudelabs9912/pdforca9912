@@ -18,11 +18,13 @@ import {
   AlertCircle,
   BarChart,
   Share2,
+  ScanText,
 } from "lucide-react";
 import { cn, formatFileSize } from "@/lib/utils";
-import { triggerDownload } from "@/lib/download-utils";
+import { triggerDownload, resolveDownloadFilename } from "@/lib/download-utils";
 import { useTranslations } from "next-intl";
 import { ButtonLoader, AIProcessingLoader } from "@/components/brand-loader";
+import { useFileContext } from "@/lib/file-context";
 
 // ── Types ────────────────────────────────────────────────────────────
 
@@ -37,12 +39,14 @@ type AIResult = {
   readingTime: string;
   sentiment: "positive" | "neutral" | "negative";
   confidence: number;
+  ocrUsed: boolean;
 };
 
 // ── Component ────────────────────────────────────────────────────────
 
 export function AIToolsSection() {
   const t = useTranslations("ai_tools");
+  const { clearFiles } = useFileContext();
 
   const [files, setFiles] = useState<File[]>([]);
   const [analysisFile, setAnalysisFile] = useState<File | null>(null);
@@ -94,7 +98,8 @@ export function AIToolsSection() {
     setDownloadFilename(null);
     setFiles([]);
     setAnalysisFile(null);
-  }, [stopProgressSimulation]);
+    clearFiles(); // also clear the shared FileUpload context list
+  }, [stopProgressSimulation, clearFiles]);
 
   // ── File Upload ──────────────────────────────────────────────────────
 
@@ -155,6 +160,7 @@ export function AIToolsSection() {
         readingTime: data.readingTime || data.reading_time || "Unknown",
         sentiment: (data.sentiment || "neutral") as AIResult["sentiment"],
         confidence: data.confidence || 0,
+        ocrUsed: Boolean(data.ocrUsed ?? data.ocr_used),
       };
 
       stopProgressSimulation();
@@ -192,6 +198,10 @@ export function AIToolsSection() {
       toast.error(t("no_file_for_report"));
       return;
     }
+    if (!result) {
+      toast.error(t("no_file_for_report"));
+      return;
+    }
 
     setIsDownloading(true);
     setErrorMessage(null);
@@ -199,6 +209,17 @@ export function AIToolsSection() {
     try {
       const formData = new FormData();
       formData.append("file", analysisFile);
+      // The /report endpoint formats a PDF from pre-computed analysis data;
+      // it does NOT re-run analysis. Send the results from startAnalysis or
+      // the report comes back empty.
+      formData.append("summary", result.summary);
+      formData.append("title", result.title);
+      formData.append("key_points_raw", JSON.stringify(result.keyPoints));
+      formData.append("wordCount", String(result.wordCount));
+      formData.append("pageCount", String(result.pageCount));
+      formData.append("readingTime", result.readingTime);
+      formData.append("sentiment", result.sentiment);
+      formData.append("confidence", String(result.confidence));
 
       const response = await fetch("/api/ai-tools/report", {
         method: "POST",
@@ -214,13 +235,9 @@ export function AIToolsSection() {
 
       const blob = await response.blob();
 
-      // Resolve filename from Content-Disposition header or fallback
-      const contentDisp = response.headers.get("Content-Disposition");
-      let filename = "ai-analysis-report.docx";
-      if (contentDisp) {
-        const match = contentDisp.match(/filename="([^"]+)"/);
-        if (match?.[1]) filename = match[1];
-      }
+      // Resolve filename — prefers RFC 5987 filename* so Unicode names
+      // (Hindi, etc.) survive instead of being mangled to underscores.
+      const filename = await resolveDownloadFilename(response, "ai-analysis-report", blob);
 
       // Store for manual re-download fallback
       setDownloadBlob(blob);
@@ -243,7 +260,7 @@ export function AIToolsSection() {
     } finally {
       setIsDownloading(false);
     }
-  }, [analysisFile, downloadBlob]);
+  }, [analysisFile, downloadBlob, result]);
 
   // ── Clear ────────────────────────────────────────────────────────────
 
@@ -286,26 +303,7 @@ export function AIToolsSection() {
   // ── Render ───────────────────────────────────────────────────────────
 
   return (
-    <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
-      <div className="text-center mb-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="inline-flex items-center justify-center p-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-4">
-            <Brain className="h-6 w-6 text-white" />
-          </div>
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
-            {t("section_title")}
-          </h1>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            {t("section_subtitle")}
-          </p>
-        </motion.div>
-      </div>
-
-      <div className="grid gap-8 lg:grid-cols-2">
+      <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
         {/* Left side - Upload and Controls */}
         <div className="space-y-8">
           <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-lg">
@@ -445,7 +443,7 @@ export function AIToolsSection() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="p-4 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-colors"
+                  className="p-4 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-md hover:-translate-y-0.5 transition-all"
                 >
                   <div
                     className={`h-12 w-12 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center mb-3`}
@@ -541,10 +539,25 @@ export function AIToolsSection() {
                   <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
                     <p className="text-sm text-gray-600 dark:text-gray-400">{t("stats_confidence")}</p>
                     <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                      {result.confidence}%
+                      {result.ocrUsed ? "—" : `${result.confidence}%`}
                     </p>
                   </div>
                 </div>
+
+                {/* OCR notice — text was extracted via OCR, so accuracy may vary */}
+                {result.ocrUsed && (
+                  <div className="flex items-start gap-3 p-4 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
+                    <ScanText className="h-5 w-5 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-semibold text-amber-800 dark:text-amber-300">
+                        {t("ocr_notice_title")}
+                      </p>
+                      <p className="text-sm text-amber-700 dark:text-amber-400 mt-0.5">
+                        {t("ocr_notice_text")}
+                      </p>
+                    </div>
+                  </div>
+                )}
 
                 {/* Sentiment Badge */}
                 {result.sentiment && (
@@ -607,8 +620,8 @@ export function AIToolsSection() {
                           {t("copy_summary")}
                         </Button>
                       </div>
-                      <div className="prose prose-gray dark:prose-invert max-w-none">
-                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      <div className="rounded-xl bg-gray-50 dark:bg-gray-800/50 p-4">
+                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
                           {result.summary || t("no_summary")}
                         </p>
                       </div>
@@ -719,6 +732,5 @@ export function AIToolsSection() {
           </div>
         </div>
       </div>
-    </div>
   );
 }

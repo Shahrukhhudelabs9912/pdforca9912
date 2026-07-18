@@ -129,9 +129,26 @@ def _chat(
         }
         if json_mode:
             kwargs["response_format"] = {"type": "json_object"}
+        # Reasoning models (gpt-oss, etc.) burn completion tokens on hidden
+        # reasoning first. Capping the effort stops short answers from being
+        # starved to an empty string. Omitted when unset so non-reasoning
+        # models don't reject the param.
+        effort = (settings.GROQ_REASONING_EFFORT or "").strip()
+        if effort:
+            kwargs["reasoning_effort"] = effort
         resp = client.chat.completions.create(**kwargs)
         _QUOTA.increment()
-        text = resp.choices[0].message.content
+        choice = resp.choices[0]
+        text = choice.message.content
+        # A reasoning model that runs out of budget returns finish_reason
+        # "length" with empty content. Treat that as a failure so the caller
+        # can fall back rather than surface a blank result.
+        if not text and getattr(choice, "finish_reason", None) == "length":
+            logger.warning(
+                "Groq returned empty content (finish_reason=length); "
+                "reasoning likely consumed the token budget"
+            )
+            return None
         return text.strip() if text else None
     except Exception as exc:  # noqa: BLE001
         # Common reasons: 429 quota, network error, model unavailable.
@@ -151,15 +168,57 @@ def summarize(text: str, *, max_words: int = 80) -> Optional[str]:
     system = (
         "You are an expert document analyst. Produce concise, factual summaries "
         "that capture the most important information. Plain prose only — no "
-        "bullet points, no preamble, no meta-commentary."
+        "bullet points, no preamble, no meta-commentary. Always write the "
+        "summary in clear English, even when the source document is in another "
+        "language (translate the meaning; do not copy the original text)."
     )
     user = (
         f"Summarize the following document in approximately {max_words} words. "
-        f"Focus on key facts, decisions, and outcomes. Output only the summary "
+        f"Focus on key facts, decisions, and outcomes. Write the summary in "
+        f"English regardless of the document's language. Output only the summary "
         f"text — no headings, no quotes around the summary.\n\n"
         f"DOCUMENT:\n{truncated}"
     )
-    return _chat(system, user, max_tokens=400, temperature=0.2)
+    return _chat(system, user, max_tokens=600, temperature=0.2)
+
+
+def summarize_structured(text: str) -> Optional[str]:
+    """Generate a structured summary as newline-separated ``Label: content`` lines.
+
+    Mirrors the clean, iLovePDF-style layout: a series of short labeled sections
+    (Subject, Authority, Key dates, Details, Conditions, Exclusions, …) chosen to
+    fit the document, one per line, in English. The PDF renderer bolds the label
+    portion of each line. Falls back to plain prose via :func:`summarize` upstream.
+    """
+    if len(text.strip()) < 50:
+        return None
+    truncated = text[:8000]
+    system = (
+        "You are an expert document analyst. You produce clean, structured "
+        "summaries broken into short labeled sections. Always write in clear "
+        "English, even when the source document is in another language "
+        "(translate the meaning; do not copy the original text)."
+    )
+    user = (
+        "Summarize the following document as a structured summary.\n"
+        "Formatting rules (follow exactly):\n"
+        "- Output a series of lines, each formatted as 'Label: content'.\n"
+        "- Choose 4-9 concise labels that fit THIS document, e.g. Subject, "
+        "Purpose, Authority, Key dates, Details, Conditions, Payment terms, "
+        "Exclusions, Actions, Outcome. Only use labels that apply.\n"
+        "- One section per line. Keep each line focused and factual.\n"
+        "- Where a section has several discrete items (amounts, tiers, dates), "
+        "list each item on its own line prefixed with '- '.\n"
+        "- No markdown symbols (no #, *, **). No preamble. No closing remarks.\n"
+        "- Write everything in English regardless of the document's language.\n\n"
+        f"DOCUMENT:\n{truncated}"
+    )
+    result = _chat(system, user, max_tokens=1200, temperature=0.2)
+    if not result:
+        return None
+    # Strip any stray markdown emphasis the model may still emit.
+    cleaned = result.replace("**", "").replace("__", "").strip()
+    return cleaned or None
 
 
 def extract_key_points(text: str, *, num_points: int = 5) -> Optional[List[str]]:
@@ -169,17 +228,20 @@ def extract_key_points(text: str, *, num_points: int = 5) -> Optional[List[str]]
     truncated = text[:8000]
     system = (
         "You extract key insights from documents. Each point must be a "
-        "complete, standalone sentence. Return strictly valid JSON."
+        "complete, standalone sentence written in clear English, even when the "
+        "source document is in another language (translate the meaning; do not "
+        "copy the original text). Return strictly valid JSON."
     )
     user = (
         f'Extract exactly {num_points} key points from the following document. '
         f'Each point must be a complete, distinct insight that captures a '
         f'unique fact or decision (no overlap between points). '
+        f'Write every point in English regardless of the document language. '
         f'Respond with ONLY this JSON shape:\n'
         f'{{"points": ["point 1", "point 2", ...]}}\n\n'
         f"DOCUMENT:\n{truncated}"
     )
-    raw = _chat(system, user, json_mode=True, max_tokens=600, temperature=0.2)
+    raw = _chat(system, user, json_mode=True, max_tokens=1000, temperature=0.2)
     if not raw:
         return None
     try:
@@ -200,13 +262,17 @@ def generate_title(text: str) -> Optional[str]:
     truncated = text[:4000]
     system = (
         "You generate concise, descriptive titles for documents. "
-        "5-12 words, title case, no quotes, no trailing punctuation."
+        "5-12 words, title case, no quotes, no trailing punctuation. Always "
+        "write the title in English, even when the source document is in "
+        "another language (translate the meaning; do not copy the original text)."
     )
     user = (
-        f"Generate a single short title for this document. Output only the "
-        f"title text, nothing else.\n\nDOCUMENT:\n{truncated}"
+        f"Generate a single short title for this document, in English. Output "
+        f"only the title text, nothing else.\n\nDOCUMENT:\n{truncated}"
     )
-    raw = _chat(system, user, max_tokens=60, temperature=0.3)
+    # Budget must cover hidden reasoning tokens + the title itself, or a
+    # reasoning model returns empty content and we lose the cloud title.
+    raw = _chat(system, user, max_tokens=512, temperature=0.3)
     if not raw:
         return None
     # Strip stray quotes / trailing punctuation the model sometimes adds.
@@ -229,7 +295,7 @@ def analyze_sentiment(text: str) -> Optional[Tuple[str, float]]:
         '"confidence": <number 0-100>}\n\n'
         f"DOCUMENT:\n{truncated}"
     )
-    raw = _chat(system, user, json_mode=True, max_tokens=80, temperature=0.0)
+    raw = _chat(system, user, json_mode=True, max_tokens=256, temperature=0.0)
     if not raw:
         return None
     try:

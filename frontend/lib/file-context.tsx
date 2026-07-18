@@ -9,6 +9,7 @@ const TOOL_PATHS = [
   '/compress-pdf', '/protect-pdf', '/page-numbering', '/organize-pdf',
   '/add-watermark', '/rotate-pdf', '/unlock-pdf', '/extract-pages',
   '/ocr-pdf', '/sign-pdf', '/pdf-to-powerpoint', '/powerpoint-to-pdf',
+  '/ai-tools',
 ];
 
 interface FileContextType {

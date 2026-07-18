@@ -1727,6 +1727,8 @@
     "no_key_points": "No key points extracted.",
     "no_summary": "No summary generated.",
     "no_title": "No title generated.",
+    "ocr_notice_title": "Text extracted via OCR",
+    "ocr_notice_desc": "This looks like a scanned or image-based PDF, so we read it with OCR. Results may contain minor recognition errors.",
     "generating_report": "Generating Report...",
     "share_btn": "Share",
     "manual_download_hint": "If the download didn't start automatically, click below:",

@@ -2,37 +2,30 @@
 
 import { useTranslations } from "next-intl";
 import { AIToolsSection } from "@/components/ai/ai-tools-section";
-import { ToolSeoSection } from "@/components/tools/tool-seo-section";
-import { ArrowRight } from "lucide-react";
-import { Link } from "@/routing";
+import { ToolLayout } from "@/components/tools/tool-layout";
 
 export default function AIToolsPage() {
   const t = useTranslations("ai_tools");
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
-      <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
-            {t("hero_heading_part1")}{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              {t("hero_heading_part2")}
-            </span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-3xl text-xl text-gray-600 dark:text-gray-300">
-            {t("hero_description")}
-          </p>
-        </div>
-
-        <AIToolsSection />
-
-        <div className="mt-20 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-white">
+    <ToolLayout
+      title={t("title")}
+      description={t("description")}
+      toolName={t("title")}
+      toolDescription={t("description")}
+      toolKey="ai_tools"
+      hideSidebar
+      relatedTools={[
+        { name: "OCR PDF", href: "/ocr-pdf" },
+        { name: "Compress PDF", href: "/compress-pdf" },
+        { name: "PDF to Word", href: "/pdf-to-word" },
+      ]}
+      footer={
+        <div className="rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 p-6 sm:p-8 text-white">
           <div className="grid gap-8 lg:grid-cols-2">
             <div>
-              <h2 className="text-3xl font-bold">{t("how_it_works_title")}</h2>
-              <p className="mt-4 text-blue-100">
-                {t("how_it_works_text")}
-              </p>
+              <h2 className="text-2xl sm:text-3xl font-bold">{t("how_it_works_title")}</h2>
+              <p className="mt-4 text-blue-100">{t("how_it_works_text")}</p>
               <div className="mt-6 space-y-4">
                 {[
                   t("feature_accuracy"),
@@ -83,31 +76,9 @@ export default function AIToolsPage() {
             </div>
           </div>
         </div>
-
-        <div className="mt-12 rounded-2xl border border-gray-200 bg-white p-4 sm:p-8 overflow-hidden dark:border-gray-800 dark:bg-gray-900">
-          <ToolSeoSection toolKey="ai_tools" />
-        </div>
-
-        <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-4 sm:p-8 dark:border-gray-800 dark:bg-gray-900">
-          <h3 className="text-lg font-semibold">{t("related_tools_title" as any) || "Related Tools"}</h3>
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { name: "OCR PDF", href: "/ocr-pdf" },
-              { name: "Compress PDF", href: "/compress-pdf" },
-              { name: "PDF to Word", href: "/pdf-to-word" },
-            ].map((tool) => (
-              <Link
-                key={tool.href}
-                href={tool.href}
-                className="group flex items-center justify-between rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium transition-colors hover:border-blue-300 hover:bg-blue-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-blue-600 dark:hover:bg-gray-700"
-              >
-                <span>{tool.name}</span>
-                <ArrowRight className="h-4 w-4 text-gray-400 transition-transform group-hover:translate-x-1 group-hover:text-blue-500" />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+      }
+    >
+      <AIToolsSection />
+    </ToolLayout>
   );
 }

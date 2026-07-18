@@ -19,6 +19,11 @@ interface ToolLayoutProps {
   /** Translation namespace key, e.g. "merge_pdf", "compress_pdf". When provided, title/description fall back to translated values from that namespace. */
   toolKey?: string;
   relatedTools?: Array<{ name: string; href: string }>;
+  /** Optional full-width content rendered below the entire layout (after the sidebar and Related Tools). */
+  footer?: ReactNode;
+  /** Hide the right sidebar (how-to / features / popular tools) and render the tool full-width.
+   *  Popular Tools and the sidebar ad move into the main column so SEO links and ad revenue are preserved. */
+  hideSidebar?: boolean;
 }
 
 export function ToolLayout({
@@ -29,6 +34,8 @@ export function ToolLayout({
   children,
   toolKey,
   relatedTools,
+  footer,
+  hideSidebar,
 }: ToolLayoutProps) {
   const t = useTranslations("tool_pages");
   const pathname = usePathname();
@@ -77,8 +84,8 @@ export function ToolLayout({
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-3">
-          <div className="lg:col-span-2 min-w-0">
+        <div className={hideSidebar ? "" : "grid gap-8 lg:grid-cols-3"}>
+          <div className={hideSidebar ? "min-w-0" : "lg:col-span-2 min-w-0"}>
             <div className="rounded-2xl border border-gray-200 bg-white p-3 sm:p-6 shadow-lg dark:border-gray-800 dark:bg-gray-900">
               <div className="mb-6">
                 <div className="flex items-center justify-between">
@@ -121,8 +128,33 @@ export function ToolLayout({
                 </div>
               </div>
             )}
+
+            {/* When the sidebar is hidden, keep the internal-link value (SEO)
+                and the sidebar ad slot (revenue) by surfacing them full-width
+                here instead. */}
+            {hideSidebar && (
+              <>
+                <div className="mt-8 rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 p-4 sm:p-8 dark:from-gray-800 dark:to-gray-900">
+                  <h3 className="text-lg font-semibold">{t("popular_tools")}</h3>
+                  <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                    {popularTools.map((tool) => (
+                      <Link
+                        key={tool.name}
+                        href={tool.href}
+                        className="block rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm font-medium hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      >
+                        {tool.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <AdBanner slot="TOOL_SIDEBAR" format="horizontal" responsive={false} className="mt-6" />
+              </>
+            )}
           </div>
 
+          {!hideSidebar && (
           <div className="space-y-6 min-w-0">
             <div className="rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900">
               <h3 className="text-lg font-semibold">{t("how_to_use")}</h3>
@@ -169,7 +201,10 @@ export function ToolLayout({
 
             <AdBanner slot="TOOL_SIDEBAR" format="rectangle" responsive={false} className="mt-2" />
           </div>
+          )}
         </div>
+
+        {footer && <div className="mt-12">{footer}</div>}
       </div>
     </div>
   );

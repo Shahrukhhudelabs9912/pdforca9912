@@ -99,6 +99,11 @@ class Settings(BaseSettings):
     GROQ_API_KEY: str = ""
     GROQ_MODEL: str = "openai/gpt-oss-120b"
     GROQ_TIMEOUT_SECONDS: int = 30
+    # gpt-oss / other reasoning models spend completion tokens on hidden
+    # reasoning before emitting the answer. "low" keeps that budget small so
+    # short outputs (titles, sentiment JSON) aren't starved to an empty string.
+    # Set to "" to omit the param for models that don't support it.
+    GROQ_REASONING_EFFORT: str = "low"
 
     # PDF processing settings
     POPPLER_PATH: Optional[str] = None

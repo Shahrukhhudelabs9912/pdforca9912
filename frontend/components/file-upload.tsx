@@ -48,7 +48,7 @@ export function FileUpload({
   // Smart defaults: show buttons only if their callbacks are provided
   const shouldShowProcessButton = showProcessButton ?? (onProcess !== undefined);
   const shouldShowAddMoreButton = showAddMoreButton ?? (onAddMore !== undefined || multiple);
-  const { files, addFiles, removeFile, clearFiles } = useFileContext();
+  const { files, setFiles, addFiles, removeFile, clearFiles } = useFileContext();
   const [isDragging, setIsDragging] = useState(false);
 
   const onDrop = useCallback(
@@ -69,13 +69,19 @@ export function FileUpload({
         );
         return;
       }
-      addFiles(acceptedFiles);
+      // Single-file mode: replace the previous selection instead of
+      // appending, so picking a new file clears the old one from the list.
+      if (multiple) {
+        addFiles(acceptedFiles);
+      } else {
+        setFiles(acceptedFiles);
+      }
       setIsDragging(false);
       if (onUpload) {
         onUpload(acceptedFiles);
       }
     },
-    [onUpload, addFiles, effectiveMaxSize, tierLimit.tier, tierLimit.proTierMb]
+    [onUpload, addFiles, setFiles, multiple, effectiveMaxSize, tierLimit.tier, tierLimit.proTierMb]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
