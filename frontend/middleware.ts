@@ -5,6 +5,42 @@ const locales = ['en', 'hi'];
 const defaultLocale = 'en';
 
 /**
+ * Legacy URL cleanup.
+ *
+ * pdforca.com was previously a Turkish adult-content site. Google still
+ * has those old URLs indexed and their backlinks associated with this
+ * domain. Returning HTTP 410 (Gone) — instead of a soft 404 — tells
+ * search engines these pages are permanently removed, so they get
+ * dropped from the index quickly and permanently (unlike a temporary
+ * removal, which lapses after ~6 months).
+ *
+ * - `/kategori/...` was the old category URL structure.
+ * - The token list covers the adult query terms seen in Search Console.
+ * None of these collide with any real PDFOrca route.
+ */
+const GONE_PREFIXES = ['/kategori'];
+const GONE_TOKENS = [
+  'porno',
+  'porn',
+  'sikis',
+  'seks',
+  'seyret',
+  'izle',
+  'indir',
+  'parno',
+  'pporn',
+];
+const GONE_TOKEN_RE = new RegExp(`(^|[/_-])(${GONE_TOKENS.join('|')})([/_-]|$)`, 'i');
+
+function isGoneUrl(pathname: string): boolean {
+  const lower = pathname.toLowerCase();
+  if (GONE_PREFIXES.some((prefix) => lower === prefix || lower.startsWith(`${prefix}/`))) {
+    return true;
+  }
+  return GONE_TOKEN_RE.test(lower);
+}
+
+/**
  * Extract the preferred locale from cookies, Accept-Language header,
  * falling back to the default locale.
  */
@@ -44,6 +80,23 @@ export default function middleware(request: NextRequest) {
     pathname.includes('.')
   ) {
     return NextResponse.next();
+  }
+
+  // Permanently kill legacy adult URLs from the domain's previous owner.
+  // 410 Gone (not 404) so Google drops them from the index for good.
+  // Strip any locale prefix first so /hi/kategori/... is caught too.
+  const pathForGoneCheck = pathname.replace(/^\/(en|hi)(?=\/|$)/, '') || '/';
+  if (isGoneUrl(pathForGoneCheck)) {
+    return new NextResponse(
+      '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>410 Gone</title></head><body><h1>410 Gone</h1><p>This page has been permanently removed.</p></body></html>',
+      {
+        status: 410,
+        headers: {
+          'Content-Type': 'text/html; charset=utf-8',
+          'X-Robots-Tag': 'noindex',
+        },
+      },
+    );
   }
 
   // Check if the path starts with a locale prefix
