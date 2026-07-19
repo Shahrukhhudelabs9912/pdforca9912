@@ -1340,37 +1340,71 @@ async def word_to_pdf(request: Request, file: UploadFile = File(...)):
             # collide on the shared default user profile lock.
             import uuid as _uuid
             profile_dir = temp_dir_path / f"lo_profile_{_uuid.uuid4().hex[:8]}"
-            cmd = [
-                libreoffice_path,
-                '--headless',
-                f'-env:UserInstallation=file:///{profile_dir.as_posix().lstrip("/")}',
-                '--convert-to', 'pdf',
-                '--outdir', str(temp_dir_path),
-                str(input_path)
-            ]
+            # Use the writer_pdf_Export filter with EmbedStandardFonts so the
+            # output PDF carries every glyph it renders. Fonts that ship
+            # embedded inside the source .docx are loaded automatically by
+            # LibreOffice and then embedded into the PDF too — this keeps
+            # custom/non-installed fonts faithful instead of falling back to a
+            # substitute with different metrics (which breaks alignment/wrap).
+            # The JSON FilterData form of --convert-to is only understood by
+            # LibreOffice >= 7.4. Our deploy image (python:3.12-slim / Debian 12)
+            # ships 7.4, so the embed-fonts filter works in production. But to
+            # avoid breaking word-to-pdf entirely on any older/other LibreOffice,
+            # we try the rich filter first and transparently fall back to the
+            # plain "pdf" target if the filtered run fails.
+            filtered_target = (
+                'pdf:writer_pdf_Export:'
+                '{"EmbedStandardFonts":{"type":"boolean","value":"true"}}'
+            )
+            plain_target = 'pdf'
 
-            try:
+            def _build_cmd(convert_target: str) -> list:
+                return [
+                    libreoffice_path,
+                    '--headless',
+                    f'-env:UserInstallation=file:///{profile_dir.as_posix().lstrip("/")}',
+                    '--convert-to', convert_target,
+                    '--outdir', str(temp_dir_path),
+                    str(input_path),
+                ]
+
+            async def _run_soffice(convert_target: str):
                 # Run the blocking subprocess off the event loop, and bound how
                 # many heavy LibreOffice jobs run at once.
                 async with heavy_job_slot():
-                    result = await run_blocking(
+                    return await run_blocking(
                         subprocess.run,
-                        cmd,
+                        _build_cmd(convert_target),
                         capture_output=True,
                         text=True,
                         timeout=60,  # 60 second timeout
                     )
-                
+
+            try:
+                result = await _run_soffice(filtered_target)
+
                 logger.debug(f"LibreOffice return code: {result.returncode}")
                 logger.debug(f"LibreOffice stdout: {result.stdout}")
-                
+
+                if result.returncode != 0 or not list(temp_dir_path.glob('*.pdf')):
+                    # Most likely an older LibreOffice that rejects the JSON
+                    # FilterData syntax. Retry with the plain target so the
+                    # feature keeps working (without embedded-font fidelity).
+                    logger.warning(
+                        "word_to_pdf embed-fonts filter failed (rc=%s); retrying "
+                        "with plain pdf target. stderr: %s",
+                        result.returncode, result.stderr[:300]
+                    )
+                    result = await _run_soffice(plain_target)
+                    logger.debug(f"LibreOffice (fallback) return code: {result.returncode}")
+
                 if result.returncode != 0:
                     logger.error("word_to_pdf LibreOffice failed: %s", result.stderr[:500])
                     raise HTTPException(
                         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                         detail="Processing failed. Please try a different file."
                     )
-                
+
             except subprocess.TimeoutExpired:
                 raise HTTPException(
                     status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
