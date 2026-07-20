@@ -44,9 +44,9 @@
 | 23 | Jul 13 | Mon | `ppt-to-pdf-presentation-tips` | How to Convert PowerPoint to PDF (Keep Animations & Layout) | Tutorial | powerpoint-to-pdf | Global |
 | 24 | Jul 15 | Wed | `organize-pdf-reorder-delete-pages` | How to Reorder, Delete, and Organize PDF Pages | Tutorial | organize-pdf | Global |
 | 25 | Jul 17 | Fri | `ocr-scanned-pdf-searchable` | How to Make a Scanned PDF Searchable with OCR | Tutorial | ocr-pdf | Global |
-| 26 | Jul 20 | Mon | `income-tax-documents-merge-pdf` | How to Merge Income Tax Documents Into One PDF for ITR Filing | Use Case | merge-pdf | India |
-| 27 | Jul 22 | Wed | `page-numbers-pdf-add-customize` | How to Add Page Numbers to a PDF (Header or Footer) | Tutorial | page-numbering | Global |
-| 28 | Jul 24 | Fri | `pdf-to-ppt-extract-slides` | How to Convert PDF Back to PowerPoint Slides | Tutorial | pdf-to-powerpoint | Global |
+| 26 | Jul 20 | Mon | `income-tax-documents-merge-pdf` | How to Merge Income Tax Documents Into One PDF for ITR Filing | Use Case | merge-pdf | India | CREATED |
+| 27 | Jul 22 | Wed | `page-numbers-pdf-add-customize` | How to Add Page Numbers to a PDF (Header or Footer) | Tutorial | page-numbering | Global | CREATED |
+| 28 | Jul 24 | Fri | `pdf-to-ppt-extract-slides` | How to Convert PDF Back to PowerPoint Slides | Tutorial | pdf-to-powerpoint | Global | CREATED (draft) |
 | 29 | Jul 27 | Mon | `college-assignment-pdf-format` | How to Format College Assignments as PDF (Complete Guide) | Use Case | word-to-pdf | India/Global |
 | 30 | Jul 29 | Wed | `reduce-pdf-size-under-1mb` | How to Reduce a PDF to Under 1 MB (For Government Forms) | Tips | compress-pdf | India/Global |
 | 31 | Jul 31 | Fri | `batch-convert-images-to-pdf` | How to Batch-Convert 100+ Images to PDF in Minutes | Tutorial | jpg-to-pdf | Global |

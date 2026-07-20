@@ -13,7 +13,7 @@
 ## Writing Rules
 
 1. **Language:** Hinglish — jaise log Google pe search karte hain
-2. **Word Count:** Minimum 1500 words per post
+2. **Word Count:** Minimum 2000 words per post
 3. **Internal Links:** Har post mein 2-3 PDFOrca tool links
 4. **relatedTool:** Frontmatter mein zaroor add karo
 5. **Keywords:** 5-7 keywords per post in frontmatter
