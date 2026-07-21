@@ -6,7 +6,6 @@ category: "How-To"
 author: "PDFOrca Team"
 relatedTool: "pdf-to-word"
 cover: "/blog/covers/pdf-to-word-convert-kaise-kare.webp"
-draft: true
 keywords:
   - pdf to word kaise kare
   - pdf ko word mein convert kare
