@@ -33,6 +33,10 @@ export const metadata: Metadata = {
   robots: "index, follow",
   verification: {
     google: "UaaT6fk7tLaOZEiuTXwrJqYuVDwV-Ce-mG1DDbk4mjE",
+    other: {
+      "ahrefs-site-verification":
+        "07358afe31b224711be022f7fb20c957bdf7c96f466f6dd5de0aa99522d7ab54",
+    },
   },
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com"),
   alternates: {

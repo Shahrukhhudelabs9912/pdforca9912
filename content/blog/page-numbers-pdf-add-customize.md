@@ -6,7 +6,6 @@ category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "page-numbering"
 cover: "/blog/covers/page-numbers-pdf-add-customize.webp"
-draft: true
 keywords:
   - add page numbers to pdf
   - page numbers pdf free
