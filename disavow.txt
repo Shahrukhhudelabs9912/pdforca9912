@@ -1,0 +1,114 @@
+# Disavow file for pdforca.com
+# Created: 2026-07-23
+# Reason: Toxic backlinks — (1) adult/porn domains left over from the
+#         domain's previous owner, and (2) SEO spam / PBN link-farm
+#         domains flagged as SPAM in Ahrefs. None are legitimate links.
+# Upload at: https://search.google.com/search-console/disavow-links
+
+# ============================================================
+# Adult / porn domains (previous owner baggage — top priority)
+# ============================================================
+domain:pornoseyret.net
+domain:fullpornoizle.com
+
+# ============================================================
+# SEO spam / PBN / link-farm domains (Ahrefs-flagged SPAM)
+# ============================================================
+domain:itxoft-proven-seo-strategies.site
+domain:itxoft-seo-for-higher-rankings.site
+domain:itxoft-results-focused-seo.site
+domain:itxoft-professional-seo-services.site
+domain:itxoft-reliable-seo-services.site
+domain:seonix.agency
+domain:linkspro.agency
+domain:ranki.agency
+domain:seogrow.pro
+domain:linkly.agency
+domain:fiverr-seo-for-small-businesses.site
+domain:seogrow.agency
+domain:buybacklinks.agency
+domain:fiverr-quality-seo-at-affordable-rates.site
+domain:fiverr-cost-effective-seo.site
+domain:fiverr-seo-for-business-growth.site
+domain:boost-instant.website
+domain:rankgrowth.agency
+domain:fiverr-affordable-seo-services.site
+domain:rank-top.click
+domain:linkrankpro.shop
+domain:ranklinks.shop
+domain:ranklinkerpro.shop
+domain:seorankflow.shop
+domain:authoritybacklinks.shop
+domain:pbnseolinks.shop
+domain:linkrankboost.shop
+domain:linkseopro.shop
+domain:ranklinkpro.shop
+domain:seolinkpro.shop
+domain:seodaro.com
+domain:trafficspike.shop
+domain:rglinks.org
+domain:seopxl-organic-boost-lab.shop
+domain:seopxl-performance-authority-engine.shop
+domain:seo-growth-optimization-hub.shop
+domain:seopxl-ranking-boost-lab.shop
+domain:high-traffic-backlinks.site
+domain:linkbooster.website
+domain:netraho.shop
+domain:high-quality-backlinks.site
+domain:seomater.shop
+domain:seorankxo.site
+domain:rankpeak.shop
+domain:rankcrown.shop
+domain:nexusnext.agency
+domain:linkforgepro.shop
+domain:seolinkkart.shop
+domain:rankdeals.shop
+domain:backlinkzeno.shop
+domain:linkbundle.shop
+domain:linkcrate.shop
+domain:seotrove.shop
+domain:seowagon.shop
+domain:seobits.shop
+domain:seomart.shop
+domain:linkwares.shop
+domain:linkory.shop
+domain:backlinkorbit.shop
+domain:seooutlet.shop
+domain:seowarez.shop
+domain:seoloot.shop
+domain:seogear.shop
+domain:seoprime.shop
+domain:rankchest.shop
+domain:rankcart.shop
+domain:seowares.shop
+domain:seogo.shop
+domain:rankgoods.shop
+domain:linkchest.shop
+domain:rankdepot.shop
+domain:seodepot.shop
+domain:rankbundle.shop
+domain:ranktrove.shop
+domain:seofinds.shop
+domain:rankstock.shop
+domain:seopicks.shop
+domain:seoedge.shop
+domain:rankfinds.shop
+domain:seochest.shop
+domain:seokart.shop
+domain:rankoutlet.shop
+domain:seosupply.shop
+domain:seobundle.shop
+domain:rankbazaar.shop
+domain:rankloot.shop
+domain:seostock.shop
+domain:seocrate.shop
+domain:rankseohub.shop
+domain:rankcrate.shop
+domain:rankgear.shop
+domain:seostash.shop
+domain:linkrank.shop
+domain:linkgrowthstudio.shop
+domain:nexabacklinks.shop
+domain:linktrove.shop
+domain:seogrowthpipeline.shop
+domain:pageseotoolkit.shop

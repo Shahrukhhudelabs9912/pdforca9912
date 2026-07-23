@@ -6,7 +6,6 @@ category: "Use Case"
 author: "PDFOrca Team"
 relatedTool: "compress-pdf"
 cover: "/blog/covers/driving-license-pdf-download-save.webp"
-draft: true
 keywords:
   - driving license pdf download
   - dl pdf download kaise kare
