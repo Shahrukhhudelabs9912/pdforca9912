@@ -6,7 +6,6 @@ category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "pdf-to-powerpoint"
 cover: "/blog/covers/pdf-to-ppt-extract-slides.webp"
-draft: true
 keywords:
   - pdf to powerpoint
   - convert pdf to ppt
