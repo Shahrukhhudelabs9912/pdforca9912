@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import { useFileContext } from "@/lib/file-context";
 import { toast } from "sonner";
 import { resolveDownloadFilename, triggerDownload, MIME_TO_EXTENSION } from "@/lib/download-utils";
+import { trackEvent } from "@/lib/gtag";
 
 /**
  * Format a millisecond duration as `M:SS` (or `MM:SS` once over 10 min).
@@ -259,6 +260,7 @@ export function useToolProcessing({
       // Download the file
       const url = URL.createObjectURL(blob);
       triggerDownload(blob, filename);
+      trackEvent("pdf_tool_success", { tool: toolName });
 
       updateState({
         stage: 'completed',
@@ -299,6 +301,7 @@ export function useToolProcessing({
 
       setProcessingState('error');
       toast.error(errorMessage);
+      trackEvent("pdf_tool_error", { tool: toolName });
 
       // Stop the elapsed-timer effect — null clears the next tick.
       startedAtRef.current = null;

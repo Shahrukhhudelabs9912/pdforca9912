@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { cn, formatFileSize } from "@/lib/utils";
 import { triggerDownload, resolveDownloadFilename } from "@/lib/download-utils";
+import { trackEvent } from "@/lib/gtag";
 import { useTranslations } from "next-intl";
 import { ButtonLoader, AIProcessingLoader } from "@/components/brand-loader";
 import { useFileContext } from "@/lib/file-context";
@@ -245,10 +246,12 @@ export function AIToolsSection() {
 
       // Attempt auto-download
       triggerDownload(blob, filename);
+      trackEvent("pdf_tool_success", { tool: "ai-tools" });
       toast.success(t("report_downloaded"));
     } catch (error: unknown) {
       const message =
         error instanceof Error ? error.message : t("report_generation_failed");
+      trackEvent("pdf_tool_error", { tool: "ai-tools" });
       setErrorMessage(message);
 
       // If we got a blob but auto-download failed, still allow manual download
