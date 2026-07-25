@@ -6,7 +6,6 @@ category: "How-To"
 author: "PDFOrca Team"
 relatedTool: "protect-pdf"
 cover: "/blog/covers/pdf-password-kaise-lagaye-free.webp"
-draft: true
 keywords:
   - pdf mein password kaise lagaye
   - pdf lock kaise kare
