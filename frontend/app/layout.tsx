@@ -142,7 +142,10 @@ export default async function RootLayout({
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${gaId}');
+                var allowedHosts = ['pdforca.com', 'www.pdforca.com', 'localhost'];
+                if (allowedHosts.indexOf(window.location.hostname) !== -1) {
+                  gtag('config', '${gaId}');
+                }
               `}
             </Script>
           </>
