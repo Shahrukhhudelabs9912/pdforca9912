@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, Calendar, Clock, User } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
+import { getAllPostSlugs, getPostBySlug, getRelatedPosts } from "@/lib/blog";
 import { BlogPostBody } from "@/components/blog/blog-post-body";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 
@@ -28,7 +28,7 @@ export async function generateMetadata(
   const url = `${SITE_URL}/blog/${slug}`;
   const ogImage = post.cover
     ? (post.cover.startsWith("http") ? post.cover : `${SITE_URL}${post.cover}`)
-    : `${SITE_URL}/icon-512.png`;
+    : `${SITE_URL}/og-banner.webp`;
 
   return {
     title: `${post.title} | PDFOrca Blog`,
@@ -107,6 +107,7 @@ export default async function BlogPostPage({
 
   const url = `${SITE_URL}/blog/${slug}`;
   const relatedToolName = post.relatedTool ? TOOL_NAMES[post.relatedTool] : undefined;
+  const relatedPosts = getRelatedPosts(slug, 3);
   const t = await getTranslations("blog");
 
   return (
@@ -206,6 +207,48 @@ export default async function BlogPostPage({
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </aside>
+          )}
+
+          {/* Related posts — internal blog→blog links for SEO topic clusters */}
+          {relatedPosts.length > 0 && (
+            <section className="mt-16 border-t border-gray-200 pt-10 dark:border-gray-800">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                {t("related_posts")}
+              </h2>
+              <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {relatedPosts.map((rp) => (
+                  <Link
+                    key={rp.slug}
+                    href={`/blog/${rp.slug}`}
+                    className="group flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition-shadow hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
+                  >
+                    {rp.cover && (
+                      <div className="relative aspect-[16/9] w-full overflow-hidden">
+                        <Image
+                          src={rp.cover}
+                          alt={rp.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform group-hover:scale-105"
+                        />
+                      </div>
+                    )}
+                    <div className="flex flex-1 flex-col p-4">
+                      <span className="text-xs font-medium text-blue-700 dark:text-blue-300">
+                        {rp.category}
+                      </span>
+                      <h3 className="mt-1.5 line-clamp-2 font-semibold text-gray-900 group-hover:text-primary dark:text-white">
+                        {rp.title}
+                      </h3>
+                      <div className="mt-auto flex items-center gap-1.5 pt-3 text-xs text-gray-500 dark:text-gray-400">
+                        <Clock className="h-3.5 w-3.5" />
+                        <span>{t("min_read", { minutes: rp.readingMinutes })}</span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
           )}
 
           {/* Back to blog */}

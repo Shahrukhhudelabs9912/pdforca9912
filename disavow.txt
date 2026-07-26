@@ -32,6 +32,7 @@ domain:fiverr-cost-effective-seo.site
 domain:fiverr-seo-for-business-growth.site
 domain:boost-instant.website
 domain:rankgrowth.agency
+domain:rankgrowthstudio.shop
 domain:fiverr-affordable-seo-services.site
 domain:rank-top.click
 domain:linkrankpro.shop

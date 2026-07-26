@@ -53,11 +53,23 @@ export const metadata: Metadata = {
     title: "PDFOrca - Fast, Secure & AI-Powered PDF Tools",
     description: "Merge, split, compress, convert PDF files online for free. Fast, secure, and AI-powered PDF tools.",
     siteName: "PDFOrca",
+    // Default social-share image. Pages without their own og:image
+    // (e.g. the 21 tool pages) fall back to this so links shared on
+    // WhatsApp/Twitter/LinkedIn always show a branded preview card.
+    images: [
+      {
+        url: "/og-banner.webp",
+        width: 1672,
+        height: 941,
+        alt: "PDFOrca - Fast, Secure & AI-Powered PDF Tools",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "PDFOrca - Fast, Secure & AI-Powered PDF Tools",
     description: "Merge, split, compress, convert PDF files online for free.",
+    images: ["/og-banner.webp"],
   },
   icons: {
     icon: [

@@ -124,3 +124,34 @@ export function getPostBySlug(slug: string): Post | null {
 export function getAllPostSlugs(): string[] {
   return getAllPosts().map((p) => p.slug);
 }
+
+/**
+ * Pick related posts for a given post — used by /blog/[slug] to build
+ * an internal-linking "Related Posts" section (blog → blog links, which
+ * Google uses to understand topic clusters and site authority).
+ *
+ * Ranking: posts sharing the same `relatedTool` first (most relevant),
+ * then posts in the same `category`, then the newest remaining posts as
+ * a fallback so the section is never empty. Drafts are already excluded
+ * by getAllPosts().
+ */
+export function getRelatedPosts(slug: string, limit = 3): PostMeta[] {
+  const all = getAllPosts();
+  const current = all.find((p) => p.slug === slug);
+  if (!current) return [];
+
+  const others = all.filter((p) => p.slug !== slug);
+
+  const sameTool = current.relatedTool
+    ? others.filter((p) => p.relatedTool === current.relatedTool)
+    : [];
+  const sameCategory = others.filter(
+    (p) => p.category === current.category && !sameTool.includes(p),
+  );
+  const rest = others.filter(
+    (p) => !sameTool.includes(p) && !sameCategory.includes(p),
+  );
+
+  // De-duplicated, priority-ordered list, capped at `limit`.
+  return [...sameTool, ...sameCategory, ...rest].slice(0, limit);
+}
