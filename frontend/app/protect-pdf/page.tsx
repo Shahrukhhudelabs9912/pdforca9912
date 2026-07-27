@@ -24,11 +24,13 @@ export const metadata: Metadata = {
     title: "Password Protect PDF Online Free - Encrypt PDF Files | PDFOrca",
     description: "Add password protection to PDF files online for free. AES encryption, no registration required.",
     type: "website",
+    images: [{ url: "/api/og?title=Protect%20PDF&description=Add%20Password%20Protection%20to%20PDF", width: 1200, height: 630, alt: "Protect PDF Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Password Protect PDF Online Free - Encrypt PDF Files | PDFOrca",
     description: "Add password protection to PDF files online for free. AES encryption, no registration required.",
+    images: ["/api/og?title=Protect%20PDF&description=Add%20Password%20Protection%20to%20PDF"],
   },
   alternates: {
     canonical: `${SITE_URL}/protect-pdf`,

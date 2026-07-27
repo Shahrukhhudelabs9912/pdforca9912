@@ -51,11 +51,13 @@ export const metadata: Metadata = {
     title: "Convert PDF to JPG Online Free | PDFOrca",
     description: "Convert PDF pages to high-quality JPG images online for free.",
     type: "website",
+    images: [{ url: "/api/og?title=PDF%20to%20JPG&description=Convert%20PDF%20Pages%20to%20High-Quality%20Images", width: 1200, height: 630, alt: "PDF to JPG Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Convert PDF to JPG Online Free | PDFOrca",
     description: "Convert PDF pages to high-quality JPG images online for free.",
+    images: ["/api/og?title=PDF%20to%20JPG&description=Convert%20PDF%20Pages%20to%20High-Quality%20Images"],
   },
   alternates: {
     canonical: `${SITE_URL}/pdf-to-jpg`,

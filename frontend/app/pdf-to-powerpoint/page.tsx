@@ -20,11 +20,13 @@ export const metadata: Metadata = {
     title: "Convert PDF to PowerPoint Online Free | PDFOrca",
     description: "Convert PDF documents into PowerPoint (.pptx) presentations.",
     type: "website",
+    images: [{ url: "/api/og?title=PDF%20to%20PowerPoint&description=Convert%20PDF%20to%20Presentations", width: 1200, height: 630, alt: "PDF to PowerPoint Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Convert PDF to PowerPoint Online Free | PDFOrca",
     description: "Convert PDF documents into PowerPoint (.pptx) presentations.",
+    images: ["/api/og?title=PDF%20to%20PowerPoint&description=Convert%20PDF%20to%20Presentations"],
   },
   alternates: {
     canonical: `${SITE_URL}/pdf-to-powerpoint`,

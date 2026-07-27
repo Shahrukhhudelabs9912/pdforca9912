@@ -51,11 +51,13 @@ export const metadata: Metadata = {
     title: "Add Watermark to PDF Online Free | PDFOrca",
     description: "Add text or image watermarks to your PDF documents online for free.",
     type: "website",
+    images: [{ url: "/api/og?title=Add%20Watermark&description=Add%20Watermarks%20to%20PDF%20Documents", width: 1200, height: 630, alt: "Add Watermark to PDF Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Add Watermark to PDF Online Free | PDFOrca",
     description: "Add text or image watermarks to your PDF documents online for free.",
+    images: ["/api/og?title=Add%20Watermark&description=Add%20Watermarks%20to%20PDF%20Documents"],
   },
   alternates: {
     canonical: `${SITE_URL}/add-watermark`,

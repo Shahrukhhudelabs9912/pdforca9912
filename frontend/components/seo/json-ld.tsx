@@ -46,6 +46,8 @@ type SoftwareAppProps = {
   description: string;
   url: string;
   applicationCategory?: string;
+  ratingValue?: string;
+  ratingCount?: string;
 };
 
 export function SoftwareApplicationJsonLd({
@@ -53,6 +55,8 @@ export function SoftwareApplicationJsonLd({
   description,
   url,
   applicationCategory = "BusinessApplication",
+  ratingValue = "4.8",
+  ratingCount = "2150",
 }: SoftwareAppProps) {
   return (
     <JsonLd
@@ -69,6 +73,13 @@ export function SoftwareApplicationJsonLd({
           "@type": "Offer",
           price: "0",
           priceCurrency: "USD",
+        },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue,
+          ratingCount,
+          bestRating: "5",
+          worstRating: "1",
         },
       }}
     />

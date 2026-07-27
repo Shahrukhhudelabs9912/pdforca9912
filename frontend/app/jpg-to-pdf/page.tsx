@@ -51,11 +51,13 @@ export const metadata: Metadata = {
     title: "JPG to PDF Converter Online Free - Convert Images to PDF | PDFOrca",
     description: "Convert JPG images to PDF files online for free.",
     type: "website",
+    images: [{ url: "/api/og?title=JPG%20to%20PDF&description=Convert%20Images%20to%20PDF%20Online%20Free", width: 1200, height: 630, alt: "JPG to PDF Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "JPG to PDF Converter Online Free - Convert Images to PDF | PDFOrca",
     description: "Convert JPG images to PDF files online for free.",
+    images: ["/api/og?title=JPG%20to%20PDF&description=Convert%20Images%20to%20PDF%20Online%20Free"],
   },
   alternates: {
     canonical: `${SITE_URL}/jpg-to-pdf`,

@@ -24,11 +24,13 @@ export const metadata: Metadata = {
     title: "Convert PDF to Word Online Free | PDFOrca",
     description: "Convert PDF documents to editable Word (.docx) files online for free. Preserve layout, text, and images. No registration required.",
     type: "website",
+    images: [{ url: "/api/og?title=PDF%20to%20Word&description=Convert%20PDF%20to%20Editable%20Word%20Documents", width: 1200, height: 630, alt: "PDF to Word Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Convert PDF to Word Online Free | PDFOrca",
     description: "Convert PDF documents to editable Word (.docx) files online for free. Preserve layout, text, and images. No registration required.",
+    images: ["/api/og?title=PDF%20to%20Word&description=Convert%20PDF%20to%20Editable%20Word%20Documents"],
   },
   alternates: {
     canonical: `${SITE_URL}/pdf-to-word`,

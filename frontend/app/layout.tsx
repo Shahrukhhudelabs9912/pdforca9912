@@ -49,6 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
+    alternateLocale: ["hi_IN"],
     url: "https://pdforca.com",
     title: "PDFOrca - Fast, Secure & AI-Powered PDF Tools",
     description: "Merge, split, compress, convert PDF files online for free. Fast, secure, and AI-powered PDF tools.",

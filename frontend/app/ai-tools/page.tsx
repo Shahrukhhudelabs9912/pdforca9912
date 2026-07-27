@@ -18,6 +18,13 @@ export const metadata: Metadata = {
     title: "AI PDF Tools - Summarize, Analyze & Extract with AI",
     description: "Use AI to summarize PDFs, extract key points, and generate analysis reports.",
     type: "website",
+    images: [{ url: "/api/og?title=AI%20Tools&description=Summarize%2C%20Analyze%20%26%20Extract%20with%20AI", width: 1200, height: 630, alt: "AI PDF Tools" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI PDF Tools - Summarize, Analyze & Extract with AI",
+    description: "Use AI to summarize PDFs, extract key points, and generate analysis reports.",
+    images: ["/api/og?title=AI%20Tools&description=Summarize%2C%20Analyze%20%26%20Extract%20with%20AI"],
   },
 };
 

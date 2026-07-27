@@ -20,11 +20,13 @@ export const metadata: Metadata = {
     title: "OCR PDF Online Free - Make Scanned PDFs Searchable | PDFOrca",
     description: "Convert scanned PDFs into searchable, selectable text with OCR.",
     type: "website",
+    images: [{ url: "/api/og?title=OCR%20PDF&description=Make%20Scanned%20PDFs%20Searchable", width: 1200, height: 630, alt: "OCR PDF Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "OCR PDF Online Free - Make Scanned PDFs Searchable | PDFOrca",
     description: "Convert scanned PDFs into searchable, selectable text with OCR.",
+    images: ["/api/og?title=OCR%20PDF&description=Make%20Scanned%20PDFs%20Searchable"],
   },
   alternates: {
     canonical: `${SITE_URL}/ocr-pdf`,

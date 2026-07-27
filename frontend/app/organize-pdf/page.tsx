@@ -24,11 +24,13 @@ export const metadata: Metadata = {
     title: "Organize PDF Pages Online Free - Reorder, Rotate, Delete | PDFOrca",
     description: "Reorder, rotate, and delete pages in a PDF online for free. Drag-and-drop interface, no registration required.",
     type: "website",
+    images: [{ url: "/api/og?title=Organize%20PDF&description=Reorder%2C%20Rotate%20%26%20Delete%20PDF%20Pages", width: 1200, height: 630, alt: "Organize PDF Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Organize PDF Pages Online Free - Reorder, Rotate, Delete | PDFOrca",
     description: "Reorder, rotate, and delete pages in a PDF online for free. Drag-and-drop interface, no registration required.",
+    images: ["/api/og?title=Organize%20PDF&description=Reorder%2C%20Rotate%20%26%20Delete%20PDF%20Pages"],
   },
   alternates: {
     canonical: `${SITE_URL}/organize-pdf`,

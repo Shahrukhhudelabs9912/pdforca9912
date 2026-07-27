@@ -20,11 +20,13 @@ export const metadata: Metadata = {
     title: "Extract Pages from PDF Online Free | PDFOrca",
     description: "Extract specific pages from a PDF into a new document.",
     type: "website",
+    images: [{ url: "/api/og?title=Extract%20Pages&description=Extract%20Specific%20Pages%20from%20PDF", width: 1200, height: 630, alt: "Extract PDF Pages Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Extract Pages from PDF Online Free | PDFOrca",
     description: "Extract specific pages from a PDF into a new document.",
+    images: ["/api/og?title=Extract%20Pages&description=Extract%20Specific%20Pages%20from%20PDF"],
   },
   alternates: {
     canonical: `${SITE_URL}/extract-pages`,

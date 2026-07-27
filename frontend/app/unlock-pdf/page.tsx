@@ -20,11 +20,13 @@ export const metadata: Metadata = {
     title: "Unlock PDF Online Free - Remove PDF Password | PDFOrca",
     description: "Unlock password-protected PDFs online for free.",
     type: "website",
+    images: [{ url: "/api/og?title=Unlock%20PDF&description=Remove%20PDF%20Password%20Online%20Free", width: 1200, height: 630, alt: "Unlock PDF Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Unlock PDF Online Free - Remove PDF Password | PDFOrca",
     description: "Unlock password-protected PDFs online for free.",
+    images: ["/api/og?title=Unlock%20PDF&description=Remove%20PDF%20Password%20Online%20Free"],
   },
   alternates: {
     canonical: `${SITE_URL}/unlock-pdf`,

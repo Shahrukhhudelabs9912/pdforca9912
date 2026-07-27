@@ -18,11 +18,13 @@ export const metadata: Metadata = {
     title: "Convert PowerPoint to PDF Online Free | PDFOrca",
     description: "Convert PowerPoint (.ppt, .pptx) presentations to PDF online for free.",
     type: "website",
+    images: [{ url: "/api/og?title=PowerPoint%20to%20PDF&description=Convert%20Presentations%20to%20PDF", width: 1200, height: 630, alt: "PowerPoint to PDF Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Convert PowerPoint to PDF Online Free | PDFOrca",
     description: "Convert PowerPoint (.ppt, .pptx) presentations to PDF online for free.",
+    images: ["/api/og?title=PowerPoint%20to%20PDF&description=Convert%20Presentations%20to%20PDF"],
   },
   alternates: {
     canonical: `${SITE_URL}/powerpoint-to-pdf`,

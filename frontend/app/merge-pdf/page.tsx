@@ -24,11 +24,13 @@ export const metadata: Metadata = {
     title: "Merge PDF Online Free - Combine Multiple PDF Files | PDFOrca",
     description: "Merge multiple PDF files into a single document online for free.",
     type: "website",
+    images: [{ url: "/api/og?title=Merge%20PDF&description=Combine%20Multiple%20PDF%20Files%20Online%20Free", width: 1200, height: 630, alt: "Merge PDF Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Merge PDF Online Free - Combine Multiple PDF Files | PDFOrca",
     description: "Merge multiple PDF files into a single document online for free.",
+    images: ["/api/og?title=Merge%20PDF&description=Combine%20Multiple%20PDF%20Files%20Online%20Free"],
   },
   alternates: {
     canonical: `${SITE_URL}/merge-pdf`,

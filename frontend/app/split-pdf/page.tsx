@@ -51,11 +51,13 @@ export const metadata: Metadata = {
     title: "Split PDF Online Free - Divide PDF into Multiple Files | PDFOrca",
     description: "Split PDF files into multiple documents online for free.",
     type: "website",
+    images: [{ url: "/api/og?title=Split%20PDF&description=Divide%20PDF%20Into%20Multiple%20Files%20Online%20Free", width: 1200, height: 630, alt: "Split PDF Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Split PDF Online Free - Divide PDF into Multiple Files | PDFOrca",
     description: "Split PDF files into multiple documents online for free.",
+    images: ["/api/og?title=Split%20PDF&description=Divide%20PDF%20Into%20Multiple%20Files%20Online%20Free"],
   },
   alternates: {
     canonical: `${SITE_URL}/split-pdf`,

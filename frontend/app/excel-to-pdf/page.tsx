@@ -24,11 +24,13 @@ export const metadata: Metadata = {
     title: "Convert Excel to PDF Online Free | PDFOrca",
     description: "Convert Excel spreadsheets (.xls, .xlsx) to PDF online for free. Preserve formatting, formulas, and charts. No registration required.",
     type: "website",
+    images: [{ url: "/api/og?title=Excel%20to%20PDF&description=Convert%20Spreadsheets%20to%20PDF", width: 1200, height: 630, alt: "Excel to PDF Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Convert Excel to PDF Online Free | PDFOrca",
     description: "Convert Excel spreadsheets (.xls, .xlsx) to PDF online for free. Preserve formatting, formulas, and charts. No registration required.",
+    images: ["/api/og?title=Excel%20to%20PDF&description=Convert%20Spreadsheets%20to%20PDF"],
   },
   alternates: {
     canonical: `${SITE_URL}/excel-to-pdf`,

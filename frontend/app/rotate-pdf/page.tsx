@@ -20,11 +20,13 @@ export const metadata: Metadata = {
     title: "Rotate PDF Online Free - Rotate PDF Pages 90/180/270° | PDFOrca",
     description: "Rotate PDF pages clockwise or counter-clockwise online for free.",
     type: "website",
+    images: [{ url: "/api/og?title=Rotate%20PDF&description=Rotate%20PDF%20Pages%20Online%20Free", width: 1200, height: 630, alt: "Rotate PDF Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Rotate PDF Online Free - Rotate PDF Pages 90/180/270° | PDFOrca",
     description: "Rotate PDF pages clockwise or counter-clockwise online for free.",
+    images: ["/api/og?title=Rotate%20PDF&description=Rotate%20PDF%20Pages%20Online%20Free"],
   },
   alternates: {
     canonical: `${SITE_URL}/rotate-pdf`,

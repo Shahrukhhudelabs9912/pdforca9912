@@ -51,11 +51,13 @@ export const metadata: Metadata = {
     title: "Compress PDF Online Free - Reduce PDF File Size | PDFOrca",
     description: "Compress PDF files to reduce file size without losing quality.",
     type: "website",
+    images: [{ url: "/api/og?title=Compress%20PDF&description=Reduce%20PDF%20File%20Size%20Without%20Losing%20Quality", width: 1200, height: 630, alt: "Compress PDF Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Compress PDF Online Free - Reduce PDF File Size | PDFOrca",
     description: "Compress PDF files to reduce file size without losing quality.",
+    images: ["/api/og?title=Compress%20PDF&description=Reduce%20PDF%20File%20Size%20Without%20Losing%20Quality"],
   },
   alternates: {
     canonical: `${SITE_URL}/compress-pdf`,

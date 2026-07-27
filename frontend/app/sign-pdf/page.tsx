@@ -21,11 +21,13 @@ export const metadata: Metadata = {
     title: "Sign PDF Online Free - Add Signature to PDF | PDFOrca",
     description: "Sign PDF documents online for free.",
     type: "website",
+    images: [{ url: "/api/og?title=Sign%20PDF&description=Add%20Signature%20to%20PDF%20Online%20Free", width: 1200, height: 630, alt: "Sign PDF Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sign PDF Online Free - Add Signature to PDF | PDFOrca",
     description: "Sign PDF documents online for free.",
+    images: ["/api/og?title=Sign%20PDF&description=Add%20Signature%20to%20PDF%20Online%20Free"],
   },
   alternates: {
     canonical: `${SITE_URL}/sign-pdf`,

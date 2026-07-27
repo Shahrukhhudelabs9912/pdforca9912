@@ -8,13 +8,23 @@ const GdprClient = dynamic(() => import("./gdpr-client"));
 export const metadata: Metadata = {
   title: "GDPR Compliance - PDFOrca",
   description: "PDFOrca's GDPR compliance information. Learn about your data rights, how we process your data, and how to exercise your rights under GDPR.",
+  keywords: "gdpr compliance, data protection, data privacy, gdpr rights, pdforca gdpr, data processing",
   alternates: {
     canonical: `${SITE_URL}/gdpr`,
+    languages: {
+      en: `${SITE_URL}/gdpr`,
+      hi: `${SITE_URL}/hi/gdpr`,
+    },
   },
   openGraph: {
     title: "GDPR Compliance - PDFOrca",
     description: "PDFOrca's GDPR compliance and your data rights.",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "GDPR Compliance - PDFOrca",
+    description: "PDFOrca's GDPR compliance and your data rights.",
   },
 };
 

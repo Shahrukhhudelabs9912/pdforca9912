@@ -24,11 +24,13 @@ export const metadata: Metadata = {
     title: "Convert PDF to Excel Online Free | PDFOrca",
     description: "Convert PDF documents to editable Excel (.xlsx) spreadsheets online for free. Extract tables and data from PDFs.",
     type: "website",
+    images: [{ url: "/api/og?title=PDF%20to%20Excel&description=Extract%20Tables%20and%20Data%20from%20PDFs", width: 1200, height: 630, alt: "PDF to Excel Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Convert PDF to Excel Online Free | PDFOrca",
     description: "Convert PDF documents to editable Excel (.xlsx) spreadsheets online for free. Extract tables and data from PDFs.",
+    images: ["/api/og?title=PDF%20to%20Excel&description=Extract%20Tables%20and%20Data%20from%20PDFs"],
   },
   alternates: {
     canonical: `${SITE_URL}/pdf-to-excel`,

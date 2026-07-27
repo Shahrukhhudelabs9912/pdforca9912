@@ -24,11 +24,13 @@ export const metadata: Metadata = {
     title: "Add Page Numbers to PDF Online Free | PDFOrca",
     description: "Add page numbers to a PDF document online for free. Customize position, format, and starting number. No registration required.",
     type: "website",
+    images: [{ url: "/api/og?title=Page%20Numbering&description=Add%20Page%20Numbers%20to%20PDF", width: 1200, height: 630, alt: "Add Page Numbers to PDF Online Free" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Add Page Numbers to PDF Online Free | PDFOrca",
     description: "Add page numbers to a PDF document online for free. Customize position, format, and starting number. No registration required.",
+    images: ["/api/og?title=Page%20Numbering&description=Add%20Page%20Numbers%20to%20PDF"],
   },
   alternates: {
     canonical: `${SITE_URL}/page-numbering`,
