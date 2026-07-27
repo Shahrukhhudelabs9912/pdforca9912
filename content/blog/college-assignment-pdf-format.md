@@ -6,7 +6,6 @@ category: "Use Case"
 author: "PDFOrca Team"
 relatedTool: "word-to-pdf"
 cover: "/blog/covers/college-assignment-pdf-format.webp"
-draft: true
 keywords:
   - college assignment pdf
   - convert assignment to pdf
