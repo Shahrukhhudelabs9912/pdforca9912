@@ -1,6 +1,6 @@
 ---
 title: "How to Compress a PDF Without Losing Quality (2026 Guide)"
-description: "Learn how to reduce PDF file size without ruining text or image quality. Free step-by-step methods for email limits, web uploads, and online forms — no software to install."
+description: "Learn how to compress PDF without losing quality — reduce PDF file size for email, web uploads, and government forms. Free step-by-step methods, no software to install."
 date: "2026-06-21"
 category: "Tutorial"
 author: "PDFOrca Team"
@@ -8,6 +8,13 @@ relatedTool: "compress-pdf"
 cover: "/blog/covers/compress-pdf-without-losing-quality.webp"
 keywords:
   - compress pdf without losing quality
+  - reduce pdf size without losing quality
+  - compress pdf high quality
+  - pdf compression without losing quality
+  - how to reduce pdf file size without losing quality
+  - reduce size of pdf without losing quality
+  - compress pdf without losing image quality
+  - decrease pdf size without losing quality
   - reduce pdf file size
   - shrink pdf online free
   - make pdf smaller

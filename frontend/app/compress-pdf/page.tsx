@@ -15,28 +15,32 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 const HOW_TO_STEPS = [
   { name: "Upload your PDF", text: "Click upload or drop your PDF into the tool area." },
   { name: "Choose compression level", text: "Pick Low, Medium, or High depending on quality vs. size trade-off." },
-  { name: "Compress the file", text: "Press Compress and let our engine optimize images and remove unused data." },
-  { name: "Download", text: "Save the smaller PDF to your device." },
+  { name: "Compress the file", text: "Press Compress and let our engine optimize images and remove unused data while preserving text quality." },
+  { name: "Download", text: "Save the smaller PDF to your device — up to 90% smaller for image-heavy files." },
 ];
 
 const FAQ_ITEMS = [
-          {
-            question: "Is PDF compression safe?",
-            answer: "Yes, our compression tool is completely safe. We process files securely and automatically delete them after 1 hour. No one can access your documents."
-          },
-          {
-            question: "Will compression affect PDF quality?",
-            answer: "Our intelligent compression algorithm optimizes images and removes unnecessary data while preserving text quality. You can choose between different compression levels to balance size and quality."
-          },
-          {
-            question: "What is the maximum file size?",
-            answer: "You can compress PDF files up to 200MB. For larger files, consider splitting them first or using our premium service."
-          },
-          {
-            question: "How much can I reduce PDF file size?",
-            answer: "Compression results vary depending on the content. Image-heavy PDFs can be reduced by up to 90%, while text-only documents may see 20-50% reduction."
-          }
-        ];
+  {
+    question: "Can I compress a PDF without losing quality?",
+    answer: "Yes. PDFOrca's intelligent compression removes hidden metadata, optimizes embedded images, and strips unused objects — text always stays sharp. Choose 'Low' compression to reduce file size without losing quality on image-heavy PDFs."
+  },
+  {
+    question: "How do I reduce PDF file size without losing quality?",
+    answer: "Upload your PDF, select the Low or Medium compression level, and click Compress. Our engine reduces PDF file size without losing quality by optimizing images and removing unnecessary data while keeping text crisp."
+  },
+  {
+    question: "How much can I reduce PDF file size?",
+    answer: "Image-heavy PDFs can be reduced by up to 90%. Text-only documents typically see a 20–50% reduction. Results vary based on content type and the compression level you choose."
+  },
+  {
+    question: "What is the maximum file size for PDF compression?",
+    answer: "You can compress PDF files up to 200MB. For larger files, consider splitting them first using our Split PDF tool."
+  },
+  {
+    question: "Is PDF compression safe?",
+    answer: "Yes. Files are processed securely on our servers and automatically deleted after 1 hour. No one else can access your documents."
+  }
+];
 
 const CompressPDFTool = dynamic(
   () => import("@/components/tools/compress-pdf-tool").then((mod) => ({ default: mod.CompressPDFTool })),
@@ -44,19 +48,19 @@ const CompressPDFTool = dynamic(
 );
 
 export const metadata: Metadata = {
-  title: "Compress PDF Online Free - Reduce PDF File Size | PDFOrca",
-  description: "Compress PDF files to reduce file size without losing quality. Optimize PDFs for email, web, or storage. No registration required.",
-  keywords: "compress pdf, reduce pdf size, pdf compressor, shrink pdf, optimize pdf, pdf size reducer, compress pdf online",
+  title: "Compress PDF Without Losing Quality - Reduce PDF File Size Free | PDFOrca",
+  description: "Compress PDF without losing quality. Reduce PDF file size online free — no registration needed. Shrink image-heavy PDFs by up to 90% while keeping text sharp.",
+  keywords: "compress pdf without losing quality, reduce pdf size without losing quality, compress pdf high quality, pdf compression without losing quality, reduce size of pdf without losing quality, how to reduce pdf file size without losing quality, compress pdf, reduce pdf size, pdf compressor online free",
   openGraph: {
-    title: "Compress PDF Online Free - Reduce PDF File Size | PDFOrca",
-    description: "Compress PDF files to reduce file size without losing quality.",
+    title: "Compress PDF Without Losing Quality - Free Online PDF Compressor | PDFOrca",
+    description: "Reduce PDF file size without losing quality. Free online tool — compress PDFs by up to 90% with no registration required.",
     type: "website",
-    images: [{ url: "/api/og?title=Compress%20PDF&description=Reduce%20PDF%20File%20Size%20Without%20Losing%20Quality", width: 1200, height: 630, alt: "Compress PDF Online Free" }],
+    images: [{ url: "/api/og?title=Compress%20PDF&description=Reduce%20PDF%20File%20Size%20Without%20Losing%20Quality", width: 1200, height: 630, alt: "Compress PDF Without Losing Quality" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Compress PDF Online Free - Reduce PDF File Size | PDFOrca",
-    description: "Compress PDF files to reduce file size without losing quality.",
+    title: "Compress PDF Without Losing Quality - Free Online PDF Compressor | PDFOrca",
+    description: "Reduce PDF file size without losing quality. Free online tool — compress PDFs by up to 90%.",
     images: ["/api/og?title=Compress%20PDF&description=Reduce%20PDF%20File%20Size%20Without%20Losing%20Quality"],
   },
   alternates: {
@@ -80,20 +84,20 @@ export default function CompressPDFPage() {
       />
       <SoftwareApplicationJsonLd
         name="PDF Compressor"
-        description="Free online tool to reduce PDF file size while maintaining visual quality."
+        description="Free online tool to compress PDF without losing quality. Reduce PDF file size by up to 90% while keeping text sharp."
         url={pageUrl}
       />
       <HowToJsonLd
-        name="How to Compress a PDF"
-        description="Reduce a PDF's file size in 4 steps."
+        name="How to Compress PDF Without Losing Quality"
+        description="Reduce PDF file size without losing quality in 4 simple steps."
         steps={HOW_TO_STEPS}
       />
       <FAQPageJsonLd items={FAQ_ITEMS} />
     <ToolLayout
-      title="Compress PDF"
-      description="Reduce PDF file size while maintaining quality"
+      title="Compress PDF Without Losing Quality"
+      description="Reduce PDF file size without losing quality — free online tool, no registration required"
       toolName="PDF Compressor"
-      toolDescription="Compress PDF files to reduce size for email, web, or storage with our intelligent compression algorithm."
+      toolDescription="Compress PDF files to reduce size without losing quality. Our intelligent engine optimizes images and removes unused data — shrink image-heavy PDFs by up to 90% while keeping text sharp."
       toolKey="compress_pdf"
       relatedTools={[
         { name: "Merge PDF", href: "/merge-pdf" },

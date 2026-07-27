@@ -171,5 +171,7 @@ When a portal is stricter still, combine compression with removing unneeded page
 
 Stuck at an upload box right now? Open the [Compress PDF tool](/compress-pdf) and shrink your file, and keep the [Extract Pages tool](/extract-pages) and [Split PDF tool](/split-pdf) ready for the tightest limits.
 
+For a detailed walkthrough on keeping quality intact while compressing, read our [guide to compressing PDFs without losing quality](/blog/compress-pdf-without-losing-quality).
+
 
 

@@ -184,5 +184,7 @@ The process is simple: open the [Compress PDF tool](/compress-pdf), upload your 
 
 One compressed PDF, sent as a Document on WhatsApp, is all it takes.
 
+Want to understand exactly how compression works and how to keep quality perfect? Read our [complete guide to compressing PDFs without losing quality](/blog/compress-pdf-without-losing-quality).
+
 
 

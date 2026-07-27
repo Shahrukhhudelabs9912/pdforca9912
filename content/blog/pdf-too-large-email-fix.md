@@ -171,4 +171,4 @@ When your PDF is too large to email:
 | Extract key pages | Sending only what's relevant | [Extract Pages](/extract-pages) |
 | Combine all above | Strictest limits (200 KB–1 MB) | All tools above |
 
-Start with compression — it solves most cases in under 30 seconds.
+Start with compression — it solves most cases in under 30 seconds. For a deeper dive on keeping quality intact, see our [complete guide to compressing PDFs without losing quality](/blog/compress-pdf-without-losing-quality).
