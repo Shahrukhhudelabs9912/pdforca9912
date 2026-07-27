@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { ToolLayout } from "@/components/tools/tool-layout";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
 
 import {
@@ -99,6 +100,7 @@ export default function CompressPDFPage() {
       toolName="PDF Compressor"
       toolDescription="Compress PDF files to reduce size without losing quality. Our intelligent engine optimizes images and removes unused data — shrink image-heavy PDFs by up to 90% while keeping text sharp."
       toolKey="compress_pdf"
+      seoSection={<ToolSeoSection toolKey="compress_pdf" />}
       relatedTools={[
         { name: "Merge PDF", href: "/merge-pdf" },
         { name: "PDF to Word", href: "/pdf-to-word" },

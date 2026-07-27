@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { ToolLayout } from "@/components/tools/tool-layout";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
 
 import {
@@ -90,6 +91,7 @@ export default function RotatePDFPage() {
       toolName="Rotate PDF"
       toolDescription="Fix sideways or upside-down PDF pages in one click. Choose the rotation angle, pick which pages to rotate, and download the corrected file."
       toolKey="rotate_pdf"
+      seoSection={<ToolSeoSection toolKey="rotate_pdf" />}
       relatedTools={[
         { name: "Organize PDF", href: "/organize-pdf" },
         { name: "Split PDF", href: "/split-pdf" },

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { ToolLayout } from "@/components/tools/tool-layout";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
 
 import {
@@ -95,6 +96,7 @@ export default function SplitPDFPage() {
       toolName="PDF Splitter"
       toolDescription="Split PDF files by page ranges, extract specific pages, or divide into equal parts with our fast and secure online tool."
       toolKey="split_pdf"
+      seoSection={<ToolSeoSection toolKey="split_pdf" />}
       relatedTools={[
         { name: "Merge PDF", href: "/merge-pdf" },
         { name: "Extract Pages", href: "/extract-pages" },

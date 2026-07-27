@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { FileText, Shield, Zap, Globe, Check, ArrowRight } from "lucide-react";
 import { AdBanner } from "@/components/ad-banner";
 import { Link } from "@/routing";
-import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -18,6 +17,9 @@ interface ToolLayoutProps {
   children: ReactNode;
   /** Translation namespace key, e.g. "merge_pdf", "compress_pdf". When provided, title/description fall back to translated values from that namespace. */
   toolKey?: string;
+  /** Server-rendered SEO prose/FAQ block (pass <ToolSeoSection toolKey=... />).
+   *  Rendered on the server so its text is in the initial HTML for crawlers. */
+  seoSection?: ReactNode;
   relatedTools?: Array<{ name: string; href: string }>;
   /** Optional full-width content rendered below the entire layout (after the sidebar and Related Tools). */
   footer?: ReactNode;
@@ -33,6 +35,7 @@ export function ToolLayout({
   toolDescription,
   children,
   toolKey,
+  seoSection,
   relatedTools,
   footer,
   hideSidebar,
@@ -105,9 +108,9 @@ export function ToolLayout({
 
             <AdBanner slot="TOOL_BELOW" format="horizontal" responsive={false} className="mt-6" />
 
-            {toolKey && (
+            {seoSection && (
               <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-4 sm:p-8 overflow-hidden dark:border-gray-800 dark:bg-gray-900">
-                <ToolSeoSection toolKey={toolKey} />
+                {seoSection}
               </div>
             )}
 

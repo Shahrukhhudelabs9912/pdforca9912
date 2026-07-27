@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { ToolLayout } from "@/components/tools/tool-layout";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
 
 import {
@@ -90,6 +91,7 @@ export default function ExtractPagesPage() {
       toolName="Extract Pages"
       toolDescription="Need only a few pages out of a long PDF? Enter the page numbers you want and we'll build a fresh PDF with just those pages — in the exact order you listed them."
       toolKey="extract_pages"
+      seoSection={<ToolSeoSection toolKey="extract_pages" />}
       relatedTools={[
         { name: "Split PDF", href: "/split-pdf" },
         { name: "Merge PDF", href: "/merge-pdf" },

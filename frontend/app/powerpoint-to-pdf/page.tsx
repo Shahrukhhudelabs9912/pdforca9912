@@ -47,6 +47,7 @@ const FAQ_ITEMS = [
         ];
 
 import { ToolLayout } from "@/components/tools/tool-layout";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 
 const PowerPointToPDFClient = dynamic(
   () => import("./powerpoint-to-pdf-client").then((mod) => ({ default: mod.PowerPointToPDFClient })),
@@ -80,6 +81,7 @@ export default function PowerPointToPDFPage() {
       toolName="PowerPoint to PDF"
       toolDescription="Turn .ppt and .pptx slide decks into shareable PDF files."
       toolKey="powerpoint_to_pdf"
+      seoSection={<ToolSeoSection toolKey="powerpoint_to_pdf" />}
       relatedTools={[
         { name: "PDF to PowerPoint", href: "/pdf-to-powerpoint" },
         { name: "Word to PDF", href: "/word-to-pdf" },

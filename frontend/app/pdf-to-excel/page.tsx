@@ -8,6 +8,7 @@ import {
   BreadcrumbJsonLd,
 } from "@/components/seo/json-ld";
 import { ToolLayout } from "@/components/tools/tool-layout";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -81,6 +82,7 @@ export default function PDFToExcelPage() {
         toolName="PDF to Excel"
         toolDescription="Extract tables and data from PDFs into editable Excel .xlsx spreadsheets."
         toolKey="pdf_to_excel"
+        seoSection={<ToolSeoSection toolKey="pdf_to_excel" />}
         relatedTools={[
           { name: "Excel to PDF", href: "/excel-to-pdf" },
           { name: "PDF to Word", href: "/pdf-to-word" },

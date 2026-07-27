@@ -8,6 +8,7 @@ import {
   BreadcrumbJsonLd,
 } from "@/components/seo/json-ld";
 import { ToolSeoHeader } from "@/components/tools/tool-seo-header";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -77,6 +78,11 @@ export default function ProtectPDFPage() {
       <FAQPageJsonLd items={FAQ_ITEMS} />
       <ToolSeoHeader toolKey="protect_pdf" />
       <ProtectPDFClient />
+      <div className="container mx-auto px-5 pb-12 sm:px-6 lg:px-8">
+        <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-4 sm:p-8 overflow-hidden dark:border-gray-800 dark:bg-gray-900">
+          <ToolSeoSection toolKey="protect_pdf" />
+        </div>
+      </div>
     </>
   );
 }

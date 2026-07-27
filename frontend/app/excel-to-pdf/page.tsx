@@ -8,6 +8,7 @@ import {
   BreadcrumbJsonLd,
 } from "@/components/seo/json-ld";
 import { ToolLayout } from "@/components/tools/tool-layout";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -81,6 +82,7 @@ export default function ExcelToPDFPage() {
         toolName="Excel to PDF"
         toolDescription="Convert Excel .xls and .xlsx spreadsheets into PDF documents."
         toolKey="excel_to_pdf"
+        seoSection={<ToolSeoSection toolKey="excel_to_pdf" />}
         relatedTools={[
           { name: "PDF to Excel", href: "/pdf-to-excel" },
           { name: "Word to PDF", href: "/word-to-pdf" },

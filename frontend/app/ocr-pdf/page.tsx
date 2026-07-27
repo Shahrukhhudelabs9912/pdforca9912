@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { ToolLayout } from "@/components/tools/tool-layout";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
 
 import {
@@ -81,6 +82,7 @@ export default function OcrPDFPage() {
       toolName="OCR PDF"
       toolDescription="Upload a scanned PDF and we'll OCR every page, then return the same document with selectable, searchable text."
       toolKey="ocr_pdf"
+      seoSection={<ToolSeoSection toolKey="ocr_pdf" />}
       relatedTools={[
         { name: "PDF to Word", href: "/pdf-to-word" },
         { name: "Compress PDF", href: "/compress-pdf" },

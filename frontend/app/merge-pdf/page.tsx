@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { ToolLayout } from "@/components/tools/tool-layout";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
 import {
   SoftwareApplicationJsonLd,
@@ -120,6 +121,7 @@ export default function MergePDFPage() {
         toolName="Merge PDF"
         toolDescription="Easily merge multiple PDF files into one organized document. Drag and drop to rearrange pages, choose the order, and download the merged PDF instantly."
         toolKey="merge_pdf"
+        seoSection={<ToolSeoSection toolKey="merge_pdf" />}
         relatedTools={[
           { name: "Split PDF", href: "/split-pdf" },
           { name: "Organize PDF", href: "/organize-pdf" },

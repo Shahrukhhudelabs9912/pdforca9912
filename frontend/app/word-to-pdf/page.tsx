@@ -8,6 +8,7 @@ import {
   BreadcrumbJsonLd,
 } from "@/components/seo/json-ld";
 import { ToolLayout } from "@/components/tools/tool-layout";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -81,6 +82,7 @@ export default function WordToPDFPage() {
         toolName="Word to PDF"
         toolDescription="Convert Word .doc and .docx files into PDF documents."
         toolKey="word_to_pdf"
+        seoSection={<ToolSeoSection toolKey="word_to_pdf" />}
         relatedTools={[
           { name: "PDF to Word", href: "/pdf-to-word" },
           { name: "Excel to PDF", href: "/excel-to-pdf" },

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { ToolLayout } from "@/components/tools/tool-layout";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
 
 import {
@@ -95,6 +96,7 @@ export default function PDFToJPGPage() {
       toolName="PDF to JPG"
       toolDescription="Transform your PDF documents into JPG images quickly and easily. Convert individual pages or entire documents, adjust image quality and resolution, and download your images ready for sharing, printing, or editing in image software."
       toolKey="pdf_to_jpg"
+      seoSection={<ToolSeoSection toolKey="pdf_to_jpg" />}
       relatedTools={[
         { name: "JPG to PDF", href: "/jpg-to-pdf" },
         { name: "Compress PDF", href: "/compress-pdf" },

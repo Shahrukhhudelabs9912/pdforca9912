@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { ToolLayout } from "@/components/tools/tool-layout";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
 
 import {
@@ -95,6 +96,7 @@ export default function JPGToPDFPage() {
       toolName="JPG to PDF Converter"
       toolDescription="Convert JPG, PNG, and other image formats to PDF files with our fast and secure online tool."
       toolKey="jpg_to_pdf"
+      seoSection={<ToolSeoSection toolKey="jpg_to_pdf" />}
       relatedTools={[
         { name: "PDF to JPG", href: "/pdf-to-jpg" },
         { name: "Merge PDF", href: "/merge-pdf" },

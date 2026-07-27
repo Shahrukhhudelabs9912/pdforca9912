@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { ToolLayout } from "@/components/tools/tool-layout";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
 
 import {
@@ -80,6 +81,7 @@ export default function PDFToPowerPointPage() {
       toolName="PDF to PowerPoint"
       toolDescription="Convert your PDF files into PPTX presentations where every page is rendered as one slide."
       toolKey="pdf_to_powerpoint"
+      seoSection={<ToolSeoSection toolKey="pdf_to_powerpoint" />}
       relatedTools={[
         { name: "PowerPoint to PDF", href: "/powerpoint-to-pdf" },
         { name: "PDF to Word", href: "/pdf-to-word" },

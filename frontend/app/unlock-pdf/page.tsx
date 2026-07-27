@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { ToolLayout } from "@/components/tools/tool-layout";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
 
 import {
@@ -90,6 +91,7 @@ export default function UnlockPDFPage() {
       toolName="Unlock PDF"
       toolDescription="Decrypt password-protected PDFs in seconds. Just upload the file, enter the original password, and download the unlocked PDF — no installation, no registration."
       toolKey="unlock_pdf"
+      seoSection={<ToolSeoSection toolKey="unlock_pdf" />}
       relatedTools={[
         { name: "Protect PDF", href: "/protect-pdf" },
         { name: "Compress PDF", href: "/compress-pdf" },

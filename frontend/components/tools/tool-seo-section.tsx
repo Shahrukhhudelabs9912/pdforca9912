@@ -1,15 +1,19 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 interface ToolSeoSectionProps {
   /** Translation namespace key, e.g. "protect_pdf", "organize_pdf". */
   toolKey: string;
 }
 
-export function ToolSeoSection({ toolKey }: ToolSeoSectionProps) {
-  const t = useTranslations(toolKey as any);
-  const tp = useTranslations("tool_pages");
+/**
+ * Server-rendered SEO prose + FAQ block for tool pages. Rendered on the
+ * server (not "use client") so the full article text is present in the
+ * initial HTML — crawlers that don't execute JavaScript (including the
+ * AdSense reviewer) see the real content instead of an empty widget.
+ */
+export async function ToolSeoSection({ toolKey }: ToolSeoSectionProps) {
+  const t = await getTranslations(toolKey as any);
+  const tp = await getTranslations("tool_pages");
 
   let body: string | undefined;
   try {

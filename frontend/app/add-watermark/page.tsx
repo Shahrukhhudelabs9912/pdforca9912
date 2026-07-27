@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { ToolLayout } from "@/components/tools/tool-layout";
+import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
 
 import {
@@ -95,6 +96,7 @@ export default function AddWatermarkPage() {
       toolName="Add Watermark"
       toolDescription="Easily add custom text or image watermarks to your PDF files. Control position, opacity, rotation, and size to create professional-looking watermarks for branding or protection."
       toolKey="add_watermark"
+      seoSection={<ToolSeoSection toolKey="add_watermark" />}
       relatedTools={[
         { name: "Protect PDF", href: "/protect-pdf" },
         { name: "Sign PDF", href: "/sign-pdf" },
