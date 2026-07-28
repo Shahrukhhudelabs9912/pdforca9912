@@ -6,7 +6,6 @@ category: "How-To"
 author: "PDFOrca Team"
 relatedTool: "split-pdf"
 cover: "/blog/covers/pdf-split-kaise-kare-pages-nikale.webp"
-draft: true
 keywords:
   - pdf split kaise kare
   - pdf se pages kaise nikale
