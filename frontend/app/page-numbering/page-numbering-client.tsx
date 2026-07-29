@@ -2,7 +2,6 @@
 
 import { useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { ToolLayout } from "@/components/tools/tool-layout";
 import { FileUpload } from "@/components/file-upload";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
@@ -138,19 +137,7 @@ export function PageNumberingClient() {
   };
 
   return (
-    <ToolLayout
-      title={t("title")}
-      description={t("description")}
-      toolName="Page Numbering"
-      toolDescription={t("description")}
-      toolKey="page_numbering"
-      relatedTools={[
-        { name: "Organize PDF", href: "/organize-pdf" },
-        { name: "Add Watermark", href: "/add-watermark" },
-        { name: "Merge PDF", href: "/merge-pdf" },
-      ]}
-    >
-      <div className="space-y-6">
+    <div className="space-y-6">
         {/* File Upload */}
         <Card>
           <CardHeader>
@@ -461,6 +448,5 @@ export function PageNumberingClient() {
           </CardFooter>
         </Card>
       </div>
-    </ToolLayout>
   );
 }

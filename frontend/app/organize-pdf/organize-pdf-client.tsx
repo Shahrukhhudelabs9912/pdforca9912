@@ -9,7 +9,6 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/file-upload";
-import { ToolLayout } from "@/components/tools/tool-layout";
 import { motion } from "framer-motion";
 import { useToolProcessing } from "@/hooks/use-tool-processing";
 import { downloadBlob } from "@/lib/api-client";
@@ -255,19 +254,7 @@ export function OrganizePDFClient() {
     : "";
 
   return (
-    <ToolLayout
-      title={t("title")}
-      description={t("description")}
-      toolName="Organize PDF"
-      toolDescription={t("description")}
-      toolKey="organize_pdf"
-      relatedTools={[
-        { name: "Merge PDF", href: "/merge-pdf" },
-        { name: "Split PDF", href: "/split-pdf" },
-        { name: "Rotate PDF", href: "/rotate-pdf" },
-      ]}
-    >
-      <div className="space-y-6 lg:col-span-2">
+    <div className="space-y-6">
         {/* Upload Section */}
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-lg">
           <h3 className="text-xl font-semibold mb-4">{t("upload_to_organize_title")}</h3>
@@ -485,6 +472,5 @@ export function OrganizePDFClient() {
           </>
         )}
       </div>
-    </ToolLayout>
   );
 }
