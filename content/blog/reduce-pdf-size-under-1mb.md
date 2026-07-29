@@ -6,7 +6,6 @@ category: "Tips"
 author: "PDFOrca Team"
 relatedTool: "compress-pdf"
 cover: "/blog/covers/reduce-pdf-size-under-1mb.webp"
-draft: true
 keywords:
   - reduce pdf size
   - compress pdf under 1mb
