@@ -6,7 +6,6 @@ category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "jpg-to-pdf"
 cover: "/blog/covers/batch-convert-images-to-pdf.webp"
-draft: true
 keywords:
   - batch convert images to pdf
   - multiple images to pdf

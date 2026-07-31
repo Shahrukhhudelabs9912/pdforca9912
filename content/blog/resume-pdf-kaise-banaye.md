@@ -6,7 +6,6 @@ category: "Use Case"
 author: "PDFOrca Team"
 relatedTool: "word-to-pdf"
 cover: "/blog/covers/resume-pdf-kaise-banaye.webp"
-draft: true
 keywords:
   - resume pdf kaise banaye
   - word se pdf resume banao
