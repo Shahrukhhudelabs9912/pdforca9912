@@ -45,8 +45,11 @@ services:
     deploy:
       resources:
         limits:
-          memory: 6g
-          cpus: "4.0"
+          # Backend handles heavy PDF/OCR/LibreOffice conversion. 5 GB is
+          # sufficient for most single conversions; the 6→5g reduction
+          # leaves critical headroom for the host OS on an 8 GB machine.
+          memory: 5g
+          cpus: "3.0"
 
   frontend:
     build:
@@ -73,8 +76,12 @@ services:
     deploy:
       resources:
         limits:
-          memory: 512m
-          cpus: "1.0"
+          # 1.5 CPU lets 1-2 SSR renders run concurrently without exhausting
+          # the host. With nginx cache at 6h + stale-while-revalidate, the
+          # bulk of crawler traffic never reaches the frontend at all, so
+          # the few cold renders that do happen can afford a modest 1.5 CPU.
+          memory: 1g
+          cpus: "1.5"
 
   nginx:
     image: nginx:1.27-alpine
