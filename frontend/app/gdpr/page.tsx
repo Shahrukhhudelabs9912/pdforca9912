@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/gdpr`,
       hi: `${SITE_URL}/hi/gdpr`,
+      "x-default": `${SITE_URL}/gdpr`,
     },
   },
   openGraph: {

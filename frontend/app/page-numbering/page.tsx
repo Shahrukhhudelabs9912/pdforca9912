@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/page-numbering`,
       hi: `${SITE_URL}/hi/page-numbering`,
+      "x-default": `${SITE_URL}/page-numbering`,
     },
   },
 };

@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/pdf-to-excel`,
       hi: `${SITE_URL}/hi/pdf-to-excel`,
+      "x-default": `${SITE_URL}/pdf-to-excel`,
     },
   },
 };

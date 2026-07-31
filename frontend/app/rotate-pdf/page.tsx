@@ -34,6 +34,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/rotate-pdf`,
       hi: `${SITE_URL}/hi/rotate-pdf`,
+      "x-default": `${SITE_URL}/rotate-pdf`,
     },
   },
 };

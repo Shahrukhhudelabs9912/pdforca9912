@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/organize-pdf`,
       hi: `${SITE_URL}/hi/organize-pdf`,
+      "x-default": `${SITE_URL}/organize-pdf`,
     },
   },
 };

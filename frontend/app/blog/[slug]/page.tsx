@@ -55,6 +55,7 @@ export async function generateMetadata(
       languages: {
         en: url,
         hi: `${SITE_URL}/hi/blog/${slug}`,
+        "x-default": url,
       },
     },
   };

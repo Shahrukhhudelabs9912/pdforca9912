@@ -65,6 +65,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/add-watermark`,
       hi: `${SITE_URL}/hi/add-watermark`,
+      "x-default": `${SITE_URL}/add-watermark`,
     },
   },
 };

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/disclaimer`,
       hi: `${SITE_URL}/hi/disclaimer`,
+      "x-default": `${SITE_URL}/disclaimer`,
     },
   },
   openGraph: {

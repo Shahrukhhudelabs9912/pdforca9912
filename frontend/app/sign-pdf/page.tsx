@@ -35,6 +35,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/sign-pdf`,
       hi: `${SITE_URL}/hi/sign-pdf`,
+      "x-default": `${SITE_URL}/sign-pdf`,
     },
   },
 };

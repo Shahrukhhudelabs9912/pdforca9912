@@ -65,6 +65,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/split-pdf`,
       hi: `${SITE_URL}/hi/split-pdf`,
+      "x-default": `${SITE_URL}/split-pdf`,
     },
   },
 };

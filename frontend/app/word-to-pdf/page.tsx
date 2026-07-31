@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/word-to-pdf`,
       hi: `${SITE_URL}/hi/word-to-pdf`,
+      "x-default": `${SITE_URL}/word-to-pdf`,
     },
   },
 };

@@ -34,6 +34,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/ocr-pdf`,
       hi: `${SITE_URL}/hi/ocr-pdf`,
+      "x-default": `${SITE_URL}/ocr-pdf`,
     },
   },
 };

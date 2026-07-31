@@ -65,6 +65,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/jpg-to-pdf`,
       hi: `${SITE_URL}/hi/jpg-to-pdf`,
+      "x-default": `${SITE_URL}/jpg-to-pdf`,
     },
   },
 };

@@ -34,6 +34,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/unlock-pdf`,
       hi: `${SITE_URL}/hi/unlock-pdf`,
+      "x-default": `${SITE_URL}/unlock-pdf`,
     },
   },
 };

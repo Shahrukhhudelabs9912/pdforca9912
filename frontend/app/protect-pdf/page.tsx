@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/protect-pdf`,
       hi: `${SITE_URL}/hi/protect-pdf`,
+      "x-default": `${SITE_URL}/protect-pdf`,
     },
   },
 };

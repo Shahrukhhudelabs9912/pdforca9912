@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     languages: {
       en: SITE_URL,
       hi: `${SITE_URL}/hi`,
+      "x-default": SITE_URL,
     },
   },
 };

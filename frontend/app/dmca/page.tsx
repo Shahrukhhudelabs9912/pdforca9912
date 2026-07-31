@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/dmca`,
       hi: `${SITE_URL}/hi/dmca`,
+      "x-default": `${SITE_URL}/dmca`,
     },
   },
   openGraph: {

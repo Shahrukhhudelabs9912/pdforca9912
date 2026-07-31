@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/merge-pdf`,
       hi: `${SITE_URL}/hi/merge-pdf`,
+      "x-default": `${SITE_URL}/merge-pdf`,
     },
   },
 };

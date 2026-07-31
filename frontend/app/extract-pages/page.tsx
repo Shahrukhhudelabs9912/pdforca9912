@@ -34,6 +34,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/extract-pages`,
       hi: `${SITE_URL}/hi/extract-pages`,
+      "x-default": `${SITE_URL}/extract-pages`,
     },
   },
 };

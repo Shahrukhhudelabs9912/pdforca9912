@@ -69,6 +69,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/compress-pdf`,
       hi: `${SITE_URL}/hi/compress-pdf`,
+      "x-default": `${SITE_URL}/compress-pdf`,
     },
   },
 };

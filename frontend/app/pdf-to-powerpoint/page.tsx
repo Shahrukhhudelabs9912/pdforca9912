@@ -34,6 +34,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/pdf-to-powerpoint`,
       hi: `${SITE_URL}/hi/pdf-to-powerpoint`,
+      "x-default": `${SITE_URL}/pdf-to-powerpoint`,
     },
   },
 };

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${SITE_URL}/cookies`,
       hi: `${SITE_URL}/hi/cookies`,
+      "x-default": `${SITE_URL}/cookies`,
     },
   },
   openGraph: {

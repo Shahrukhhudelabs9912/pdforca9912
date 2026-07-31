@@ -27,6 +27,14 @@ export const metadata: Metadata = {
     description: "Use AI to summarize PDFs, extract key points, and generate analysis reports.",
     images: ["/api/og?title=AI%20Tools&description=Summarize%2C%20Analyze%20%26%20Extract%20with%20AI"],
   },
+  alternates: {
+    canonical: `${SITE_URL}/ai-tools`,
+    languages: {
+      en: `${SITE_URL}/ai-tools`,
+      hi: `${SITE_URL}/hi/ai-tools`,
+      "x-default": `${SITE_URL}/ai-tools`,
+    },
+  },
 };
 
 const FAQ_ITEMS = [
