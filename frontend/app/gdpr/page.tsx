@@ -21,11 +21,13 @@ export const metadata: Metadata = {
     title: "GDPR Compliance - PDFOrca",
     description: "PDFOrca's GDPR compliance and your data rights.",
     type: "website",
+    images: [{ url: "/api/og?title=GDPR%20Compliance&description=PDFOrca%27s%20Compliance%20%26%20Your%20Data%20Rights", width: 1200, height: 630, alt: "PDFOrca GDPR Compliance" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "GDPR Compliance - PDFOrca",
     description: "PDFOrca's GDPR compliance and your data rights.",
+    images: ["/api/og?title=GDPR%20Compliance&description=PDFOrca%27s%20Compliance%20%26%20Your%20Data%20Rights"],
   },
 };
 

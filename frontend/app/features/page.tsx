@@ -10,6 +10,13 @@ export const metadata: Metadata = {
     title: "Features - PDFOrca PDF Tools & Capabilities",
     description: "Explore PDFOrca's 20+ PDF tools including AI-powered features.",
     type: "website",
+    images: [{ url: "/api/og?title=Features&description=20%2B%20PDF%20Tools%20Including%20AI-Powered%20Features", width: 1200, height: 630, alt: "PDFOrca Features" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Features - PDFOrca PDF Tools & Capabilities",
+    description: "Explore PDFOrca's 20+ PDF tools including AI-powered features.",
+    images: ["/api/og?title=Features&description=20%2B%20PDF%20Tools%20Including%20AI-Powered%20Features"],
   },
 };
 

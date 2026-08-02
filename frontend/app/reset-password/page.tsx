@@ -14,6 +14,13 @@ export const metadata: Metadata = {
     title: "Reset Password - PDFOrca",
     description: "Reset your PDFOrca account password.",
     type: "website",
+    images: [{ url: "/api/og?title=Reset%20Password&description=Reset%20your%20PDFOrca%20account%20password", width: 1200, height: 630, alt: "Reset PDFOrca password" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Reset Password - PDFOrca",
+    description: "Reset your PDFOrca account password.",
+    images: ["/api/og?title=Reset%20Password&description=Reset%20your%20PDFOrca%20account%20password"],
   },
 };
 

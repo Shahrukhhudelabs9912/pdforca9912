@@ -21,11 +21,13 @@ export const metadata: Metadata = {
     title: "Terms of Service - PDFOrca",
     description: "PDFOrca terms and conditions for using our PDF tools.",
     type: "website",
+    images: [{ url: "/api/og?title=Terms%20of%20Service&description=Terms%20%26%20Conditions%20for%20Using%20PDFOrca", width: 1200, height: 630, alt: "PDFOrca Terms of Service" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Terms of Service - PDFOrca",
     description: "PDFOrca terms and conditions for using our PDF tools.",
+    images: ["/api/og?title=Terms%20of%20Service&description=Terms%20%26%20Conditions%20for%20Using%20PDFOrca"],
   },
 };
 

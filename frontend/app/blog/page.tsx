@@ -22,12 +22,14 @@ export const metadata: Metadata = {
       "Practical tutorials and tips for working with PDFs — built around our free online tools.",
     type: "website",
     url: `${SITE_URL}/blog`,
+    images: [{ url: "/api/og?title=PDFOrca%20Blog&description=PDF%20Tutorials%2C%20Tips%20%26%20Use%20Cases", width: 1200, height: 630, alt: "PDFOrca Blog" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "PDFOrca Blog — PDF Tutorials, Tips & Use Cases",
     description:
       "Practical tutorials and tips for working with PDFs.",
+    images: ["/api/og?title=PDFOrca%20Blog&description=PDF%20Tutorials%2C%20Tips%20%26%20Use%20Cases"],
   },
   alternates: {
     canonical: `${SITE_URL}/blog`,

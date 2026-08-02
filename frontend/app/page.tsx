@@ -17,11 +17,13 @@ export const metadata: Metadata = {
     url: SITE_URL,
     type: "website",
     siteName: "PDFOrca",
+    images: [{ url: "/api/og?title=PDFOrca&description=Free%2C%20Fast%2C%20Secure%20%26%20AI-Powered%20PDF%20Tools", width: 1200, height: 630, alt: "PDFOrca - Free Online PDF Tools" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "PDFOrca - Free Online PDF Tools",
     description: "Free online PDF tools to merge, split, compress, and convert PDFs.",
+    images: ["/api/og?title=PDFOrca&description=Free%2C%20Fast%2C%20Secure%20%26%20AI-Powered%20PDF%20Tools"],
   },
   alternates: {
     canonical: SITE_URL,

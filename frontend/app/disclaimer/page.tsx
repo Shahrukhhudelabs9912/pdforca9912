@@ -23,11 +23,13 @@ export const metadata: Metadata = {
     description:
       "Important disclaimer about PDFOrca's PDF tools and service limitations.",
     type: "website",
+    images: [{ url: "/api/og?title=Disclaimer&description=About%20PDFOrca%27s%20Tools%20%26%20Service%20Limitations", width: 1200, height: 630, alt: "PDFOrca Disclaimer" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Disclaimer - PDFOrca",
     description: "Important disclaimer about PDFOrca's PDF tools and service limitations.",
+    images: ["/api/og?title=Disclaimer&description=About%20PDFOrca%27s%20Tools%20%26%20Service%20Limitations"],
   },
 };
 
