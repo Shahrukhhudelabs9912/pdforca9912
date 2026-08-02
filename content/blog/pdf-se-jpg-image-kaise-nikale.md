@@ -6,7 +6,6 @@ category: "How-To"
 author: "PDFOrca Team"
 relatedTool: "pdf-to-jpg"
 cover: "/blog/covers/pdf-se-jpg-image-kaise-nikale.webp"
-draft: true
 keywords:
   - pdf se jpg kaise nikale
   - pdf se image extract kare
