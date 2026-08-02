@@ -6,12 +6,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy | PDFOrca",
   description:
     "Learn how PDFOrca protects your privacy. Files are processed securely and deleted automatically. No tracking, no data selling.",
-  openGraph: {
-    title: "Privacy Policy | PDFOrca",
-    description:
-      "Learn how PDFOrca protects your privacy. Files are processed securely and deleted automatically.",
-    type: "website",
-  },
+  // openGraph lives in page.tsx (page metadata replaces layout's for this object).
   alternates: {
     canonical: `${SITE_URL}/privacy`,
     languages: {

@@ -6,16 +6,7 @@ export const metadata: Metadata = {
   title: "About PDFOrca - Our Mission & Story | PDFOrca",
   description: "Learn about PDFOrca — a privacy-first, free online PDF toolkit built to make document workflows fast and accessible for everyone.",
   keywords: "about pdforca, free pdf tools, pdf tools mission, founder story, privacy-first pdf",
-  openGraph: {
-    title: "About PDFOrca - Our Mission & Story",
-    description: "Privacy-first, free online PDF tools built for everyone.",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About PDFOrca - Our Mission & Story",
-    description: "Privacy-first, free online PDF tools built for everyone.",
-  },
+  // openGraph/twitter live in page.tsx (page metadata replaces layout's for these objects).
   alternates: {
     canonical: `${SITE_URL}/about`,
     languages: {

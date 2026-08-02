@@ -6,16 +6,7 @@ export const metadata: Metadata = {
   title: "Pricing - Free PDF Tools | PDFOrca",
   description: "All PDFOrca tools are free. A Pro plan with larger files, batch processing, and priority support is coming soon.",
   keywords: "pdforca pricing, free pdf tools, pdf pro plan, pdf tools cost",
-  openGraph: {
-    title: "Pricing - Free PDF Tools | PDFOrca",
-    description: "All PDFOrca tools are free. Pro plan coming soon.",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Pricing - Free PDF Tools | PDFOrca",
-    description: "All PDFOrca tools are free. Pro plan coming soon.",
-  },
+  // openGraph/twitter live in page.tsx (page metadata replaces layout's for these objects).
   alternates: {
     canonical: `${SITE_URL}/pricing`,
     languages: {

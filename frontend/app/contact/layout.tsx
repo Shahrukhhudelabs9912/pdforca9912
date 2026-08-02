@@ -6,16 +6,7 @@ export const metadata: Metadata = {
   title: "Contact PDFOrca - Support & Feedback | PDFOrca",
   description: "Get in touch with the PDFOrca team. Email support for bug reports, feature requests, privacy inquiries, and general feedback.",
   keywords: "contact pdforca, pdf support, customer support, feedback, help",
-  openGraph: {
-    title: "Contact PDFOrca - Support & Feedback",
-    description: "Get in touch with the PDFOrca team.",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact PDFOrca - Support & Feedback",
-    description: "Get in touch with the PDFOrca team.",
-  },
+  // openGraph/twitter live in page.tsx (page metadata replaces layout's for these objects).
   alternates: {
     canonical: `${SITE_URL}/contact`,
     languages: {

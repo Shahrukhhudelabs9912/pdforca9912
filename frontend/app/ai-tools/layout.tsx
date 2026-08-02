@@ -8,18 +8,7 @@ export const metadata: Metadata = {
     "Use AI to summarize, analyze, and extract insights from PDF documents. Powered by advanced language models. Free, fast, and private.",
   keywords:
     "ai pdf, pdf summarizer, ai pdf analysis, summarize pdf, pdf ai tools, extract text from pdf",
-  openGraph: {
-    title: "AI PDF Tools - Summarize & Analyze PDFs with AI | PDFOrca",
-    description:
-      "Use AI to summarize, analyze, and extract insights from PDF documents.",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "AI PDF Tools - Summarize & Analyze PDFs with AI | PDFOrca",
-    description:
-      "Use AI to summarize, analyze, and extract insights from PDF documents.",
-  },
+  // openGraph/twitter live in page.tsx (page metadata replaces layout's for these objects).
   alternates: {
     canonical: `${SITE_URL}/ai-tools`,
     languages: {
