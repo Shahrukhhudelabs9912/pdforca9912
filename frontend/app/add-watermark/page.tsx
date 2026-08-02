@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolLayout } from "@/components/tools/tool-layout";
 import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
@@ -44,31 +45,26 @@ const AddWatermarkClient = dynamic(
   { loading: () => <ToolContentSkeleton />, ssr: false }
 );
 
-export const metadata: Metadata = {
-  title: "Add Watermark to PDF Online Free | PDFOrca",
-  description: "Add text or image watermarks to your PDF documents online for free. Customize position, opacity, and size of watermarks. No registration required.",
-  keywords: "add watermark to pdf, pdf watermark, watermark pdf, text watermark, image watermark, protect pdf, pdf security",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Add Watermark to PDF Online Free | PDFOrca",
-    description: "Add text or image watermarks to your PDF documents online for free.",
-    type: "website",
-    images: [{ url: "/api/og?title=Add%20Watermark&description=Add%20Watermarks%20to%20PDF%20Documents", width: 1200, height: 630, alt: "Add Watermark to PDF Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Add Watermark to PDF Online Free | PDFOrca",
-    description: "Add text or image watermarks to your PDF documents online for free.",
-    images: ["/api/og?title=Add%20Watermark&description=Add%20Watermarks%20to%20PDF%20Documents"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/add-watermark`,
-    languages: {
-      en: `${SITE_URL}/add-watermark`,
-      hi: `${SITE_URL}/hi/add-watermark`,
-      "x-default": `${SITE_URL}/add-watermark`,
+    description: "Add text or image watermarks to your PDF documents online for free. Customize position, opacity, and size of watermarks. No registration required.",
+    keywords: "add watermark to pdf, pdf watermark, watermark pdf, text watermark, image watermark, protect pdf, pdf security",
+    openGraph: {
+      title: "Add Watermark to PDF Online Free | PDFOrca",
+      description: "Add text or image watermarks to your PDF documents online for free.",
+      type: "website",
+      images: [{ url: "/api/og?title=Add%20Watermark&description=Add%20Watermarks%20to%20PDF%20Documents", width: 1200, height: 630, alt: "Add Watermark to PDF Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Add Watermark to PDF Online Free | PDFOrca",
+      description: "Add text or image watermarks to your PDF documents online for free.",
+      images: ["/api/og?title=Add%20Watermark&description=Add%20Watermarks%20to%20PDF%20Documents"],
+    },
+    alternates: await localeAlternates("/add-watermark"),
+  };
+}
 
 export default function AddWatermarkPage() {
   const pageUrl = `${SITE_URL}/add-watermark`;

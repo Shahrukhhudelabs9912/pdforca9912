@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolLayout } from "@/components/tools/tool-layout";
 import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
@@ -44,31 +45,26 @@ const PDFToJPGClient = dynamic(
   { loading: () => <ToolContentSkeleton />, ssr: false }
 );
 
-export const metadata: Metadata = {
-  title: "Convert PDF to JPG Online Free | PDFOrca",
-  description: "Convert PDF pages to high-quality JPG images online for free. Extract images from PDF or convert entire pages to JPG format.",
-  keywords: "convert pdf to jpg, pdf to image, pdf to jpg online, extract images from pdf, pdf to jpg converter",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Convert PDF to JPG Online Free | PDFOrca",
-    description: "Convert PDF pages to high-quality JPG images online for free.",
-    type: "website",
-    images: [{ url: "/api/og?title=PDF%20to%20JPG&description=Convert%20PDF%20Pages%20to%20High-Quality%20Images", width: 1200, height: 630, alt: "PDF to JPG Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Convert PDF to JPG Online Free | PDFOrca",
-    description: "Convert PDF pages to high-quality JPG images online for free.",
-    images: ["/api/og?title=PDF%20to%20JPG&description=Convert%20PDF%20Pages%20to%20High-Quality%20Images"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/pdf-to-jpg`,
-    languages: {
-      en: `${SITE_URL}/pdf-to-jpg`,
-      hi: `${SITE_URL}/hi/pdf-to-jpg`,
-      "x-default": `${SITE_URL}/pdf-to-jpg`,
+    description: "Convert PDF pages to high-quality JPG images online for free. Extract images from PDF or convert entire pages to JPG format.",
+    keywords: "convert pdf to jpg, pdf to image, pdf to jpg online, extract images from pdf, pdf to jpg converter",
+    openGraph: {
+      title: "Convert PDF to JPG Online Free | PDFOrca",
+      description: "Convert PDF pages to high-quality JPG images online for free.",
+      type: "website",
+      images: [{ url: "/api/og?title=PDF%20to%20JPG&description=Convert%20PDF%20Pages%20to%20High-Quality%20Images", width: 1200, height: 630, alt: "PDF to JPG Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Convert PDF to JPG Online Free | PDFOrca",
+      description: "Convert PDF pages to high-quality JPG images online for free.",
+      images: ["/api/og?title=PDF%20to%20JPG&description=Convert%20PDF%20Pages%20to%20High-Quality%20Images"],
+    },
+    alternates: await localeAlternates("/pdf-to-jpg"),
+  };
+}
 
 export default function PDFToJPGPage() {
   const pageUrl = `${SITE_URL}/pdf-to-jpg`;

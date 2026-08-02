@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolPageSkeleton } from "@/components/skeleton-loader";
 import {
   SoftwareApplicationJsonLd,
@@ -17,31 +18,26 @@ const ProtectPDFClient = dynamic(
   { loading: () => <ToolPageSkeleton />, ssr: false },
 );
 
-export const metadata: Metadata = {
-  title: "Password Protect PDF Online Free - Encrypt PDF Files | PDFOrca",
-  description: "Add password protection to PDF files online for free. AES encryption, no registration required.",
-  keywords: "protect pdf, password protect pdf, encrypt pdf, secure pdf, pdf password, lock pdf, add password to pdf",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Password Protect PDF Online Free - Encrypt PDF Files | PDFOrca",
     description: "Add password protection to PDF files online for free. AES encryption, no registration required.",
-    type: "website",
-    images: [{ url: "/api/og?title=Protect%20PDF&description=Add%20Password%20Protection%20to%20PDF", width: 1200, height: 630, alt: "Protect PDF Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Password Protect PDF Online Free - Encrypt PDF Files | PDFOrca",
-    description: "Add password protection to PDF files online for free. AES encryption, no registration required.",
-    images: ["/api/og?title=Protect%20PDF&description=Add%20Password%20Protection%20to%20PDF"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/protect-pdf`,
-    languages: {
-      en: `${SITE_URL}/protect-pdf`,
-      hi: `${SITE_URL}/hi/protect-pdf`,
-      "x-default": `${SITE_URL}/protect-pdf`,
+    keywords: "protect pdf, password protect pdf, encrypt pdf, secure pdf, pdf password, lock pdf, add password to pdf",
+    openGraph: {
+      title: "Password Protect PDF Online Free - Encrypt PDF Files | PDFOrca",
+      description: "Add password protection to PDF files online for free. AES encryption, no registration required.",
+      type: "website",
+      images: [{ url: "/api/og?title=Protect%20PDF&description=Add%20Password%20Protection%20to%20PDF", width: 1200, height: 630, alt: "Protect PDF Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Password Protect PDF Online Free - Encrypt PDF Files | PDFOrca",
+      description: "Add password protection to PDF files online for free. AES encryption, no registration required.",
+      images: ["/api/og?title=Protect%20PDF&description=Add%20Password%20Protection%20to%20PDF"],
+    },
+    alternates: await localeAlternates("/protect-pdf"),
+  };
+}
 
 const HOW_TO_STEPS = [
   { name: "Upload your PDF", text: "Drop the PDF you want to protect into the tool." },

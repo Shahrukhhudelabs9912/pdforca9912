@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolPageSkeleton } from "@/components/skeleton-loader";
 import {
   SoftwareApplicationJsonLd,
@@ -10,31 +11,26 @@ import {
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
-export const metadata: Metadata = {
-  title: "Convert PowerPoint to PDF Online Free | PDFOrca",
-  description: "Convert PowerPoint (.ppt, .pptx) presentations to PDF online for free. Layout, fonts, and images preserved. No registration required.",
-  keywords: "powerpoint to pdf, ppt to pdf, pptx to pdf, convert powerpoint to pdf, ppt to pdf converter, ppt to pdf online",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Convert PowerPoint to PDF Online Free | PDFOrca",
-    description: "Convert PowerPoint (.ppt, .pptx) presentations to PDF online for free.",
-    type: "website",
-    images: [{ url: "/api/og?title=PowerPoint%20to%20PDF&description=Convert%20Presentations%20to%20PDF", width: 1200, height: 630, alt: "PowerPoint to PDF Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Convert PowerPoint to PDF Online Free | PDFOrca",
-    description: "Convert PowerPoint (.ppt, .pptx) presentations to PDF online for free.",
-    images: ["/api/og?title=PowerPoint%20to%20PDF&description=Convert%20Presentations%20to%20PDF"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/powerpoint-to-pdf`,
-    languages: {
-      en: `${SITE_URL}/powerpoint-to-pdf`,
-      hi: `${SITE_URL}/hi/powerpoint-to-pdf`,
-      "x-default": `${SITE_URL}/powerpoint-to-pdf`,
+    description: "Convert PowerPoint (.ppt, .pptx) presentations to PDF online for free. Layout, fonts, and images preserved. No registration required.",
+    keywords: "powerpoint to pdf, ppt to pdf, pptx to pdf, convert powerpoint to pdf, ppt to pdf converter, ppt to pdf online",
+    openGraph: {
+      title: "Convert PowerPoint to PDF Online Free | PDFOrca",
+      description: "Convert PowerPoint (.ppt, .pptx) presentations to PDF online for free.",
+      type: "website",
+      images: [{ url: "/api/og?title=PowerPoint%20to%20PDF&description=Convert%20Presentations%20to%20PDF", width: 1200, height: 630, alt: "PowerPoint to PDF Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Convert PowerPoint to PDF Online Free | PDFOrca",
+      description: "Convert PowerPoint (.ppt, .pptx) presentations to PDF online for free.",
+      images: ["/api/og?title=PowerPoint%20to%20PDF&description=Convert%20Presentations%20to%20PDF"],
+    },
+    alternates: await localeAlternates("/powerpoint-to-pdf"),
+  };
+}
 
 const HOW_TO_STEPS = [
   { name: "Upload your slide deck", text: "Drop a .ppt or .pptx file into the tool." },

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolLayout } from "@/components/tools/tool-layout";
 import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
@@ -13,31 +14,26 @@ import {
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
-export const metadata: Metadata = {
-  title: "Unlock PDF Online Free - Remove PDF Password | PDFOrca",
-  description: "Unlock password-protected PDFs online for free. Remove the open password using the original password and download the unlocked PDF. Secure and private.",
-  keywords: "unlock pdf, remove pdf password, pdf password remover, decrypt pdf, unlock pdf online, pdf unlocker",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Unlock PDF Online Free - Remove PDF Password | PDFOrca",
-    description: "Unlock password-protected PDFs online for free.",
-    type: "website",
-    images: [{ url: "/api/og?title=Unlock%20PDF&description=Remove%20PDF%20Password%20Online%20Free", width: 1200, height: 630, alt: "Unlock PDF Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Unlock PDF Online Free - Remove PDF Password | PDFOrca",
-    description: "Unlock password-protected PDFs online for free.",
-    images: ["/api/og?title=Unlock%20PDF&description=Remove%20PDF%20Password%20Online%20Free"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/unlock-pdf`,
-    languages: {
-      en: `${SITE_URL}/unlock-pdf`,
-      hi: `${SITE_URL}/hi/unlock-pdf`,
-      "x-default": `${SITE_URL}/unlock-pdf`,
+    description: "Unlock password-protected PDFs online for free. Remove the open password using the original password and download the unlocked PDF. Secure and private.",
+    keywords: "unlock pdf, remove pdf password, pdf password remover, decrypt pdf, unlock pdf online, pdf unlocker",
+    openGraph: {
+      title: "Unlock PDF Online Free - Remove PDF Password | PDFOrca",
+      description: "Unlock password-protected PDFs online for free.",
+      type: "website",
+      images: [{ url: "/api/og?title=Unlock%20PDF&description=Remove%20PDF%20Password%20Online%20Free", width: 1200, height: 630, alt: "Unlock PDF Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Unlock PDF Online Free - Remove PDF Password | PDFOrca",
+      description: "Unlock password-protected PDFs online for free.",
+      images: ["/api/og?title=Unlock%20PDF&description=Remove%20PDF%20Password%20Online%20Free"],
+    },
+    alternates: await localeAlternates("/unlock-pdf"),
+  };
+}
 
 const HOW_TO_STEPS = [
   { name: "Upload the protected PDF", text: "Drop the password-protected PDF into the tool." },

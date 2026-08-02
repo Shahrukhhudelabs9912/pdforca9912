@@ -4,36 +4,32 @@ import { Suspense } from "react";
 import { PageLoader } from "@/components/loading-spinner";
 import { AdBanner } from "@/components/ad-banner";
 import { FAQPageJsonLd } from "@/components/seo/json-ld";
+import { localeAlternates } from "@/lib/seo";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
-export const metadata: Metadata = {
-  title: "PDFOrca - Free Online PDF Tools | Merge, Split, Compress, Convert",
-  description: "Free online PDF tools to merge, split, compress, convert PDF to Word, Excel, JPG, and more. AI-powered, privacy-first, no registration required.",
-  keywords: "pdf tools, merge pdf, split pdf, compress pdf, pdf to word, pdf converter, free pdf tools, online pdf editor",
-  openGraph: {
-    title: "PDFOrca - Free Online PDF Tools",
-    description: "Free online PDF tools to merge, split, compress, and convert PDFs. AI-powered, privacy-first.",
-    url: SITE_URL,
-    type: "website",
-    siteName: "PDFOrca",
-    images: [{ url: "/api/og?title=PDFOrca&description=Free%2C%20Fast%2C%20Secure%20%26%20AI-Powered%20PDF%20Tools", width: 1200, height: 630, alt: "PDFOrca - Free Online PDF Tools" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "PDFOrca - Free Online PDF Tools",
-    description: "Free online PDF tools to merge, split, compress, and convert PDFs.",
-    images: ["/api/og?title=PDFOrca&description=Free%2C%20Fast%2C%20Secure%20%26%20AI-Powered%20PDF%20Tools"],
-  },
-  alternates: {
-    canonical: SITE_URL,
-    languages: {
-      en: SITE_URL,
-      hi: `${SITE_URL}/hi`,
-      "x-default": SITE_URL,
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "PDFOrca - Free Online PDF Tools | Merge, Split, Compress, Convert",
+    description: "Free online PDF tools to merge, split, compress, convert PDF to Word, Excel, JPG, and more. AI-powered, privacy-first, no registration required.",
+    keywords: "pdf tools, merge pdf, split pdf, compress pdf, pdf to word, pdf converter, free pdf tools, online pdf editor",
+    openGraph: {
+      title: "PDFOrca - Free Online PDF Tools",
+      description: "Free online PDF tools to merge, split, compress, and convert PDFs. AI-powered, privacy-first.",
+      url: SITE_URL,
+      type: "website",
+      siteName: "PDFOrca",
+      images: [{ url: "/api/og?title=PDFOrca&description=Free%2C%20Fast%2C%20Secure%20%26%20AI-Powered%20PDF%20Tools", width: 1200, height: 630, alt: "PDFOrca - Free Online PDF Tools" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "PDFOrca - Free Online PDF Tools",
+      description: "Free online PDF tools to merge, split, compress, and convert PDFs.",
+      images: ["/api/og?title=PDFOrca&description=Free%2C%20Fast%2C%20Secure%20%26%20AI-Powered%20PDF%20Tools"],
+    },
+    alternates: await localeAlternates("/"),
+  };
+}
 
 const HeroSection = dynamic(
   () => import("@/components/home/hero").then((mod) => ({ default: mod.HeroSection })),

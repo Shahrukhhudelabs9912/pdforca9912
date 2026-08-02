@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolPageSkeleton } from "@/components/skeleton-loader";
 import {
   SoftwareApplicationJsonLd,
@@ -17,31 +18,26 @@ const WordToPDFClient = dynamic(
   { loading: () => <ToolPageSkeleton />, ssr: false },
 );
 
-export const metadata: Metadata = {
-  title: "Convert Word to PDF Online Free | PDFOrca",
-  description: "Convert Word documents (.doc, .docx) to PDF online for free. Preserve formatting, fonts, and images. No registration required.",
-  keywords: "word to pdf, convert word to pdf, doc to pdf, docx to pdf, word to pdf converter, free word to pdf",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Convert Word to PDF Online Free | PDFOrca",
     description: "Convert Word documents (.doc, .docx) to PDF online for free. Preserve formatting, fonts, and images. No registration required.",
-    type: "website",
-    images: [{ url: "/api/og?title=Word%20to%20PDF&description=Convert%20Word%20Documents%20to%20PDF", width: 1200, height: 630, alt: "Word to PDF Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Convert Word to PDF Online Free | PDFOrca",
-    description: "Convert Word documents (.doc, .docx) to PDF online for free. Preserve formatting, fonts, and images. No registration required.",
-    images: ["/api/og?title=Word%20to%20PDF&description=Convert%20Word%20Documents%20to%20PDF"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/word-to-pdf`,
-    languages: {
-      en: `${SITE_URL}/word-to-pdf`,
-      hi: `${SITE_URL}/hi/word-to-pdf`,
-      "x-default": `${SITE_URL}/word-to-pdf`,
+    keywords: "word to pdf, convert word to pdf, doc to pdf, docx to pdf, word to pdf converter, free word to pdf",
+    openGraph: {
+      title: "Convert Word to PDF Online Free | PDFOrca",
+      description: "Convert Word documents (.doc, .docx) to PDF online for free. Preserve formatting, fonts, and images. No registration required.",
+      type: "website",
+      images: [{ url: "/api/og?title=Word%20to%20PDF&description=Convert%20Word%20Documents%20to%20PDF", width: 1200, height: 630, alt: "Word to PDF Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Convert Word to PDF Online Free | PDFOrca",
+      description: "Convert Word documents (.doc, .docx) to PDF online for free. Preserve formatting, fonts, and images. No registration required.",
+      images: ["/api/og?title=Word%20to%20PDF&description=Convert%20Word%20Documents%20to%20PDF"],
+    },
+    alternates: await localeAlternates("/word-to-pdf"),
+  };
+}
 
 const HOW_TO_STEPS = [
   { name: "Upload your Word file", text: "Drop a .doc or .docx file into the tool." },

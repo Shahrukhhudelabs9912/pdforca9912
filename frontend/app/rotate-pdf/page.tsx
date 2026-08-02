@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolLayout } from "@/components/tools/tool-layout";
 import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
@@ -13,31 +14,26 @@ import {
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
-export const metadata: Metadata = {
-  title: "Rotate PDF Online Free - Rotate PDF Pages 90/180/270° | PDFOrca",
-  description: "Rotate PDF pages clockwise or counter-clockwise online for free. Fix sideways or upside-down pages by 90, 180, or 270 degrees. No registration.",
-  keywords: "rotate pdf, rotate pdf pages, pdf rotator, rotate pdf online, rotate pdf 90 degrees, fix pdf orientation",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Rotate PDF Online Free - Rotate PDF Pages 90/180/270° | PDFOrca",
-    description: "Rotate PDF pages clockwise or counter-clockwise online for free.",
-    type: "website",
-    images: [{ url: "/api/og?title=Rotate%20PDF&description=Rotate%20PDF%20Pages%20Online%20Free", width: 1200, height: 630, alt: "Rotate PDF Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Rotate PDF Online Free - Rotate PDF Pages 90/180/270° | PDFOrca",
-    description: "Rotate PDF pages clockwise or counter-clockwise online for free.",
-    images: ["/api/og?title=Rotate%20PDF&description=Rotate%20PDF%20Pages%20Online%20Free"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/rotate-pdf`,
-    languages: {
-      en: `${SITE_URL}/rotate-pdf`,
-      hi: `${SITE_URL}/hi/rotate-pdf`,
-      "x-default": `${SITE_URL}/rotate-pdf`,
+    description: "Rotate PDF pages clockwise or counter-clockwise online for free. Fix sideways or upside-down pages by 90, 180, or 270 degrees. No registration.",
+    keywords: "rotate pdf, rotate pdf pages, pdf rotator, rotate pdf online, rotate pdf 90 degrees, fix pdf orientation",
+    openGraph: {
+      title: "Rotate PDF Online Free - Rotate PDF Pages 90/180/270° | PDFOrca",
+      description: "Rotate PDF pages clockwise or counter-clockwise online for free.",
+      type: "website",
+      images: [{ url: "/api/og?title=Rotate%20PDF&description=Rotate%20PDF%20Pages%20Online%20Free", width: 1200, height: 630, alt: "Rotate PDF Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Rotate PDF Online Free - Rotate PDF Pages 90/180/270° | PDFOrca",
+      description: "Rotate PDF pages clockwise or counter-clockwise online for free.",
+      images: ["/api/og?title=Rotate%20PDF&description=Rotate%20PDF%20Pages%20Online%20Free"],
+    },
+    alternates: await localeAlternates("/rotate-pdf"),
+  };
+}
 
 const HOW_TO_STEPS = [
   { name: "Upload your PDF", text: "Drop the PDF you want to rotate into the tool." },

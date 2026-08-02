@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import {
   SoftwareApplicationJsonLd,
   HowToJsonLd,
@@ -12,30 +13,25 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
 const AiToolsClient = dynamic(() => import("./ai-tools-client"));
 
-export const metadata: Metadata = {
-  title: "AI PDF Tools - Summarize, Analyze & Extract with AI - PDFOrca",
-  description: "Use AI to summarize PDFs, extract key points, analyze sentiment, and generate reports. Free AI-powered PDF analysis tools by PDFOrca.",
-  openGraph: {
-    title: "AI PDF Tools - Summarize, Analyze & Extract with AI",
-    description: "Use AI to summarize PDFs, extract key points, and generate analysis reports.",
-    type: "website",
-    images: [{ url: "/api/og?title=AI%20Tools&description=Summarize%2C%20Analyze%20%26%20Extract%20with%20AI", width: 1200, height: 630, alt: "AI PDF Tools" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "AI PDF Tools - Summarize, Analyze & Extract with AI",
-    description: "Use AI to summarize PDFs, extract key points, and generate analysis reports.",
-    images: ["/api/og?title=AI%20Tools&description=Summarize%2C%20Analyze%20%26%20Extract%20with%20AI"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/ai-tools`,
-    languages: {
-      en: `${SITE_URL}/ai-tools`,
-      hi: `${SITE_URL}/hi/ai-tools`,
-      "x-default": `${SITE_URL}/ai-tools`,
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "AI PDF Tools - Summarize, Analyze & Extract with AI - PDFOrca",
+    description: "Use AI to summarize PDFs, extract key points, analyze sentiment, and generate reports. Free AI-powered PDF analysis tools by PDFOrca.",
+    openGraph: {
+      title: "AI PDF Tools - Summarize, Analyze & Extract with AI",
+      description: "Use AI to summarize PDFs, extract key points, and generate analysis reports.",
+      type: "website",
+      images: [{ url: "/api/og?title=AI%20Tools&description=Summarize%2C%20Analyze%20%26%20Extract%20with%20AI", width: 1200, height: 630, alt: "AI PDF Tools" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "AI PDF Tools - Summarize, Analyze & Extract with AI",
+      description: "Use AI to summarize PDFs, extract key points, and generate analysis reports.",
+      images: ["/api/og?title=AI%20Tools&description=Summarize%2C%20Analyze%20%26%20Extract%20with%20AI"],
+    },
+    alternates: await localeAlternates("/ai-tools"),
+  };
+}
 
 const FAQ_ITEMS = [
   {

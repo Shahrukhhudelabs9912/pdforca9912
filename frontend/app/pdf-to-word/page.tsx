@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolPageSkeleton } from "@/components/skeleton-loader";
 import {
   SoftwareApplicationJsonLd,
@@ -17,31 +18,26 @@ const PDFToWordClient = dynamic(
   { loading: () => <ToolPageSkeleton />, ssr: false },
 );
 
-export const metadata: Metadata = {
-  title: "Convert PDF to Word Online Free | PDFOrca",
-  description: "Convert PDF documents to editable Word (.docx) files online for free. Preserve layout, text, and images. No registration required.",
-  keywords: "pdf to word, convert pdf to word, pdf to docx, pdf to word converter, pdf to word online, free pdf to word",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Convert PDF to Word Online Free | PDFOrca",
     description: "Convert PDF documents to editable Word (.docx) files online for free. Preserve layout, text, and images. No registration required.",
-    type: "website",
-    images: [{ url: "/api/og?title=PDF%20to%20Word&description=Convert%20PDF%20to%20Editable%20Word%20Documents", width: 1200, height: 630, alt: "PDF to Word Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Convert PDF to Word Online Free | PDFOrca",
-    description: "Convert PDF documents to editable Word (.docx) files online for free. Preserve layout, text, and images. No registration required.",
-    images: ["/api/og?title=PDF%20to%20Word&description=Convert%20PDF%20to%20Editable%20Word%20Documents"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/pdf-to-word`,
-    languages: {
-      en: `${SITE_URL}/pdf-to-word`,
-      hi: `${SITE_URL}/hi/pdf-to-word`,
-      "x-default": `${SITE_URL}/pdf-to-word`,
+    keywords: "pdf to word, convert pdf to word, pdf to docx, pdf to word converter, pdf to word online, free pdf to word",
+    openGraph: {
+      title: "Convert PDF to Word Online Free | PDFOrca",
+      description: "Convert PDF documents to editable Word (.docx) files online for free. Preserve layout, text, and images. No registration required.",
+      type: "website",
+      images: [{ url: "/api/og?title=PDF%20to%20Word&description=Convert%20PDF%20to%20Editable%20Word%20Documents", width: 1200, height: 630, alt: "PDF to Word Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Convert PDF to Word Online Free | PDFOrca",
+      description: "Convert PDF documents to editable Word (.docx) files online for free. Preserve layout, text, and images. No registration required.",
+      images: ["/api/og?title=PDF%20to%20Word&description=Convert%20PDF%20to%20Editable%20Word%20Documents"],
+    },
+    alternates: await localeAlternates("/pdf-to-word"),
+  };
+}
 
 const HOW_TO_STEPS = [
   { name: "Upload your PDF", text: "Drop the PDF you want to convert into the tool." },

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolLayout } from "@/components/tools/tool-layout";
 import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
@@ -44,31 +45,26 @@ const SplitPDFClient = dynamic(
   { loading: () => <ToolContentSkeleton />, ssr: false }
 );
 
-export const metadata: Metadata = {
-  title: "Split PDF Online Free - Divide PDF into Multiple Files | PDFOrca",
-  description: "Split PDF files into multiple documents online for free. Divide PDF by page ranges or extract specific pages. No registration required.",
-  keywords: "split pdf, divide pdf, split pdf online, split pdf free, extract pdf pages, pdf splitter, separate pdf",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Split PDF Online Free - Divide PDF into Multiple Files | PDFOrca",
-    description: "Split PDF files into multiple documents online for free.",
-    type: "website",
-    images: [{ url: "/api/og?title=Split%20PDF&description=Divide%20PDF%20Into%20Multiple%20Files%20Online%20Free", width: 1200, height: 630, alt: "Split PDF Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Split PDF Online Free - Divide PDF into Multiple Files | PDFOrca",
-    description: "Split PDF files into multiple documents online for free.",
-    images: ["/api/og?title=Split%20PDF&description=Divide%20PDF%20Into%20Multiple%20Files%20Online%20Free"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/split-pdf`,
-    languages: {
-      en: `${SITE_URL}/split-pdf`,
-      hi: `${SITE_URL}/hi/split-pdf`,
-      "x-default": `${SITE_URL}/split-pdf`,
+    description: "Split PDF files into multiple documents online for free. Divide PDF by page ranges or extract specific pages. No registration required.",
+    keywords: "split pdf, divide pdf, split pdf online, split pdf free, extract pdf pages, pdf splitter, separate pdf",
+    openGraph: {
+      title: "Split PDF Online Free - Divide PDF into Multiple Files | PDFOrca",
+      description: "Split PDF files into multiple documents online for free.",
+      type: "website",
+      images: [{ url: "/api/og?title=Split%20PDF&description=Divide%20PDF%20Into%20Multiple%20Files%20Online%20Free", width: 1200, height: 630, alt: "Split PDF Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Split PDF Online Free - Divide PDF into Multiple Files | PDFOrca",
+      description: "Split PDF files into multiple documents online for free.",
+      images: ["/api/og?title=Split%20PDF&description=Divide%20PDF%20Into%20Multiple%20Files%20Online%20Free"],
+    },
+    alternates: await localeAlternates("/split-pdf"),
+  };
+}
 
 export default function SplitPDFPage() {
   const pageUrl = `${SITE_URL}/split-pdf`;

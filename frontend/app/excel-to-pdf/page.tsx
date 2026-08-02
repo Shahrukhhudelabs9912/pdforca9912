@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolPageSkeleton } from "@/components/skeleton-loader";
 import {
   SoftwareApplicationJsonLd,
@@ -17,31 +18,26 @@ const ExcelToPDFClient = dynamic(
   { loading: () => <ToolPageSkeleton />, ssr: false },
 );
 
-export const metadata: Metadata = {
-  title: "Convert Excel to PDF Online Free | PDFOrca",
-  description: "Convert Excel spreadsheets (.xls, .xlsx) to PDF online for free. Preserve formatting, formulas, and charts. No registration required.",
-  keywords: "excel to pdf, convert excel to pdf, xls to pdf, xlsx to pdf, excel to pdf converter, free excel to pdf",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Convert Excel to PDF Online Free | PDFOrca",
     description: "Convert Excel spreadsheets (.xls, .xlsx) to PDF online for free. Preserve formatting, formulas, and charts. No registration required.",
-    type: "website",
-    images: [{ url: "/api/og?title=Excel%20to%20PDF&description=Convert%20Spreadsheets%20to%20PDF", width: 1200, height: 630, alt: "Excel to PDF Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Convert Excel to PDF Online Free | PDFOrca",
-    description: "Convert Excel spreadsheets (.xls, .xlsx) to PDF online for free. Preserve formatting, formulas, and charts. No registration required.",
-    images: ["/api/og?title=Excel%20to%20PDF&description=Convert%20Spreadsheets%20to%20PDF"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/excel-to-pdf`,
-    languages: {
-      en: `${SITE_URL}/excel-to-pdf`,
-      hi: `${SITE_URL}/hi/excel-to-pdf`,
-      "x-default": `${SITE_URL}/excel-to-pdf`,
+    keywords: "excel to pdf, convert excel to pdf, xls to pdf, xlsx to pdf, excel to pdf converter, free excel to pdf",
+    openGraph: {
+      title: "Convert Excel to PDF Online Free | PDFOrca",
+      description: "Convert Excel spreadsheets (.xls, .xlsx) to PDF online for free. Preserve formatting, formulas, and charts. No registration required.",
+      type: "website",
+      images: [{ url: "/api/og?title=Excel%20to%20PDF&description=Convert%20Spreadsheets%20to%20PDF", width: 1200, height: 630, alt: "Excel to PDF Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Convert Excel to PDF Online Free | PDFOrca",
+      description: "Convert Excel spreadsheets (.xls, .xlsx) to PDF online for free. Preserve formatting, formulas, and charts. No registration required.",
+      images: ["/api/og?title=Excel%20to%20PDF&description=Convert%20Spreadsheets%20to%20PDF"],
+    },
+    alternates: await localeAlternates("/excel-to-pdf"),
+  };
+}
 
 const HOW_TO_STEPS = [
   { name: "Upload your spreadsheet", text: "Drop a .xls or .xlsx file into the tool." },

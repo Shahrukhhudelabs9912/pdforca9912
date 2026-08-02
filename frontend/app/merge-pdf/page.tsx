@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolLayout } from "@/components/tools/tool-layout";
 import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
@@ -17,31 +18,26 @@ const ToolComponent = dynamic(
   { loading: () => <ToolContentSkeleton />, ssr: false }
 );
 
-export const metadata: Metadata = {
-  title: "Merge PDF Online Free - Combine Multiple PDF Files | PDFOrca",
-  description: "Merge multiple PDF files into a single document online for free. Combine PDFs quickly and securely with our easy-to-use tool. No registration required.",
-  keywords: "merge pdf, combine pdf, merge pdf online, merge pdf free, join pdf, pdf merger, merge multiple pdf",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Merge PDF Online Free - Combine Multiple PDF Files | PDFOrca",
-    description: "Merge multiple PDF files into a single document online for free.",
-    type: "website",
-    images: [{ url: "/api/og?title=Merge%20PDF&description=Combine%20Multiple%20PDF%20Files%20Online%20Free", width: 1200, height: 630, alt: "Merge PDF Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Merge PDF Online Free - Combine Multiple PDF Files | PDFOrca",
-    description: "Merge multiple PDF files into a single document online for free.",
-    images: ["/api/og?title=Merge%20PDF&description=Combine%20Multiple%20PDF%20Files%20Online%20Free"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/merge-pdf`,
-    languages: {
-      en: `${SITE_URL}/merge-pdf`,
-      hi: `${SITE_URL}/hi/merge-pdf`,
-      "x-default": `${SITE_URL}/merge-pdf`,
+    description: "Merge multiple PDF files into a single document online for free. Combine PDFs quickly and securely with our easy-to-use tool. No registration required.",
+    keywords: "merge pdf, combine pdf, merge pdf online, merge pdf free, join pdf, pdf merger, merge multiple pdf",
+    openGraph: {
+      title: "Merge PDF Online Free - Combine Multiple PDF Files | PDFOrca",
+      description: "Merge multiple PDF files into a single document online for free.",
+      type: "website",
+      images: [{ url: "/api/og?title=Merge%20PDF&description=Combine%20Multiple%20PDF%20Files%20Online%20Free", width: 1200, height: 630, alt: "Merge PDF Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Merge PDF Online Free - Combine Multiple PDF Files | PDFOrca",
+      description: "Merge multiple PDF files into a single document online for free.",
+      images: ["/api/og?title=Merge%20PDF&description=Combine%20Multiple%20PDF%20Files%20Online%20Free"],
+    },
+    alternates: await localeAlternates("/merge-pdf"),
+  };
+}
 
 const FAQ_ITEMS = [
   {

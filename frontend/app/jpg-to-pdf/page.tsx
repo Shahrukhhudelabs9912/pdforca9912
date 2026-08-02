@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolLayout } from "@/components/tools/tool-layout";
 import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
@@ -44,31 +45,26 @@ const JPGToPDFClient = dynamic(
   { loading: () => <ToolContentSkeleton />, ssr: false }
 );
 
-export const metadata: Metadata = {
-  title: "JPG to PDF Converter Online Free - Convert Images to PDF | PDFOrca",
-  description: "Convert JPG images to PDF files online for free. Combine multiple images into a single PDF document. No registration required.",
-  keywords: "jpg to pdf, image to pdf, convert jpg to pdf, jpg to pdf converter, images to pdf, photo to pdf",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "JPG to PDF Converter Online Free - Convert Images to PDF | PDFOrca",
-    description: "Convert JPG images to PDF files online for free.",
-    type: "website",
-    images: [{ url: "/api/og?title=JPG%20to%20PDF&description=Convert%20Images%20to%20PDF%20Online%20Free", width: 1200, height: 630, alt: "JPG to PDF Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "JPG to PDF Converter Online Free - Convert Images to PDF | PDFOrca",
-    description: "Convert JPG images to PDF files online for free.",
-    images: ["/api/og?title=JPG%20to%20PDF&description=Convert%20Images%20to%20PDF%20Online%20Free"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/jpg-to-pdf`,
-    languages: {
-      en: `${SITE_URL}/jpg-to-pdf`,
-      hi: `${SITE_URL}/hi/jpg-to-pdf`,
-      "x-default": `${SITE_URL}/jpg-to-pdf`,
+    description: "Convert JPG images to PDF files online for free. Combine multiple images into a single PDF document. No registration required.",
+    keywords: "jpg to pdf, image to pdf, convert jpg to pdf, jpg to pdf converter, images to pdf, photo to pdf",
+    openGraph: {
+      title: "JPG to PDF Converter Online Free - Convert Images to PDF | PDFOrca",
+      description: "Convert JPG images to PDF files online for free.",
+      type: "website",
+      images: [{ url: "/api/og?title=JPG%20to%20PDF&description=Convert%20Images%20to%20PDF%20Online%20Free", width: 1200, height: 630, alt: "JPG to PDF Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "JPG to PDF Converter Online Free - Convert Images to PDF | PDFOrca",
+      description: "Convert JPG images to PDF files online for free.",
+      images: ["/api/og?title=JPG%20to%20PDF&description=Convert%20Images%20to%20PDF%20Online%20Free"],
+    },
+    alternates: await localeAlternates("/jpg-to-pdf"),
+  };
+}
 
 export default function JPGToPDFPage() {
   const pageUrl = `${SITE_URL}/jpg-to-pdf`;

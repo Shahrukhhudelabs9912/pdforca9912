@@ -1,22 +1,16 @@
 import type { Metadata } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
-
-export const metadata: Metadata = {
-  title: "AI PDF Tools - Summarize & Analyze PDFs with AI | PDFOrca",
-  description:
-    "Use AI to summarize, analyze, and extract insights from PDF documents. Powered by advanced language models. Free, fast, and private.",
-  keywords:
-    "ai pdf, pdf summarizer, ai pdf analysis, summarize pdf, pdf ai tools, extract text from pdf",
-  // openGraph/twitter live in page.tsx (page metadata replaces layout's for these objects).
-  alternates: {
-    canonical: `${SITE_URL}/ai-tools`,
-    languages: {
-      en: `${SITE_URL}/ai-tools`,
-      hi: `${SITE_URL}/hi/ai-tools`,
-    },
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "AI PDF Tools - Summarize & Analyze PDFs with AI | PDFOrca",
+    description:
+      "Use AI to summarize, analyze, and extract insights from PDF documents. Powered by advanced language models. Free, fast, and private.",
+    keywords:
+      "ai pdf, pdf summarizer, ai pdf analysis, summarize pdf, pdf ai tools, extract text from pdf",
+    // openGraph/twitter live in page.tsx (page metadata replaces layout's for these objects).
+    // alternates live in page.tsx too — layout's would be overridden by the page anyway.
+  };
+}
 
 export default function AIToolsLayout({
   children,

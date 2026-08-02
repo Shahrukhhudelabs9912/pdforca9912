@@ -16,6 +16,7 @@ import { FileProvider } from "@/lib/file-context";
 import { AuthProvider } from "@/lib/auth-context";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/json-ld";
+import { localeAlternates } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,63 +26,60 @@ const inter = Inter({
   adjustFontFallback: true,
 });
 
-export const metadata: Metadata = {
-  title: "PDFOrca - Fast, Secure & AI-Powered PDF Tools",
-  description: "Merge, split, compress, convert PDF files online for free. Fast, secure, and AI-powered PDF tools with privacy-first approach.",
-  keywords: "PDF tools, merge PDF, split PDF, compress PDF, PDF to Word, Word to PDF, PDF converter, AI PDF summarization",
-  authors: [{ name: "PDFOrca" }],
-  robots: "index, follow",
-  verification: {
-    google: "UaaT6fk7tLaOZEiuTXwrJqYuVDwV-Ce-mG1DDbk4mjE",
-    other: {
-      "ahrefs-site-verification":
-        "07358afe31b224711be022f7fb20c957bdf7c96f466f6dd5de0aa99522d7ab54",
-    },
-  },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com"),
-  alternates: {
-    canonical: "/",
-    languages: {
-      "en": "/",
-      "hi": "/hi",
-    },
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    alternateLocale: ["hi_IN"],
-    url: "https://pdforca.com",
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "PDFOrca - Fast, Secure & AI-Powered PDF Tools",
-    description: "Merge, split, compress, convert PDF files online for free. Fast, secure, and AI-powered PDF tools.",
-    siteName: "PDFOrca",
-    // Default social-share image. Pages without their own og:image
-    // (e.g. the 21 tool pages) fall back to this so links shared on
-    // WhatsApp/Twitter/LinkedIn always show a branded preview card.
-    images: [
-      {
-        url: "/og-banner.webp",
-        width: 1672,
-        height: 941,
-        alt: "PDFOrca - Fast, Secure & AI-Powered PDF Tools",
+    description: "Merge, split, compress, convert PDF files online for free. Fast, secure, and AI-powered PDF tools with privacy-first approach.",
+    keywords: "PDF tools, merge PDF, split PDF, compress PDF, PDF to Word, Word to PDF, PDF converter, AI PDF summarization",
+    authors: [{ name: "PDFOrca" }],
+    robots: "index, follow",
+    verification: {
+      google: "UaaT6fk7tLaOZEiuTXwrJqYuVDwV-Ce-mG1DDbk4mjE",
+      other: {
+        "ahrefs-site-verification":
+          "07358afe31b224711be022f7fb20c957bdf7c96f466f6dd5de0aa99522d7ab54",
       },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "PDFOrca - Fast, Secure & AI-Powered PDF Tools",
-    description: "Merge, split, compress, convert PDF files online for free.",
-    images: ["/og-banner.webp"],
-  },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
-      { url: "/icon-pdforca.svg", type: "image/svg+xml" },
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-    ],
-    shortcut: "/favicon.ico",
-    apple: "/icon-192.png",
-  },
-};
+    },
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com"),
+    // Canonical/hreflang are locale-aware (self-referencing) — see lib/seo.ts.
+    alternates: await localeAlternates("/"),
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      alternateLocale: ["hi_IN"],
+      url: "https://pdforca.com",
+      title: "PDFOrca - Fast, Secure & AI-Powered PDF Tools",
+      description: "Merge, split, compress, convert PDF files online for free. Fast, secure, and AI-powered PDF tools.",
+      siteName: "PDFOrca",
+      // Default social-share image. Pages without their own og:image
+      // (e.g. the 21 tool pages) fall back to this so links shared on
+      // WhatsApp/Twitter/LinkedIn always show a branded preview card.
+      images: [
+        {
+          url: "/og-banner.webp",
+          width: 1672,
+          height: 941,
+          alt: "PDFOrca - Fast, Secure & AI-Powered PDF Tools",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "PDFOrca - Fast, Secure & AI-Powered PDF Tools",
+      description: "Merge, split, compress, convert PDF files online for free.",
+      images: ["/og-banner.webp"],
+    },
+    icons: {
+      icon: [
+        { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+        { url: "/icon-pdforca.svg", type: "image/svg+xml" },
+        { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      ],
+      shortcut: "/favicon.ico",
+      apple: "/icon-192.png",
+    },
+  };
+}
 
 export const viewport = {
   width: "device-width",

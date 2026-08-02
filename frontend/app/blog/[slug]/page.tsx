@@ -7,6 +7,7 @@ import { getTranslations } from "next-intl/server";
 import { getAllPostSlugs, getPostBySlug, getRelatedPosts } from "@/lib/blog";
 import { BlogPostBody } from "@/components/blog/blog-post-body";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
+import { localeAlternates } from "@/lib/seo";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -50,14 +51,9 @@ export async function generateMetadata(
       description: post.description,
       images: [ogImage],
     },
-    alternates: {
-      canonical: url,
-      languages: {
-        en: url,
-        hi: `${SITE_URL}/hi/blog/${slug}`,
-        "x-default": url,
-      },
-    },
+    // Canonical is self-referencing per locale (en unprefixed, hi /hi/…) so
+    // hreflang and canonical agree — see lib/seo.ts.
+    alternates: await localeAlternates(`/blog/${slug}`),
   };
 }
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolLayout } from "@/components/tools/tool-layout";
 import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
@@ -13,31 +14,26 @@ import {
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
-export const metadata: Metadata = {
-  title: "Convert PDF to PowerPoint Online Free | PDFOrca",
-  description: "Convert PDF documents into PowerPoint (.pptx) presentations online for free. Each PDF page becomes a 16:9 widescreen slide. No registration required.",
-  keywords: "pdf to powerpoint, pdf to pptx, convert pdf to ppt, pdf to slides, pdf to powerpoint converter, pdf to pptx online",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Convert PDF to PowerPoint Online Free | PDFOrca",
-    description: "Convert PDF documents into PowerPoint (.pptx) presentations.",
-    type: "website",
-    images: [{ url: "/api/og?title=PDF%20to%20PowerPoint&description=Convert%20PDF%20to%20Presentations", width: 1200, height: 630, alt: "PDF to PowerPoint Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Convert PDF to PowerPoint Online Free | PDFOrca",
-    description: "Convert PDF documents into PowerPoint (.pptx) presentations.",
-    images: ["/api/og?title=PDF%20to%20PowerPoint&description=Convert%20PDF%20to%20Presentations"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/pdf-to-powerpoint`,
-    languages: {
-      en: `${SITE_URL}/pdf-to-powerpoint`,
-      hi: `${SITE_URL}/hi/pdf-to-powerpoint`,
-      "x-default": `${SITE_URL}/pdf-to-powerpoint`,
+    description: "Convert PDF documents into PowerPoint (.pptx) presentations online for free. Each PDF page becomes a 16:9 widescreen slide. No registration required.",
+    keywords: "pdf to powerpoint, pdf to pptx, convert pdf to ppt, pdf to slides, pdf to powerpoint converter, pdf to pptx online",
+    openGraph: {
+      title: "Convert PDF to PowerPoint Online Free | PDFOrca",
+      description: "Convert PDF documents into PowerPoint (.pptx) presentations.",
+      type: "website",
+      images: [{ url: "/api/og?title=PDF%20to%20PowerPoint&description=Convert%20PDF%20to%20Presentations", width: 1200, height: 630, alt: "PDF to PowerPoint Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Convert PDF to PowerPoint Online Free | PDFOrca",
+      description: "Convert PDF documents into PowerPoint (.pptx) presentations.",
+      images: ["/api/og?title=PDF%20to%20PowerPoint&description=Convert%20PDF%20to%20Presentations"],
+    },
+    alternates: await localeAlternates("/pdf-to-powerpoint"),
+  };
+}
 
 const HOW_TO_STEPS = [
   { name: "Upload your PDF", text: "Drop your PDF into the tool." },

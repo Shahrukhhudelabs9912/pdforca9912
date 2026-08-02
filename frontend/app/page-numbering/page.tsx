@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolPageSkeleton } from "@/components/skeleton-loader";
 import {
   SoftwareApplicationJsonLd,
@@ -17,31 +18,26 @@ const PageNumberingClient = dynamic(
   { loading: () => <ToolPageSkeleton />, ssr: false },
 );
 
-export const metadata: Metadata = {
-  title: "Add Page Numbers to PDF Online Free | PDFOrca",
-  description: "Add page numbers to a PDF document online for free. Customize position, format, and starting number. No registration required.",
-  keywords: "add page numbers to pdf, pdf page numbering, number pdf pages, pdf page numbers, paginate pdf",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Add Page Numbers to PDF Online Free | PDFOrca",
     description: "Add page numbers to a PDF document online for free. Customize position, format, and starting number. No registration required.",
-    type: "website",
-    images: [{ url: "/api/og?title=Page%20Numbering&description=Add%20Page%20Numbers%20to%20PDF", width: 1200, height: 630, alt: "Add Page Numbers to PDF Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Add Page Numbers to PDF Online Free | PDFOrca",
-    description: "Add page numbers to a PDF document online for free. Customize position, format, and starting number. No registration required.",
-    images: ["/api/og?title=Page%20Numbering&description=Add%20Page%20Numbers%20to%20PDF"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/page-numbering`,
-    languages: {
-      en: `${SITE_URL}/page-numbering`,
-      hi: `${SITE_URL}/hi/page-numbering`,
-      "x-default": `${SITE_URL}/page-numbering`,
+    keywords: "add page numbers to pdf, pdf page numbering, number pdf pages, pdf page numbers, paginate pdf",
+    openGraph: {
+      title: "Add Page Numbers to PDF Online Free | PDFOrca",
+      description: "Add page numbers to a PDF document online for free. Customize position, format, and starting number. No registration required.",
+      type: "website",
+      images: [{ url: "/api/og?title=Page%20Numbering&description=Add%20Page%20Numbers%20to%20PDF", width: 1200, height: 630, alt: "Add Page Numbers to PDF Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Add Page Numbers to PDF Online Free | PDFOrca",
+      description: "Add page numbers to a PDF document online for free. Customize position, format, and starting number. No registration required.",
+      images: ["/api/og?title=Page%20Numbering&description=Add%20Page%20Numbers%20to%20PDF"],
+    },
+    alternates: await localeAlternates("/page-numbering"),
+  };
+}
 
 const HOW_TO_STEPS = [
   { name: "Upload your PDF", text: "Drop the PDF you want to number into the tool." },

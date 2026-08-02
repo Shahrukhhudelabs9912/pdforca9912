@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolLayout } from "@/components/tools/tool-layout";
 import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
@@ -13,31 +14,26 @@ import {
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
-export const metadata: Metadata = {
-  title: "Extract Pages from PDF Online Free | PDFOrca",
-  description: "Extract specific pages from a PDF into a new document. Pick single pages or ranges (e.g. 1,3,5-7) and download the new PDF instantly. Free, no signup.",
-  keywords: "extract pdf pages, pdf page extractor, extract pages from pdf, pdf page picker, select pdf pages, get pages from pdf",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Extract Pages from PDF Online Free | PDFOrca",
-    description: "Extract specific pages from a PDF into a new document.",
-    type: "website",
-    images: [{ url: "/api/og?title=Extract%20Pages&description=Extract%20Specific%20Pages%20from%20PDF", width: 1200, height: 630, alt: "Extract PDF Pages Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Extract Pages from PDF Online Free | PDFOrca",
-    description: "Extract specific pages from a PDF into a new document.",
-    images: ["/api/og?title=Extract%20Pages&description=Extract%20Specific%20Pages%20from%20PDF"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/extract-pages`,
-    languages: {
-      en: `${SITE_URL}/extract-pages`,
-      hi: `${SITE_URL}/hi/extract-pages`,
-      "x-default": `${SITE_URL}/extract-pages`,
+    description: "Extract specific pages from a PDF into a new document. Pick single pages or ranges (e.g. 1,3,5-7) and download the new PDF instantly. Free, no signup.",
+    keywords: "extract pdf pages, pdf page extractor, extract pages from pdf, pdf page picker, select pdf pages, get pages from pdf",
+    openGraph: {
+      title: "Extract Pages from PDF Online Free | PDFOrca",
+      description: "Extract specific pages from a PDF into a new document.",
+      type: "website",
+      images: [{ url: "/api/og?title=Extract%20Pages&description=Extract%20Specific%20Pages%20from%20PDF", width: 1200, height: 630, alt: "Extract PDF Pages Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Extract Pages from PDF Online Free | PDFOrca",
+      description: "Extract specific pages from a PDF into a new document.",
+      images: ["/api/og?title=Extract%20Pages&description=Extract%20Specific%20Pages%20from%20PDF"],
+    },
+    alternates: await localeAlternates("/extract-pages"),
+  };
+}
 
 const HOW_TO_STEPS = [
   { name: "Upload your PDF", text: "Drop your source PDF into the tool." },

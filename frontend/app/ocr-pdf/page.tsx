@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolLayout } from "@/components/tools/tool-layout";
 import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
@@ -13,31 +14,26 @@ import {
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
-export const metadata: Metadata = {
-  title: "OCR PDF Online Free - Make Scanned PDFs Searchable | PDFOrca",
-  description: "Convert scanned PDFs into searchable, selectable text with OCR. Free online tool — supports English and Hindi. Adds an invisible text layer, original look preserved.",
-  keywords: "ocr pdf, pdf ocr online, scanned pdf to text, searchable pdf, ocr scanned pdf, hindi ocr pdf, pdf text recognition",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "OCR PDF Online Free - Make Scanned PDFs Searchable | PDFOrca",
-    description: "Convert scanned PDFs into searchable, selectable text with OCR.",
-    type: "website",
-    images: [{ url: "/api/og?title=OCR%20PDF&description=Make%20Scanned%20PDFs%20Searchable", width: 1200, height: 630, alt: "OCR PDF Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "OCR PDF Online Free - Make Scanned PDFs Searchable | PDFOrca",
-    description: "Convert scanned PDFs into searchable, selectable text with OCR.",
-    images: ["/api/og?title=OCR%20PDF&description=Make%20Scanned%20PDFs%20Searchable"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/ocr-pdf`,
-    languages: {
-      en: `${SITE_URL}/ocr-pdf`,
-      hi: `${SITE_URL}/hi/ocr-pdf`,
-      "x-default": `${SITE_URL}/ocr-pdf`,
+    description: "Convert scanned PDFs into searchable, selectable text with OCR. Free online tool — supports English and Hindi. Adds an invisible text layer, original look preserved.",
+    keywords: "ocr pdf, pdf ocr online, scanned pdf to text, searchable pdf, ocr scanned pdf, hindi ocr pdf, pdf text recognition",
+    openGraph: {
+      title: "OCR PDF Online Free - Make Scanned PDFs Searchable | PDFOrca",
+      description: "Convert scanned PDFs into searchable, selectable text with OCR.",
+      type: "website",
+      images: [{ url: "/api/og?title=OCR%20PDF&description=Make%20Scanned%20PDFs%20Searchable", width: 1200, height: 630, alt: "OCR PDF Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "OCR PDF Online Free - Make Scanned PDFs Searchable | PDFOrca",
+      description: "Convert scanned PDFs into searchable, selectable text with OCR.",
+      images: ["/api/og?title=OCR%20PDF&description=Make%20Scanned%20PDFs%20Searchable"],
+    },
+    alternates: await localeAlternates("/ocr-pdf"),
+  };
+}
 
 const HOW_TO_STEPS = [
   { name: "Upload the scanned PDF", text: "Drop your scanned or image-only PDF into the tool." },

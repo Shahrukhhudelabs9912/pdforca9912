@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolPageSkeleton } from "@/components/skeleton-loader";
 import {
   SoftwareApplicationJsonLd,
@@ -17,31 +18,26 @@ const OrganizePDFClient = dynamic(
   { loading: () => <ToolPageSkeleton />, ssr: false },
 );
 
-export const metadata: Metadata = {
-  title: "Organize PDF Pages Online Free - Reorder, Rotate, Delete | PDFOrca",
-  description: "Reorder, rotate, and delete pages in a PDF online for free. Drag-and-drop interface, no registration required.",
-  keywords: "organize pdf, reorder pdf pages, rearrange pdf, delete pdf pages, rotate pdf pages, pdf organizer",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Organize PDF Pages Online Free - Reorder, Rotate, Delete | PDFOrca",
     description: "Reorder, rotate, and delete pages in a PDF online for free. Drag-and-drop interface, no registration required.",
-    type: "website",
-    images: [{ url: "/api/og?title=Organize%20PDF&description=Reorder%2C%20Rotate%20%26%20Delete%20PDF%20Pages", width: 1200, height: 630, alt: "Organize PDF Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Organize PDF Pages Online Free - Reorder, Rotate, Delete | PDFOrca",
-    description: "Reorder, rotate, and delete pages in a PDF online for free. Drag-and-drop interface, no registration required.",
-    images: ["/api/og?title=Organize%20PDF&description=Reorder%2C%20Rotate%20%26%20Delete%20PDF%20Pages"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/organize-pdf`,
-    languages: {
-      en: `${SITE_URL}/organize-pdf`,
-      hi: `${SITE_URL}/hi/organize-pdf`,
-      "x-default": `${SITE_URL}/organize-pdf`,
+    keywords: "organize pdf, reorder pdf pages, rearrange pdf, delete pdf pages, rotate pdf pages, pdf organizer",
+    openGraph: {
+      title: "Organize PDF Pages Online Free - Reorder, Rotate, Delete | PDFOrca",
+      description: "Reorder, rotate, and delete pages in a PDF online for free. Drag-and-drop interface, no registration required.",
+      type: "website",
+      images: [{ url: "/api/og?title=Organize%20PDF&description=Reorder%2C%20Rotate%20%26%20Delete%20PDF%20Pages", width: 1200, height: 630, alt: "Organize PDF Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Organize PDF Pages Online Free - Reorder, Rotate, Delete | PDFOrca",
+      description: "Reorder, rotate, and delete pages in a PDF online for free. Drag-and-drop interface, no registration required.",
+      images: ["/api/og?title=Organize%20PDF&description=Reorder%2C%20Rotate%20%26%20Delete%20PDF%20Pages"],
+    },
+    alternates: await localeAlternates("/organize-pdf"),
+  };
+}
 
 const HOW_TO_STEPS = [
   { name: "Upload your PDF", text: "Drop your PDF into the tool to see thumbnails of every page." },

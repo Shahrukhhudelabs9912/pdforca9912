@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolLayout } from "@/components/tools/tool-layout";
 import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
@@ -48,31 +49,26 @@ const CompressPDFTool = dynamic(
   { loading: () => <ToolContentSkeleton />, ssr: false }
 );
 
-export const metadata: Metadata = {
-  title: "Compress PDF Without Losing Quality - Reduce PDF File Size Free | PDFOrca",
-  description: "Compress PDF without losing quality. Reduce PDF file size online free — no registration needed. Shrink image-heavy PDFs by up to 90% while keeping text sharp.",
-  keywords: "compress pdf without losing quality, reduce pdf size without losing quality, compress pdf high quality, pdf compression without losing quality, reduce size of pdf without losing quality, how to reduce pdf file size without losing quality, compress pdf, reduce pdf size, pdf compressor online free",
-  openGraph: {
-    title: "Compress PDF Without Losing Quality - Free Online PDF Compressor | PDFOrca",
-    description: "Reduce PDF file size without losing quality. Free online tool — compress PDFs by up to 90% with no registration required.",
-    type: "website",
-    images: [{ url: "/api/og?title=Compress%20PDF&description=Reduce%20PDF%20File%20Size%20Without%20Losing%20Quality", width: 1200, height: 630, alt: "Compress PDF Without Losing Quality" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Compress PDF Without Losing Quality - Free Online PDF Compressor | PDFOrca",
-    description: "Reduce PDF file size without losing quality. Free online tool — compress PDFs by up to 90%.",
-    images: ["/api/og?title=Compress%20PDF&description=Reduce%20PDF%20File%20Size%20Without%20Losing%20Quality"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/compress-pdf`,
-    languages: {
-      en: `${SITE_URL}/compress-pdf`,
-      hi: `${SITE_URL}/hi/compress-pdf`,
-      "x-default": `${SITE_URL}/compress-pdf`,
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Compress PDF Without Losing Quality - Reduce PDF File Size Free | PDFOrca",
+    description: "Compress PDF without losing quality. Reduce PDF file size online free — no registration needed. Shrink image-heavy PDFs by up to 90% while keeping text sharp.",
+    keywords: "compress pdf without losing quality, reduce pdf size without losing quality, compress pdf high quality, pdf compression without losing quality, reduce size of pdf without losing quality, how to reduce pdf file size without losing quality, compress pdf, reduce pdf size, pdf compressor online free",
+    openGraph: {
+      title: "Compress PDF Without Losing Quality - Free Online PDF Compressor | PDFOrca",
+      description: "Reduce PDF file size without losing quality. Free online tool — compress PDFs by up to 90% with no registration required.",
+      type: "website",
+      images: [{ url: "/api/og?title=Compress%20PDF&description=Reduce%20PDF%20File%20Size%20Without%20Losing%20Quality", width: 1200, height: 630, alt: "Compress PDF Without Losing Quality" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Compress PDF Without Losing Quality - Free Online PDF Compressor | PDFOrca",
+      description: "Reduce PDF file size without losing quality. Free online tool — compress PDFs by up to 90%.",
+      images: ["/api/og?title=Compress%20PDF&description=Reduce%20PDF%20File%20Size%20Without%20Losing%20Quality"],
+    },
+    alternates: await localeAlternates("/compress-pdf"),
+  };
+}
 
 export default function CompressPDFPage() {
   const pageUrl = `${SITE_URL}/compress-pdf`;

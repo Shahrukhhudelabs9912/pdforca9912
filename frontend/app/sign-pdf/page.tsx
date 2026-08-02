@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolLayout } from "@/components/tools/tool-layout";
 import { ToolSeoSection } from "@/components/tools/tool-seo-section";
 import { ToolContentSkeleton } from "@/components/skeleton-loader";
@@ -14,31 +15,26 @@ import {
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
-export const metadata: Metadata = {
-  title: "Sign PDF Online Free - Add Signature to PDF | PDFOrca",
-  description: "Sign PDF documents online for free. Type your signature or upload an image, then place it anywhere on the page. Download the signed PDF instantly.",
-  keywords: "sign pdf, pdf signature, e-sign pdf, electronic signature pdf, add signature to pdf, pdf signer online",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Sign PDF Online Free - Add Signature to PDF | PDFOrca",
-    description: "Sign PDF documents online for free.",
-    type: "website",
-    images: [{ url: "/api/og?title=Sign%20PDF&description=Add%20Signature%20to%20PDF%20Online%20Free", width: 1200, height: 630, alt: "Sign PDF Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Sign PDF Online Free - Add Signature to PDF | PDFOrca",
-    description: "Sign PDF documents online for free.",
-    images: ["/api/og?title=Sign%20PDF&description=Add%20Signature%20to%20PDF%20Online%20Free"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/sign-pdf`,
-    languages: {
-      en: `${SITE_URL}/sign-pdf`,
-      hi: `${SITE_URL}/hi/sign-pdf`,
-      "x-default": `${SITE_URL}/sign-pdf`,
+    description: "Sign PDF documents online for free. Type your signature or upload an image, then place it anywhere on the page. Download the signed PDF instantly.",
+    keywords: "sign pdf, pdf signature, e-sign pdf, electronic signature pdf, add signature to pdf, pdf signer online",
+    openGraph: {
+      title: "Sign PDF Online Free - Add Signature to PDF | PDFOrca",
+      description: "Sign PDF documents online for free.",
+      type: "website",
+      images: [{ url: "/api/og?title=Sign%20PDF&description=Add%20Signature%20to%20PDF%20Online%20Free", width: 1200, height: 630, alt: "Sign PDF Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Sign PDF Online Free - Add Signature to PDF | PDFOrca",
+      description: "Sign PDF documents online for free.",
+      images: ["/api/og?title=Sign%20PDF&description=Add%20Signature%20to%20PDF%20Online%20Free"],
+    },
+    alternates: await localeAlternates("/sign-pdf"),
+  };
+}
 
 const HOW_TO_STEPS = [
   { name: "Upload your PDF", text: "Drop the PDF you want to sign into the tool." },

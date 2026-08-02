@@ -7,39 +7,35 @@ import { getTranslations } from "next-intl/server";
 import { getAllPosts } from "@/lib/blog";
 import { BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { AdBanner } from "@/components/ad-banner";
+import { localeAlternates } from "@/lib/seo";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
-export const metadata: Metadata = {
-  title: "PDFOrca Blog — PDF Tutorials, Tips & Use Cases",
-  description:
-    "Practical tutorials and tips for merging, splitting, compressing, and converting PDF files. Real-world workflows for students and professionals.",
-  keywords:
-    "pdf blog, pdf tutorials, pdf tips, document management, pdf how-to, pdforca blog",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "PDFOrca Blog — PDF Tutorials, Tips & Use Cases",
     description:
-      "Practical tutorials and tips for working with PDFs — built around our free online tools.",
-    type: "website",
-    url: `${SITE_URL}/blog`,
-    images: [{ url: "/api/og?title=PDFOrca%20Blog&description=PDF%20Tutorials%2C%20Tips%20%26%20Use%20Cases", width: 1200, height: 630, alt: "PDFOrca Blog" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "PDFOrca Blog — PDF Tutorials, Tips & Use Cases",
-    description:
-      "Practical tutorials and tips for working with PDFs.",
-    images: ["/api/og?title=PDFOrca%20Blog&description=PDF%20Tutorials%2C%20Tips%20%26%20Use%20Cases"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/blog`,
-    languages: {
-      en: `${SITE_URL}/blog`,
-      hi: `${SITE_URL}/hi/blog`,
-      "x-default": `${SITE_URL}/blog`,
+      "Practical tutorials and tips for merging, splitting, compressing, and converting PDF files. Real-world workflows for students and professionals.",
+    keywords:
+      "pdf blog, pdf tutorials, pdf tips, document management, pdf how-to, pdforca blog",
+    openGraph: {
+      title: "PDFOrca Blog — PDF Tutorials, Tips & Use Cases",
+      description:
+        "Practical tutorials and tips for working with PDFs — built around our free online tools.",
+      type: "website",
+      url: `${SITE_URL}/blog`,
+      images: [{ url: "/api/og?title=PDFOrca%20Blog&description=PDF%20Tutorials%2C%20Tips%20%26%20Use%20Cases", width: 1200, height: 630, alt: "PDFOrca Blog" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "PDFOrca Blog — PDF Tutorials, Tips & Use Cases",
+      description:
+        "Practical tutorials and tips for working with PDFs.",
+      images: ["/api/og?title=PDFOrca%20Blog&description=PDF%20Tutorials%2C%20Tips%20%26%20Use%20Cases"],
+    },
+    alternates: await localeAlternates("/blog"),
+  };
+}
 
 function formatDate(iso: string) {
   // Stable, locale-agnostic format so SSR and CSR don't disagree.

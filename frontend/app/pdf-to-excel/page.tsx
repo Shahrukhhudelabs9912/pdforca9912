@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { localeAlternates } from "@/lib/seo";
 import { ToolPageSkeleton } from "@/components/skeleton-loader";
 import {
   SoftwareApplicationJsonLd,
@@ -17,31 +18,26 @@ const PDFToExcelClient = dynamic(
   { loading: () => <ToolPageSkeleton />, ssr: false },
 );
 
-export const metadata: Metadata = {
-  title: "Convert PDF to Excel Online Free | PDFOrca",
-  description: "Convert PDF documents to editable Excel (.xlsx) spreadsheets online for free. Extract tables and data from PDFs.",
-  keywords: "pdf to excel, convert pdf to excel, pdf to xlsx, pdf to spreadsheet, extract tables from pdf, pdf to excel converter",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title: "Convert PDF to Excel Online Free | PDFOrca",
     description: "Convert PDF documents to editable Excel (.xlsx) spreadsheets online for free. Extract tables and data from PDFs.",
-    type: "website",
-    images: [{ url: "/api/og?title=PDF%20to%20Excel&description=Extract%20Tables%20and%20Data%20from%20PDFs", width: 1200, height: 630, alt: "PDF to Excel Online Free" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Convert PDF to Excel Online Free | PDFOrca",
-    description: "Convert PDF documents to editable Excel (.xlsx) spreadsheets online for free. Extract tables and data from PDFs.",
-    images: ["/api/og?title=PDF%20to%20Excel&description=Extract%20Tables%20and%20Data%20from%20PDFs"],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/pdf-to-excel`,
-    languages: {
-      en: `${SITE_URL}/pdf-to-excel`,
-      hi: `${SITE_URL}/hi/pdf-to-excel`,
-      "x-default": `${SITE_URL}/pdf-to-excel`,
+    keywords: "pdf to excel, convert pdf to excel, pdf to xlsx, pdf to spreadsheet, extract tables from pdf, pdf to excel converter",
+    openGraph: {
+      title: "Convert PDF to Excel Online Free | PDFOrca",
+      description: "Convert PDF documents to editable Excel (.xlsx) spreadsheets online for free. Extract tables and data from PDFs.",
+      type: "website",
+      images: [{ url: "/api/og?title=PDF%20to%20Excel&description=Extract%20Tables%20and%20Data%20from%20PDFs", width: 1200, height: 630, alt: "PDF to Excel Online Free" }],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title: "Convert PDF to Excel Online Free | PDFOrca",
+      description: "Convert PDF documents to editable Excel (.xlsx) spreadsheets online for free. Extract tables and data from PDFs.",
+      images: ["/api/og?title=PDF%20to%20Excel&description=Extract%20Tables%20and%20Data%20from%20PDFs"],
+    },
+    alternates: await localeAlternates("/pdf-to-excel"),
+  };
+}
 
 const HOW_TO_STEPS = [
   { name: "Upload your PDF", text: "Drop the PDF you want to convert into the tool." },
