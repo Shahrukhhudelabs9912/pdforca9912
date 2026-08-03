@@ -6,7 +6,6 @@ category: "Tutorial"
 author: "PDFOrca Team"
 relatedTool: "extract-pages"
 cover: "/blog/covers/extract-specific-pages-from-pdf.webp"
-draft: true
 keywords:
   - extract pages from pdf
   - pull pages from pdf
