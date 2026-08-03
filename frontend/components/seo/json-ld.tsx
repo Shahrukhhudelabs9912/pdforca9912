@@ -46,6 +46,10 @@ type SoftwareAppProps = {
   description: string;
   url: string;
   applicationCategory?: string;
+  // Only pass these once we have REAL, verifiable user reviews. Google's
+  // spam policy prohibits fake/self-serving AggregateRating markup, and
+  // violations can strip rich results or trigger a manual penalty. When
+  // both are omitted, no aggregateRating is emitted at all.
   ratingValue?: string;
   ratingCount?: string;
 };
@@ -55,9 +59,11 @@ export function SoftwareApplicationJsonLd({
   description,
   url,
   applicationCategory = "BusinessApplication",
-  ratingValue = "4.8",
-  ratingCount = "2150",
+  ratingValue,
+  ratingCount,
 }: SoftwareAppProps) {
+  const hasRealRating = Boolean(ratingValue && ratingCount);
+
   return (
     <JsonLd
       id={`ld-software-${name.toLowerCase().replace(/\s+/g, "-")}`}
@@ -74,13 +80,17 @@ export function SoftwareApplicationJsonLd({
           price: "0",
           priceCurrency: "USD",
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue,
-          ratingCount,
-          bestRating: "5",
-          worstRating: "1",
-        },
+        ...(hasRealRating
+          ? {
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue,
+                ratingCount,
+                bestRating: "5",
+                worstRating: "1",
+              },
+            }
+          : {}),
       }}
     />
   );

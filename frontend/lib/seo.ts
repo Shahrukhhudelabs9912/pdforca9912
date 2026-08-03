@@ -29,3 +29,23 @@ export async function localeAlternates(path: string) {
     },
   };
 }
+
+/**
+ * English-only alternates for the blog.
+ *
+ * Blog *content* is not translated per-locale — every post is a single
+ * markdown file served identically at /blog/<slug> and /hi/blog/<slug>.
+ * Emitting hi/en hreflang there told Google two language versions exist
+ * when they don't, which reads as duplicate content.
+ *
+ * So the blog is treated as single-language: canonical always points to
+ * the unprefixed English URL (consolidating the /hi/* duplicate onto it),
+ * and no hreflang `languages` map is emitted at all. The tool/marketing
+ * pages keep localeAlternates() because their UI genuinely localizes.
+ */
+export function blogAlternates(path: string) {
+  const enUrl = path === "/" ? SITE_URL : `${SITE_URL}${path}`;
+  return {
+    canonical: enUrl,
+  };
+}

@@ -82,6 +82,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Blog posts — each one becomes its own sitemap entry so search
   // engines discover new articles without us editing this file.
+  //
+  // Blog content is NOT translated per-locale (one markdown file per
+  // slug, served identically at /blog and /hi/blog), so posts are
+  // single-language: only the unprefixed English URL is listed, with no
+  // hreflang alternates. This avoids signalling duplicate hi/en versions
+  // that don't actually differ. (Tool/marketing routes above keep their
+  // alternates because their UI genuinely localizes.)
   const blogEntries: MetadataRoute.Sitemap = getAllPosts().map((post) => {
     const postDate = new Date(post.date);
     const postUrl = `${SITE_URL}/blog/${post.slug}`;
@@ -90,13 +97,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: Number.isNaN(postDate.getTime()) ? lastModified : postDate,
       changeFrequency: "monthly" as const,
       priority: 0.6,
-      alternates: {
-        languages: {
-          en: postUrl,
-          hi: `${SITE_URL}/hi/blog/${post.slug}`,
-          "x-default": postUrl,
-        },
-      },
     };
   });
 

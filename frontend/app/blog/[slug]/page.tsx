@@ -7,7 +7,7 @@ import { getTranslations } from "next-intl/server";
 import { getAllPostSlugs, getPostBySlug, getRelatedPosts } from "@/lib/blog";
 import { BlogPostBody } from "@/components/blog/blog-post-body";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
-import { localeAlternates } from "@/lib/seo";
+import { blogAlternates } from "@/lib/seo";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -51,9 +51,10 @@ export async function generateMetadata(
       description: post.description,
       images: [ogImage],
     },
-    // Canonical is self-referencing per locale (en unprefixed, hi /hi/…) so
-    // hreflang and canonical agree — see lib/seo.ts.
-    alternates: await localeAlternates(`/blog/${slug}`),
+    // Blog content isn't translated per-locale, so the post is
+    // single-language: canonical is the unprefixed English URL, no
+    // hreflang alternates. See lib/seo.ts → blogAlternates.
+    alternates: blogAlternates(`/blog/${slug}`),
   };
 }
 
@@ -105,7 +106,10 @@ export default async function BlogPostPage({
   const url = `${SITE_URL}/blog/${slug}`;
   const relatedToolName = post.relatedTool ? TOOL_NAMES[post.relatedTool] : undefined;
   const relatedPosts = getRelatedPosts(slug, 3);
-  const t = await getTranslations("blog");
+  // Blog is single-language (content is English/as-authored, not
+  // translated per-locale), so its surrounding UI labels stay English
+  // too — regardless of the visitor's selected site locale.
+  const t = await getTranslations({ locale: "en", namespace: "blog" });
 
   return (
     <>

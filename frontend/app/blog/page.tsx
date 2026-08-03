@@ -7,7 +7,7 @@ import { getTranslations } from "next-intl/server";
 import { getAllPosts } from "@/lib/blog";
 import { BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { AdBanner } from "@/components/ad-banner";
-import { localeAlternates } from "@/lib/seo";
+import { blogAlternates } from "@/lib/seo";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pdforca.com";
 
@@ -33,7 +33,9 @@ export async function generateMetadata(): Promise<Metadata> {
         "Practical tutorials and tips for working with PDFs.",
       images: ["/api/og?title=PDFOrca%20Blog&description=PDF%20Tutorials%2C%20Tips%20%26%20Use%20Cases"],
     },
-    alternates: await localeAlternates("/blog"),
+    // Blog is single-language — English canonical, no hreflang. See
+    // lib/seo.ts → blogAlternates.
+    alternates: blogAlternates("/blog"),
   };
 }
 
@@ -52,7 +54,9 @@ function formatDate(iso: string) {
 export default async function BlogPage() {
   const posts = getAllPosts();
   const pageUrl = `${SITE_URL}/blog`;
-  const t = await getTranslations("blog");
+  // Blog UI stays English regardless of selected site locale — the blog
+  // is treated as single-language (see lib/seo.ts → blogAlternates).
+  const t = await getTranslations({ locale: "en", namespace: "blog" });
 
   return (
     <>
