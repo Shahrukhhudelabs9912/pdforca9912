@@ -525,6 +525,7 @@
     "clear_button": "Clear All",
     "add_more": "Add More Files",
     "processing_progress": "Processing...",
+    "processing_wait_hint": "Large files can take up to a minute. Please keep this page open.",
     "success_message": "Files processed successfully!",
     "error_message": "An error occurred during processing",
     "no_files": "No files selected",

@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import dynamic from "next/dynamic";
-import { ButtonLoader } from "@/components/brand-loader";
+import { ButtonLoader, ProcessingOverlay } from "@/components/brand-loader";
 import {
   ListOrdered, SortAsc, SortDesc, Grid, Columns,
   Download, RefreshCw, AlertCircle, CheckCircle2
@@ -255,6 +255,13 @@ export function OrganizePDFClient() {
 
   return (
     <div className="space-y-6">
+        {isLoading && (
+          <ProcessingOverlay
+            label={stageMessage || tp("processing_progress")}
+            hint={tp("processing_wait_hint")}
+            progress={progress}
+          />
+        )}
         {/* Upload Section */}
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-lg">
           <h3 className="text-xl font-semibold mb-4">{t("upload_to_organize_title")}</h3>

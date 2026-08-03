@@ -8,7 +8,7 @@ import { Scissors, Download, Settings, File, X, Check } from "lucide-react";
 import { toast } from "sonner";
 import { processFiles } from "@/lib/api-client";
 import { useFileContext } from "@/lib/file-context";
-import { ButtonLoader } from "@/components/brand-loader";
+import { ButtonLoader, ProcessingOverlay } from "@/components/brand-loader";
 
 export function SplitPDFClient() {
   const t = useTranslations("split_pdf");
@@ -108,6 +108,14 @@ export function SplitPDFClient() {
 
   return (
     <div className="space-y-8">
+      {isProcessing && (
+        <ProcessingOverlay
+          label={tp("processing_progress")}
+          hint={tp("processing_wait_hint")}
+          progress={progress}
+        />
+      )}
+
       {/* File Upload Section */}
       <div className="rounded-xl border-2 border-dashed border-gray-300 p-4 sm:p-8 dark:border-gray-700">
         <FileUpload

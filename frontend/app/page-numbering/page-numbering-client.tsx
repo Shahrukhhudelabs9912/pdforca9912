@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { useToolProcessing } from "@/hooks/use-tool-processing";
 import { downloadBlob } from "@/lib/api-client";
 import { toast } from "sonner";
-import { ButtonLoader } from "@/components/brand-loader";
+import { ButtonLoader, ProcessingOverlay } from "@/components/brand-loader";
 import {
   Hash,
   Type,
@@ -47,6 +47,7 @@ const PAGE_RANGE_VALUES: PageRangeType[] = ["all", "odd", "even", "first", "cust
 
 export function PageNumberingClient() {
   const t = useTranslations("page_numbering");
+  const tp = useTranslations("tool_pages");
   const [numberFormat, setNumberFormat] = useState<NumberFormat>("1,2,3");
   const [startingNumber, setStartingNumber] = useState(1);
   const [formatTemplate, setFormatTemplate] = useState("{n}");
@@ -138,6 +139,14 @@ export function PageNumberingClient() {
 
   return (
     <div className="space-y-6">
+        {isLoading && (
+          <ProcessingOverlay
+            label={stageMessage || tp("processing_progress")}
+            hint={tp("processing_wait_hint")}
+            progress={progress}
+          />
+        )}
+
         {/* File Upload */}
         <Card>
           <CardHeader>

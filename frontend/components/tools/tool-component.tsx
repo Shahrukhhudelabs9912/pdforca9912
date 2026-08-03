@@ -6,7 +6,7 @@ import { FileUpload } from "@/components/file-upload";
 import { Button } from "@/components/ui/button";
 import { FileText, Download, Sparkles, Trash2, AlertCircle, CheckCircle, XCircle } from "lucide-react";
 import { toast } from "sonner";
-import { ButtonLoader, Spinner } from "@/components/brand-loader";
+import { ButtonLoader, Spinner, ProcessingOverlay } from "@/components/brand-loader";
 import { useToolProcessing, formatElapsed } from "@/hooks/use-tool-processing";
 
 interface ToolComponentProps {
@@ -101,6 +101,18 @@ export function ToolComponent({
 
   return (
     <div>
+      {/* Full-screen processing overlay — the primary "we're working"
+          signal on large files, since the button spinner scrolls out of
+          view. Shared across all tools (see brand-loader ProcessingOverlay). */}
+      {isLoading && (
+        <ProcessingOverlay
+          label={stageMessage || t("processing_progress")}
+          hint={t("processing_wait_hint")}
+          progress={progress}
+          elapsed={formatElapsed(elapsedMs)}
+        />
+      )}
+
       <div className="mb-6">
         <h3 className="text-lg font-semibold mb-2">{title}</h3>
         <p className="text-gray-600 dark:text-gray-400">

@@ -14,15 +14,19 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Get compression level from form data
-    const compressionLevel = formData.get('compression_level') as string || 'medium';
+    // Get compression level from form data. The client (api-client.ts →
+    // uploadFile additionalData) sends the field as `compressionLevel`, and
+    // the Python backend's compress_pdf route also expects `compressionLevel`
+    // (see backend/app/routes/pdf_routes.py). Using `compression_level` here
+    // silently dropped the user's choice and always defaulted to medium.
+    const compressionLevel = formData.get('compressionLevel') as string || 'medium';
 
     // Forward to Python backend
     const backendFormData = new FormData();
     const fileBuffer = await file.arrayBuffer();
     const blob = new Blob([fileBuffer], { type: file.type || 'application/pdf' });
     backendFormData.append('file', blob, file.name);
-    backendFormData.append('compression_level', compressionLevel);
+    backendFormData.append('compressionLevel', compressionLevel);
 
 
     const backendResponse = await fetch(`${PYTHON_API_BASE}/compress-pdf`, {

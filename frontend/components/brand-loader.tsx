@@ -200,6 +200,75 @@ export function OverlayLoader({ label = "Loading…" }: { label?: string }) {
   );
 }
 
+/**
+ * Full-screen processing overlay shown while a tool sends a file to the
+ * backend and waits for the result. Long PDF jobs (compress, OCR, convert)
+ * can take 30-90s on our servers; without an unmissable indicator users
+ * assume the page froze and leave for iLovePDF/SmallPDF (which cover the
+ * screen while working). The small button spinner alone scrolls out of view
+ * on large files, so this fixed overlay is the primary "we're working"
+ * signal across every tool.
+ */
+export function ProcessingOverlay({
+  label,
+  hint,
+  progress,
+  elapsed,
+}: {
+  /** Stage message, e.g. "Compressing your PDF…". */
+  label: string;
+  /** Reassurance line, e.g. "Large files can take up to a minute." */
+  hint?: string;
+  /** 0-100. Bar is clamped to a 5% minimum so it never looks empty. */
+  progress?: number;
+  /** Pre-formatted elapsed time, e.g. "0:12". */
+  elapsed?: string;
+}) {
+  const hasProgress = typeof progress === "number";
+  // Clamp + round so the label and bar never disagree or show "NaN%".
+  const pct = hasProgress
+    ? Math.min(100, Math.max(0, Math.round(progress as number)))
+    : 0;
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-white/85 backdrop-blur-sm dark:bg-gray-950/85"
+      role="status"
+      aria-live="assertive"
+      aria-label={label}
+    >
+      <div className="mx-4 flex w-full max-w-sm flex-col items-center gap-5 rounded-2xl border border-gray-200 bg-white/95 p-8 text-center shadow-xl dark:border-gray-800 dark:bg-gray-900/95">
+        {/* Animated ring spinner (not the brand glyph) — this is the
+            "working" signal users recognise from other converters. */}
+        <Spinner size="xl" />
+        <div className="space-y-1">
+          <p className="text-lg font-semibold text-gray-900 dark:text-white">
+            {label}
+          </p>
+          {hint && (
+            <p className="text-sm text-gray-500 dark:text-gray-400">{hint}</p>
+          )}
+        </div>
+        {hasProgress && (
+          <div className="w-full space-y-2">
+            <div className="h-2.5 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-800">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300"
+                style={{ width: `${Math.max(pct, 5)}%` }}
+              />
+            </div>
+            {/* Percentage (always) + live elapsed timer (when provided) so
+                the user can see the job is actively advancing. */}
+            <div className="flex items-center justify-between text-sm font-medium tabular-nums text-gray-600 dark:text-gray-400">
+              <span>{pct}%</span>
+              {elapsed && <span>{elapsed}</span>}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 /** Inline loader for a tool's processing card (mark + stage message). */
 export function ToolProcessingLoader({
   label,

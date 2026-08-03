@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { formatFileSize } from "@/lib/utils";
 import { uploadFile, downloadBlob, handleApiError } from "@/lib/api-client";
 import { useFileContext } from "@/lib/file-context";
-import { ButtonLoader } from "@/components/brand-loader";
+import { ButtonLoader, ProcessingOverlay } from "@/components/brand-loader";
 
 interface PDFFile {
   id: string;
@@ -164,6 +164,18 @@ export function CompressPDFTool() {
 
   return (
     <div className="space-y-6">
+      {/* Full-screen overlay so users know their file is processing even
+          when the inline progress card is scrolled out of view. Compress is
+          our slowest job (Ghostscript on large PDFs) — this is the exact
+          case where a user assumed the page froze and left for iLovePDF. */}
+      {isProcessing && (
+        <ProcessingOverlay
+          label={tp("processing_progress")}
+          hint={tp("processing_wait_hint")}
+          progress={progress}
+        />
+      )}
+
       <div className="rounded-xl border-2 border-dashed border-gray-300 p-8 dark:border-gray-700">
         <FileUpload
           onUpload={handleFileUpload}

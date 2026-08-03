@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { FileUpload } from "@/components/file-upload";
+import { ProcessingOverlay } from "@/components/brand-loader";
 import { motion } from "framer-motion";
 import { useToolProcessing } from "@/hooks/use-tool-processing";
 import { downloadBlob } from "@/lib/api-client";
@@ -114,6 +115,13 @@ export function ProtectPDFClient() {
 
   return (
     <div className="grid gap-8 lg:grid-cols-2">
+        {isLoading && (
+          <ProcessingOverlay
+            label={stageMessage || tp("processing_progress")}
+            hint={tp("processing_wait_hint")}
+            progress={progress}
+          />
+        )}
         {/* Left Column - Upload & Settings */}
         <div className="space-y-6">
           <Card>

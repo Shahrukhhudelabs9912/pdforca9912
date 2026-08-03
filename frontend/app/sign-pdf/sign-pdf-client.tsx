@@ -19,6 +19,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { SIGNATURE_FONTS, type SignatureFont } from "./signature-fonts";
+import { ProcessingOverlay } from "@/components/brand-loader";
 
 const SignPdfViewer = dynamic(() => import("./sign-pdf-viewer"), {
   ssr: false,
@@ -188,6 +189,7 @@ function DrawPad({
 
 export function SignPDFClient() {
   const t = useTranslations("sign_pdf");
+  const tp = useTranslations("tool_pages");
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [numPages, setNumPages] = useState(0);
@@ -208,8 +210,13 @@ export function SignPDFClient() {
   const [applyAllPages, setApplyAllPages] = useState(false);
 
   const [isProcessing, setIsProcessing] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [resultUrl, setResultUrl] = useState<string | null>(null);
   const [resultFilename, setResultFilename] = useState<string | null>(null);
+  // Signing is a single backend round-trip with no streamed progress, so we
+  // ramp a synthetic bar toward ~90% while we wait, then snap to 100% on
+  // completion. Keeps the overlay consistent with the other tools.
+  const progressTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const pageContainerRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef<{
@@ -226,6 +233,7 @@ export function SignPDFClient() {
       if (pdfUrl) URL.revokeObjectURL(pdfUrl);
       if (uploadedSigUrl) URL.revokeObjectURL(uploadedSigUrl);
       if (resultUrl) URL.revokeObjectURL(resultUrl);
+      if (progressTimerRef.current) clearInterval(progressTimerRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -403,6 +411,14 @@ export function SignPDFClient() {
     }
 
     setIsProcessing(true);
+    setProgress(0);
+    // Ease a synthetic progress bar toward 90% while the request is in
+    // flight (slows as it approaches the cap so it never looks stuck at a
+    // round number); the real 100% is set once the response arrives.
+    if (progressTimerRef.current) clearInterval(progressTimerRef.current);
+    progressTimerRef.current = setInterval(() => {
+      setProgress((p) => (p >= 90 ? 90 : p + Math.max(1, (90 - p) * 0.15)));
+    }, 300);
     try {
       const fd = new FormData();
       fd.append("file", pdfFile);
@@ -439,11 +455,16 @@ export function SignPDFClient() {
       a.href = url;
       a.download = filename;
       a.click();
+      setProgress(100);
       toast.success(t("toast_signed_count", { count: placements.length }));
     } catch (e) {
       console.error("[sign-pdf] error:", e);
       toast.error(t("toast_sign_error"));
     } finally {
+      if (progressTimerRef.current) {
+        clearInterval(progressTimerRef.current);
+        progressTimerRef.current = null;
+      }
       setIsProcessing(false);
     }
   }, [pdfFile, placements, mode, typedText, typedFont, inkColor, drawDataUrl, uploadedSig, resultUrl, t]);
@@ -482,6 +503,13 @@ export function SignPDFClient() {
 
   return (
     <div className="space-y-6">
+      {isProcessing && (
+        <ProcessingOverlay
+          label={tp("processing_progress")}
+          hint={tp("processing_wait_hint")}
+          progress={progress}
+        />
+      )}
       {!pdfFile && (
         <div className="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-2xl p-12 text-center">
           <h3 className="text-lg font-semibold mb-2">{t("upload_pdf_title")}</h3>
