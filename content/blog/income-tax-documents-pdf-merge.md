@@ -6,7 +6,6 @@ category: "Use Case"
 author: "PDFOrca Team"
 relatedTool: "merge-pdf"
 cover: "/blog/covers/income-tax-documents-pdf-merge.webp"
-draft: true
 keywords:
   - income tax documents pdf merge
   - itr documents combine kare
