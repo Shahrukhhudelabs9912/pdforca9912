@@ -119,10 +119,14 @@ class Settings(BaseSettings):
     # `gs` on Linux/macOS, `gswin64c` on Windows, or the default install dir.
     GHOSTSCRIPT_PATH: Optional[str] = None
 
-    # Max heavy jobs (AI / OCR / LibreOffice) running at once per worker.
+    # Max heavy jobs (AI / OCR / LibreOffice / Ghostscript) running at once
+    # per worker. These engines are single-threaded, so 1 per worker means
+    # each heavy job gets a full core instead of several fighting over one —
+    # which is what made large-file compress/convert slow under any load.
     # Bounds RAM/CPU so a burst of expensive requests can't exhaust the box.
     # Stop-gap until a real task queue (Celery/RQ) is added.
-    HEAVY_JOB_CONCURRENCY: int = 2
+    # NOTE: docker-compose sets this explicitly, which wins over this default.
+    HEAVY_JOB_CONCURRENCY: int = 1
 
     # MongoDB settings
     MONGO_URL: str = "mongodb://localhost:27017"

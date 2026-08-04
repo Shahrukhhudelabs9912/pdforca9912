@@ -12,10 +12,13 @@ editing this file.
 import os
 
 # ── Workers ───────────────────────────────────────────────────────────
-# 4 workers for 4 vCPUs — one per core. Each runs its own event loop +
-# thread pool, so total throughput is high without oversubscribing.
-# Scale by setting WEB_CONCURRENCY when you move to a bigger box.
-workers = int(os.getenv("WEB_CONCURRENCY", "4"))
+# 2 workers on the 4-core VPS. Each worker allows 1 heavy CPU job
+# (HEAVY_JOB_CONCURRENCY=1), so at most 2 Ghostscript/LibreOffice jobs run
+# at once — one per core — leaving 2 cores for the event loops, frontend
+# SSR and nginx. More workers here just oversubscribe the box and make
+# every concurrent job slower. Override WEB_CONCURRENCY on a bigger machine.
+# NOTE: docker-compose sets WEB_CONCURRENCY explicitly, which wins over this.
+workers = int(os.getenv("WEB_CONCURRENCY", "2"))
 worker_class = "uvicorn.workers.UvicornWorker"
 
 # ── Network ───────────────────────────────────────────────────────────

@@ -19,8 +19,10 @@ services:
     deploy:
       resources:
         limits:
+          # In-memory cache — needs almost no CPU. Trimmed 0.5→0.25 to give
+          # the backend headroom on the 4-core box (see backend limits).
           memory: 300m
-          cpus: "0.5"
+          cpus: "0.25"
 
   backend:
     build:
@@ -31,6 +33,14 @@ services:
       - ./backend/.env.production
     environment:
       RATELIMIT_STORAGE_URI: redis://redis:6379/0
+      # Overrides the same keys in .env.production (env_file above) so the
+      # concurrency tuning lives in git, not on the server. On a 4-core box,
+      # Ghostscript/LibreOffice are single-threaded per job, so 2 workers × 1
+      # heavy slot = at most 2 concurrent CPU-bound jobs — leaving 2 cores for
+      # the event loops, frontend SSR and nginx. Prevents CPU thrashing that
+      # made every job slower when several ran at once.
+      WEB_CONCURRENCY: "2"
+      HEAVY_JOB_CONCURRENCY: "1"
     depends_on:
       redis:
         condition: service_healthy
@@ -48,8 +58,13 @@ services:
           # Backend handles heavy PDF/OCR/LibreOffice conversion. 5 GB is
           # sufficient for most single conversions; the 6→5g reduction
           # leaves critical headroom for the host OS on an 8 GB machine.
+          #
+          # CPU: with WEB_CONCURRENCY=2 and HEAVY_JOB_CONCURRENCY=1 there are
+          # at most 2 concurrent CPU-bound jobs (Ghostscript/LibreOffice are
+          # single-threaded per job) → ~2 cores, plus a little for the two
+          # event loops. 2.5 fits that without oversubscribing the 4-core box.
           memory: 5g
-          cpus: "3.0"
+          cpus: "2.5"
 
   frontend:
     build:
@@ -76,12 +91,12 @@ services:
     deploy:
       resources:
         limits:
-          # 1.5 CPU lets 1-2 SSR renders run concurrently without exhausting
-          # the host. With nginx cache at 6h + stale-while-revalidate, the
-          # bulk of crawler traffic never reaches the frontend at all, so
-          # the few cold renders that do happen can afford a modest 1.5 CPU.
+          # nginx cache (6h + stale-while-revalidate) absorbs the bulk of
+          # crawler traffic, so the frontend only handles a few cold SSR
+          # renders. 1.5→0.75 CPU still covers 1 render at a time and frees a
+          # core for the backend's conversion work on the 4-core box.
           memory: 1g
-          cpus: "1.5"
+          cpus: "0.75"
 
   nginx:
     image: nginx:1.27-alpine
@@ -106,8 +121,10 @@ services:
     deploy:
       resources:
         limits:
+          # Light reverse proxy / TLS terminator — trimmed 0.5→0.25 to free
+          # CPU for the backend. Plenty for its cache-serving workload.
           memory: 128m
-          cpus: "0.5"
+          cpus: "0.25"
 
   certbot:
     image: certbot/certbot
