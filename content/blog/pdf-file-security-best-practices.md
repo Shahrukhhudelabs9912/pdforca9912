@@ -6,7 +6,6 @@ category: "Tips"
 author: "PDFOrca Team"
 relatedTool: "protect-pdf"
 cover: "/blog/covers/pdf-file-security-best-practices.webp"
-draft: true
 keywords:
   - pdf security
   - password protect pdf
