@@ -47,9 +47,9 @@ const JPGToPDFClient = dynamic(
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "JPG to PDF Converter Online Free - Convert Images to PDF | PDFOrca",
-    description: "Convert JPG images to PDF files online for free. Combine multiple images into a single PDF document. No registration required.",
-    keywords: "jpg to pdf, image to pdf, convert jpg to pdf, jpg to pdf converter, images to pdf, photo to pdf",
+    title: "JPG to PDF — Aadhaar, PAN Card Image to PDF Converter Free | PDFOrca",
+    description: "Convert JPG images to PDF online free. Combine Aadhaar front and back, PAN card photos into one PDF. Compress under 300 KB for portal uploads. No signup required.",
+    keywords: "jpg to pdf, image to pdf, aadhaar to pdf, pan card to pdf, aadhaar front and back merge, convert jpg to pdf, photo to pdf, 300kb pdf",
     openGraph: {
       title: "JPG to PDF Converter Online Free - Convert Images to PDF | PDFOrca",
       description: "Convert JPG images to PDF files online for free.",

@@ -816,7 +816,13 @@ class PDFService:
                 cmd = [
                     gs_path,
                     "-sDEVICE=pdfwrite",
-                    "-dCompatibilityLevel=1.4",
+                    # PDF 1.7 is the modern baseline (same as ilovepdf/smallpdf).
+                    # Lets Ghostscript keep newer object/compression features
+                    # instead of downgrading everything to the 2003-era 1.4
+                    # spec, which is slightly faster and produces a more
+                    # efficient stream. Output stays widely compatible — every
+                    # PDF reader from Acrobat 8 (2006) onward supports 1.7.
+                    "-dCompatibilityLevel=1.7",
                     *PDFService._GS_FLAGS[compression_level],
                     "-dDetectDuplicateImages=true",
                     "-dCompressFonts=true",
