@@ -38,6 +38,7 @@ const TOOL_ROUTES: Route[] = [
 
 const STATIC_ROUTES: Route[] = [
   { path: "/", changeFrequency: "weekly", priority: 1.0 },
+  { path: "/tools", changeFrequency: "weekly", priority: 0.9 },
   { path: "/features", changeFrequency: "monthly", priority: 0.7 },
   { path: "/about", changeFrequency: "monthly", priority: 0.5 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.5 },

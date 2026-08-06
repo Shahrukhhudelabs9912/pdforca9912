@@ -106,6 +106,7 @@
     "use_tool": "Use Tool",
     "popular": "Popular",
     "ai_featured": "AI Featured",
+    "view_all": "View All Tools",
     "merge_pdf": {
       "title": "Merge PDF",
       "description": "Combine multiple PDF files into a single document"

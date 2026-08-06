@@ -78,7 +78,7 @@ export default function Home() {
       <FAQPageJsonLd items={HOME_FAQ_ITEMS} />
       <div className="flex min-h-screen flex-col">
         <HeroSection />
-        <ToolsGrid />
+        <ToolsGrid showViewAll />
         <AdBanner slot="HOMEPAGE_MID" format="horizontal" className="my-4 px-4" />
         <WhatIsSection />
         <FeaturesSection />

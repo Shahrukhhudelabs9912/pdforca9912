@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/routing";
 import { Shield, Zap, Brain, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -10,11 +10,11 @@ export function HeroSection() {
   const t = useTranslations();
 
   const handleStartProcessing = () => {
-    router.push("/merge-pdf");
+    document.getElementById("tools")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleExploreTools = () => {
-    router.push("/features");
+    router.push("/tools");
   };
 
   return (

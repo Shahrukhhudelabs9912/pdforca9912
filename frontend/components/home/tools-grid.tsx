@@ -183,7 +183,7 @@ const tools = [
   },
 ];
 
-export function ToolsGrid() {
+export function ToolsGrid({ showViewAll = false }: { showViewAll?: boolean }) {
   const t = useTranslations();
 
   return (
@@ -250,6 +250,29 @@ export function ToolsGrid() {
             </motion.div>
           ))}
         </div>
+
+        {showViewAll && (
+          <div className="mt-12 text-center">
+            <Link href="/tools">
+              <Button size="lg" variant="outline" className="gap-2">
+                {t("tools.view_all")}
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </Button>
+            </Link>
+          </div>
+        )}
 
       </div>
     </section>
