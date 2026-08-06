@@ -1,5 +1,5 @@
 ---
-title: "How to Compress PDF for UPSC and Government Exam Forms (2026 Guide)"
+title: "Compress PDF for UPSC and Government Exam Forms"
 description: "Shrink your PDF to meet UPSC and government exam upload limits without losing clarity. Free, step-by-step guide — no app, no signup, no payment needed."
 date: "2026-09-07"
 category: "Use Case"

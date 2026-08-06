@@ -1,5 +1,5 @@
 ---
-title: "PDF Merge Kaise Kare Online — Multiple PDF Ek Mein Combine Kare Free"
+title: "PDF Merge Kaise Kare Online — Free Combine Kare"
 description: "Multiple PDF files ko ek mein kaise merge kare free mein. Aadhaar, PAN, marksheet sab ek PDF mein combine kare — step by step guide."
 date: "2026-07-16"
 category: "How-To"

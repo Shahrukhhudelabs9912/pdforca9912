@@ -1,6 +1,6 @@
 ---
 title: "How to Extract Specific Pages From a Large PDF"
-description: "Pull just the pages you need out of a big PDF — one chapter, a few forms, or a single section. Fast, free, in your browser, with no signup or software to install."
+description: "Pull just the pages you need out of a big PDF — one chapter, a few forms, or a single section. Fast, free, and no signup or software to install."
 date: "2026-08-03"
 category: "Tutorial"
 author: "PDFOrca Team"

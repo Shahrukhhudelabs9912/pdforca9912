@@ -1,5 +1,5 @@
 ---
-title: "PDF Pe Watermark Kaise Lagaye — Company Logo Ya Text Add Kare (Free)"
+title: "PDF Pe Watermark Kaise Lagaye (Logo Guide)"
 description: "PDF document pe watermark kaise lagaye. Company logo, CONFIDENTIAL text, ya DRAFT stamp — free mein add kare online."
 date: "2026-08-20"
 category: "How-To"

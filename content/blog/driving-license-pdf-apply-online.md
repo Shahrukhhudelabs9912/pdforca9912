@@ -1,5 +1,5 @@
 ---
-title: "How to Create PDF Documents for Driving License Application"
+title: "Create PDF Documents for Driving License"
 description: "Prepare the exact PDF documents Sarathi and RTO portals need for your driving license — correct format, under 5MB. Free, step-by-step, no signup, no app."
 date: "2026-08-10"
 category: "Use Case"

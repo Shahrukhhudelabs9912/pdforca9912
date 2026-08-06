@@ -1,6 +1,6 @@
 ---
-title: "How to Split a Large PDF Into Smaller Parts for Email (2026 Guide)"
-description: "Email bouncing back because your PDF is too big? Learn how to split a large PDF into smaller parts that fit attachment limits. Free, browser-based, no signup, works on any device."
+title: "Split a Large PDF Into Smaller Parts for Email"
+description: "Email bouncing back because your PDF is too big? Learn how to split a large PDF into smaller parts that fit attachment limits. Free and browser-based."
 date: "2026-09-16"
 category: "Tutorial"
 author: "PDFOrca Team"

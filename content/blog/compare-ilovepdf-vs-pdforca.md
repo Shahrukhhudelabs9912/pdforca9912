@@ -1,5 +1,5 @@
 ---
-title: "PDFOrca vs iLovePDF: Features, Privacy & Speed Comparison"
+title: "PDFOrca vs iLovePDF: Features & Privacy"
 description: "An honest, balanced look at PDFOrca and iLovePDF — features, privacy, speed, and price. See where each fits, and why browser-based processing matters."
 date: "2026-08-12"
 category: "Comparison"

@@ -1,6 +1,6 @@
 ---
-title: "How to Fill Out a PDF Form Without Adobe Acrobat (2026 Guide)"
-description: "Fill and sign any PDF form without paying for Adobe Acrobat. Type into flat forms, add your signature, and export a clean file — free, browser-based, no signup."
+title: "Fill Out a PDF Form Without Adobe Acrobat"
+description: "Fill and sign any PDF form without paying for Adobe Acrobat. Type into flat forms, add your signature, and export a clean file — free, browser-based."
 date: "2026-10-09"
 category: "Tutorial"
 author: "PDFOrca Team"

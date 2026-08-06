@@ -1,6 +1,6 @@
 ---
-title: "10 Best Free Online PDF Tools in 2026 (No Install Needed)"
-description: "A curated list of the best free online PDF tools for merging, splitting, compressing, converting, and editing PDFs — all browser-based, no downloads, no signups."
+title: "10 Best Free Online PDF Tools in 2026"
+description: "A curated list of the best free online PDF tools for merging, splitting, compressing, converting, and editing PDFs — all browser-based, no signups."
 date: "2026-06-14"
 category: "Comparison"
 author: "PDFOrca Team"

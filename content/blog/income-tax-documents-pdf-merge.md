@@ -1,5 +1,5 @@
 ---
-title: "Income Tax Documents PDF Mein Kaise Merge Kare — ITR Filing Guide (2026)"
+title: "Income Tax Documents PDF Merge Kare (ITR Guide)"
 description: "ITR filing ke liye sab documents ek PDF mein kaise merge kare. Form 16, bank statements, investment proofs — sab combine kare."
 date: "2026-08-04"
 category: "Use Case"

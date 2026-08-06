@@ -1,5 +1,5 @@
 ---
-title: "How to Convert PAN Card Image to PDF for Online Applications (2026)"
+title: "Convert PAN Card Image to PDF for Applications"
 description: "Convert your PAN card photo to a proper PDF document for ITR filing, bank KYC, and government applications. Free, under 2 minutes, no app or signup needed."
 date: "2026-06-19"
 category: "Use Case"

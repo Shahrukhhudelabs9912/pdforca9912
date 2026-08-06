@@ -1,5 +1,5 @@
 ---
-title: "How to Rotate PDF Pages and Fix Orientation Issues (Quick Fix)"
+title: "Rotate PDF Pages and Fix Orientation Issues"
 description: "Fix sideways, upside-down, or mixed-orientation PDF pages in seconds. Free online tool — no software, no signup. Works on any device."
 date: "2026-06-23"
 category: "Tutorial"

@@ -1,6 +1,6 @@
 ---
-title: "How to Sign a PDF Digitally Without Printing It (Free, 2026)"
-description: "Add your signature to any PDF without printing, signing, and scanning. Draw your signature online, place it on the document, and download — free, works on phone and desktop."
+title: "Sign a PDF Digitally Without Printing It (Free)"
+description: "Add your signature to any PDF without printing, signing, and scanning. Draw your signature online, place it, and download — free, works on any device."
 date: "2026-06-25"
 category: "Tutorial"
 author: "PDFOrca Team"

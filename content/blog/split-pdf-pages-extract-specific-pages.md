@@ -1,6 +1,6 @@
 ---
-title: "How to Split a PDF and Extract Specific Pages (Free Online Tool)"
-description: "Split any PDF into individual pages or extract just the pages you need — no software, no signup. Step-by-step guide for students, professionals, and anyone dealing with large PDFs."
+title: "Split a PDF and Extract Specific Pages (Free)"
+description: "Split any PDF into individual pages or extract just the pages you need — no software, no signup. Step-by-step guide for students and professionals."
 date: "2026-06-13"
 category: "Tutorial"
 author: "PDFOrca Team"

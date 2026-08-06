@@ -1,5 +1,5 @@
 ---
-title: "Resume PDF Kaise Banaye — Word Se Perfect PDF Resume Banao (2026)"
+title: "Resume PDF Kaise Banaye — Word Se PDF (2026)"
 description: "Resume ko Word se PDF mein kaise convert kare. Formatting perfect rahegi, file size chhota rahega — job applications ke liye ready."
 date: "2026-07-30"
 category: "Use Case"

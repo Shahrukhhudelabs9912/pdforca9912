@@ -1,5 +1,5 @@
 ---
-title: "How to Reorder, Delete, and Organize PDF Pages Like a Pro"
+title: "Reorder, Delete, and Organize PDF Pages"
 description: "Learn how to rearrange PDF pages, delete unwanted pages, and organize your documents in seconds — free, online, no software install needed."
 date: "2026-07-15"
 category: "Tutorial"

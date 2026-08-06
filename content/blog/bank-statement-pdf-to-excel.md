@@ -1,6 +1,6 @@
 ---
 title: "How to Convert Bank Statement PDF to Excel (2026 Guide)"
-description: "Turn a bank statement PDF into a clean Excel spreadsheet. Extract transactions into rows and columns for budgeting, taxes, or bookkeeping — free, no signup, step-by-step."
+description: "Turn a bank statement PDF into a clean Excel spreadsheet. Extract transactions into rows and columns for budgeting, taxes, or bookkeeping — free, no signup."
 date: "2026-08-21"
 category: "Use Case"
 author: "PDFOrca Team"

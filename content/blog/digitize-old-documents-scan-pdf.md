@@ -1,5 +1,5 @@
 ---
-title: "How to Digitize Old Paper Documents Into Searchable PDFs (2026 Guide)"
+title: "Digitize Old Paper Documents Into Searchable PDFs"
 description: "Turn paper documents into searchable PDFs using your phone or scanner. Free OCR, no signup. Find any word in your old files instantly — step-by-step guide."
 date: "2026-09-09"
 category: "Tutorial"

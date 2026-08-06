@@ -1,5 +1,5 @@
 ---
-title: "Forgot Your PDF Password? How to Unlock Protected PDFs (2026 Guide)"
+title: "Forgot Your PDF Password? How to Unlock PDFs"
 description: "Lost the password to your own PDF? Learn how to unlock password-protected PDFs safely and legally — no software installation required. Works on any device."
 date: "2026-07-10"
 category: "Tutorial"

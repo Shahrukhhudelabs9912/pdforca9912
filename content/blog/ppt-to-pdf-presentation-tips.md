@@ -1,5 +1,5 @@
 ---
-title: "How to Convert PowerPoint to PDF (Without Losing Fonts or Layout)"
+title: "Convert PowerPoint to PDF Without Losing Fonts"
 description: "Convert PPT and PPTX presentations to PDF for free — fonts, images, and slide layout stay exactly as designed. No PowerPoint or software install needed."
 date: "2026-07-13"
 category: "Tutorial"

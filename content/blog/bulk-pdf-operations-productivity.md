@@ -1,6 +1,6 @@
 ---
-title: "7 Bulk PDF Operations That Save Hours of Work (2026 Guide)"
-description: "Stop editing PDFs one file at a time. These 7 bulk PDF operations — merge, split, compress, convert and more — save hours every week. Free, browser-based, no signup."
+title: "7 Bulk PDF Operations That Save Hours of Work"
+description: "Stop editing PDFs one file at a time. These 7 bulk PDF operations — merge, split, compress, convert and more — save hours every week. Free and fast."
 date: "2026-10-07"
 category: "Tips"
 author: "PDFOrca Team"

@@ -1,5 +1,5 @@
 ---
-title: "PDF Mein Password Kaise Lagaye — Free Mein Secure Kare Apne Documents"
+title: "PDF Mein Password Kaise Lagaye (Free Secure)"
 description: "PDF file mein password kaise lagaye free mein. Bank statements, salary slips, private documents ko secure kare — simple steps."
 date: "2026-07-25"
 category: "How-To"

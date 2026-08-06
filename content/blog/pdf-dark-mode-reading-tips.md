@@ -1,6 +1,6 @@
 ---
-title: "How to Read PDFs in Dark Mode (Eyes-Friendly Tips) (2026 Guide)"
-description: "Reduce eye strain reading PDFs at night with dark mode. Step-by-step for Adobe, browsers, phones, and e-readers, plus tips for the most comfortable setup. Free, no signup needed."
+title: "How to Read PDFs in Dark Mode (Eye-Friendly Tips)"
+description: "Reduce eye strain reading PDFs at night with dark mode. Step-by-step for Adobe, browsers, phones, and e-readers, plus tips for a comfortable setup."
 date: "2026-09-14"
 category: "Tips"
 author: "PDFOrca Team"

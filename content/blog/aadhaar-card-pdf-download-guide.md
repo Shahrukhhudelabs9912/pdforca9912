@@ -1,6 +1,6 @@
 ---
-title: "How to Download Aadhaar Card as PDF from UIDAI (2026 Guide)"
-description: "Download your Aadhaar card as a PDF from the official UIDAI website or DigiLocker in under 3 minutes. Step-by-step guide with screenshots-level detail — works on phone and laptop."
+title: "Download Aadhaar Card as PDF from UIDAI (Guide)"
+description: "Download your Aadhaar card as a PDF from the official UIDAI website or DigiLocker in under 3 minutes. Step-by-step guide for phone and laptop."
 date: "2026-07-02"
 category: "Use Case"
 author: "PDFOrca Team"

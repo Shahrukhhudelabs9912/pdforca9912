@@ -1,5 +1,5 @@
 ---
-title: "Passport Application Ke Documents PDF Mein Kaise Taiyaar Kare (2026)"
+title: "Passport Application Documents PDF Taiyaar Kare"
 description: "Passport application ke liye documents PDF mein kaise taiyaar kare. Aadhaar, photo, birth certificate — sab merge, compress aur ready kare."
 date: "2026-08-22"
 category: "Use Case"

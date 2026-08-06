@@ -1,5 +1,5 @@
 ---
-title: "PDF Se Excel Mein Data Kaise Nikale — Tables Extract Kare Free"
+title: "PDF Se Excel Mein Data Kaise Nikale (Free)"
 description: "PDF file se Excel mein data kaise nikale. Bank statements, invoices, reports — tables extract kare editable format mein. Free online."
 date: "2026-08-25"
 category: "How-To"

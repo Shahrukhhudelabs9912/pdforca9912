@@ -1,5 +1,5 @@
 ---
-title: "How to Prepare Visa Application Documents as PDF (2026 Guide)"
+title: "Prepare Visa Application Documents as PDF"
 description: "Prepare and merge your visa application documents into clean, organized PDFs — free, no signup needed. Step-by-step guide for Schengen, US, UK, and more."
 date: "2026-08-28"
 category: "Use Case"

@@ -1,6 +1,6 @@
 ---
-title: "Student Guide: Converting Presentations to PDF for Submission (2026 Guide)"
-description: "A student's guide to converting PowerPoint presentations to PDF for assignment submission — keep fonts intact, shrink file size, and submit anywhere. Free, no signup, works on any device."
+title: "Convert PowerPoint to PDF (Student Guide)"
+description: "Student guide to converting presentations to PDF for assignments — keep fonts intact, shrink file size, submit anywhere. Free, works on any device."
 date: "2026-09-11"
 category: "Use Case"
 author: "PDFOrca Team"

@@ -1,6 +1,6 @@
 ---
 title: "PDF File Security: Best Practices for 2026"
-description: "Protect sensitive PDFs the right way in 2026 — passwords, permissions, redaction, and safe sharing. Practical, plain-English steps you can do free in your browser."
+description: "Protect sensitive PDFs the right way — passwords, permissions, redaction, and safe sharing. Practical, plain-English steps you can do free in your browser."
 date: "2026-08-05"
 category: "Tips"
 author: "PDFOrca Team"

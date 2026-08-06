@@ -1,5 +1,5 @@
 ---
-title: "How to Organize Medical Records as PDF for Doctor Visits (2026 Guide)"
+title: "Organize Medical Records as PDF for Doctor Visits"
 description: "Combine lab reports, prescriptions, and scans into one organized medical PDF for your doctor. Free, browser-based, step-by-step — no app and no signup."
 date: "2026-09-28"
 category: "Use Case"

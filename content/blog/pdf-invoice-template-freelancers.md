@@ -1,5 +1,5 @@
 ---
-title: "How to Create Professional PDF Invoices (Freelancer Guide) (2026 Guide)"
+title: "Create Professional PDF Invoices (Freelancers)"
 description: "Turn your invoices into clean, professional PDFs clients respect and pay faster. Free, step-by-step guide — no app, no signup, no accounting software needed."
 date: "2026-09-02"
 category: "Use Case"

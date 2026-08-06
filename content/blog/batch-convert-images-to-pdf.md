@@ -1,6 +1,6 @@
 ---
 title: "How to Batch-Convert 100+ Images to PDF in Minutes"
-description: "Turn a folder of photos, scans, or screenshots into one clean PDF fast. Reorder pages, keep quality, and skip the manual work — free, in your browser, no signup."
+description: "Turn a folder of photos, scans, or screenshots into one clean PDF fast. Reorder pages, keep quality, and skip the manual work — free, no signup."
 date: "2026-07-31"
 category: "Tutorial"
 author: "PDFOrca Team"

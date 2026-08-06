@@ -1,5 +1,5 @@
 ---
-title: "What Does Flatten a PDF Mean and How to Do It (2026 Guide)"
+title: "What Does Flatten a PDF Mean and How to Do It"
 description: "Learn what flattening a PDF means, why it matters, and how to flatten form fields and annotations for free — no app, no signup required."
 date: "2026-08-31"
 category: "Tips"

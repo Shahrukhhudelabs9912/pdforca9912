@@ -1,5 +1,5 @@
 ---
-title: "PDF Split Kaise Kare — Specific Pages Nikale Bina Software Install Kiye"
+title: "PDF Split Kaise Kare — Specific Pages Nikale"
 description: "PDF file se specific pages kaise nikale. Large PDF ko chhoti files mein kaise tode — free online tool se 2 minute mein."
 date: "2026-07-28"
 category: "How-To"

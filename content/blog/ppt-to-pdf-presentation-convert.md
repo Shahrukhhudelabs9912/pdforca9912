@@ -1,5 +1,5 @@
 ---
-title: "PPT Ko PDF Mein Kaise Convert Kare — Presentation Share Kare (Free)"
+title: "PPT Ko PDF Mein Kaise Convert Kare (Free)"
 description: "PowerPoint presentation ko PDF mein kaise convert kare. Fonts, images, animations — sab intact rahega. Free online converter."
 date: "2026-09-05"
 category: "How-To"

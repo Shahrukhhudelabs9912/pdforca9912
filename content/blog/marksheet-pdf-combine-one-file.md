@@ -1,6 +1,6 @@
 ---
-title: "How to Combine All Marksheets Into One PDF for Job Applications (2026)"
-description: "Merge your 10th, 12th, degree, and semester marksheets into a single PDF for job portals, government exams, and university admissions. Free, step-by-step — no app needed."
+title: "Combine All Marksheets Into One PDF for Jobs"
+description: "Merge 10th, 12th, degree, and semester marksheets into a single PDF for job portals and university admissions. Free, step-by-step guide."
 date: "2026-07-04"
 category: "Use Case"
 author: "PDFOrca Team"

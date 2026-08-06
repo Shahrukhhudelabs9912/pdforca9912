@@ -1,6 +1,6 @@
 ---
-title: "How to Create Passport Size Photo PDF for Printing (2026 Guide)"
-description: "Convert passport size photos to a print-ready PDF in seconds. Perfect for visa applications, government forms, and ID submissions — no Photoshop or studio visit required."
+title: "Create Passport Size Photo PDF for Printing"
+description: "Convert passport size photos to a print-ready PDF in seconds. Perfect for visa applications, government forms, and ID submissions — no Photoshop needed."
 date: "2026-07-08"
 category: "Use Case"
 author: "PDFOrca Team"

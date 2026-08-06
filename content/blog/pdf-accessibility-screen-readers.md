@@ -1,6 +1,6 @@
 ---
-title: "How to Make PDFs Accessible for Screen Readers (2026 Guide)"
-description: "Make your PDFs work with screen readers. Add a real text layer, tags, alt text, and reading order so everyone can use your documents — free, no signup, step-by-step."
+title: "Make PDFs Accessible for Screen Readers"
+description: "Make your PDFs work with screen readers. Add a real text layer, tags, alt text, and reading order so everyone can use your documents — free, step-by-step."
 date: "2026-08-19"
 category: "Tips"
 author: "PDFOrca Team"

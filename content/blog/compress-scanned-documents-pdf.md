@@ -1,6 +1,6 @@
 ---
-title: "How to Compress Scanned Documents Without Losing Readability (2026)"
-description: "Scanned PDFs are huge — 5 MB per page is common. Learn how to shrink them by 70–90% while keeping text sharp and images clear. Free, browser-based, no software required."
+title: "Compress Scanned Documents Without Losing Quality"
+description: "Scanned PDFs are huge — 5 MB per page is common. Learn how to shrink them by 70–90% while keeping text sharp and images clear. Free, browser-based."
 date: "2026-07-03"
 category: "Tips"
 author: "PDFOrca Team"

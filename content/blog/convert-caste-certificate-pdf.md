@@ -1,6 +1,6 @@
 ---
-title: "How to Scan and Convert Caste/Income Certificate to PDF (2026 Guide)"
-description: "Scan your caste or income certificate with your phone and turn it into a portal-ready PDF. Free, no signup, no app — sized right for scholarships, admissions, and reservations."
+title: "Scan and Convert Caste/Income Certificate to PDF"
+description: "Scan your caste or income certificate with your phone and turn it into a portal-ready PDF. Free, no signup — sized right for scholarships and admissions."
 date: "2026-10-12"
 category: "Use Case"
 author: "PDFOrca Team"

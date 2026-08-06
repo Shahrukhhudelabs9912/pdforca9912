@@ -1,6 +1,6 @@
 ---
-title: "Word File Ko PDF Mein Kaise Badle — Fonts Aur Layout Perfect Rahega"
-description: "Word document ko PDF mein kaise convert kare. Fonts, images, layout — sab kuch perfect rahega. Free online converter."
+title: "Word Ko PDF Mein Kaise Badle (Free Converter)"
+description: "Word document ko PDF mein kaise convert kare. Fonts, images, layout — sab perfect rahega. Free online converter, koi software nahi."
 date: "2026-08-18"
 category: "How-To"
 author: "PDFOrca Team"

@@ -1,5 +1,5 @@
 ---
-title: "Excel Ko PDF Mein Kaise Convert Kare — Table Formatting Intact (Free)"
+title: "Excel Ko PDF Mein Kaise Convert Kare (Free)"
 description: "Excel file ko PDF mein kaise convert kare bina formatting bigde. Tables, charts, formulas — sab intact rahenge. Free online."
 date: "2026-08-11"
 category: "How-To"

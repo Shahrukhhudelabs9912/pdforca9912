@@ -1,6 +1,6 @@
 ---
-title: "How to Convert Excel to PDF Without Losing Formatting (Free, Online)"
-description: "Convert Excel spreadsheets to pixel-perfect PDFs that preserve columns, formulas, charts, and layout — free, browser-based, no software required. Works with .xlsx and .xls files."
+title: "Convert Excel to PDF Without Losing Formatting"
+description: "Convert Excel spreadsheets to pixel-perfect PDFs that preserve columns, formulas, charts, and layout — free, browser-based. Works with .xlsx and .xls."
 date: "2026-07-07"
 category: "Tutorial"
 author: "PDFOrca Team"

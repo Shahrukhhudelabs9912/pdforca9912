@@ -1,5 +1,5 @@
 ---
-title: "How to Convert Word to PDF Without Formatting Issues (2026 Guide)"
+title: "Convert Word to PDF Without Formatting Issues"
 description: "Export Word documents to perfectly formatted PDFs — fonts, tables, headers, and page breaks intact. Free online tool, no Word or Acrobat needed."
 date: "2026-06-24"
 category: "Tutorial"

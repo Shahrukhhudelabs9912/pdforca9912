@@ -1,5 +1,5 @@
 ---
-title: "PDF Pages Ko Arrange Kaise Kare — Delete, Reorder, Move Kare (Free)"
+title: "PDF Pages Ko Arrange Kaise Kare (Free)"
 description: "PDF ke pages ko kaise arrange kare. Galat order fix kare, blank pages delete kare, pages move kare — free online tool se."
 date: "2026-09-08"
 category: "How-To"

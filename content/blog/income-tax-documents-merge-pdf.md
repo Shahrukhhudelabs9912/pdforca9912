@@ -1,5 +1,5 @@
 ---
-title: "How to Merge Income Tax Documents Into One PDF for ITR Filing (2026)"
+title: "Merge Income Tax Documents Into One PDF for ITR"
 description: "Combine Form 16, salary slips, interest certificates, and investment proofs into a single organized PDF for ITR filing. Free, step-by-step — no app, no signup."
 date: "2026-07-20"
 category: "Use Case"

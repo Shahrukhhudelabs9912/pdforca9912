@@ -1,6 +1,6 @@
 ---
 title: "PDF vs DOCX: When to Use Which Format (2026 Guide)"
-description: "PDF or DOCX? Learn when to use each format for sharing, editing, printing, and archiving — plus how to convert between them freely, in your browser, with no signup."
+description: "PDF or DOCX? Learn when to use each format for sharing, editing, printing, and archiving — plus how to convert between them freely, with no signup."
 date: "2026-08-26"
 category: "Comparison"
 author: "PDFOrca Team"

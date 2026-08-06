@@ -1,6 +1,6 @@
 ---
-title: "How to Organize Property Documents as PDF (Registration, Sale Deed) (2026 Guide)"
-description: "Keep your property papers — sale deed, registration, tax receipts — organized as one clean PDF. A step-by-step guide for Indian homeowners. Free, browser-based, no signup, files stay private."
+title: "Organize Property Documents as PDF (2026 Guide)"
+description: "Keep your property papers — sale deed, registration, tax receipts — organized as one clean PDF. Step-by-step guide for Indian homeowners, free and private."
 date: "2026-09-18"
 category: "Use Case"
 author: "PDFOrca Team"

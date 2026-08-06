@@ -1,6 +1,6 @@
 ---
-title: "Bank Statement PDF Compress Kaise Kare — Loan Ke Liye Share Kare (2026)"
-description: "Bank statement PDF ka size kaise kam kare loan application ke liye. 10MB se 2MB mein compress kare bina quality khoye."
+title: "Bank Statement PDF Compress Kare (Loan Guide)"
+description: "Bank statement PDF ka size kaise kam kare loan application ke liye — 10MB se 2MB compress kare bina quality khoye. Step by step free guide."
 date: "2026-08-29"
 category: "Use Case"
 author: "PDFOrca Team"

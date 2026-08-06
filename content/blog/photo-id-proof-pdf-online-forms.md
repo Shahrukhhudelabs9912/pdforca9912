@@ -1,5 +1,5 @@
 ---
-title: "How to Create Photo ID Proof PDFs for Online Applications (2026 Guide)"
+title: "Create Photo ID Proof PDFs for Applications"
 description: "Turn your Aadhaar, PAN card, or any photo ID into a PDF for online applications — free, no signup, works on any device. Step-by-step guide for India."
 date: "2026-09-21"
 category: "Use Case"

@@ -1,5 +1,5 @@
 ---
-title: "PDF Compress Kaise Kare — Bina Quality Khoye Size Kam Kare (2026)"
+title: "PDF Compress Kaise Kare — Size Kam Kare (Free)"
 description: "PDF file ka size kaise kam kare bina quality khoye. Free online tool se 2 second mein PDF compress kare — government forms, email ke liye perfect."
 date: "2026-07-14"
 category: "How-To"

@@ -1,5 +1,5 @@
 ---
-title: "How to Edit a Scanned PDF by Converting to Word (2026 Guide)"
+title: "Edit a Scanned PDF by Converting to Word"
 description: "Turn a scanned PDF into an editable Word document you can actually change. Free, browser-based, step-by-step — no app to install and no signup."
 date: "2026-09-23"
 category: "Tutorial"

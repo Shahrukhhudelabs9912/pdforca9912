@@ -1,5 +1,5 @@
 ---
-title: "Are PDF E-Signatures Legally Binding? What You Need to Know (2026 Guide)"
+title: "Are PDF E-Signatures Legally Binding?"
 description: "Learn what makes a PDF e-signature legally binding, how laws differ by country, and how to sign documents online free — no signup, no software to install."
 date: "2026-10-02"
 category: "Tips"

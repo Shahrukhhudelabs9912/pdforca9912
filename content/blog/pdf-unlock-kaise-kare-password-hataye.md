@@ -1,5 +1,5 @@
 ---
-title: "PDF Unlock Kaise Kare — Password Protected PDF Se Password Hataye (Free)"
+title: "PDF Unlock Kaise Kare — Password Hataye (Free)"
 description: "PDF file se password kaise hataye. Locked PDF ko kaise unlock kare free mein — apne khud ke documents ke liye simple guide."
 date: "2026-08-13"
 category: "How-To"

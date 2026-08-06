@@ -1,5 +1,5 @@
 ---
-title: "Free Independence Day Certificate & Invitation PDF Templates"
+title: "Free Independence Day PDF Certificate Templates"
 description: "Create and customize Independence Day certificates and invitations as PDFs — free, no signup, no app. Step-by-step guide for schools, offices, and events."
 date: "2026-08-14"
 category: "Use Case"

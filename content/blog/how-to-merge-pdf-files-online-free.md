@@ -1,6 +1,6 @@
 ---
-title: "How to Merge PDF Files Online for Free (Step-by-Step Guide)"
-description: "Combine multiple PDF documents into one file in seconds — no software, no signup. Works on any device. A complete step-by-step guide with tips for different use cases."
+title: "How to Merge PDF Files Online for Free"
+description: "Combine multiple PDF documents into one file in seconds — no software, no signup. Works on any device. A complete step-by-step guide with tips."
 date: "2026-07-01"
 category: "Tutorial"
 author: "PDFOrca Team"

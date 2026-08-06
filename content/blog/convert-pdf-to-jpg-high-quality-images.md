@@ -1,6 +1,6 @@
 ---
-title: "How to Convert PDF to JPG in High Quality (Free, No Software Needed)"
-description: "Turn any PDF page into a crisp JPG image — for presentations, social media, thumbnails, or sharing on platforms that don't support PDFs. Free, browser-based, works on any device."
+title: "Convert PDF to JPG in High Quality (Free)"
+description: "Turn any PDF page into a crisp JPG image — for presentations, social media, thumbnails, or sharing on platforms that don't support PDFs. Free and fast."
 date: "2026-07-06"
 category: "Tutorial"
 author: "PDFOrca Team"

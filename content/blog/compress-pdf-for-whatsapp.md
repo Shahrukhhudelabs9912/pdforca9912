@@ -1,5 +1,5 @@
 ---
-title: "How to Compress PDF Files to Send on WhatsApp (2026 Guide)"
+title: "Compress PDF Files to Send on WhatsApp"
 description: "Compress any PDF to send on WhatsApp fast — free, no signup, no app. Get under 10MB for instant delivery on any connection, anywhere in India."
 date: "2026-08-17"
 category: "Tips"

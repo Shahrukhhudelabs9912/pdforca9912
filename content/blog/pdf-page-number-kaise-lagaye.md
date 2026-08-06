@@ -1,5 +1,5 @@
 ---
-title: "PDF Mein Page Number Kaise Lagaye — Auto Numbering Add Kare (Free)"
+title: "PDF Mein Page Number Kaise Lagaye (Free)"
 description: "PDF mein page numbers kaise add kare automatically. Project report, thesis, legal documents ke liye — position aur format choose kare."
 date: "2026-09-01"
 category: "How-To"

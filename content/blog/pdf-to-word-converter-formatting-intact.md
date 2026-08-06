@@ -1,6 +1,6 @@
 ---
-title: "How to Convert PDF to Word Without Losing Formatting (2026 Guide)"
-description: "Convert any PDF to an editable Word document while keeping fonts, tables, and layout intact. Free, no signup, works on any device — step-by-step guide with pro tips."
+title: "Convert PDF to Word Without Losing Formatting"
+description: "Convert any PDF to an editable Word document while keeping fonts, tables, and layout intact. Free, works on any device — step-by-step guide with tips."
 date: "2026-06-12"
 category: "Tutorial"
 author: "PDFOrca Team"

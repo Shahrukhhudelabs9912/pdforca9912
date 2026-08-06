@@ -1,5 +1,5 @@
 ---
-title: "How to Add a Watermark to PDFs for Branding & Security (Free Guide)"
+title: "Add a Watermark to PDFs for Branding & Security"
 description: "Stamp any PDF with a text or image watermark — for branding, confidentiality, or copyright protection. Free, no software, works on any device in seconds."
 date: "2026-07-05"
 category: "Tutorial"

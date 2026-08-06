@@ -1,5 +1,5 @@
 ---
-title: "Sarkari Form Ke Liye PDF Size Kaise Kam Kare — 200KB, 500KB, 1MB Limit"
+title: "Sarkari Form Ke Liye PDF Size Kaise Kam Kare"
 description: "Government form ke liye PDF ka size kaise kam kare — 200KB, 500KB, 1MB limit ke andar. UPSC, SSC, railway forms ke liye perfect guide."
 date: "2026-08-15"
 category: "Use Case"

@@ -1,6 +1,6 @@
 ---
-title: "How to Convert School Leaving Certificate to PDF (2026 Guide)"
-description: "Turn your School Leaving Certificate into a clean, portal-ready PDF from your phone. Free, no signup, no app — perfect for college admissions, scholarships, and job forms."
+title: "Convert School Leaving Certificate to PDF"
+description: "Turn your School Leaving Certificate into a clean, portal-ready PDF from your phone. Free, no signup — perfect for college admissions and job forms."
 date: "2026-10-05"
 category: "Use Case"
 author: "PDFOrca Team"

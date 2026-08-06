@@ -1,5 +1,5 @@
 ---
-title: "How to Remove a Password From a PDF You Own (2026 Guide)"
+title: "How to Remove a Password From a PDF You Own"
 description: "Remove the password from a PDF you own in seconds. Free, step-by-step guide to unlocking your protected files — no app, no signup, no software to install."
 date: "2026-09-04"
 category: "Tutorial"

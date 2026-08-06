@@ -1,6 +1,6 @@
 ---
-title: "How to Convert PDF Back to PowerPoint Slides (2026 Guide)"
-description: "Turn a PDF back into an editable PowerPoint presentation. Recover slides you lost the source file for, edit a shared deck, or reuse content — free, step-by-step, no software to install."
+title: "How to Convert PDF Back to PowerPoint Slides"
+description: "Turn a PDF back into an editable PowerPoint presentation. Recover slides you lost the source file for, edit a shared deck, or reuse content — free."
 date: "2026-07-24"
 category: "Tutorial"
 author: "PDFOrca Team"

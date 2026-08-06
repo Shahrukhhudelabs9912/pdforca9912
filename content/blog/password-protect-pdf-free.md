@@ -1,6 +1,6 @@
 ---
-title: "How to Password-Protect a PDF File for Free (2026 Guide)"
-description: "Add password protection to any PDF in seconds — no software, no signup. Learn when and how to lock your PDFs for email, cloud sharing, and confidential documents."
+title: "How to Password-Protect a PDF File for Free"
+description: "Add password protection to any PDF in seconds — no software, no signup. Learn when and how to lock your PDFs for email and confidential documents."
 date: "2026-06-17"
 category: "Tutorial"
 author: "PDFOrca Team"

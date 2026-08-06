@@ -1,5 +1,5 @@
 ---
-title: "Photo Ko PDF Mein Kaise Badle — Mobile Aur Laptop Dono Se (Free)"
+title: "Photo Ko PDF Mein Kaise Badle (Mobile/Laptop)"
 description: "Photo ko PDF mein kaise convert kare mobile aur laptop se. Passport photo, documents, notes — sab kuch PDF mein badle free mein."
 date: "2026-07-18"
 category: "How-To"

@@ -1,6 +1,6 @@
 ---
-title: "How to Format College Assignments as PDF (Complete Guide)"
-description: "Turn your Word assignment into a clean, professional PDF your professor can open anywhere. Fix fonts, page size, and file size — free, no signup, works in your browser."
+title: "How to Format College Assignments as PDF"
+description: "Turn your Word assignment into a clean, professional PDF your professor can open anywhere. Fix fonts, page size, and file size — free, no signup."
 date: "2026-07-27"
 category: "Use Case"
 author: "PDFOrca Team"

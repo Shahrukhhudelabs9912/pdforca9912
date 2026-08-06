@@ -1,5 +1,5 @@
 ---
-title: "PDF Ko Word Mein Kaise Convert Kare — Formatting Intact Rahegi (Free)"
+title: "PDF Ko Word Mein Kaise Convert Kare (Free)"
 description: "PDF file ko Word document mein kaise convert kare bina formatting khoye. Tables, images, fonts — sab intact rahenge. Free online tool."
 date: "2026-07-21"
 category: "How-To"

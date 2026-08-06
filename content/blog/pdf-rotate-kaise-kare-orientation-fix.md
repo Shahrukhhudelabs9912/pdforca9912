@@ -1,12 +1,11 @@
 ---
-title: "PDF Rotate Kaise Kare — Ulti Photo Ya Page Ko Seedha Kare (Free)"
+title: "PDF Rotate Kaise Kare — Page Seedha Kare (Free)"
 description: "PDF pages ko kaise rotate kare — ulti photo ya document ko seedha kare. 90, 180, 270 degree rotation free online tool se."
 date: "2026-08-06"
 category: "How-To"
 author: "PDFOrca Team"
 relatedTool: "rotate-pdf"
 cover: "/blog/covers/pdf-rotate-kaise-kare-orientation-fix.webp"
-draft: true
 keywords:
   - pdf rotate kaise kare
   - pdf page seedha kare

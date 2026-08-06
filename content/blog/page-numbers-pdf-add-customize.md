@@ -1,5 +1,5 @@
 ---
-title: "How to Add Page Numbers to a PDF (Header or Footer) — 2026 Guide"
+title: "How to Add Page Numbers to a PDF (Header/Footer)"
 description: "Add and customize page numbers in any PDF — choose header or footer, position, format, and starting number. Free, step-by-step, no software to install."
 date: "2026-07-22"
 category: "Tutorial"

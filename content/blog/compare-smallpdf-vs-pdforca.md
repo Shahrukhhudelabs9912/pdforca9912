@@ -1,5 +1,5 @@
 ---
-title: "PDFOrca vs Smallpdf: Honest Feature & Privacy Comparison (2026 Guide)"
+title: "PDFOrca vs Smallpdf: Feature & Privacy Comparison"
 description: "PDFOrca vs Smallpdf compared honestly: features, privacy, pricing, and limits. See which free PDF tool fits your needs without hidden catches."
 date: "2026-09-30"
 category: "Comparison"

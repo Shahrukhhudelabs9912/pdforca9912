@@ -1,6 +1,6 @@
 ---
-title: "How to Merge Resume and Cover Letter Into One PDF (2026 Guide)"
-description: "Combine your resume and cover letter into a single, professional PDF for job applications. Keep formatting perfect and the order right — free, no signup, step-by-step."
+title: "Merge Resume and Cover Letter Into One PDF"
+description: "Combine your resume and cover letter into a single, professional PDF for job applications. Keep formatting perfect and the order right — free, step-by-step."
 date: "2026-08-24"
 category: "Use Case"
 author: "PDFOrca Team"

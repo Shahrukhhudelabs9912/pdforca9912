@@ -1,5 +1,5 @@
 ---
-title: "PDF Se JPG Image Kaise Nikale — High Quality Photos Extract Kare Free"
+title: "PDF Se JPG Image Kaise Nikale (High Quality)"
 description: "PDF file se JPG images kaise nikale high quality mein. Presentations, brochures, documents se photos extract kare — free online."
 date: "2026-08-01"
 category: "How-To"

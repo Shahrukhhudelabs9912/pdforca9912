@@ -1,6 +1,6 @@
 ---
-title: "How to Make a Scanned PDF Searchable with OCR (2026 Guide)"
-description: "Learn how to convert scanned PDFs into searchable, selectable text using OCR. Free online tool, no software install — works on receipts, contracts, old documents."
+title: "Make a Scanned PDF Searchable with OCR"
+description: "Learn how to convert scanned PDFs into searchable, selectable text using OCR. Free online tool — works on receipts, contracts, old documents."
 date: "2026-07-17"
 category: "Tutorial"
 author: "PDFOrca Team"

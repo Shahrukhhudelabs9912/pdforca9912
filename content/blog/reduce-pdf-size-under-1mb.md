@@ -1,6 +1,6 @@
 ---
-title: "How to Reduce a PDF to Under 1 MB (For Government Forms)"
-description: "Government portals often cap uploads at 1 MB. Learn how to shrink any PDF under the limit while keeping it readable — free, in your browser, no signup or software."
+title: "Reduce a PDF to Under 1 MB (Government Forms)"
+description: "Government portals often cap uploads at 1 MB. Learn how to shrink any PDF under the limit while keeping it readable — free, no signup or software."
 date: "2026-07-29"
 category: "Tips"
 author: "PDFOrca Team"

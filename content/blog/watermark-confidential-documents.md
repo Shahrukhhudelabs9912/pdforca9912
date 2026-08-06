@@ -1,5 +1,5 @@
 ---
-title: "How to Watermark Confidential Documents Before Sharing (2026 Guide)"
+title: "Watermark Confidential Documents Before Sharing"
 description: "Add a CONFIDENTIAL watermark to your PDFs before you share them. Free, browser-based, step-by-step — no app to install and no signup required."
 date: "2026-09-25"
 category: "Tips"

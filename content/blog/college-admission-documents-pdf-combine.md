@@ -1,5 +1,5 @@
 ---
-title: "College Admission Ke Documents PDF Mein Kaise Combine Kare (Step by Step)"
+title: "College Admission Documents PDF Combine Kare"
 description: "College admission ke liye sab documents ek PDF mein kaise combine kare. Marksheet, photo, certificates — sab merge kare step by step."
 date: "2026-08-08"
 category: "Use Case"

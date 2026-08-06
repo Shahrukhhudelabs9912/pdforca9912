@@ -1,6 +1,6 @@
 ---
-title: "How to Convert PDF Tables to Excel Without Retyping (2026 Guide)"
-description: "Extract tables from PDF reports and convert them to editable Excel spreadsheets — no retyping, no software. Free step-by-step guide for accountants, analysts, and students."
+title: "Convert PDF Tables to Excel Without Retyping"
+description: "Extract tables from PDF reports and convert them to editable Excel spreadsheets — no retyping, no software. Free guide for accountants and students."
 date: "2026-06-22"
 category: "Tutorial"
 author: "PDFOrca Team"

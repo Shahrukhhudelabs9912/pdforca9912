@@ -1,5 +1,5 @@
 ---
-title: "How to Convert Multiple JPG Images to a Single PDF (Free Guide)"
+title: "Convert Multiple JPG Images to a Single PDF"
 description: "Turn multiple photos or scanned images into one clean PDF document — free, no app required. Perfect for ID documents, photo albums, receipts, and assignments."
 date: "2026-06-16"
 category: "Tutorial"

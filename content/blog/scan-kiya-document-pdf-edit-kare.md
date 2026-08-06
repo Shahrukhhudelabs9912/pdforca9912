@@ -1,5 +1,5 @@
 ---
-title: "Scan Kiya Hua Document PDF Mein Edit Kaise Kare — OCR Se Text Nikale"
+title: "Scan Kiya Document PDF Edit Kaise Kare (OCR)"
 description: "Scanned PDF ko editable kaise banaye. OCR technology se scan kiye documents mein se text nikale — search, copy, edit sab ho jayega."
 date: "2026-08-27"
 category: "How-To"
