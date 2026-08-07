@@ -6,7 +6,6 @@ category: "Use Case"
 author: "PDFOrca Team"
 relatedTool: "word-to-pdf"
 cover: "/blog/covers/resume-pdf-format-tips-2026.webp"
-draft: true
 keywords:
   - resume pdf format
   - convert resume to pdf
