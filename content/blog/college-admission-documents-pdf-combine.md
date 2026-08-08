@@ -6,7 +6,6 @@ category: "Use Case"
 author: "PDFOrca Team"
 relatedTool: "merge-pdf"
 cover: "/blog/covers/college-admission-documents-pdf-combine.webp"
-draft: true
 keywords:
   - college admission documents pdf combine
   - admission ke liye documents merge
